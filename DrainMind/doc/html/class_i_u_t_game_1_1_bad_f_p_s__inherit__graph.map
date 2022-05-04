@@ -1,0 +1,4 @@
+<map id="IUTGame.BadFPS" name="IUTGame.BadFPS">
+<area shape="rect" id="node1" title="Exception if bad fps wanted" alt="" coords="8,131,137,208"/>
+<area shape="rect" id="node2" href="$class_i_u_t_game_1_1_game_exception.html" title="Generic exception for the game" alt="" coords="5,5,140,83"/>
+</map>

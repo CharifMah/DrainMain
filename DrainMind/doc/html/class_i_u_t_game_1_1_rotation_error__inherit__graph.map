@@ -1,0 +1,4 @@
+<map id="IUTGame.RotationError" name="IUTGame.RotationError">
+<area shape="rect" id="node1" title="Exception thrown when the rotation can not be done" alt="" coords="5,131,161,208"/>
+<area shape="rect" id="node2" href="$class_i_u_t_game_1_1_game_exception.html" title="Generic exception for the game" alt="" coords="16,5,151,83"/>
+</map>

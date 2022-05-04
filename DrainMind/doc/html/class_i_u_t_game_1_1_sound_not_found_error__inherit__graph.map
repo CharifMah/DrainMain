@@ -1,0 +1,4 @@
+<map id="IUTGame.SoundNotFoundError" name="IUTGame.SoundNotFoundError">
+<area shape="rect" id="node1" title="Exception thrown when a sound file is not found" alt="" coords="5,131,207,208"/>
+<area shape="rect" id="node2" href="$class_i_u_t_game_1_1_sound_error.html" title="Exception thrown when a sound is not correct" alt="" coords="63,5,149,83"/>
+</map>

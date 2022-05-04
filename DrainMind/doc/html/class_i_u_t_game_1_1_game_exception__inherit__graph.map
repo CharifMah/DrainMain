@@ -1,0 +1,6 @@
+<map id="IUTGame.GameException" name="IUTGame.GameException">
+<area shape="rect" id="node1" title="Generic exception for the game" alt="" coords="141,5,314,83"/>
+<area shape="rect" id="node2" href="$class_i_u_t_game_1_1_bad_f_p_s.html" title="Exception if bad fps wanted" alt="" coords="5,131,135,208"/>
+<area shape="rect" id="node3" href="$class_i_u_t_game_1_1_bad_sprite.html" title="Exception thrown when a sprite is not good (bad file...)" alt="" coords="159,131,296,208"/>
+<area shape="rect" id="node4" href="$class_i_u_t_game_1_1_rotation_error.html" title="Exception thrown when the rotation can not be done" alt="" coords="320,131,476,208"/>
+</map>

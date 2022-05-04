@@ -1,0 +1,4 @@
+<map id="IUTGame.GamepadGameItem" name="IUTGame.GamepadGameItem">
+<area shape="rect" id="node1" title="A game item can be controlled by a gamepad" alt="" coords="5,424,201,560"/>
+<area shape="rect" id="node2" href="$class_i_u_t_game_1_1_game_item.html" title="generic item of the game" alt="" coords="37,5,169,376"/>
+</map>

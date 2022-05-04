@@ -1,0 +1,4 @@
+<map id="IUTGame.MouseGameItem" name="IUTGame.MouseGameItem">
+<area shape="rect" id="node1" title="A game item which can interact with the mouse" alt="" coords="5,424,185,589"/>
+<area shape="rect" id="node2" href="$class_i_u_t_game_1_1_game_item.html" title="generic item of the game" alt="" coords="29,5,161,376"/>
+</map>

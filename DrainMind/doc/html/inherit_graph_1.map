@@ -1,0 +1,9 @@
+<map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,85,133"/>
+<area shape="rect" id="node2" href="$class_i_u_t_game_1_1_game_exception.html" title="Generic exception for the game" alt="" coords="133,69,307,96"/>
+<area shape="rect" id="node6" href="$class_i_u_t_game_1_1_sound_error.html" title="Exception thrown when a sound is not correct" alt="" coords="147,132,293,159"/>
+<area shape="rect" id="node3" href="$class_i_u_t_game_1_1_bad_f_p_s.html" title="Exception if bad fps wanted" alt="" coords="391,5,520,32"/>
+<area shape="rect" id="node4" href="$class_i_u_t_game_1_1_bad_sprite.html" title="Exception thrown when a sprite is not good (bad file...)" alt="" coords="387,56,524,83"/>
+<area shape="rect" id="node5" href="$class_i_u_t_game_1_1_rotation_error.html" title="Exception thrown when the rotation can not be done" alt="" coords="377,107,533,133"/>
+<area shape="rect" id="node7" href="$class_i_u_t_game_1_1_sound_not_found_error.html" title="Exception thrown when a sound file is not found" alt="" coords="355,157,556,184"/>
+</map>

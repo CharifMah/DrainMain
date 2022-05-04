@@ -1,0 +1,6 @@
+<map id="IUTGame.GameItem" name="IUTGame.GameItem">
+<area shape="rect" id="node1" title="generic item of the game" alt="" coords="253,5,393,376"/>
+<area shape="rect" id="node2" href="$class_i_u_t_game_1_1_gamepad_game_item.html" title="A game item can be controlled by a gamepad" alt="" coords="5,439,201,575"/>
+<area shape="rect" id="node3" href="$class_i_u_t_game_1_1_keyboard_game_item.html" title="A game item who can interract with keyboard" alt="" coords="226,453,421,560"/>
+<area shape="rect" id="node4" href="$class_i_u_t_game_1_1_mouse_game_item.html" title="A game item which can interact with the mouse" alt="" coords="445,424,625,589"/>
+</map>

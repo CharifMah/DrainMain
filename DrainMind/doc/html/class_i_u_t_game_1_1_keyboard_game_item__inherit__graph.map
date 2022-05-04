@@ -1,0 +1,4 @@
+<map id="IUTGame.KeyboardGameItem" name="IUTGame.KeyboardGameItem">
+<area shape="rect" id="node1" title="A game item who can interract with keyboard" alt="" coords="5,424,200,531"/>
+<area shape="rect" id="node2" href="$class_i_u_t_game_1_1_game_item.html" title="generic item of the game" alt="" coords="37,5,169,376"/>
+</map>

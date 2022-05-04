@@ -1,0 +1,4 @@
+<map id="IUTGame.BadSprite" name="IUTGame.BadSprite">
+<area shape="rect" id="node1" title="Exception thrown when a sprite is not good (bad file...)" alt="" coords="5,131,143,208"/>
+<area shape="rect" id="node2" href="$class_i_u_t_game_1_1_game_exception.html" title="Generic exception for the game" alt="" coords="7,5,141,83"/>
+</map>

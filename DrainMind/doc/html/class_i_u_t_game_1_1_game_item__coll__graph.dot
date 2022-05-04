@@ -1,0 +1,7 @@
+digraph "IUTGame.GameItem"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{IUTGame.GameItem\n|+ Game\l+ GameWidth\l+ GameHeight\l+ Left\l+ Width\l+ Height\l+ Right\l+ Top\l+ Bottom\l+ TypeName\l+ Orientation\l|+ GameItem()\l+ IsCollide()\l+ CollideEffect()\l+ Dispose()\l# RunOnUIThread()\l# PutXY()\l# MoveXY()\l# MoveDA()\l# ChangeScale()\l# ChangeSprite()\l# PlaySound()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="generic item of the game"];
+}

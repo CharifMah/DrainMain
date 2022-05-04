@@ -1,0 +1,13 @@
+digraph "IUTGame.GameItem"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{IUTGame.GameItem\n|+ Game\l+ GameWidth\l+ GameHeight\l+ Left\l+ Width\l+ Height\l+ Right\l+ Top\l+ Bottom\l+ TypeName\l+ Orientation\l|+ GameItem()\l+ IsCollide()\l+ CollideEffect()\l+ Dispose()\l# RunOnUIThread()\l# PutXY()\l# MoveXY()\l# MoveDA()\l# ChangeScale()\l# ChangeSprite()\l# PlaySound()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="generic item of the game"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node2 [label="{IUTGame.GamepadGameItem\n|+ Gamepads\l|+ GamepadGameItem()\l+ ChoosePad()\l# AxisXChanged()\l# AxisYChanged()\l# ButtonPressed()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_i_u_t_game_1_1_gamepad_game_item.html",tooltip="A game item can be controlled by a gamepad"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node3 [label="{IUTGame.KeyboardGameItem\n||+ KeyboardGameItem()\l# KeyUp()\l# KeyDown()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_i_u_t_game_1_1_keyboard_game_item.html",tooltip="A game item who can interract with keyboard"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node4 [label="{IUTGame.MouseGameItem\n||+ MouseGameItem()\l# MouseMoved()\l# MouseLeftButtonDown()\l# MouseLeftButtonUp()\l# MouseRightButtonDown()\l# MouseRightButtonUp()\l# MouseWheel()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_i_u_t_game_1_1_mouse_game_item.html",tooltip="A game item which can interact with the mouse"];
+}
