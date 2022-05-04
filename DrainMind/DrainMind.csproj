@@ -6,4 +6,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Grumson.cSharp.GamePad" Version="1.0.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="IUTGame">
+      <HintPath>IUTGame.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
