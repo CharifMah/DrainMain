@@ -46,6 +46,7 @@
                 Grid.Row="3" 
                 Grid.Column="1" 
                 FontSize="50" 
+                Click="ExitButton_Click"
                 VerticalAlignment="Stretch" 
                 Margin="20"/>
 

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using IUTGame;
 namespace DrainMind
 {
@@ -10,11 +12,16 @@ namespace DrainMind
     {        
         private bool compte = false;
         private double time = 0;
+        private double speed = 50;
+
+
 
         public Joueur(double x, double y, Canvas c, Game g):base(x,y,c,g,"Joueur.png")
         {
 
         }
+
+        
 
         public override string TypeName => "Joueur";
 
@@ -26,15 +33,16 @@ namespace DrainMind
                 if (time > 500)
                     compte = false;
             }
+            compte = true;
         }
 
         public override void CollideEffect(GameItem other)
         {
             if (!compte)
             {
-                if (other.TypeName == "Superballe")
+                if (other.TypeName == "Enemie")
                 {
-                    
+                   // MessageBox.Show("Enemie Hit " + other.TypeName);
                 }
                 else
                 {
@@ -43,24 +51,36 @@ namespace DrainMind
             }
         }
 
+        
+
         public void KeyDown(Key key)
         {
             switch(key)
             {
                 case Key.Q:
-                    MoveXY(-10, 0);break;
+                    MoveXY(.05 - speed, 0);break;
                 case Key.D:
-                    MoveXY(10, 0);break;
+                    MoveXY(.05 + speed, 0);break;
                 case Key.S:
-                    MoveXY(0, 10); break;
+                    MoveXY(0, .05 + speed); break;
                 case Key.Z:
+                    MoveXY(0, .05 - speed); break;
+
+
+                case Key.Left:
+                    MoveXY(-10, 0); break;
+                case Key.Right:
+                    MoveXY(10, 0); break;
+                case Key.Down:
+                    MoveXY(0, 10); break;
+                case Key.Up:
                     MoveXY(0, -10); break;
             }
         }
 
         public void KeyUp(Key key)
         {
-            
+          
         }
     }
 }

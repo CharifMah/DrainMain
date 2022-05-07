@@ -30,5 +30,10 @@ namespace DrainMind.View
             mw.Show();
             this.Close();
         }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

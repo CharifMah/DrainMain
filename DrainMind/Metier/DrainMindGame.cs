@@ -23,12 +23,12 @@ namespace DrainMind
 
         protected override void RunWhenLoose()
         {
-            //System.Windows.MessageBox.Show(Res.Strings.Perdu);
+            System.Windows.MessageBox.Show(Res.Strings.Perdu);
         }
 
         protected override void RunWhenWin()
         {
-           // System.Windows.MessageBox.Show(Res.Strings.Gagne);
+           System.Windows.MessageBox.Show(Res.Strings.Gagne);
         }
     }
 }
