@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Stockage\" />
+    <Folder Include="Stockage\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -34,7 +34,7 @@ namespace DrainMind
             {
                 if (other.TypeName == "Superballe")
                 {
-                    Game.Win();
+                    
                 }
                 else
                 {

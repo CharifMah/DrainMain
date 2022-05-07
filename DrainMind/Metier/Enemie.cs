@@ -43,7 +43,7 @@ namespace DrainMind
             if (Waiting.TotalMilliseconds <= 0)
             {
                         
-                if (other.TypeName == "joueur")
+                if (other.TypeName == "Joueur")
                 {
                     angle = 360 - angle;
                 }
