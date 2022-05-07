@@ -11,12 +11,12 @@ namespace DrainMind
         private bool compte = false;
         private double time = 0;
 
-        public Joueur(double x, double y, Canvas c, Game g):base(x,y,c,g,"joueur.png")
+        public Joueur(double x, double y, Canvas c, Game g):base(x,y,c,g,"Joueur.png")
         {
 
         }
 
-        public override string TypeName => "joueur";
+        public override string TypeName => "Joueur";
 
         public void Animate(TimeSpan dt)
         {
@@ -30,17 +30,31 @@ namespace DrainMind
 
         public override void CollideEffect(GameItem other)
         {
-          
+            if (!compte)
+            {
+                if (other.TypeName == "Superballe")
+                {
+                    Game.Win();
+                }
+                else
+                {
+
+                }
+            }
         }
 
         public void KeyDown(Key key)
         {
             switch(key)
             {
-                case Key.Left:
+                case Key.Q:
                     MoveXY(-10, 0);break;
-                case Key.Right:
+                case Key.D:
                     MoveXY(10, 0);break;
+                case Key.S:
+                    MoveXY(0, 10); break;
+                case Key.Z:
+                    MoveXY(0, -10); break;
             }
         }
 

@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <Resource Include="Sprites\Enemie.png" />
-    <Resource Include="Sprites\joueur.png" />
+    <Resource Include="Sprites\Joueur.png" />
   </ItemGroup>
 
 </Project>

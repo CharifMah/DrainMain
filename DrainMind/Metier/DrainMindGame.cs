@@ -13,7 +13,7 @@ namespace DrainMind
         }
         protected override void InitItems()
         {
-            double y = this.Canvas.ActualHeight - 60;
+            double y = this.Canvas.ActualHeight / 2;
             double x = this.Canvas.ActualWidth / 2;
             Joueur j = new Joueur(x, y, Canvas, this);
             AddItem(j);

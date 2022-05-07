@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PetitJeu.Res {
+namespace DrainMind.Res {
     using System;
     
     
