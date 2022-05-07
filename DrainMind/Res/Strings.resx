@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Exit" xml:space="preserve">
+    <value>Quitter</value>
+  </data>
   <data name="Gagne" xml:space="preserve">
     <value>Vous avez gagné !</value>
   </data>
   <data name="Jouer" xml:space="preserve">
     <value>Jouer !</value>
+  </data>
+  <data name="Option" xml:space="preserve">
+    <value>Options</value>
   </data>
   <data name="Pause" xml:space="preserve">
     <value>Pause</value>

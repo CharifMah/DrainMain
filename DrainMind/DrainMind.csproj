@@ -9,6 +9,7 @@
   <ItemGroup>
     <None Remove="Sprites\Enemie.png" />
     <None Remove="Sprites\joueur.png" />
+    <None Remove="TitreMenu.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +30,7 @@
   <ItemGroup>
     <Resource Include="Sprites\Enemie.png" />
     <Resource Include="Sprites\Joueur.png" />
+    <Resource Include="Sprites\TitreMenu.png" />
   </ItemGroup>
 
 </Project>

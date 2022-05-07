@@ -39,7 +39,7 @@ namespace DrainMind.Res {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PetitJeu.Res.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DrainMind.Res.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -102,6 +102,22 @@ namespace DrainMind.Res {
         public static string Titre {
             get {
                 return ResourceManager.GetString("Titre", resourceCulture);
+            }
+        }
+
+        public static string Option
+        {
+            get
+            {
+                return ResourceManager.GetString("Option", resourceCulture);
+            }
+        }
+
+        public static string Exit
+        {
+            get
+            {
+                return ResourceManager.GetString("Exit", resourceCulture);
             }
         }
     }
