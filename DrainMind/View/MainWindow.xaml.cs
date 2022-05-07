@@ -23,6 +23,8 @@ namespace DrainMind
         public MainWindow()
         {
             InitializeComponent();
+            DrainMindGame drainMind = new DrainMindGame(canvas);
+            drainMind.Run();
         }
     }
 }

@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Sprites\Enemie.png" />
+    <None Remove="Sprites\joueur.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Grumson.cSharp.GamePad" Version="1.0.0.2" />
   </ItemGroup>
 
@@ -14,6 +19,15 @@
     <Reference Include="IUTGame">
       <HintPath>IUTGame.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Stockage\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Sprites\Enemie.png" />
+    <Resource Include="Sprites\joueur.png" />
   </ItemGroup>
 
 </Project>
