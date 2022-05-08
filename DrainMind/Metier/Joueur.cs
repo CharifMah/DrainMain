@@ -14,10 +14,10 @@ namespace DrainMind
         private bool compte = false;
         private double time = 0;
         private double speed = 50;
-        
  
         public Joueur(double x, double y, Canvas c, Game g) :base(x,y,c,g,"Joueur.png")
         {
+
         }      
 
         public override string TypeName => "Joueur";
@@ -58,16 +58,20 @@ namespace DrainMind
             switch(key)
             {
                 case Key.Q:
-                    MoveXY(.05 - speed, 0);                                 
+                    if (this.Left + .05 - speed > -1)
+                        MoveXY(.05 - speed, 0);                                        
                     break;
                 case Key.D:
-                    MoveXY(.05 + speed, 0);      
+                    if (this.Left - .05 + speed < 10000)
+                        MoveXY(.05 + speed, 0);      
                     break;
                 case Key.S:
-                    MoveXY(0, .05 + speed);
+                    if (this.Top - .05 + speed < 10000)
+                        MoveXY(0, .05 + speed);
                     break;
                 case Key.Z:
-                    MoveXY(0, .05 - speed);
+                    if (this.Top + .05 - speed > -1)
+                        MoveXY(0, .05 - speed);
                     break;
                 case Key.Left:
                     MoveXY(-10, 0); break;

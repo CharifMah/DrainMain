@@ -28,10 +28,10 @@ namespace DrainMind
             {            
                 double x = r.NextDouble() * GameWidth;
                 double y = r.NextDouble() * GameHeight/2;
-                Enemie b = new Enemie(x, y, canvas, Game);
+                Enemie b = new Enemie(x, y, this.canvas, Game);
                 Game.AddItem(b);
 
-                int Sec = r.Next(2000, 12000);
+                int Sec = r.Next(1000, 3000);
                 timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);
             }   
         }

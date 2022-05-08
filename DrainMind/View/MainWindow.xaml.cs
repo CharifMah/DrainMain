@@ -68,13 +68,13 @@ namespace DrainMind
                 {
                     fe.Height = fe.ActualHeight * yChange;
                     fe.Width = fe.ActualWidth * xChange;
-
                     Canvas.SetTop(fe, Canvas.GetTop(fe) * yChange);
                     Canvas.SetLeft(fe, Canvas.GetLeft(fe) * xChange);
-                    
                 }
             }
+        
             Camera.MoveCamera(Camera.X, Camera.Y);
+
         }
 
         private void FentrePrincipalDrainMain_Closed(object sender, System.EventArgs e)
