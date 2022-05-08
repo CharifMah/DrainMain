@@ -51,8 +51,8 @@ namespace DrainMind
         /// <param name="e"></param>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            canvas.Width = e.NewSize.Width + 5000;
-            canvas.Height = e.NewSize.Height + 8200;
+            canvas.Width = e.NewSize.Width + 10000;
+            canvas.Height = e.NewSize.Height + 10000;
 
             double xChange = 1, yChange = 1;
 

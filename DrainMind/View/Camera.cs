@@ -14,12 +14,12 @@ namespace DrainMind.Metier
         private ScrollViewer _Camera;
         private double w = System.Windows.SystemParameters.FullPrimaryScreenWidth;
         private double h = System.Windows.SystemParameters.FullPrimaryScreenHeight;
-        public Camera(double x, double y, Canvas canvas, Game game,ScrollViewer camera) : base(x, y, canvas, game, "Carte.jpg")
+        public Camera(double x, double y, Canvas canvas, Game game,ScrollViewer camera) : base(x, y, canvas, game)
         {       
             _Camera = camera;
         }
 
-        public override string TypeName => "Map";
+        public override string TypeName => "Camera";
 
         public override void CollideEffect(GameItem other)
         {
