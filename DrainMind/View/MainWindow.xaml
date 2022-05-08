@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DrainMind"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1600" MinHeight="400" MinWidth="800" SizeChanged="Window_SizeChanged" StateChanged="FentrePrincipalDrainMain_StateChanged" Closed="FentrePrincipalDrainMain_Closed">
+        Title="MainWindow" Height="800" Width="1600" MinHeight="400" MinWidth="800" SizeChanged="Window_SizeChanged" Closed="FentrePrincipalDrainMain_Closed">
 
     <Grid>
         <ScrollViewer x:Name="CanvasViewer" HorizontalScrollBarVisibility="Hidden"  VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="CanvasViewer_PreviewMouseWheel" PreviewKeyDown="CanvasViewer_PreviewKeyDown" >
