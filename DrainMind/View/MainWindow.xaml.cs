@@ -20,7 +20,9 @@ namespace DrainMind
             //Centre la fenetre
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            DrainMindGame drainMind = new DrainMindGame(playerCanvas,canvas,CanvasViewer);         
+            DrainMindGame drainMind = new DrainMindGame(canvas,CanvasViewer,UI);
+            DataContext = drainMind;
+            
             drainMind.Run();
             
         }
@@ -47,6 +49,7 @@ namespace DrainMind
             //    e.Handled = true;
             //}
         }
+
         /// <summary>
         /// Event quand la taille de l'ecran change rescale les element de la fenetre
         /// </summary>
@@ -54,29 +57,35 @@ namespace DrainMind
         /// <param name="e"></param>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {    
-            double xChange = 1, yChange = 1;
+            //double xChange = 1, yChange = 1;
+            //canvas.Height = e.NewSize.Height + 10000;
+            //canvas.Width = e.NewSize.Width + 10000;
+            //if (e.PreviousSize.Width != 0)
+            //    xChange = (e.NewSize.Width / e.PreviousSize.Width);
 
-            if (e.PreviousSize.Width != 0)
-                xChange = (e.NewSize.Width / e.PreviousSize.Width);
+            //if (e.PreviousSize.Height != 0)
+            //    yChange = (e.NewSize.Height / e.PreviousSize.Height);
 
-            if (e.PreviousSize.Height != 0)
-                yChange = (e.NewSize.Height / e.PreviousSize.Height);
-
-            foreach (FrameworkElement fe in canvas.Children)
-            {           
-                if (fe is Grid == false)
-                {
-                    fe.Height = fe.ActualHeight * yChange;
-                    fe.Width = fe.ActualWidth * xChange;
-                    Canvas.SetTop(fe, Canvas.GetTop(fe) * yChange);
-                    Canvas.SetLeft(fe, Canvas.GetLeft(fe) * xChange);
-                }
-            }
+            //foreach (FrameworkElement fe in canvas.Children)
+            //{           
+            //    if (fe is Grid == false)
+            //    {
+            //        fe.Height = fe.ActualHeight * yChange;
+            //        fe.Width = fe.ActualWidth * xChange;
+            //        Canvas.SetTop(fe, Canvas.GetTop(fe) * yChange);
+            //        Canvas.SetLeft(fe, Canvas.GetLeft(fe) * xChange);
+            //    }
+            //}
         
             Camera.MoveCamera(Camera.X, Camera.Y);
 
         }
 
+        /// <summary>
+        /// Environment.Exit a la fermeture de la fenetre 
+        /// </summary> 
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FentrePrincipalDrainMain_Closed(object sender, System.EventArgs e)
         {
             Environment.Exit(0);

@@ -22,6 +22,7 @@ namespace DrainMind.Metier
         public static double Y
             { get { return _y; } set { _y = value; } }
 
+
         public Camera(double x, double y, Canvas canvas, Game game,ScrollViewer camera) : base(x, y, canvas, game)
         {       
             _Camera = camera;

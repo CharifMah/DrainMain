@@ -15,10 +15,10 @@
                     <ImageBrush ImageSource="/Sprites/Carte.png"/>
 
                 </Canvas.Background>
-                <Canvas x:Name="playerCanvas" Height="50" Width="50" />
             </Canvas>
 
         </ScrollViewer>
+        <Canvas  x:Name="UI"/>
 
     </Grid>
 </Window>

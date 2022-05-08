@@ -8,9 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Sprites\0.5.png" />
+    <None Remove="Sprites\1.5.png" />
+    <None Remove="Sprites\1.png" />
+    <None Remove="Sprites\2.5.png" />
+    <None Remove="Sprites\2.png" />
+    <None Remove="Sprites\3.png" />
     <None Remove="Sprites\Carte.png" />
     <None Remove="Sprites\Enemie.png" />
     <None Remove="Sprites\joueur.png" />
+    <None Remove="Sprites\moitiervie.png" />
     <None Remove="TitreMenu.png" />
   </ItemGroup>
 
@@ -30,6 +37,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Sprites\0.5.png" />
+    <Resource Include="Sprites\1.5.png" />
+    <Resource Include="Sprites\1.png" />
+    <Resource Include="Sprites\2.5.png" />
+    <Resource Include="Sprites\2.png" />
+    <Resource Include="Sprites\3.png" />
     <Resource Include="Sprites\Carte.png" />
     <Resource Include="Sprites\Enemie.png" />
     <Resource Include="Sprites\Joueur.png" />

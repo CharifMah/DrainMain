@@ -31,7 +31,7 @@ namespace DrainMind
                 Enemie b = new Enemie(x, y, this.canvas, Game);
                 Game.AddItem(b);
 
-                int Sec = r.Next(1000, 3000);
+                int Sec = r.Next(100, 300);
                 timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);
             }   
         }

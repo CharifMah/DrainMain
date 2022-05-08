@@ -45,7 +45,9 @@ namespace DrainMind
                         
                 if (other.TypeName == "Joueur")
                 {
+                    this.Dispose();
                     angle = 360 - angle;
+                    
                 }
                 else if (other.TypeName == this.TypeName)
                 {
