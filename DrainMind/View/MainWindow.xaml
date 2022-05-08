@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DrainMind"
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="1600">
+        Title="MainWindow" Height="800" Width="1600">
     <Grid>
-        <Canvas x:Name="canvas" Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <ScrollViewer x:Name="CanvasViewer"   HorizontalScrollBarVisibility="Hidden"  VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="CanvasViewer_PreviewMouseWheel" PreviewKeyDown="CanvasViewer_PreviewKeyDown" >
+            <Canvas x:Name="canvas" Height="5000" Width="8200">
+                <Canvas.Background>
+                    <ImageBrush ImageSource="/Sprites/Carte.jpg"/>
+                </Canvas.Background>
+                <Canvas x:Name="playerCanvas"  Height="50" Width="50" Canvas.Left="800" Canvas.Top="344"/>
+            </Canvas>
+           
+        </ScrollViewer>
+
     </Grid>
 </Window>

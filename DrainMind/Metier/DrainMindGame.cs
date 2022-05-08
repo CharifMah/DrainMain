@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrainMind.Metier;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Controls;
@@ -7,19 +8,28 @@ namespace DrainMind
 {
     class DrainMindGame : IUTGame.Game
     {
-        public DrainMindGame(Canvas canvas):base(canvas,"Sprites","Sounds")
+        private ScrollViewer Camera;
+        public DrainMindGame(Canvas canvas,ScrollViewer camera) : base(canvas,"Sprites","Sounds")
         {
-
+            Camera = camera;
         }
         protected override void InitItems()
         {
-            double y = this.Canvas.ActualHeight / 2;
-            double x = this.Canvas.ActualWidth / 2;
-            Joueur j = new Joueur(x, y, Canvas, this);
-            AddItem(j);
+            //Creation de la map
+            Camera cam = new Camera(500, 0, Canvas, this, Camera);
+            AddItem(cam);
+
+            //Creation du joueur
+            double y = this.Canvas.ActualHeight;
+            double x = this.Canvas.ActualWidth;         
+            Joueur player = new Joueur(800, 400, Canvas, this, cam);
+            AddItem(player);
+ 
             AddItem(new GenerateurEnemie(this,Canvas));
             //PlayBackgroundMusic("music.mp3");
         }
+
+        
 
         protected override void RunWhenLoose()
         {

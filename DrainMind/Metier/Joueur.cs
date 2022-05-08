@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
+using DrainMind.Metier;
 using IUTGame;
 namespace DrainMind
 {
@@ -13,15 +14,12 @@ namespace DrainMind
         private bool compte = false;
         private double time = 0;
         private double speed = 50;
-
-
-
-        public Joueur(double x, double y, Canvas c, Game g):base(x,y,c,g,"Joueur.png")
+        private Camera _cam;
+ 
+        public Joueur(double x, double y, Canvas c, Game g, Camera cam) :base(x,y,c,g,"Joueur.png")
         {
-
-        }
-
-        
+            _cam = cam;
+        }      
 
         public override string TypeName => "Joueur";
 
@@ -51,22 +49,30 @@ namespace DrainMind
             }
         }
 
-        
+        public override bool IsCollide(GameItem other)
+        {
+            return base.IsCollide(other);
+        }
 
         public void KeyDown(Key key)
         {
             switch(key)
             {
                 case Key.Q:
-                    MoveXY(.05 - speed, 0);break;
+                    MoveXY(.05 - speed, 0);                                 
+                    break;
                 case Key.D:
-                    MoveXY(.05 + speed, 0);break;
+                    MoveXY(.05 + speed, 0);
+             
+                    break;
                 case Key.S:
-                    MoveXY(0, .05 + speed); break;
+                    MoveXY(0, .05 + speed);
+                    _cam.UpdateCamera(this.Left, this.Top);
+                    break;
                 case Key.Z:
-                    MoveXY(0, .05 - speed); break;
-
-
+                    MoveXY(0, .05 - speed);
+                    _cam.UpdateCamera(this.Left, this.Top);
+                    break;
                 case Key.Left:
                     MoveXY(-10, 0); break;
                 case Key.Right:
@@ -76,6 +82,7 @@ namespace DrainMind
                 case Key.Up:
                     MoveXY(0, -10); break;
             }
+            _cam.UpdateCamera(this.Left,this.Top);
         }
 
         public void KeyUp(Key key)
