@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DrainMind"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1600">
-    <Grid>
+        Title="MainWindow" Height="800" Width="1600" SizeChanged="Window_SizeChanged">
+    <Grid HorizontalAlignment="Left" Width="1600">
         <ScrollViewer x:Name="CanvasViewer"   HorizontalScrollBarVisibility="Hidden"  VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="CanvasViewer_PreviewMouseWheel" PreviewKeyDown="CanvasViewer_PreviewKeyDown" >
             <Canvas x:Name="canvas" Height="5000" Width="8200">
                 <Canvas.Background>

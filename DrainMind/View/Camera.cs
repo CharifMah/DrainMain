@@ -29,9 +29,10 @@ namespace DrainMind.Metier
         {
             w = System.Windows.SystemParameters.FullPrimaryScreenWidth;
             h = System.Windows.SystemParameters.FullPrimaryScreenHeight;
-            MessageBox.Show(h.ToString() + "   " + w.ToString()) ; ;
+
             _Camera.ScrollToHorizontalOffset(x);
             _Camera.ScrollToVerticalOffset(y);
+
 
         }
     }

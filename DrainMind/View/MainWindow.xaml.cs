@@ -44,5 +44,36 @@ namespace DrainMind
             //    e.Handled = true;
             //}
         }
+        /// <summary>
+        /// Event quand la taille de l'ecran change rescale les element de la fenetre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            canvas.Width = e.NewSize.Width + 5000;
+            canvas.Height = e.NewSize.Height + 8200;
+
+            double xChange = 1, yChange = 1;
+
+            if (e.PreviousSize.Width != 0)
+                xChange = (e.NewSize.Width / e.PreviousSize.Width);
+
+            if (e.PreviousSize.Height != 0)
+                yChange = (e.NewSize.Height / e.PreviousSize.Height);
+
+            foreach (FrameworkElement fe in canvas.Children)
+            {           
+                if (fe is Grid == false)
+                {
+                    fe.Height = fe.ActualHeight * yChange;
+                    fe.Width = fe.ActualWidth * xChange;
+
+                    Canvas.SetTop(fe, Canvas.GetTop(fe) * yChange);
+                    Canvas.SetLeft(fe, Canvas.GetLeft(fe) * xChange);
+
+                }
+            }
+        }
     }
 }
