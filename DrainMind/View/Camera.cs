@@ -11,12 +11,21 @@ namespace DrainMind.Metier
 {
     public class Camera : GameItem
     {
-        private ScrollViewer _Camera;
-        private double w = System.Windows.SystemParameters.FullPrimaryScreenWidth;
-        private double h = System.Windows.SystemParameters.FullPrimaryScreenHeight;
+        private static ScrollViewer _Camera;
+
+        
+        private static double _x = 0, _y = 0;
+        public static double X
+            {        
+            get { return _x; } set { _x = value; }           
+            }
+        public static double Y
+            { get { return _y; } set { _y = value; } }
+
         public Camera(double x, double y, Canvas canvas, Game game,ScrollViewer camera) : base(x, y, canvas, game)
         {       
             _Camera = camera;
+
         }
 
         public override string TypeName => "Camera";
@@ -25,15 +34,12 @@ namespace DrainMind.Metier
         {
         }
         
-        public void UpdateCamera(double x, double y)
+        public static void MoveCamera(double x, double y)
         {
-            w = System.Windows.SystemParameters.FullPrimaryScreenWidth;
-            h = System.Windows.SystemParameters.FullPrimaryScreenHeight;
-
-            _Camera.ScrollToHorizontalOffset(x);
-            _Camera.ScrollToVerticalOffset(y);
-
-
+            double Height = Application.Current.MainWindow.ActualHeight;
+            double Width = Application.Current.MainWindow.ActualWidth;
+            _Camera.ScrollToVerticalOffset(y - (Height / 2));
+            _Camera.ScrollToHorizontalOffset(x - (Width / 2));
         }
     }
 }

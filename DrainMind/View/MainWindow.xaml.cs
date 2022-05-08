@@ -4,6 +4,9 @@ using System.Drawing;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Windows.Input;
+using System.Windows.Interop;
+using System;
+using DrainMind.Metier;
 
 namespace DrainMind
 {
@@ -17,7 +20,7 @@ namespace DrainMind
             //Centre la fenetre
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            DrainMindGame drainMind = new DrainMindGame(playerCanvas,CanvasViewer);
+            DrainMindGame drainMind = new DrainMindGame(playerCanvas,canvas,CanvasViewer);         
             drainMind.Run();
             
         }
@@ -53,7 +56,7 @@ namespace DrainMind
         {
             canvas.Width = e.NewSize.Width + 10000;
             canvas.Height = e.NewSize.Height + 10000;
-
+      
             double xChange = 1, yChange = 1;
 
             if (e.PreviousSize.Width != 0)
@@ -71,9 +74,30 @@ namespace DrainMind
 
                     Canvas.SetTop(fe, Canvas.GetTop(fe) * yChange);
                     Canvas.SetLeft(fe, Canvas.GetLeft(fe) * xChange);
-
+                    
                 }
             }
+            Camera.MoveCamera(Camera.X, Camera.Y);
+        }
+
+        private void FentrePrincipalDrainMain_Closed(object sender, System.EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void FentrePrincipalDrainMain_StateChanged(object sender, EventArgs e)
+        {
+            if (FentrePrincipalDrainMain.WindowState == WindowState.Maximized)
+            {
+                 Camera.MoveCamera(Camera.X, Camera.Y);
+                
+      
+            }
+            if (FentrePrincipalDrainMain.WindowState == WindowState.Normal)
+            {
+                Camera.MoveCamera(Camera.X, Camera.Y);
+
+            }           
         }
     }
 }

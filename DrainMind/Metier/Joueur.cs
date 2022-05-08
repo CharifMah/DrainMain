@@ -14,11 +14,10 @@ namespace DrainMind
         private bool compte = false;
         private double time = 0;
         private double speed = 50;
-        private Camera _cam;
+        
  
-        public Joueur(double x, double y, Canvas c, Game g, Camera cam) :base(x,y,c,g,"Joueur.png")
+        public Joueur(double x, double y, Canvas c, Game g) :base(x,y,c,g,"Joueur.png")
         {
-            _cam = cam;
         }      
 
         public override string TypeName => "Joueur";
@@ -62,16 +61,13 @@ namespace DrainMind
                     MoveXY(.05 - speed, 0);                                 
                     break;
                 case Key.D:
-                    MoveXY(.05 + speed, 0);
-             
+                    MoveXY(.05 + speed, 0);      
                     break;
                 case Key.S:
                     MoveXY(0, .05 + speed);
-                    _cam.UpdateCamera(this.Left, this.Top);
                     break;
                 case Key.Z:
                     MoveXY(0, .05 - speed);
-                    _cam.UpdateCamera(this.Left, this.Top);
                     break;
                 case Key.Left:
                     MoveXY(-10, 0); break;
@@ -82,7 +78,9 @@ namespace DrainMind
                 case Key.Up:
                     MoveXY(0, -10); break;
             }
-            _cam.UpdateCamera(this.Left,this.Top);
+            Camera.X = this.Left;
+            Camera.Y = this.Top;
+            Camera.MoveCamera(this.Left,this.Top);
         }
 
         public void KeyUp(Key key)

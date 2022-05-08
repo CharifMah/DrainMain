@@ -9,23 +9,26 @@ namespace DrainMind
     class DrainMindGame : IUTGame.Game
     {
         private ScrollViewer Camera;
-        public DrainMindGame(Canvas canvas,ScrollViewer camera) : base(canvas,"Sprites","Sounds")
+        private Canvas carte;
+        private Canvas _playercanvas;
+
+        public DrainMindGame(Canvas playerCanvas,Canvas canvas, ScrollViewer camera) : base(canvas,"Sprites","Sounds")
         {
             Camera = camera;
+            _playercanvas = playerCanvas;
+            carte = canvas;
         }
         protected override void InitItems()
         {
-            //Creation de la map
-            Camera cam = new Camera(500, 0, Canvas, this, Camera);
+            //Creation de la Camera
+            Camera cam = new Camera(0, 0, carte, this, Camera);
             AddItem(cam);
 
-            //Creation du joueur
-            double y = this.Canvas.ActualHeight;
-            double x = this.Canvas.ActualWidth;         
-            Joueur player = new Joueur(800, 400, Canvas, this, cam);
+            //Creation du joueur       
+            Joueur player = new Joueur(0, 0, _playercanvas, this);
             AddItem(player);
  
-            AddItem(new GenerateurEnemie(this,Canvas));
+            AddItem(new GenerateurEnemie(this, carte));
             //PlayBackgroundMusic("music.mp3");
         }
 
