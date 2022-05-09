@@ -63,33 +63,34 @@ namespace DrainMind
         {
             return base.IsCollide(other);
         }
-
+        public void DeplacerJoueur(double x, double y)
+        {
+            if (this.Left + x > -1 && this.Left + x < 10000 && this.Top + y < 10000 && this.Top + y > -1)
+                MoveXY(x, y);
+        }
         public void KeyDown(Key key)
         {
             switch (key)
             {
                 case Key.Q:
-                    if (this.Left + .05 - speed > -1)
-                        MoveXY(.05 - speed, 0);
+
+                    DeplacerJoueur(.05 - speed, 0);
                     break;
                 case Key.D:
-                    if (this.Left - .05 + speed < 10000)
-                        MoveXY(.05 + speed, 0);
+                    DeplacerJoueur(.05 + speed, 0);
                     break;
                 case Key.S:
-                    if (this.Top - .05 + speed < 10000)
-                        MoveXY(0, .05 + speed);
+                    DeplacerJoueur(0, .05 + speed);
                     break;
                 case Key.Z:
-                    if (this.Top + .05 - speed > -1)
-                        MoveXY(0, .05 - speed);
+                    DeplacerJoueur(0, .05 - speed);
                     break;
                 case Key.Left:
-                    MoveXY(-10, 0); break;
+                    DeplacerJoueur(0, .05 - speed); break;
                 case Key.Right:
-                    MoveXY(10, 0); break;
+                    DeplacerJoueur(0, .05 - speed); break;
                 case Key.Down:
-                    MoveXY(0, 10); break;
+                    DeplacerJoueur(0, .05 - speed); break;
                 case Key.Up:
                     MoveXY(0, -10); break;
             }

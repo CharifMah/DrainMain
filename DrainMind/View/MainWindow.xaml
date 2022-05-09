@@ -13,7 +13,6 @@
             <Canvas x:Name="canvas" Height="10000" Width="10000">
                 <Canvas.Background>
                     <ImageBrush ImageSource="/Sprites/Carte.png"/>
-
                 </Canvas.Background>
             </Canvas>
 
