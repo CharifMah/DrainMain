@@ -11,7 +11,7 @@ namespace DrainMind
     class Vie : IUTGame.GameItem
     {
         private double vie = 0.5;
-        public Vie(double x, double y, Canvas c, Game g):base(x,y,c,g,"0.5.png")
+        public Vie(double x, double y, Canvas c, Game g):base(x,y,c,g,"1.png")
         {
         }
 
@@ -20,9 +20,10 @@ namespace DrainMind
             get { return vie; }
             set
             {
-                MessageBox.Show(value.ToString()) ;
+                
                 vie = Math.Min(3, value);
-                ChangeSprite($"{vie}.png");
+                MessageBox.Show(vie.ToString());
+                ChangeSprite($"{vie*2}.png");
             }
         }
 

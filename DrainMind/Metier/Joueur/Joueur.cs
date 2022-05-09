@@ -9,6 +9,9 @@ using DrainMind.Metier;
 using IUTGame;
 namespace DrainMind
 {
+    /// <summary>
+    /// 
+    /// </summary>
     class Joueur : GameItem, IAnimable, IKeyboardInteract
     {        
         private bool compte = false;
@@ -17,6 +20,14 @@ namespace DrainMind
         private Vie vie;
         private TimeSpan Waiting = new TimeSpan(0);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="c"></param>
+        /// <param name="g"></param>
+        /// <param name="ui"></param>
         public Joueur(double x, double y, Canvas c, Game g, Canvas ui) :base(x,y,c,g,"Joueur.png")
         {
             vie = new Vie( 0, 0, ui, g);
@@ -25,8 +36,15 @@ namespace DrainMind
 
         }      
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override string TypeName => "Joueur";
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dt"></param>
         public void Animate(TimeSpan dt)
         {
             if (Waiting.TotalMilliseconds > 0)
@@ -42,6 +60,10 @@ namespace DrainMind
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
         public override void CollideEffect(GameItem other)
         {
             if (Waiting.TotalMilliseconds <= 0)
@@ -59,24 +81,37 @@ namespace DrainMind
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public override bool IsCollide(GameItem other)
         {
             return base.IsCollide(other);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public void DeplacerJoueur(double x, double y)
         {
-            if (this.Left + x > -1 && this.Left + x < 10000 && this.Top + y < 10000 && this.Top + y > -1)
+            if (this.Left + x > -1 && this.Left + x < 6915 && this.Top + y < 4421 && this.Top + y > -1)
                 MoveXY(x, y);
             Camera.X = this.Left;
             Camera.Y = this.Top;
             Camera.MoveCamera(this.Left, this.Top);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
         public void KeyDown(Key key)
         {
             switch (key)
             {
                 case Key.Q:
-
                     DeplacerJoueur(.05 - speed, 0);
                     break;
                 case Key.D:
@@ -88,17 +123,25 @@ namespace DrainMind
                 case Key.Z:
                     DeplacerJoueur(0, .05 - speed);
                     break;
+
                 case Key.Left:
-                    DeplacerJoueur(0, .05 - speed); break;
+                    DeplacerJoueur(.05 - speed, 0); 
+                    break;
                 case Key.Right:
-                    DeplacerJoueur(0, .05 - speed); break;
+                    DeplacerJoueur(.05 + speed, 0); 
+                    break;
                 case Key.Down:
-                    DeplacerJoueur(0, .05 - speed); break;
+                    DeplacerJoueur(0, .05 + speed); 
+                    break;
                 case Key.Up:
-                    MoveXY(0, -10); break;
+                    DeplacerJoueur(0, .05 - speed); 
+                    break;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
         public void KeyUp(Key key)
         {
           
