@@ -67,6 +67,9 @@ namespace DrainMind
         {
             if (this.Left + x > -1 && this.Left + x < 10000 && this.Top + y < 10000 && this.Top + y > -1)
                 MoveXY(x, y);
+            Camera.X = this.Left;
+            Camera.Y = this.Top;
+            Camera.MoveCamera(this.Left, this.Top);
         }
         public void KeyDown(Key key)
         {
@@ -94,9 +97,6 @@ namespace DrainMind
                 case Key.Up:
                     MoveXY(0, -10); break;
             }
-            Camera.X = this.Left;
-            Camera.Y = this.Top;
-            Camera.MoveCamera(this.Left, this.Top);
         }
 
         public void KeyUp(Key key)
