@@ -63,34 +63,26 @@ namespace DrainMind
         {
             return base.IsCollide(other);
         }
-        public void DeplacerJoueur(double dx,double dy)
-        {
-            MoveXY(dx + speed, dy);
-            Camera.X = dx;
-            Camera.Y = dy;
-            Camera.MoveCamera(this.Left, this.Top);
 
-        }
         public void KeyDown(Key key)
         {
-            switch(key)
+            switch (key)
             {
                 case Key.Q:
                     if (this.Left + .05 - speed > -1)
-                        DeplacerJoueur(this.Left + .05 - speed, 0);
+                        MoveXY(.05 - speed, 0);
                     break;
                 case Key.D:
                     if (this.Left - .05 + speed < 10000)
-                    DeplacerJoueur(this.Left - .05 + speed, 0);
-
-                        break;
+                        MoveXY(.05 + speed, 0);
+                    break;
                 case Key.S:
                     if (this.Top - .05 + speed < 10000)
-                        DeplacerJoueur(this.Top - .05 + speed, 0);
+                        MoveXY(0, .05 + speed);
                     break;
                 case Key.Z:
                     if (this.Top + .05 - speed > -1)
-                        DeplacerJoueur(this.Top +.05 - speed, 0);
+                        MoveXY(0, .05 - speed);
                     break;
                 case Key.Left:
                     MoveXY(-10, 0); break;
@@ -101,7 +93,9 @@ namespace DrainMind
                 case Key.Up:
                     MoveXY(0, -10); break;
             }
-
+            Camera.X = this.Left;
+            Camera.Y = this.Top;
+            Camera.MoveCamera(this.Left, this.Top);
         }
 
         public void KeyUp(Key key)
