@@ -98,10 +98,10 @@ namespace DrainMind
         public void DeplacerJoueur(double x, double y)
         {
             if (this.Left + x > -1 && this.Left + x < 6915 && this.Top + y < 4421 && this.Top + y > -1)
-                MoveXY(x, y);
+                MoveXY(x,y);
             Camera.X = this.Left;
             Camera.Y = this.Top;
-            Camera.MoveCamera(this.Left, this.Top);
+            Camera.MoveCamera(this.Left + (this.Width) / 2,this.Top + (this.Height)/2 );
         }
         /// <summary>
         /// 

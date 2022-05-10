@@ -26,7 +26,6 @@
     <None Remove="Sprites\4.png" />
     <None Remove="Sprites\5.png" />
     <None Remove="Sprites\6.png" />
-    <None Remove="Sprites\Carte.png" />
     <None Remove="Sprites\diagoSQ.png" />
     <None Remove="Sprites\diagoZQ.png" />
     <None Remove="Sprites\dos.png" />
@@ -63,7 +62,6 @@
     <Resource Include="Sprites\4.png" />
     <Resource Include="Sprites\5.png" />
     <Resource Include="Sprites\6.png" />
-    <Resource Include="Sprites\Carte.png" />
     <Resource Include="Sprites\diagoSQ.png" />
     <Resource Include="Sprites\diagoZQ.png" />
     <Resource Include="Sprites\dos.png" />
