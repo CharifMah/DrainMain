@@ -97,7 +97,7 @@ namespace DrainMind
         /// <param name="y"></param>
         public void DeplacerJoueur(double x, double y)
         {
-            if (this.Left + x > -1 && this.Left + x < 6915 && this.Top + y < 4421 && this.Top + y > -1)
+            if (this.Left + x > -1 && this.Right + x < 6915 && this.Bottom + y < 4421 && this.Top + y > -1)
                 MoveXY(x,y);
             Camera.X = this.Left;
             Camera.Y = this.Top;
