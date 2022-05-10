@@ -32,6 +32,7 @@
     <None Remove="Sprites\droite.png" />
     <None Remove="Sprites\Enemie.png" />
     <None Remove="Sprites\face.png" />
+    <None Remove="Sprites\fantome.png" />
     <None Remove="Sprites\fond.png" />
     <None Remove="Sprites\fondTest.png" />
     <None Remove="Sprites\fondTest2.png" />
@@ -68,16 +69,12 @@
     <Resource Include="Sprites\droite.png" />
     <Resource Include="Sprites\Enemie.png" />
     <Resource Include="Sprites\face.png" />
+    <Resource Include="Sprites\fantome.png" />
     <Resource Include="Sprites\fond.png" />
     <Resource Include="Sprites\fondTest.png" />
     <Resource Include="Sprites\fondTest2.png" />
     <Resource Include="Sprites\gauche.png" />
-    <Resource Include="Sprites\HTournerD.png" />
-    <Resource Include="Sprites\HTournerG.png" />
-    <Resource Include="Sprites\Joueur.png" />
     <Resource Include="Sprites\TitreMenu.png" />
-    <Resource Include="Sprites\tournerD.png" />
-    <Resource Include="Sprites\tournerG.png" />
   </ItemGroup>
 
 </Project>

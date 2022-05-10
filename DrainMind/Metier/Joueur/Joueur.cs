@@ -150,9 +150,7 @@ namespace DrainMind
         /// <param name="key">Touche clavier presse par le joueur</param>
         public void KeyUp(Key key)
         {
-            if (key == Key.Q || key == Key.D || key == Key.Z || key == Key.Right || key == Key.Left || key == Key.Up) 
-            { ChangeSprite("face.png"); }
-
+            ChangeSprite("face.png");
         }
 
 

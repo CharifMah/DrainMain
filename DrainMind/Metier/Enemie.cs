@@ -26,7 +26,7 @@ namespace DrainMind
         }
 
 
-        public Enemie(double x, double y, Canvas c, Game g,string nom = "Enemie.png") :
+        public Enemie(double x, double y, Canvas c, Game g,string nom = "fantome.png") :
             base(x, y, c,g,nom)
         {
             ++nombre;
