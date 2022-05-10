@@ -30,7 +30,6 @@
     <None Remove="Sprites\diagoZQ.png" />
     <None Remove="Sprites\dos.png" />
     <None Remove="Sprites\droite.png" />
-    <None Remove="Sprites\Enemie.png" />
     <None Remove="Sprites\face.png" />
     <None Remove="Sprites\fantome.png" />
     <None Remove="Sprites\fond.png" />
@@ -67,7 +66,6 @@
     <Resource Include="Sprites\diagoZQ.png" />
     <Resource Include="Sprites\dos.png" />
     <Resource Include="Sprites\droite.png" />
-    <Resource Include="Sprites\Enemie.png" />
     <Resource Include="Sprites\face.png" />
     <Resource Include="Sprites\fantome.png" />
     <Resource Include="Sprites\fond.png" />
