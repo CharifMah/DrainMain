@@ -11,8 +11,9 @@ namespace DrainMind
     class Vie : IUTGame.GameItem
     {
         private double vie = 0.5;
-        public Vie(double x, double y, Canvas c, Game g):base(x,y,c,g,"1.png")
+        public Vie(Canvas c, Game g):base(0,0,c,g,"1.png")
         {
+
         }
 
         public double _Vie

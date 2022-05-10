@@ -16,12 +16,13 @@ namespace DrainMind
         }
         protected override void InitItems()
         {
-            //Creation de la Camera
-            Camera cam = new Camera(0, 0, Canvas, this, Camera);
-            AddItem(cam);
-
             double Height = Application.Current.MainWindow.ActualHeight;
             double Width = Application.Current.MainWindow.ActualWidth;
+
+            //Creation de la Camera
+            Camera cam = new Camera(Width / 2, Height / 2, Canvas, this, Camera);
+            AddItem(cam);
+
             //Creation du joueur       
             Joueur player = new Joueur(Width / 2, Height / 2, Canvas, this,UIcanvas);
             AddItem(player);
