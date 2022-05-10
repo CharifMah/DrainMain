@@ -113,38 +113,74 @@ namespace DrainMind
             {
                 case Key.Q:
                     DeplacerJoueur(.05 - speed, 0);
+                    deCoteGauche(Key.Q);
                     break;
                 case Key.D:
                     DeplacerJoueur(.05 + speed, 0);
+                    deCoteDroit(Key.D);
                     break;
                 case Key.S:
                     DeplacerJoueur(0, .05 + speed);
                     break;
                 case Key.Z:
                     DeplacerJoueur(0, .05 - speed);
+                    deDos(Key.Z);
                     break;
 
                 case Key.Left:
-                    DeplacerJoueur(.05 - speed, 0); 
+                    DeplacerJoueur(.05 - speed, 0);
+                    deCoteGauche(Key.Left);
                     break;
                 case Key.Right:
-                    DeplacerJoueur(.05 + speed, 0); 
+                    DeplacerJoueur(.05 + speed, 0);
+                    deCoteDroit(Key.Right);
                     break;
                 case Key.Down:
-                    DeplacerJoueur(0, .05 + speed); 
+                    DeplacerJoueur(0, .05 + speed);
                     break;
                 case Key.Up:
-                    DeplacerJoueur(0, .05 - speed); 
+                    DeplacerJoueur(0, .05 - speed);
+                    deDos(Key.Up);
                     break;
             }
         }
         /// <summary>
-        /// 
+        /// Permet lorsque la touche enclenchée est relachée de faire revenir le personnage de face
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="key">Touche clavier presse par le joueur</param>
         public void KeyUp(Key key)
         {
-          
+            if (key == Key.Q || key == Key.D || key == Key.Z || key == Key.Right || key == Key.Left || key == Key.Up) 
+            { ChangeSprite("face.png"); }
+
+        }
+
+
+        /// <summary>
+        /// Méthode animation, permet de changer le sprite du personnage pour aller à gauche
+        /// </summary>
+        /// <param name="key">Touche clavier presse par le joueur</param>
+        public void deCoteGauche(Key key)
+        {
+            if (key == Key.Q || key == Key.Left) { ChangeSprite("gauche.png"); }
+        }
+
+        /// <summary>
+        /// Méthode animation, permet de changer le sprite du personnage pour aller à droite
+        /// </summary>
+        /// <param name="key">Touche clavier presse par le joueur</param>
+        public void deCoteDroit(Key key)
+        {
+            if (key == Key.D || key == Key.Right) { ChangeSprite("droite.png"); }
+        }
+
+        /// <summary>
+        /// Méthode animation, permet de changer le sprite du personnage pour aller en haut
+        /// </summary>
+        /// <param name="key">Touche clavier presse par le joueur</param>
+        public void deDos(Key key)
+        {
+            if (key == Key.Z || key == Key.Up) { ChangeSprite("dos.png"); }
         }
     }
 }
