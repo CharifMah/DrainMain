@@ -27,10 +27,22 @@
     <None Remove="Sprites\5.png" />
     <None Remove="Sprites\6.png" />
     <None Remove="Sprites\Carte.png" />
+    <None Remove="Sprites\diagoSQ.png" />
+    <None Remove="Sprites\diagoZQ.png" />
+    <None Remove="Sprites\dos.png" />
+    <None Remove="Sprites\droite.png" />
     <None Remove="Sprites\Enemie.png" />
+    <None Remove="Sprites\face.png" />
     <None Remove="Sprites\fond.png" />
+    <None Remove="Sprites\fondTest.png" />
+    <None Remove="Sprites\fondTest2.png" />
+    <None Remove="Sprites\gauche.png" />
+    <None Remove="Sprites\HTournerD.png" />
+    <None Remove="Sprites\HTournerG.png" />
     <None Remove="Sprites\joueur.png" />
     <None Remove="Sprites\moitiervie.png" />
+    <None Remove="Sprites\tournerD.png" />
+    <None Remove="Sprites\tournerG.png" />
     <None Remove="TitreMenu.png" />
   </ItemGroup>
 
@@ -52,10 +64,22 @@
     <Resource Include="Sprites\5.png" />
     <Resource Include="Sprites\6.png" />
     <Resource Include="Sprites\Carte.png" />
+    <Resource Include="Sprites\diagoSQ.png" />
+    <Resource Include="Sprites\diagoZQ.png" />
+    <Resource Include="Sprites\dos.png" />
+    <Resource Include="Sprites\droite.png" />
     <Resource Include="Sprites\Enemie.png" />
+    <Resource Include="Sprites\face.png" />
     <Resource Include="Sprites\fond.png" />
+    <Resource Include="Sprites\fondTest.png" />
+    <Resource Include="Sprites\fondTest2.png" />
+    <Resource Include="Sprites\gauche.png" />
+    <Resource Include="Sprites\HTournerD.png" />
+    <Resource Include="Sprites\HTournerG.png" />
     <Resource Include="Sprites\Joueur.png" />
     <Resource Include="Sprites\TitreMenu.png" />
+    <Resource Include="Sprites\tournerD.png" />
+    <Resource Include="Sprites\tournerG.png" />
   </ItemGroup>
 
 </Project>

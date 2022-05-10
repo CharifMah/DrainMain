@@ -28,7 +28,7 @@ namespace DrainMind
         /// <param name="c"></param>
         /// <param name="g"></param>
         /// <param name="ui"></param>
-        public Joueur(double x, double y, Canvas c, Game g, Canvas ui) :base(x,y,c,g,"Joueur.png")
+        public Joueur(double x, double y, Canvas c, Game g, Canvas ui) :base(x,y,c,g,"face.png")
         {
             vie = new Vie(ui, g);
             Game.AddItem(vie);
