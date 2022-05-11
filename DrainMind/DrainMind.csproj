@@ -29,7 +29,12 @@
     <None Remove="Sprites\diagoSQ.png" />
     <None Remove="Sprites\diagoZQ.png" />
     <None Remove="Sprites\dos.png" />
+    <None Remove="Sprites\droite.gif" />
     <None Remove="Sprites\droite.png" />
+    <None Remove="Sprites\droite1.png" />
+    <None Remove="Sprites\droite2.png" />
+    <None Remove="Sprites\droite3.png" />
+    <None Remove="Sprites\droiteTest.png" />
     <None Remove="Sprites\face.png" />
     <None Remove="Sprites\fantome.png" />
     <None Remove="Sprites\fond.png" />
@@ -43,6 +48,10 @@
     <None Remove="Sprites\tournerD.png" />
     <None Remove="Sprites\tournerG.png" />
     <None Remove="TitreMenu.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Sprites\droite3.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,6 +75,8 @@
     <Resource Include="Sprites\diagoZQ.png" />
     <Resource Include="Sprites\dos.png" />
     <Resource Include="Sprites\droite.png" />
+    <Resource Include="Sprites\droite1.png" />
+    <Resource Include="Sprites\droite2.png" />
     <Resource Include="Sprites\face.png" />
     <Resource Include="Sprites\fantome.png" />
     <Resource Include="Sprites\fond.png" />
