@@ -51,10 +51,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Sprites\droite3.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Grumson.cSharp.GamePad" Version="1.0.0.2" />
   </ItemGroup>
 
@@ -77,6 +73,7 @@
     <Resource Include="Sprites\droite.png" />
     <Resource Include="Sprites\droite1.png" />
     <Resource Include="Sprites\droite2.png" />
+    <Resource Include="Sprites\droite3.png" />
     <Resource Include="Sprites\face.png" />
     <Resource Include="Sprites\fantome.png" />
     <Resource Include="Sprites\fond.png" />

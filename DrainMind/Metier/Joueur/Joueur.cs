@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
+using System.Timers;
 using DrainMind.Metier;
 using IUTGame;
 namespace DrainMind
@@ -32,8 +33,6 @@ namespace DrainMind
         {
             vie = new Vie(ui, g);
             Game.AddItem(vie);
-
-
         }      
 
         /// <summary>
@@ -161,8 +160,9 @@ namespace DrainMind
         public void AnimationJoueur(Key key)
         {
             if (key == Key.Q || key == Key.Left) { ChangeSprite("gauche.png"); }
-            if (key == Key.D || key == Key.Right) { ChangeSprite("droite.png"); }
-            if (key == Key.Z || key == Key.Up) { ChangeSprite("dos.png"); }
+            if (key == Key.D || key == Key.Right) { ChangeSprite("droite1.png"); }
+            if (key == Key.Z || key == Key.Up) { ChangeSprite("dos.png"); } 
+            
         }
     }
 }
