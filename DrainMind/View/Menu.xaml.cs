@@ -37,5 +37,12 @@ namespace DrainMind.View
         {
             Environment.Exit(0);
         }
+
+        private void OptionButton_Click(object sender, RoutedEventArgs e)
+        {
+            Options o = new Options(this);
+            o.Show();
+            this.Hide();
+        }
     }
 }

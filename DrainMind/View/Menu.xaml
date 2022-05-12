@@ -38,7 +38,8 @@
                 Grid.Column="1" 
                 FontSize="50" 
                 VerticalAlignment="Stretch" 
-                Margin="20"/>
+                Margin="20"
+                Click="OptionButton_Click"/>
         
         <Button x:Name="ExitButton" 
                 Content="{x:Static res:Strings.Exit}"

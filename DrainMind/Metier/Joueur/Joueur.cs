@@ -44,6 +44,7 @@ namespace DrainMind
             }
 
             playerLife = life;
+            c.Focus();
         }      
 
         // TypeName of the player is "Joueur"
@@ -78,7 +79,7 @@ namespace DrainMind
             {
                 if (other.TypeName == "Enemie")
                 {
-                    Waiting = new TimeSpan(0, 0, 0, 1);
+                   
 
                     if (playerLife - 0.5 > 0)
                     {
@@ -95,7 +96,7 @@ namespace DrainMind
                         {
                             sideBarHeart[LastHeartSprite].LifePoint -= 0.5;
                         }
-
+                        Waiting = new TimeSpan(0, 0, 0, 1);
                     }
                     else
                     {
