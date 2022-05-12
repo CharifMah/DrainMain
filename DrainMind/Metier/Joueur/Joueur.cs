@@ -11,7 +11,7 @@ using IUTGame;
 namespace DrainMind
 {
     /// <summary>
-    /// 
+    /// main character of the game
     /// </summary>
     class Joueur : GameItem, IAnimable, IKeyboardInteract
     {        
@@ -22,28 +22,26 @@ namespace DrainMind
         private TimeSpan Waiting = new TimeSpan(0);
 
         /// <summary>
-        /// 
+        /// Constructor of the main character
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="c"></param>
-        /// <param name="g"></param>
-        /// <param name="ui"></param>
+        /// <param name="x">position x of the mc</param>
+        /// <param name="y">position y of the mc</param>
+        /// <param name="c">canvas of the application</param>
+        /// <param name="g">drainMind</param>
+        /// <param name="ui">canvas</param>
         public Joueur(double x, double y, Canvas c, Game g, Canvas ui) :base(x,y,c,g,"face.png")
         {
             vie = new Vie(ui, g);
             Game.AddItem(vie);
         }      
 
-        /// <summary>
-        /// 
-        /// </summary>
+        // TypeName of the player is "Joueur"
         public override string TypeName => "Joueur";
 
         /// <summary>
-        /// 
+        /// Animate the item
         /// </summary>
-        /// <param name="dt"></param>
+        /// <param name="dt">timespan elasped since last animation</param>
         public void Animate(TimeSpan dt)
         {
             if (Waiting.TotalMilliseconds > 0)
@@ -60,9 +58,9 @@ namespace DrainMind
         }
 
         /// <summary>
-        /// 
+        /// Executes the effect of the collision
         /// </summary>
-        /// <param name="other"></param>
+        /// <param name="other">the other object</param>
         public override void CollideEffect(GameItem other)
         {
             if (Waiting.TotalMilliseconds <= 0)
@@ -81,19 +79,19 @@ namespace DrainMind
         }
 
         /// <summary>
-        /// 
+        /// Tells if the object touch the other object
         /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
+        /// <param name="other">the other object</param>
+        /// <returns>true if this collide with other</returns>
         public override bool IsCollide(GameItem other)
         {
             return base.IsCollide(other);
         }
         /// <summary>
-        /// 
+        /// move the player
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">axis x</param>
+        /// <param name="y">axis y</param>
         public void DeplacerJoueur(double x, double y)
         {
             if (this.Left + x > -1 && this.Right + x < 6915 && this.Bottom + y < 4421 && this.Top + y > -1)
@@ -103,9 +101,9 @@ namespace DrainMind
             Camera.MoveCamera(this.Left + (this.Width) / 2,this.Top + (this.Height)/2 );
         }
         /// <summary>
-        /// 
+        /// when a button is pressed
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="key">key pressed</param>
         public void KeyDown(Key key)
         {
             switch (key)
@@ -144,9 +142,9 @@ namespace DrainMind
             }
         }
         /// <summary>
-        /// Permet lorsque la touche enclenchée est relachée de faire revenir le personnage de face
+        /// when the button is not pressed anymore
         /// </summary>
-        /// <param name="key">Touche clavier presse par le joueur</param>
+        /// <param name="key">key not pressed anymore</param>
         public void KeyUp(Key key)
         {
             ChangeSprite("face.png");
@@ -154,9 +152,9 @@ namespace DrainMind
 
 
         /// <summary>
-        /// Méthode animation, permet de changer le sprite du personnage pour aller à gauche, à droite et en haut
+        /// Animation, change sprite when the mc move
         /// </summary>
-        /// <param name="key">Touche clavier presse par le joueur</param>
+        /// <param name="key">key pressed</param>
         public void AnimationJoueur(Key key)
         {
             if (key == Key.Q || key == Key.Left) { ChangeSprite("gauche.png"); }

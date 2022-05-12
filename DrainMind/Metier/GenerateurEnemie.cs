@@ -5,19 +5,33 @@ using System.Windows.Controls;
 using IUTGame;
 namespace DrainMind
 {
+    /// <summary>
+    /// generate the enemies
+    /// </summary>
     public class GenerateurEnemie : GameItem, IAnimable
     {
+        //time interval
         private TimeSpan timeToCreate;
-
+        //canvas of the game
         private Canvas canvas;
 
+        /// <summary>
+        /// enemies's constructor 
+        /// </summary>
+        /// <param name="g">drainMind</param>
+        /// <param name="c">canvas</param>
         public GenerateurEnemie(Game g, Canvas c): base(0,0,c,g)
         {
             this.canvas = c;
             timeToCreate = new TimeSpan(0, 0, 2);
         }
+        //Type name of the generator is "generateur"
         public override string TypeName => "generateur";
 
+        /// <summary>
+        /// Animate the item
+        /// </summary>
+        /// <param name="dt">timespan elasped since last animation</param>
         public void Animate(TimeSpan dt)
         {
             timeToCreate = timeToCreate - dt;
@@ -35,10 +49,10 @@ namespace DrainMind
                 timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);
             }   
         }
-
-        public override void CollideEffect(GameItem other)
-        {
-           
-        }
+        /// <summary>
+        /// Executes the effect of the collision
+        /// </summary>
+        /// <param name="other">the other object</param>
+        public override void CollideEffect(GameItem other) { }
     }
 }
