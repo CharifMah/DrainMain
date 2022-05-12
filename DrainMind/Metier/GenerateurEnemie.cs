@@ -12,6 +12,7 @@ namespace DrainMind
     {
         //time interval
         private TimeSpan timeToCreate;
+
         //canvas of the game
         private Canvas canvas;
 
@@ -25,6 +26,7 @@ namespace DrainMind
             this.canvas = c;
             timeToCreate = new TimeSpan(0, 0, 2);
         }
+
         //Type name of the generator is "generateur"
         public override string TypeName => "generateur";
 
@@ -49,6 +51,7 @@ namespace DrainMind
                 timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);
             }   
         }
+
         /// <summary>
         /// Executes the effect of the collision
         /// </summary>

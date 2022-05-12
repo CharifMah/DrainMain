@@ -87,6 +87,7 @@ namespace DrainMind
         {
             return base.IsCollide(other);
         }
+
         /// <summary>
         /// move the player
         /// </summary>
@@ -100,6 +101,7 @@ namespace DrainMind
             Camera.Y = this.Top;
             Camera.MoveCamera(this.Left + (this.Width) / 2,this.Top + (this.Height)/2 );
         }
+
         /// <summary>
         /// when a button is pressed
         /// </summary>
@@ -141,6 +143,7 @@ namespace DrainMind
                     break;
             }
         }
+
         /// <summary>
         /// when the button is not pressed anymore
         /// </summary>
@@ -149,7 +152,6 @@ namespace DrainMind
         {
             ChangeSprite("face.png");
         }
-
 
         /// <summary>
         /// Animation, change sprite when the mc move

@@ -15,6 +15,7 @@ namespace DrainMind
     {
         //life start at 0.5 (will be changed)
         private double vie = 0.5;
+
         /// <summary>
         /// Constructor of the life
         /// </summary>
@@ -49,6 +50,7 @@ namespace DrainMind
         {
             return false;
         }
+
         /// <summary>
         /// Executes the effect of the collision
         /// </summary>

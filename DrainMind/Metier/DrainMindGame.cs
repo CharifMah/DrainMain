@@ -14,6 +14,7 @@ namespace DrainMind
         private ScrollViewer Camera;
         //game's canvas
         private Canvas UIcanvas;
+
         /// <summary>
         /// constructor of the game
         /// </summary>
@@ -25,6 +26,7 @@ namespace DrainMind
             Camera = camera;
             UIcanvas = UI;
         }
+
         /// <summary>
         /// Init the first items of the game
         /// </summary>
@@ -52,6 +54,7 @@ namespace DrainMind
         {
             System.Windows.MessageBox.Show(Res.Strings.Perdu);
         }
+
         /// <summary>
         /// What to do when the player wins the game
         /// </summary>

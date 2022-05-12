@@ -13,10 +13,13 @@ namespace DrainMind
     {
         //ennemies's speed
         private double vitesse = 200;
+
         //ennemies's angle
         private double angle = 315;
+
         //ennemies's number
         private static int nombre = 0;
+
         //time interval
         private TimeSpan Waiting = new TimeSpan(0);
 
@@ -55,8 +58,10 @@ namespace DrainMind
         {            
             vitesse += 10;
         }
+
         //TypeNme of ennemies is "Enemie"
         public override string TypeName => "Enemie";
+
         /// <summary>
         /// Executes the effect of the collision
         /// </summary>
@@ -81,6 +86,7 @@ namespace DrainMind
                 Waiting = new TimeSpan(0, 0, 0,0, 500);
             }
         }
+
         /// <summary>
         /// Animate the item
         /// </summary>
@@ -116,6 +122,7 @@ namespace DrainMind
                 Right = GameWidth;
                 Rebondir();
             }
+
             MoveDA(vitesse * dt.TotalSeconds, angle);
         }
     }
