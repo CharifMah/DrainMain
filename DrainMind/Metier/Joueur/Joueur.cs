@@ -94,7 +94,11 @@ namespace DrainMind
                 {
                     sideBarHeart[LastHeartSprite].LifePoint -= 0.5;
                 }
-            }                     
+            } 
+            else
+            {
+                Game.Loose();
+            }
         }
 
         /// <summary>
@@ -107,14 +111,14 @@ namespace DrainMind
             {
                 if (other.TypeName == "Enemie")
                 {
-                    LooseLife(0.5);
+                    LooseLife(0.5);              
+                    PlaySound("Bruit.mp3");
                     compte = true;
                     time = 0;
-                    PlaySound("Bruit.mp3");
-                    Waiting = new TimeSpan(0, 0, 0, 0,50);
+
                 }
             }
-           
+            Waiting = new TimeSpan(0, 0, 0, 0, 50);
 
         }
 
@@ -203,36 +207,7 @@ namespace DrainMind
         /// <param name="key">key not pressed anymore</param>
         public void KeyUp(Key key)
         {
-            if (DrainMind.IsRunning)
-            {
-                switch (key)
-                {
-                    case Key.Q:
-                        AnimationJoueur(Key.Q, true);
-                        break;
-
-                    case Key.D:
-                        AnimationJoueur(Key.D, true);
-                        break;
-
-                    case Key.Z:
-                        AnimationJoueur(Key.Z, true);
-                        break;
-
-
-                    case Key.Left:
-                        AnimationJoueur(Key.Left, true);
-                        break;
-
-                    case Key.Right:
-                        AnimationJoueur(Key.Right, true);
-                        break;
-
-                    case Key.Up:
-                        AnimationJoueur(Key.Up, true);
-                        break;
-                }
-            }
+            ChangeSprite("face.png");
         }
 
         /// <summary>

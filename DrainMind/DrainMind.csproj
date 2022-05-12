@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Sounds\Son_ambiance_Action.mp3" />
     <None Remove="Sprites\.png" />
     <None Remove="Sprites\0.5.png" />
     <None Remove="Sprites\1.png" />
@@ -70,7 +71,7 @@
     <Content Include="Sounds\Grandioso.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sounds\Son ambiance Action.mp3">
+    <Content Include="Sounds\Son_ambiance_Action.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Sprites\Vie\1.png" />

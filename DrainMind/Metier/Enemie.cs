@@ -75,10 +75,10 @@ namespace DrainMind
             {
                         
                 if (other.TypeName == "Joueur")
-                {
-                    this.Dispose();
+                {          
                     angle = 360 - angle;
-                    
+                    this.Dispose();
+
                 }
                 else if (other.TypeName == this.TypeName)
                 {
@@ -86,8 +86,9 @@ namespace DrainMind
                 }
                 Rebondir();
 
-                Waiting = new TimeSpan(0, 0, 0,0, 500);
+              
             }
+            Waiting = new TimeSpan(0, 0, 0, 0, 50);
         }
 
         /// <summary>
