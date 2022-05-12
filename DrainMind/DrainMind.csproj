@@ -61,8 +61,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Sprites\1.png" />
-    <Resource Include="Sprites\2.png" />
+    <Content Include="Sounds\Bruit.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Alice.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Grandioso.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Son ambiance Action.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Sprites\Vie\1.png" />
+    <Resource Include="Sprites\Vie\2.png" />
     <Resource Include="Sprites\diagoSQ.png" />
     <Resource Include="Sprites\diagoZQ.png" />
     <Resource Include="Sprites\dos.png" />
@@ -77,6 +89,10 @@
     <Resource Include="Sprites\fondTest2.png" />
     <Resource Include="Sprites\gauche.png" />
     <Resource Include="Sprites\TitreMenu.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Sprites\Personnage\" />
   </ItemGroup>
 
 </Project>

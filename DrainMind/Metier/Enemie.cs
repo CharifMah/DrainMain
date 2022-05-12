@@ -96,6 +96,8 @@ namespace DrainMind
         /// <param name="dt">timespan elasped since last animation</param>
         public void Animate(TimeSpan dt)
         {
+            double[] coordsPlayer = player.GetCoordsPlayer();
+
             if (Waiting.TotalMilliseconds > 0)
             {
                 Waiting = Waiting.Subtract(dt);
@@ -125,14 +127,9 @@ namespace DrainMind
                 Right = 0;
                 //Rebondir();
             }
-
-            double[] coordsPlayer = player.GetCoordsPlayer();
-
-            //MessageBox.Show((coordsPlayer[0] / 360).ToString());
-            //MessageBox.Show((coordsPlayer[1] / 360).ToString());
-
+            
+            //Deplacement en direction du joueur
             MoveXY(-(Left - coordsPlayer[1]) / 90, -(Top - coordsPlayer[0]) / 90);
-            //MoveDA(vitesse * dt.TotalSeconds, angle);
         }
     }
 }

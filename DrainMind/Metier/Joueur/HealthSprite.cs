@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,10 +28,8 @@ namespace DrainMind
                 if (value == 0.5)
                 {
                     life -= value;
-                    ChangeSprite("1.png");
+                    ChangeSprite(Path.Combine("Vie", $"{1}.png"));
                 }
-
-                //MessageBox.Show(vie.ToString()); //J'ai mis la ligne en commentaire la MessageBox est trop chiante quand tu tests remettez au besoin
             }
         }
 
@@ -42,7 +41,7 @@ namespace DrainMind
         /// </summary>
         /// <param name="c">canvas of the game</param>
         /// <param name="g">drainMind</param>
-        public HealthSprite(Canvas c, Game g, int pointLife, int x): base(x, 5, c, g, pointLife+1+".png") 
+        public HealthSprite(Canvas c, Game g, int pointLife, int x) : base(x, 5, c, g, Path.Combine("Vie",$"{pointLife + 1}.png")) 
         {
             life = pointLife;
         }

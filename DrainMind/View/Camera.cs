@@ -57,10 +57,8 @@ namespace DrainMind.Metier
         /// <param name="y">axis y</param>
         public static void MoveCamera(double x, double y)
         {
-            double Height = Application.Current.MainWindow.ActualHeight;
-            double Width = Application.Current.MainWindow.ActualWidth;
-            _Camera.ScrollToVerticalOffset(y - (Height / 2));
-            _Camera.ScrollToHorizontalOffset(x - (Width / 2));
+            _Camera.ScrollToVerticalOffset(y - (Application.Current.MainWindow.ActualHeight / 2));
+            _Camera.ScrollToHorizontalOffset(x - (Application.Current.MainWindow.ActualWidth / 2));
         }
     }
 }

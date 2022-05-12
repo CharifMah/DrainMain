@@ -8,6 +8,8 @@ using System.Windows.Threading;
 using System.Timers;
 using DrainMind.Metier;
 using IUTGame;
+using System.IO;
+
 namespace DrainMind
 {
     /// <summary>
@@ -69,6 +71,31 @@ namespace DrainMind
                     compte = false;
             }
         }
+        
+        /// <summary>
+        /// Enleve des point de vie au joueur
+        /// </summary>
+        /// <param name="damage"></param>
+        public void LooseLife(double damage)
+        {
+               
+            if (playerLife - damage > 0)
+            {
+                playerLife -= damage;
+
+                if (sideBarHeart[LastHeartSprite].LifePoint - damage <= 0)
+                {
+                    sideBarHeart[LastHeartSprite].Dispose();
+                    Game.RemoveItem(sideBarHeart[LastHeartSprite]);
+                    sideBarHeart[LastHeartSprite] = null;
+                    LastHeartSprite -= 1;
+                }
+                else
+                {
+                    sideBarHeart[LastHeartSprite].LifePoint -= 0.5;
+                }
+            }                     
+        }
 
         /// <summary>
         /// Executes the effect of the collision
@@ -80,31 +107,15 @@ namespace DrainMind
             {
                 if (other.TypeName == "Enemie")
                 {
-                   
-
-                    if (playerLife - 0.5 > 0)
-                    {
-                        playerLife -= 0.5;
-
-                        if (sideBarHeart[LastHeartSprite].LifePoint - 0.5 <= 0)
-                        {
-                            sideBarHeart[LastHeartSprite].Dispose();
-                            Game.RemoveItem(sideBarHeart[LastHeartSprite]);
-                            sideBarHeart[LastHeartSprite] = null;
-                            LastHeartSprite -= 1;
-                        }
-                        else
-                        {
-                            sideBarHeart[LastHeartSprite].LifePoint -= 0.5;
-                        }
-                        Waiting = new TimeSpan(0, 0, 0, 1);
-                    }
-                    else
-                    {
-                        Game.Loose();
-                    }
+                    LooseLife(0.5);
+                    compte = true;
+                    time = 0;
+                    PlaySound("Bruit.mp3");
+                    Waiting = new TimeSpan(0, 0, 0, 0,50);
                 }
             }
+           
+
         }
 
         /// <summary>
@@ -124,7 +135,7 @@ namespace DrainMind
         /// <param name="y">axis y</param>
         public void DeplacerJoueur(double x, double y)
         {
-            if (this.Left + x > -1 && this.Right + x < 6915 && this.Bottom + y < 4421 && this.Top + y > -1)
+            if (this.Left + x > 0 && this.Right + x < GameWidth && this.Bottom + y < GameHeight && this.Top + y > 0)
             {
                 MoveXY(x, y);
             }
@@ -146,12 +157,12 @@ namespace DrainMind
                 {
                     case Key.Q:
                         DeplacerJoueur(.05 - speed, 0);
-                        AnimationJoueur(Key.Q);
+                        AnimationJoueur(Key.Q,false);
                         break;
 
                     case Key.D:
                         DeplacerJoueur(.05 + speed, 0);
-                        AnimationJoueur(Key.D);
+                        AnimationJoueur(Key.D, false);
                         break;
 
                     case Key.S:
@@ -160,18 +171,18 @@ namespace DrainMind
 
                     case Key.Z:
                         DeplacerJoueur(0, .05 - speed);
-                        AnimationJoueur(Key.Z);
+                        AnimationJoueur(Key.Z, false);
                         break;
 
 
                     case Key.Left:
                         DeplacerJoueur(.05 - speed, 0);
-                        AnimationJoueur(Key.Left);
+                        AnimationJoueur(Key.Left, false);
                         break;
 
                     case Key.Right:
                         DeplacerJoueur(.05 + speed, 0);
-                        AnimationJoueur(Key.Right);
+                        AnimationJoueur(Key.Right, false);
                         break;
 
                     case Key.Down:
@@ -180,7 +191,7 @@ namespace DrainMind
 
                     case Key.Up:
                         DeplacerJoueur(0, .05 - speed);
-                        AnimationJoueur(Key.Up);
+                        AnimationJoueur(Key.Up, false);
                         break;
                 }
             }           
@@ -192,27 +203,82 @@ namespace DrainMind
         /// <param name="key">key not pressed anymore</param>
         public void KeyUp(Key key)
         {
-            ChangeSprite("face.png");
+            if (DrainMind.IsRunning)
+            {
+                switch (key)
+                {
+                    case Key.Q:
+                        AnimationJoueur(Key.Q, true);
+                        break;
+
+                    case Key.D:
+                        AnimationJoueur(Key.D, true);
+                        break;
+
+                    case Key.Z:
+                        AnimationJoueur(Key.Z, true);
+                        break;
+
+
+                    case Key.Left:
+                        AnimationJoueur(Key.Left, true);
+                        break;
+
+                    case Key.Right:
+                        AnimationJoueur(Key.Right, true);
+                        break;
+
+                    case Key.Up:
+                        AnimationJoueur(Key.Up, true);
+                        break;
+                }
+            }
         }
 
         /// <summary>
         /// Animation, change sprite when the mc move
         /// </summary>
-        /// <param name="key">key pressed</param>
-        public void AnimationJoueur(Key key)
+        /// <param name="key"></param>
+        /// <param name="KeyEvent">True for KeyUp False for KeyDown</param>
+        public void AnimationJoueur(Key key,bool KeyEvent)
         {
-            if (key == Key.Q || key == Key.Left) { 
-                ChangeSprite("gauche.png"); 
-            }
+            if (KeyEvent)
+            {
+                if (key == Key.Q || key == Key.Left)
+                {
+                    ChangeSprite("gauche.png");
+                }
 
-            if (key == Key.D || key == Key.Right) {
-                ChangeSprite("droite1.png");
+                if (key == Key.D || key == Key.Right)
+                {
+                    ChangeSprite("droite1.png");
+                    ChangeSprite("droite2.png");
+                    
+                    ChangeSprite("droite3.png");
+                }
+
+                if (key == Key.Z || key == Key.Up)
+                {
+                    ChangeSprite("dos.png");
+                }
             }
-            
-            if (key == Key.Z || key == Key.Up) { 
-                ChangeSprite("dos.png"); 
-            } 
-            
+            else
+            {
+                if (key == Key.Q || key == Key.Left)
+                {
+                    ChangeSprite("gauche.png");
+                }
+
+                if (key == Key.D || key == Key.Right)
+                {
+                    ChangeSprite("droite1.png");
+                }
+
+                if (key == Key.Z || key == Key.Up)
+                {
+                    ChangeSprite("dos.png");
+                }
+            }                    
         }
 
         /// <summary>
