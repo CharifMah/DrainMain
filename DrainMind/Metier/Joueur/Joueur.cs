@@ -78,7 +78,7 @@ namespace DrainMind
             {
                 if (other.TypeName == "Enemie")
                 {
-                    Waiting = new TimeSpan(0, 0, 0, 2);
+                    Waiting = new TimeSpan(0, 0, 0, 1);
 
                     if (playerLife - 0.5 > 0)
                     {
@@ -123,7 +123,10 @@ namespace DrainMind
         public void DeplacerJoueur(double x, double y)
         {
             if (this.Left + x > -1 && this.Right + x < 6915 && this.Bottom + y < 4421 && this.Top + y > -1)
-                MoveXY(x,y);
+            {
+                MoveXY(x, y);
+            }
+
             Camera.X = this.Left;
             Camera.Y = this.Top;
             Camera.MoveCamera(this.Left + (this.Width) / 2,this.Top + (this.Height)/2 );
@@ -141,13 +144,16 @@ namespace DrainMind
                     DeplacerJoueur(.05 - speed, 0);
                     AnimationJoueur(Key.Q);
                     break;
+
                 case Key.D:
                     DeplacerJoueur(.05 + speed, 0);
                     AnimationJoueur(Key.D);
                     break;
+
                 case Key.S:
                     DeplacerJoueur(0, .05 + speed);
                     break;
+
                 case Key.Z:
                     DeplacerJoueur(0, .05 - speed);
                     AnimationJoueur(Key.Z);
@@ -157,13 +163,16 @@ namespace DrainMind
                     DeplacerJoueur(.05 - speed, 0);
                     AnimationJoueur(Key.Left);
                     break;
+
                 case Key.Right:
                     DeplacerJoueur(.05 + speed, 0);
                     AnimationJoueur(Key.Right);
                     break;
+
                 case Key.Down:
                     DeplacerJoueur(0, .05 + speed);
                     break;
+
                 case Key.Up:
                     DeplacerJoueur(0, .05 - speed);
                     AnimationJoueur(Key.Up);
@@ -186,9 +195,17 @@ namespace DrainMind
         /// <param name="key">key pressed</param>
         public void AnimationJoueur(Key key)
         {
-            if (key == Key.Q || key == Key.Left) { ChangeSprite("gauche.png"); }
-            if (key == Key.D || key == Key.Right) { ChangeSprite("droite1.png"); }
-            if (key == Key.Z || key == Key.Up) { ChangeSprite("dos.png"); } 
+            if (key == Key.Q || key == Key.Left) { 
+                ChangeSprite("gauche.png"); 
+            }
+
+            if (key == Key.D || key == Key.Right) {
+                ChangeSprite("droite1.png");
+            }
+            
+            if (key == Key.Z || key == Key.Up) { 
+                ChangeSprite("dos.png"); 
+            } 
             
         }
 

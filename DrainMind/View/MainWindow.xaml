@@ -12,7 +12,7 @@
         <ScrollViewer x:Name="CanvasViewer" HorizontalScrollBarVisibility="Hidden"  VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="CanvasViewer_PreviewMouseWheel" PreviewKeyDown="CanvasViewer_PreviewKeyDown" >
             <Canvas x:Name="canvas" Height="4421" Width="6915">
                 <Canvas.Background>
-                    <ImageBrush ImageSource="/Sprites/fondTest2.png"/>
+                    <ImageBrush ImageSource="/Sprites/fond.png"/>
                 </Canvas.Background>
             </Canvas>
 

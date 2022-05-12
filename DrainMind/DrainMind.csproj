@@ -63,10 +63,6 @@
   <ItemGroup>
     <Resource Include="Sprites\1.png" />
     <Resource Include="Sprites\2.png" />
-    <Resource Include="Sprites\3.png" />
-    <Resource Include="Sprites\4.png" />
-    <Resource Include="Sprites\5.png" />
-    <Resource Include="Sprites\6.png" />
     <Resource Include="Sprites\diagoSQ.png" />
     <Resource Include="Sprites\diagoZQ.png" />
     <Resource Include="Sprites\dos.png" />
