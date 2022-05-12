@@ -56,6 +56,8 @@ namespace DrainMind
         protected override void RunWhenLoose()
         {
             System.Windows.MessageBox.Show(Res.Strings.Perdu);
+            this.InitItems();
+            this.Run();
         }
 
         /// <summary>

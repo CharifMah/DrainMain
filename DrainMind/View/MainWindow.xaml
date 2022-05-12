@@ -7,7 +7,7 @@
         xmlns:res="clr-namespace:DrainMind.Res"
         xmlns:local="clr-namespace:DrainMind"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1600" MinHeight="400" MinWidth="800" SizeChanged="Window_SizeChanged" Closed="FentrePrincipalDrainMain_Closed" KeyDown="FentrePrincipalDrainMain_KeyDown">
+        Title="DrainMind" Height="800" Width="1600" MinHeight="400" MinWidth="800" SizeChanged="Window_SizeChanged" Closed="FentrePrincipalDrainMain_Closed" KeyDown="FentrePrincipalDrainMain_KeyDown">
 
     <Grid>
         <ScrollViewer x:Name="CanvasViewer" HorizontalScrollBarVisibility="Hidden"  VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="CanvasViewer_PreviewMouseWheel" PreviewKeyDown="CanvasViewer_PreviewKeyDown" >

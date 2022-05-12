@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Threading;
-using System.Timers;
 using DrainMind.Metier;
 using IUTGame;
 using System.IO;
@@ -67,7 +63,7 @@ namespace DrainMind
             if (compte)
             {
                 time += dt.TotalMilliseconds;
-                if (time > 500)
+                if (time > 100)
                     compte = false;
             }
         }
@@ -114,11 +110,10 @@ namespace DrainMind
                     LooseLife(0.5);              
                     PlaySound("Bruit.mp3");
                     compte = true;
-                    time = 0;
-
-                }
+                    time = 0;                
+                }             
             }
-            Waiting = new TimeSpan(0, 0, 0, 0, 50);
+            Waiting = new TimeSpan(0, 0, 0, 0, 100);
 
         }
 

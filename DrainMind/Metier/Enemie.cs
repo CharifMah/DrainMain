@@ -75,20 +75,18 @@ namespace DrainMind
             {
                         
                 if (other.TypeName == "Joueur")
-                {          
-                    angle = 360 - angle;
+                {                  
                     this.Dispose();
-
+                    angle = 360 - angle;
                 }
                 else if (other.TypeName == this.TypeName)
                 {
                     angle = (angle + 180) % 360;
                 }
-                Rebondir();
-
-              
+                Rebondir();           
             }
-            Waiting = new TimeSpan(0, 0, 0, 0, 50);
+            Waiting = new TimeSpan(0, 0, 0, 0, 100);
+
         }
 
         /// <summary>
@@ -130,7 +128,7 @@ namespace DrainMind
             }
             
             //Deplacement en direction du joueur
-            MoveXY(-(Left - coordsPlayer[1]) / 90, -(Top - coordsPlayer[0]) / 90);
+            MoveXY(-(Left - coordsPlayer[1]) / 90, -(Top - coordsPlayer[0]) / 90);          
         }
     }
 }
