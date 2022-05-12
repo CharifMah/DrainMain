@@ -19,6 +19,7 @@ namespace DrainMind
         private double time = 0;
         private double speed = 50;
         private double playerLife;
+        private Game DrainMind;
         private List<HealthSprite> sideBarHeart;
         private int LastHeartSprite;
         private TimeSpan Waiting = new TimeSpan(0);
@@ -34,7 +35,7 @@ namespace DrainMind
         public Joueur(double x, double y, Canvas c, Game g, Canvas ui, double life) : base(x,y,c,g,"face.png")
         {
             sideBarHeart = new List<HealthSprite>();
-
+            DrainMind = g;
             for (int i = 1; i <= life; i++)
             {
                 HealthSprite heart = new HealthSprite(ui, g, 1, i*50);
@@ -139,46 +140,50 @@ namespace DrainMind
         /// <param name="key">key pressed</param>
         public void KeyDown(Key key)
         {
-            switch (key)
+            if (DrainMind.IsRunning)
             {
-                case Key.Q:
-                    DeplacerJoueur(.05 - speed, 0);
-                    AnimationJoueur(Key.Q);
-                    break;
+                switch (key)
+                {
+                    case Key.Q:
+                        DeplacerJoueur(.05 - speed, 0);
+                        AnimationJoueur(Key.Q);
+                        break;
 
-                case Key.D:
-                    DeplacerJoueur(.05 + speed, 0);
-                    AnimationJoueur(Key.D);
-                    break;
+                    case Key.D:
+                        DeplacerJoueur(.05 + speed, 0);
+                        AnimationJoueur(Key.D);
+                        break;
 
-                case Key.S:
-                    DeplacerJoueur(0, .05 + speed);
-                    break;
+                    case Key.S:
+                        DeplacerJoueur(0, .05 + speed);
+                        break;
 
-                case Key.Z:
-                    DeplacerJoueur(0, .05 - speed);
-                    AnimationJoueur(Key.Z);
-                    break;
+                    case Key.Z:
+                        DeplacerJoueur(0, .05 - speed);
+                        AnimationJoueur(Key.Z);
+                        break;
 
-                case Key.Left:
-                    DeplacerJoueur(.05 - speed, 0);
-                    AnimationJoueur(Key.Left);
-                    break;
 
-                case Key.Right:
-                    DeplacerJoueur(.05 + speed, 0);
-                    AnimationJoueur(Key.Right);
-                    break;
+                    case Key.Left:
+                        DeplacerJoueur(.05 - speed, 0);
+                        AnimationJoueur(Key.Left);
+                        break;
 
-                case Key.Down:
-                    DeplacerJoueur(0, .05 + speed);
-                    break;
+                    case Key.Right:
+                        DeplacerJoueur(.05 + speed, 0);
+                        AnimationJoueur(Key.Right);
+                        break;
 
-                case Key.Up:
-                    DeplacerJoueur(0, .05 - speed);
-                    AnimationJoueur(Key.Up);
-                    break;
-            }
+                    case Key.Down:
+                        DeplacerJoueur(0, .05 + speed);
+                        break;
+
+                    case Key.Up:
+                        DeplacerJoueur(0, .05 - speed);
+                        AnimationJoueur(Key.Up);
+                        break;
+                }
+            }           
         }
 
         /// <summary>

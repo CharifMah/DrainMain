@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System;
 using DrainMind.Metier;
+using DrainMind.View;
 
 namespace DrainMind
 {
@@ -15,12 +16,13 @@ namespace DrainMind
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DrainMindGame drainMind;
         public MainWindow()
         {
             //Centre la fenetre
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            DrainMindGame drainMind = new DrainMindGame(canvas,CanvasViewer,UI);
+            drainMind = new DrainMindGame(canvas,CanvasViewer,UI);
             DataContext = drainMind;
             
             drainMind.Run();
@@ -89,6 +91,35 @@ namespace DrainMind
         private void FentrePrincipalDrainMain_Closed(object sender, System.EventArgs e)
         {
             Environment.Exit(0);
-        }      
+        }
+        /// <summary>
+        /// Menu Pause
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FentrePrincipalDrainMain_KeyDown(object sender, KeyEventArgs e)
+        {
+      
+            if (e.Key == Key.Escape)
+            {
+                bool Pressed = false;
+                //Pause
+                if (StackPanelPause.Visibility == Visibility.Hidden && !Pressed)
+                {
+                    drainMind.Pause();
+                    StackPanelPause.Visibility = Visibility.Visible;
+                    Pressed = true;
+                }
+                //Resume
+                if (StackPanelPause.Visibility == Visibility.Visible && !Pressed)
+                {
+                    drainMind.Resume();
+                    StackPanelPause.Visibility = Visibility.Hidden;
+                    Pressed = true;
+                }
+            }
+           
+           
+        }
     }
 }

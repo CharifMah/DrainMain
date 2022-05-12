@@ -25,6 +25,7 @@ namespace DrainMind.View
             //Centre la fenetre
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            InitItemComboBox();
             _Menu = Menu;
         }
 
