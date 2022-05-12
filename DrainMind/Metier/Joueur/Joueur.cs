@@ -18,7 +18,9 @@ namespace DrainMind
         private bool compte = false;
         private double time = 0;
         private double speed = 50;
-        private Vie vie;
+        private double playerLife;
+        private List<HealthSprite> sideBarHeart;
+        private int LastHeartSprite;
         private TimeSpan Waiting = new TimeSpan(0);
 
         /// <summary>
@@ -29,10 +31,19 @@ namespace DrainMind
         /// <param name="c">canvas of the application</param>
         /// <param name="g">drainMind</param>
         /// <param name="ui">canvas</param>
-        public Joueur(double x, double y, Canvas c, Game g, Canvas ui) :base(x,y,c,g,"face.png")
+        public Joueur(double x, double y, Canvas c, Game g, Canvas ui, double life) : base(x,y,c,g,"face.png")
         {
-            vie = new Vie(ui, g);
-            Game.AddItem(vie);
+            sideBarHeart = new List<HealthSprite>();
+
+            for (int i = 1; i <= life; i++)
+            {
+                HealthSprite heart = new HealthSprite(ui, g, 1, i*50);
+                sideBarHeart.Add(heart);
+                Game.AddItem(heart);
+                LastHeartSprite = i-1;
+            }
+
+            playerLife = life;
         }      
 
         // TypeName of the player is "Joueur"
@@ -67,21 +78,30 @@ namespace DrainMind
             {
                 if (other.TypeName == "Enemie")
                 {
-                    if (vie._Vie - 0.5 > 0)
+                    Waiting = new TimeSpan(0, 0, 0, 2);
+
+                    if (playerLife - 0.5 > 0)
                     {
-                        vie._Vie -= 0.5;
-                        Waiting = new TimeSpan(0, 0, 0, 1);
+                        playerLife -= 0.5;
+
+                        if (sideBarHeart[LastHeartSprite].LifePoint - 0.5 <= 0)
+                        {
+                            sideBarHeart[LastHeartSprite].Dispose();
+                            Game.RemoveItem(sideBarHeart[LastHeartSprite]);
+                            sideBarHeart[LastHeartSprite] = null;
+                            LastHeartSprite -= 1;
+                        }
+                        else
+                        {
+                            sideBarHeart[LastHeartSprite].LifePoint -= 0.5;
+                        }
+
                     }
                     else
                     {
                         Game.Loose();
                     }
                 }
-                else
-                {
-
-                }
-               
             }
         }
 

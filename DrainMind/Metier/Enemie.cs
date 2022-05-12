@@ -131,7 +131,7 @@ namespace DrainMind
             //MessageBox.Show((coordsPlayer[0] / 360).ToString());
             //MessageBox.Show((coordsPlayer[1] / 360).ToString());
 
-            MoveXY(-(Left - coordsPlayer[1])/360, -(Top - coordsPlayer[0]) / 360);
+            MoveXY(-(Left - coordsPlayer[1]) / 90, -(Top - coordsPlayer[0]) / 90);
             //MoveDA(vitesse * dt.TotalSeconds, angle);
         }
     }
