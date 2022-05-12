@@ -8,6 +8,7 @@ using System.Windows.Interop;
 using System;
 using DrainMind.Metier;
 using DrainMind.View;
+using Menu = DrainMind.View.Menu;
 
 namespace DrainMind
 {
@@ -17,6 +18,9 @@ namespace DrainMind
     public partial class MainWindow : Window
     {
         private DrainMindGame drainMind;
+        /// <summary>
+        /// Window du jeux et du MenuPause
+        /// </summary>
         public MainWindow()
         {
             //Centre la fenetre
@@ -92,8 +96,9 @@ namespace DrainMind
         {
             Environment.Exit(0);
         }
+
         /// <summary>
-        /// Menu Pause
+        /// Affiche ou rend invisible le menu pause
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -104,22 +109,52 @@ namespace DrainMind
             {
                 bool Pressed = false;
                 //Pause
-                if (StackPanelPause.Visibility == Visibility.Hidden && !Pressed)
+                if (GroupBoxPause.Visibility == Visibility.Hidden && !Pressed)
                 {
                     drainMind.Pause();
-                    StackPanelPause.Visibility = Visibility.Visible;
+                    GroupBoxPause.Visibility = Visibility.Visible;
                     Pressed = true;
                 }
                 //Resume
-                if (StackPanelPause.Visibility == Visibility.Visible && !Pressed)
+                if (GroupBoxPause.Visibility == Visibility.Visible && !Pressed)
                 {
                     drainMind.Resume();
-                    StackPanelPause.Visibility = Visibility.Hidden;
+                    GroupBoxPause.Visibility = Visibility.Hidden;
                     Pressed = true;
                 }
             }
            
            
+        }
+
+        /// <summary>
+        /// Reprends la partie en cours
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Resumebutton_Click(object sender, RoutedEventArgs e)
+        {
+            drainMind.Resume();
+            GroupBoxPause.Visibility = Visibility.Hidden;
+        }
+
+        /// <summary>
+        /// Quitte completement le jeux
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            Menu mn = new Menu();
+            mn.Show();
+        }
+
+        private void OptionButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            Options option = new Options(this);
+            option.Show();
         }
     }
 }

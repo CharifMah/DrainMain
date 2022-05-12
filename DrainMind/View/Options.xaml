@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
         <TextBlock x:Name="OptionTextBlock" Grid.Column="1" HorizontalAlignment="Center" Margin="10"  FontSize="30" Text="Options" VerticalAlignment="Center"/>
         <TextBlock x:Name="ResolutionTextBlock" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Margin="10"  FontSize="20" Text="Resolution : " VerticalAlignment="Center"/>
-        <ComboBox x:Name="ResolutionComboBox" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center"  Margin="20,0,20,0"/>
+        <ComboBox x:Name="ResolutionComboBox" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center"  Margin="20,0,20,0" SelectionChanged="ResolutionComboBox_SelectionChanged"/>
 
     </Grid>
 </Window>

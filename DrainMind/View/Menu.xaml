@@ -8,13 +8,11 @@
         mc:Ignorable="d"
         Title="Menu" Height="900" Width="1600">
     <Grid>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="9*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
             <RowDefinition Height="5*" />
@@ -22,7 +20,7 @@
             <RowDefinition Height="5*" />
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
-
+        
         <Button x:Name="PlayButton"
                 Content="{x:Static res:Strings.Jouer}"
                 HorizontalAlignment="Stretch"
@@ -32,7 +30,7 @@
                 VerticalAlignment="Stretch"
                 Margin="20"
                 Click="PlayButton_Click"/>
-
+        
         <Button x:Name="OptionButton" 
                 Content="{x:Static res:Strings.Option}"
                 HorizontalAlignment="Stretch" 
@@ -42,7 +40,7 @@
                 VerticalAlignment="Stretch" 
                 Margin="20"
                 Click="OptionButton_Click"/>
-
+        
         <Button x:Name="ExitButton" 
                 Content="{x:Static res:Strings.Exit}"
                 HorizontalAlignment="Stretch" 
@@ -53,7 +51,6 @@
                 VerticalAlignment="Stretch" 
                 Margin="20"/>
 
-        <Image x:Name="TitleMenu" Grid.Column="1" Source="../Sprites/TitreMenu.png" Margin="10"/>
-
+        <Image x:Name="TitleMenu" Grid.Column="1" Source="../Sprites/TitreMenu.png" Margin="50"/>
     </Grid>
 </Window>

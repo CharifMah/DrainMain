@@ -19,9 +19,31 @@
 
         </ScrollViewer>
         <Canvas  x:Name="UI"/>
-        <StackPanel x:Name="StackPanelPause" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="5*" />
 
-            <TextBlock x:Name="PauseTextBlock" Text="{x:Static res:Strings.Pause}" FontSize="40"/>
-        </StackPanel>
+            </Grid.RowDefinitions>
+
+
+            <GroupBox Header="Pause" FontSize="40" Background="Brown" x:Name="GroupBoxPause" Visibility="Hidden" Grid.Column="1" Grid.Row="1">
+                <StackPanel>
+                    <Button x:Name="Resumebutton" Content="Resume" Margin="30,100,30,30" Click="Resumebutton_Click"/>
+                    <Button x:Name="OptionButton" Content="Options" Margin="30" Click="OptionButton_Click"/>
+                    <Button x:Name="ExitButton" Content="{x:Static res:Strings.Exit}" Margin="30" Click="ExitButton_Click"/>
+                </StackPanel>
+
+            </GroupBox>
+                
+
+           
+        </Grid>
     </Grid>
 </Window>
