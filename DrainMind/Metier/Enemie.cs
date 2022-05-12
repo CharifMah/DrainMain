@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace DrainMind
@@ -37,6 +38,8 @@ namespace DrainMind
             set { angle = value; }
         }
 
+        private Joueur player;
+
         /// <summary>
         /// ennemies constructor
         /// </summary>
@@ -45,10 +48,10 @@ namespace DrainMind
         /// <param name="c">canvas</param>
         /// <param name="g">game</param>
         /// <param name="nom">name of the sprite</param>
-        public Enemie(double x, double y, Canvas c, Game g,string nom = "fantome.png") :
-            base(x, y, c,g,nom)
+        public Enemie(double x, double y, Canvas c, Game g, Joueur _player, string nom = "fantome.png") : base(x, y, c,g,nom)
         {
             ++nombre;
+            player = _player;
         }
 
         /// <summary>
@@ -56,7 +59,7 @@ namespace DrainMind
         /// </summary>
         private void Rebondir()
         {            
-            vitesse += 10;
+            vitesse += 1;
         }
 
         //TypeNme of ennemies is "Enemie"
@@ -102,28 +105,34 @@ namespace DrainMind
             {
                 Top = 0;
                 angle = 360 - angle;
-                Rebondir();
+                //Rebondir();
             }
             else if (Bottom > GameHeight)
             {
-                Top = 0;
+                Bottom = 0;
                 angle = 360 + angle;
-                Rebondir();
+                //Rebondir();
             }
             else if (Left < 0)
             {
                 angle = (360 + 180 - angle) % 360;
                 Left = 0;
-                Rebondir();
+                //Rebondir();
             }
             else if (Right > GameWidth)
             {
                 angle = (360 + 180 - angle) % 360;
-                Right = GameWidth;
-                Rebondir();
+                Right = 0;
+                //Rebondir();
             }
 
-            MoveDA(vitesse * dt.TotalSeconds, angle);
+            double[] coordsPlayer = player.GetCoordsPlayer();
+
+            //MessageBox.Show((coordsPlayer[0] / 360).ToString());
+            //MessageBox.Show((coordsPlayer[1] / 360).ToString());
+
+            MoveXY(-(Left - coordsPlayer[1])/360, -(Top - coordsPlayer[0]) / 360);
+            //MoveDA(vitesse * dt.TotalSeconds, angle);
         }
     }
 }

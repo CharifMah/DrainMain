@@ -13,7 +13,7 @@ namespace DrainMind
     /// <summary>
     /// main character of the game
     /// </summary>
-    class Joueur : GameItem, IAnimable, IKeyboardInteract
+    public class Joueur : GameItem, IAnimable, IKeyboardInteract
     {        
         private bool compte = false;
         private double time = 0;
@@ -67,8 +67,15 @@ namespace DrainMind
             {
                 if (other.TypeName == "Enemie")
                 {
-                    vie._Vie += 0.5;
-                    Waiting = new TimeSpan(0, 0, 0, 1);
+                    if (vie._Vie - 0.5 > 0)
+                    {
+                        vie._Vie -= 0.5;
+                        Waiting = new TimeSpan(0, 0, 0, 1);
+                    }
+                    else
+                    {
+                        Game.Loose();
+                    }
                 }
                 else
                 {
@@ -163,6 +170,16 @@ namespace DrainMind
             if (key == Key.D || key == Key.Right) { ChangeSprite("droite1.png"); }
             if (key == Key.Z || key == Key.Up) { ChangeSprite("dos.png"); } 
             
+        }
+
+        /// <summary>
+        /// Allows you to obtain the player's contact information
+        /// </summary>
+        /// <returns>Player's coords on screen</returns>
+        public double[] GetCoordsPlayer()
+        {
+            double[] result = { this.Top, this.Right };
+            return result;
         }
     }
 }

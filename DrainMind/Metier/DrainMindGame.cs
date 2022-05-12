@@ -14,6 +14,9 @@ namespace DrainMind
         private ScrollViewer Camera;
         //game's canvas
         private Canvas UIcanvas;
+        private Joueur player;
+
+        public Joueur Player { get => player; }
 
         /// <summary>
         /// constructor of the game
@@ -40,10 +43,10 @@ namespace DrainMind
             AddItem(cam);
 
             //Creation du joueur       
-            Joueur player = new Joueur(Width / 2, Height / 2, Canvas, this,UIcanvas);
+            player = new Joueur(Width / 2, Height / 2, Canvas, this,UIcanvas);
             AddItem(player);
  
-            AddItem(new GenerateurEnemie(this, Canvas));
+            AddItem(new GenerateurEnemie(this, Canvas, player));
             //PlayBackgroundMusic("music.mp3");
         }
 

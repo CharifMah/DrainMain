@@ -14,14 +14,14 @@ namespace DrainMind
     class Vie : IUTGame.GameItem
     {
         //life start at 0.5 (will be changed)
-        private double vie = 0.5;
+        private double vie = 3;
 
         /// <summary>
         /// Constructor of the life
         /// </summary>
         /// <param name="c">canvas of the game</param>
         /// <param name="g">drainMind</param>
-        public Vie(Canvas c, Game g):base(0,0,c,g,"1.png") { }
+        public Vie(Canvas c, Game g): base(0,0,c,g,"6.png") { }
 
         /// <summary>
         /// change sprite when gain life (will change and be when lose life)

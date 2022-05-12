@@ -16,15 +16,18 @@ namespace DrainMind
         //canvas of the game
         private Canvas canvas;
 
+        private Joueur player;
+
         /// <summary>
         /// enemies's constructor 
         /// </summary>
         /// <param name="g">drainMind</param>
         /// <param name="c">canvas</param>
-        public GenerateurEnemie(Game g, Canvas c): base(0,0,c,g)
+        public GenerateurEnemie(Game g, Canvas c, Joueur j): base(0,0,c,g)
         {
             this.canvas = c;
             timeToCreate = new TimeSpan(0, 0, 2);
+            player = j;
         }
 
         //Type name of the generator is "generateur"
@@ -44,7 +47,7 @@ namespace DrainMind
             {            
                 double x = r.NextDouble() * GameWidth;
                 double y = r.NextDouble() * GameHeight/2;
-                Enemie b = new Enemie(x, y, this.canvas, Game);
+                Enemie b = new Enemie(x, y, this.canvas, Game, player);
                 Game.AddItem(b);
 
                 int Sec = r.Next(100, 300);
