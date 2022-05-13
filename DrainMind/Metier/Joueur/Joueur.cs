@@ -156,12 +156,12 @@ namespace DrainMind
                 {
                     case Key.Q:
                         DeplacerJoueur(.05 - speed, 0);
-                        AnimationJoueur(Key.Q,false);
+                        AnimationJoueur(Key.Q);
                         break;
 
                     case Key.D:
                         DeplacerJoueur(.05 + speed, 0);
-                        AnimationJoueur(Key.D, false);
+                        AnimationJoueur(Key.D);
                         break;
 
                     case Key.S:
@@ -170,18 +170,18 @@ namespace DrainMind
 
                     case Key.Z:
                         DeplacerJoueur(0, .05 - speed);
-                        AnimationJoueur(Key.Z, false);
+                        AnimationJoueur(Key.Z);
                         break;
 
 
                     case Key.Left:
                         DeplacerJoueur(.05 - speed, 0);
-                        AnimationJoueur(Key.Left, false);
+                        AnimationJoueur(Key.Left);
                         break;
 
                     case Key.Right:
                         DeplacerJoueur(.05 + speed, 0);
-                        AnimationJoueur(Key.Right, false);
+                        AnimationJoueur(Key.Right);
                         break;
 
                     case Key.Down:
@@ -190,7 +190,7 @@ namespace DrainMind
 
                     case Key.Up:
                         DeplacerJoueur(0, .05 - speed);
-                        AnimationJoueur(Key.Up, false);
+                        AnimationJoueur(Key.Up);
                         break;
                 }
             }           
@@ -210,24 +210,21 @@ namespace DrainMind
         /// </summary>
         /// <param name="key"></param>
         /// <param name="KeyEvent">True for KeyUp False for KeyDown</param>
-        public void AnimationJoueur(Key key,bool KeyEvent)
+        public void AnimationJoueur(Key key)
         {
-            if (KeyEvent)
+            if (key == Key.Q || key == Key.Left)
             {
-                if (key == Key.Q || key == Key.Left)
-                {
-                    ChangeSprite("gauche.png");
-                }
+                ChangeSprite("gauche.png");
+            }
 
-                if (key == Key.D || key == Key.Right)
-                {
-                    ChangeSprite("droite1.png");
-                }
+            if (key == Key.D || key == Key.Right)
+            {
+                ChangeSprite("droite1.png");
+            }
 
-                if (key == Key.Z || key == Key.Up)
-                {
-                    ChangeSprite("dos.png");
-                }
+            if (key == Key.Z || key == Key.Up)
+            {
+                ChangeSprite("dos.png");
             }            
         }
 
