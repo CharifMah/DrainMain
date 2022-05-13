@@ -16,8 +16,6 @@ namespace DrainMind
         private Canvas UIcanvas;
         private Joueur player;
 
-        public Joueur Player { get => player; }
-
         /// <summary>
         /// constructor of the game
         /// </summary>
@@ -56,6 +54,7 @@ namespace DrainMind
         protected override void RunWhenLoose()
         {
             System.Windows.MessageBox.Show(Res.Strings.Perdu);
+            
             this.InitItems();
             this.Run();
         }

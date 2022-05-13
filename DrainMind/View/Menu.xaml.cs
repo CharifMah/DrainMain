@@ -19,6 +19,7 @@ namespace DrainMind.View
     /// </summary>
     public partial class Menu : Window
     {
+        private MainWindow mw;
         /// <summary>
         /// Window du Menu
         /// </summary>
@@ -27,6 +28,8 @@ namespace DrainMind.View
             //Centre la fenetre
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            mw = new MainWindow();
+
         }
         /// <summary>
         /// Lance le jeux
@@ -35,9 +38,8 @@ namespace DrainMind.View
         /// <param name="e"></param>
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
-            mw.Show();
-            this.Close();
+            this.Hide();
+            mw.Show();           
         }
         /// <summary>
         /// Quitte totalement le jeux
@@ -56,8 +58,9 @@ namespace DrainMind.View
         private void OptionButton_Click(object sender, RoutedEventArgs e)
         {
             Options o = new Options(this);
-            o.Show();
             this.Hide();
+            o.Show();
+            
         }
     }
 }
