@@ -69,6 +69,9 @@ namespace DrainMind.View
             double width = Application.Current.MainWindow.Width;
             double height = Application.Current.MainWindow.Height;
 
+            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+
             switch (e.AddedItems[0].ToString())
             {
                 case "800 x 600":                  
@@ -104,6 +107,8 @@ namespace DrainMind.View
             {
                 windows.Width = width;
                 windows.Height = height;
+                windows.Left = (screenWidth / 2) - (windows.Width / 2);
+                windows.Top = (screenHeight / 2) - (windows.Height / 2);
             }
         }
     }

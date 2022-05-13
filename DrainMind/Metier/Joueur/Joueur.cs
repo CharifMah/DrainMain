@@ -134,7 +134,8 @@ namespace DrainMind
         /// <param name="y">axis y</param>
         public void DeplacerJoueur(double x, double y)
         {
-            if (this.Left + x > 0 && this.Right + x < GameWidth && this.Bottom + y < GameHeight && this.Top + y > 0)
+            
+            if (this.Left + x >= 0 && this.Right + x <= GameWidth && this.Bottom + y <= GameHeight && this.Top + y >= 0)
             {
                 MoveXY(x, y);
             }
