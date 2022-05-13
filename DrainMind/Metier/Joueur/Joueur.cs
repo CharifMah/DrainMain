@@ -222,33 +222,13 @@ namespace DrainMind
                 if (key == Key.D || key == Key.Right)
                 {
                     ChangeSprite("droite1.png");
-                    ChangeSprite("droite2.png");
-                    
-                    ChangeSprite("droite3.png");
                 }
 
                 if (key == Key.Z || key == Key.Up)
                 {
                     ChangeSprite("dos.png");
                 }
-            }
-            else
-            {
-                if (key == Key.Q || key == Key.Left)
-                {
-                    ChangeSprite("gauche.png");
-                }
-
-                if (key == Key.D || key == Key.Right)
-                {
-                    ChangeSprite("droite1.png");
-                }
-
-                if (key == Key.Z || key == Key.Up)
-                {
-                    ChangeSprite("dos.png");
-                }
-            }                    
+            }            
         }
 
         /// <summary>
