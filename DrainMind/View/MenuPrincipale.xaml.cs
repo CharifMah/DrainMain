@@ -22,7 +22,6 @@ namespace DrainMind.View
     {
         //Garde en memoire la page du jeux en cours
         private DrainMindView drainmindView;
-
         //Get la MainWindow
         private Window mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow; 
         

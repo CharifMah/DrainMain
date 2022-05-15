@@ -1,5 +1,6 @@
 ﻿using DrainMind.Metier;
 using DrainMind.View;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,7 +16,7 @@ namespace DrainMind
         //game's canvas
         private Canvas UIcanvas;
         private Joueur player;
-
+        private Window mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
         /// <summary>
         /// constructor of the game
         /// </summary>
@@ -54,9 +55,9 @@ namespace DrainMind
         protected override void RunWhenLoose()
         {
             System.Windows.MessageBox.Show(Res.Strings.Perdu);
-            
-            this.InitItems();
-            this.Run();
+
+            mainwindow.Content = new MenuPrincipale();
+
         }
 
         /// <summary>

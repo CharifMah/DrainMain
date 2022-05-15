@@ -109,7 +109,7 @@ namespace DrainMind.View
         }
         #endregion
 
-        #region MenuPauseEvents
+        #region ButtonMenuPause
 
         /// <summary>
         /// Reprends la partie en cours
