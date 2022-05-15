@@ -1,0 +1,45 @@
+﻿<Page x:Class="DrainMind.View.DrainMindView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DrainMind.View"
+      xmlns:res="clr-namespace:DrainMind.Res"
+      mc:Ignorable="d" 
+      SizeChanged="Window_SizeChanged" KeyDown="FentrePrincipalDrainMain_KeyDown">
+
+    <Grid>
+        <ScrollViewer x:Name="CanvasViewer" HorizontalScrollBarVisibility="Hidden"  VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="CanvasViewer_PreviewMouseWheel" PreviewKeyDown="CanvasViewer_PreviewKeyDown" >
+            <Canvas x:Name="canvas" Height="4421" Width="6915">
+                <Canvas.Background>
+                    <ImageBrush ImageSource="/Sprites/fond.png"/>
+                </Canvas.Background>
+            </Canvas>
+
+        </ScrollViewer>
+        <Canvas  x:Name="UI"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="5*" />
+
+            </Grid.RowDefinitions>
+
+
+            <GroupBox Header="Pause" FontSize="40" Background="Brown" x:Name="GroupBoxPause" Visibility="Hidden" Grid.Column="1" Grid.Row="1">
+                <StackPanel>
+                    <Button x:Name="Resumebutton" Content="Resume" Margin="30,100,30,30" Click="Resumebutton_Click"/>
+                    <Button x:Name="OptionButton" Content="Options" Margin="30" Click="OptionButton_Click"/>
+                    <Button x:Name="ExitButton" Content="{x:Static res:Strings.Exit}" Margin="30" Click="ExitButton_Click"/>
+                </StackPanel>
+
+            </GroupBox>
+        </Grid>
+    </Grid>
+</Page>
