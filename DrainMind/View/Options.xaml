@@ -26,6 +26,7 @@
         </Grid.RowDefinitions>
         
         <Button x:Name="Back"
+                Style="{StaticResource CustomButton}" 
                 Content="{x:Static res:Strings.Retour}"
                 HorizontalAlignment="Center"
                 Click="Back_Click" 
@@ -73,7 +74,6 @@
                 Grid.Row="3" 
                 Value="0" 
                 Background="LightGray"
-                ValueChanged="slider_Son_ValueChanged"
                 VerticalAlignment="Center"
                 IsSnapToTickEnabled="True"
                 Maximum="100" 

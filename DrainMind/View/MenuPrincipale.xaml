@@ -24,17 +24,19 @@
         </Grid.RowDefinitions>
 
         <Button x:Name="PlayButton"
-                x:FieldModifier="public"
-                Content="{x:Static res:Strings.Jouer}"
+                Style="{StaticResource CustomButton}"          
                 HorizontalAlignment="Stretch"
                 Grid.Row="1" 
                 Grid.Column="1" 
                 FontSize="50" 
                 VerticalAlignment="Stretch"
                 Margin="20"
-                Click="PlayButton_Click"/>
+                Click="PlayButton_Click"
+                Content="{x:Static res:Strings.Jouer}"
+                />
 
         <Button x:Name="OptionButton" 
+                Style="{StaticResource CustomButton}" 
                 Content="{x:Static res:Strings.Options}"
                 HorizontalAlignment="Stretch" 
                 Grid.Row="2" 
@@ -45,6 +47,7 @@
                 Click="OptionButton_Click"/>
 
         <Button x:Name="ExitButton" 
+                Style="{StaticResource CustomButton}" 
                 Content="{x:Static res:Strings.Exit}"
                 HorizontalAlignment="Stretch" 
                 Grid.Row="3" 
