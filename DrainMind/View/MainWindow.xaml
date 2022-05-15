@@ -6,10 +6,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"       
         xmlns:local="clr-namespace:DrainMind"
         mc:Ignorable="d"
-        Closed="FentrePrincipalDrainMain_Closed">
+        Closed="FentrePrincipalDrainMain_Closed" MinWidth="1280" MinHeight="720" >
     
     <Grid>
-        <Frame Name="MenuPrincipaleFrame" Source="MenuPrincipale.xaml" />
+        <Frame Name="MenuPrincipaleFrame" Source="MenuPrincipale.xaml"/>
     </Grid>
     
 </Window>

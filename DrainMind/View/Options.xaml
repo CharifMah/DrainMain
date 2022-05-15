@@ -24,16 +24,18 @@
             <RowDefinition Height="5*" />
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
-        
+
         <Button x:Name="Back"
                 Style="{StaticResource CustomButton}" 
                 Content="{x:Static res:Strings.Retour}"
                 HorizontalAlignment="Center"
                 Click="Back_Click" 
-                VerticalAlignment="Center" 
-                Height="40" 
-                Width="200"/>
-        
+                
+                
+                VerticalAlignment="Center" Padding="35,15"  
+                
+                />
+
         <TextBlock x:Name="OptionTextBlock" 
                    Grid.Column="1"
                    HorizontalAlignment="Center" 
@@ -41,7 +43,7 @@
                    FontSize="30" 
                    Text="{x:Static res:Strings.Options}"
                    VerticalAlignment="Center"/>
-        
+
         <TextBlock x:Name="ResolutionTextBlock"
                    Grid.Column="0" 
                    Grid.Row="2" 
@@ -50,7 +52,7 @@
                    FontSize="20"
                    Text="Resolution : " 
                    VerticalAlignment="Center"/>
-        
+
         <ComboBox x:Name="ResolutionComboBox" 
                   Grid.Column="1" 
                   HorizontalAlignment="Stretch" 
@@ -58,8 +60,8 @@
                   VerticalAlignment="Center" 
                   Margin="20,0,20,0" 
                   SelectionChanged="ResolutionComboBox_SelectionChanged"/>
-        
-        
+
+
         <TextBlock x:Name="SoundsTextBlock" 
                    Grid.Column="0" 
                    Grid.Row="3"

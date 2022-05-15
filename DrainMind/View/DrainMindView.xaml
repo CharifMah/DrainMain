@@ -6,11 +6,12 @@
       xmlns:local="clr-namespace:DrainMind.View"
       xmlns:res="clr-namespace:DrainMind.Res"
       mc:Ignorable="d" 
-      SizeChanged="Window_SizeChanged" KeyDown="FentrePrincipalDrainMain_KeyDown">
+      d:DesignHeight="1080.2" d:DesignWidth="1920.6"
+      SizeChanged="Window_SizeChanged" KeyDown="FentrePrincipalDrainMain_KeyDown" >
 
     <Grid>
         <ScrollViewer x:Name="CanvasViewer" HorizontalScrollBarVisibility="Hidden"  VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="CanvasViewer_PreviewMouseWheel" PreviewKeyDown="CanvasViewer_PreviewKeyDown" >
-            <Canvas x:Name="canvas" Height="4421" Width="6915">
+            <Canvas x:Name="canvas" Height="4221" Width="6715">
                 <Canvas.Background>
                     <ImageBrush ImageSource="/Sprites/fond.png"/>
                 </Canvas.Background>
@@ -33,27 +34,41 @@
 
 
             <GroupBox Header="Pause" FontSize="40" Background="Brown" x:Name="GroupBoxPause" Visibility="Hidden" Grid.Column="1" Grid.Row="1">
-                <StackPanel>
-                    
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="100" />
+
+                    </Grid.RowDefinitions>
                     <Button x:Name="Resumebutton" 
+                            Grid.Row="1"
                             Style="{StaticResource CustomButton}"
                             Content="{x:Static res:Strings.Reprendre}"
-                            Margin="30,100,30,30" 
-                            Click="Resumebutton_Click"/>
-                    
+                            VerticalAlignment="Stretch"
+                            Margin="10"
+                            Click="Resumebutton_Click"
+                            />
+
                     <Button x:Name="OptionButton" 
                             Style="{StaticResource CustomButton}"
                             Content="{x:Static res:Strings.Options}"
-                            Margin="30" 
+                            Margin="10"
+                            VerticalAlignment="Stretch"
+                            Grid.Row="2"    
                             Click="OptionButton_Click"/>
-                    
+
                     <Button x:Name="ExitButton" 
                             Style="{StaticResource CustomButton}"
                             Content="{x:Static res:Strings.Exit}" 
-                            Margin="30" 
+                            Margin="10"
+                            Grid.Row="3"   
+                            VerticalAlignment="Stretch"
                             Click="ExitButton_Click"/>
-                </StackPanel>
-
+                </Grid>
             </GroupBox>
         </Grid>
     </Grid>

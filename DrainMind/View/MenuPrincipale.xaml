@@ -47,7 +47,7 @@
                 Click="OptionButton_Click"/>
 
         <Button x:Name="ExitButton" 
-                Style="{StaticResource CustomButton}" 
+                Style="{StaticResource CustomButton}"
                 Content="{x:Static res:Strings.Exit}"
                 HorizontalAlignment="Stretch" 
                 Grid.Row="3" 

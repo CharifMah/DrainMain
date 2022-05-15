@@ -39,8 +39,6 @@ namespace DrainMind.View
         /// </summary>
         public void InitItemComboBox()
         {
-            ResolutionComboBox.Items.Add("800 x 600");
-            ResolutionComboBox.Items.Add("1024 x 768");
             ResolutionComboBox.Items.Add("1280 x 720");
             ResolutionComboBox.Items.Add("1280 x 1024");
             ResolutionComboBox.Items.Add("1600 x 900");
@@ -66,14 +64,6 @@ namespace DrainMind.View
 
             switch (e.AddedItems[0].ToString())
             {
-                case "800 x 600":
-                    width = 800;
-                    height = 600;
-                    break;
-                case "1024 x 768":
-                    width = 1024;
-                    height = 768;
-                    break;
                 case "1280 x 720":
                     width = 1280;
                     height = 720;
