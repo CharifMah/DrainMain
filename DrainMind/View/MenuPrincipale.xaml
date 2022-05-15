@@ -35,7 +35,7 @@
                 Click="PlayButton_Click"/>
 
         <Button x:Name="OptionButton" 
-                Content="{x:Static res:Strings.Option}"
+                Content="{x:Static res:Strings.Options}"
                 HorizontalAlignment="Stretch" 
                 Grid.Row="2" 
                 Grid.Column="1" 

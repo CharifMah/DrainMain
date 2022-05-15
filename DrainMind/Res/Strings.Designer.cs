@@ -105,11 +105,11 @@ namespace DrainMind.Res {
             }
         }
 
-        public static string Option
+        public static string Options
         {
             get
             {
-                return ResourceManager.GetString("Option", resourceCulture);
+                return ResourceManager.GetString("Options", resourceCulture);
             }
         }
 
@@ -126,6 +126,22 @@ namespace DrainMind.Res {
             get
             {
                 return ResourceManager.GetString("Reprendre", resourceCulture);
+            }
+        }
+
+        public static string Retour
+        {
+            get
+            {
+                return ResourceManager.GetString("Retour", resourceCulture);
+            }
+        }
+
+        public static string Son
+        {
+            get
+            {
+                return ResourceManager.GetString("Son", resourceCulture);
             }
         }
     }

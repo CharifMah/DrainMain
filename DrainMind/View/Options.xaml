@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DrainMind.View"
+      xmlns:res="clr-namespace:DrainMind.Res"
       mc:Ignorable="d" 
       d:DesignHeight="801.18" d:DesignWidth="1368.696"
       Title="Options" Background="Wheat">
@@ -23,10 +24,65 @@
             <RowDefinition Height="5*" />
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
-        <TextBlock x:Name="OptionTextBlock" Grid.Column="1" HorizontalAlignment="Center" Margin="10"  FontSize="30" Text="Options" VerticalAlignment="Center"/>
-        <TextBlock x:Name="ResolutionTextBlock" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Margin="10"  FontSize="20" Text="Resolution : " VerticalAlignment="Center"/>
-        <ComboBox x:Name="ResolutionComboBox" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center"  Margin="20,0,20,0" SelectionChanged="ResolutionComboBox_SelectionChanged"/>
-        <Button x:Name="Back" Content="Back" HorizontalAlignment="Center" Click="Back_Click" VerticalAlignment="Center" Height="40" Width="200"/>
+        
+        <Button x:Name="Back"
+                Content="{x:Static res:Strings.Retour}"
+                HorizontalAlignment="Center"
+                Click="Back_Click" 
+                VerticalAlignment="Center" 
+                Height="40" 
+                Width="200"/>
+        
+        <TextBlock x:Name="OptionTextBlock" 
+                   Grid.Column="1"
+                   HorizontalAlignment="Center" 
+                   Margin="10"  
+                   FontSize="30" 
+                   Text="{x:Static res:Strings.Options}"
+                   VerticalAlignment="Center"/>
+        
+        <TextBlock x:Name="ResolutionTextBlock"
+                   Grid.Column="0" 
+                   Grid.Row="2" 
+                   HorizontalAlignment="Center"
+                   Margin="10"  
+                   FontSize="20"
+                   Text="Resolution : " 
+                   VerticalAlignment="Center"/>
+        
+        <ComboBox x:Name="ResolutionComboBox" 
+                  Grid.Column="1" 
+                  HorizontalAlignment="Stretch" 
+                  Grid.Row="2"
+                  VerticalAlignment="Center" 
+                  Margin="20,0,20,0" 
+                  SelectionChanged="ResolutionComboBox_SelectionChanged"/>
+        
+        
+        <TextBlock x:Name="SoundsTextBlock" 
+                   Grid.Column="0" 
+                   Grid.Row="3"
+                   HorizontalAlignment="Center"
+                   Margin="10"
+                   FontSize="20" 
+                   Text="{x:Static res:Strings.Son}" 
+                   VerticalAlignment="Center"/>
+
+        <Slider x:Name="slider_Son" 
+                Grid.Column="1"
+                Grid.Row="3" 
+                Value="0" 
+                Background="LightGray"
+                ValueChanged="slider_Son_ValueChanged"
+                VerticalAlignment="Center"
+                IsSnapToTickEnabled="True"
+                Maximum="100" 
+                Height="20"
+                Margin="50,0,50,0"
+                Style="{StaticResource CustomSlider1}" 
+                Orientation="Horizontal" Minimum="1" 
+                />
+
 
     </Grid>
 </Page>

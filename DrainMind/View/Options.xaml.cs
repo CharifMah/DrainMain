@@ -21,7 +21,12 @@ namespace DrainMind.View
     public partial class Options : Page
     {
         private Page _windowPrecedente;
-        private Window mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
+        private MainWindow mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="windowPrecedente">Recupère la Fenêtre precedente</param>
         public Options(Page windowPrecedente)
         {
             InitializeComponent();
@@ -49,13 +54,13 @@ namespace DrainMind.View
         /// <summary>
         /// Si la selection de la combobox a changer alors on change la resolution
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">ComboBox</param>
+        /// <param name="e">Selection qui a changer sur la combobox</param>
         private void ResolutionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             double width = Application.Current.MainWindow.Width;
             double height = Application.Current.MainWindow.Height;
-
+    
             double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
             double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
 
@@ -90,18 +95,31 @@ namespace DrainMind.View
                     height = 1080;
                     break;
             }
-            foreach (Window windows in Application.Current.Windows)
-            {
-                windows.Width = width;
-                windows.Height = height;
-                windows.Left = (screenWidth / 2) - (windows.Width / 2);
-                windows.Top = (screenHeight / 2) - (windows.Height / 2);
-            }
+                mainwindow.Width = width;
+                mainwindow.Height = height;
+                mainwindow.Left = (screenWidth / 2) - (mainwindow.Width / 2);
+                mainwindow.Top = (screenHeight / 2) - (mainwindow.Height / 2);
         }
 
+        /// <summary>
+        /// Click pour revenir a la fenètre precedente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             mainwindow.Content = _windowPrecedente;
+        }
+
+        /// <summary>
+        /// Slider Value Change la valeur de la musique du jeux
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void slider_Son_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (DrainMindGame.Instance != null)
+            DrainMindGame.Instance.BackgroundVolume = slider_Son.Value / slider_Son.Maximum;       
         }
     }
 }

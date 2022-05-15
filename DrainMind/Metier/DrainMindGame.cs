@@ -17,6 +17,11 @@ namespace DrainMind
         private Canvas UIcanvas;
         private Joueur player;
         private Window mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
+        private static DrainMindGame game;
+        public static DrainMindGame Instance
+        {
+            get { return game; }
+        }
         /// <summary>
         /// constructor of the game
         /// </summary>
@@ -27,6 +32,7 @@ namespace DrainMind
         {
             Camera = camera;
             UIcanvas = UI;
+            game = this;
         }
 
         /// <summary>
@@ -36,7 +42,6 @@ namespace DrainMind
         {
             double Height = Application.Current.MainWindow.ActualHeight;
             double Width = Application.Current.MainWindow.ActualWidth;
-
             //Creation de la Camera
             Camera cam = new Camera(Width / 2, Height / 2, Canvas, this, Camera);
             AddItem(cam);
@@ -47,6 +52,7 @@ namespace DrainMind
  
             AddItem(new GenerateurEnemie(this, Canvas, player));
             PlayBackgroundMusic("Son_ambiance_Action.mp3");
+            
         }
 
         /// <summary>
@@ -55,7 +61,6 @@ namespace DrainMind
         protected override void RunWhenLoose()
         {
             System.Windows.MessageBox.Show(Res.Strings.Perdu);
-
             mainwindow.Content = new MenuPrincipale();
 
         }
