@@ -22,13 +22,25 @@ namespace DrainMind.View
     public partial class DrainMindView : Page
     {
         private DrainMindGame drainMind;
+        private MenuPrincipale _MenuPrincipale;
+        private Window mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
 
-        public DrainMindView()
+        public DrainMindView(MenuPrincipale Menu)
         {        
             ShowsNavigationUI = false;
             InitializeComponent();
-            drainMind = new DrainMindGame(canvas, CanvasViewer, UI);
-            drainMind.Run();
+
+            if (drainMind == null)
+            {
+                drainMind = new DrainMindGame(canvas, CanvasViewer, UI);
+                drainMind.Run();
+            }
+            if (!drainMind.IsRunning)
+            {
+                mainwindow.Content = this;
+                drainMind.Resume();          
+            }
+            _MenuPrincipale = Menu;
         }
 
         /// <summary>
@@ -98,6 +110,7 @@ namespace DrainMind.View
         #endregion
 
         #region MenuPauseEvents
+
         /// <summary>
         /// Reprends la partie en cours
         /// </summary>
@@ -110,20 +123,25 @@ namespace DrainMind.View
         }
 
         /// <summary>
-        /// Quitte completement le jeux
+        /// Ouvre la page des options
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OptionButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainwindow.Content = new Options(this);
+        }
+
+        /// <summary>
+        /// Ouvre le Menu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            Window mw = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
-            mw.Content = new MenuPrincipale();
-        }
-
-        private void OptionButton_Click(object sender, RoutedEventArgs e)
-        {
-            Window mw = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
-            mw.Content = new Options(this);
+            drainMind.Pause();
+            _MenuPrincipale.PlayButton.Content = DrainMind.Res.Strings.Reprendre;           
+            mainwindow.Content = _MenuPrincipale;                     
         }
 
         #endregion

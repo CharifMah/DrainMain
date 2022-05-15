@@ -21,6 +21,7 @@ namespace DrainMind.View
     public partial class Options : Page
     {
         private Page _windowPrecedente;
+        private Window mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
         public Options(Page windowPrecedente)
         {
             InitializeComponent();
@@ -100,8 +101,7 @@ namespace DrainMind.View
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Window mw = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
-            mw.Content = _windowPrecedente;
+            mainwindow.Content = _windowPrecedente;
         }
     }
 }

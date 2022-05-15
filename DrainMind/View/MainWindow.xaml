@@ -7,6 +7,9 @@
         xmlns:local="clr-namespace:DrainMind"
         mc:Ignorable="d"
         Closed="FentrePrincipalDrainMain_Closed">
-
-
+    
+    <Grid>
+        <Frame Name="MenuPrincipaleFrame" Source="MenuPrincipale.xaml" />
+    </Grid>
+    
 </Window>

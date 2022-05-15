@@ -120,5 +120,13 @@ namespace DrainMind.Res {
                 return ResourceManager.GetString("Exit", resourceCulture);
             }
         }
+
+        public static string Reprendre
+        {
+            get
+            {
+                return ResourceManager.GetString("Reprendre", resourceCulture);
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.Windows.Interop;
 using System;
 using DrainMind.Metier;
 using DrainMind.View;
+using System.Linq;
 
 namespace DrainMind
 {
@@ -24,8 +25,7 @@ namespace DrainMind
         {
             //Centre la fenetre
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            InitializeComponent();
-            this.Content = new MenuPrincipale();
+            InitializeComponent();                     
         }
 
         /// <summary>

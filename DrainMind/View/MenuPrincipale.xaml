@@ -24,6 +24,7 @@
         </Grid.RowDefinitions>
 
         <Button x:Name="PlayButton"
+                x:FieldModifier="public"
                 Content="{x:Static res:Strings.Jouer}"
                 HorizontalAlignment="Stretch"
                 Grid.Row="1" 

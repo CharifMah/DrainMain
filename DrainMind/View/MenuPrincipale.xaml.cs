@@ -20,11 +20,17 @@ namespace DrainMind.View
     /// </summary>
     public partial class MenuPrincipale : Page
     {
+        //Garde en memoire la page du jeux en cours
+        private DrainMindView drainmindView;
+
+        //Get la MainWindow
+        private Window mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow; 
+        
+
         public MenuPrincipale()
         {
             InitializeComponent();
         }
-
 
         /// <summary>
         /// Lance le jeux
@@ -33,8 +39,17 @@ namespace DrainMind.View
         /// <param name="e"></param>
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            Window mw = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
-            mw.Content = new DrainMindView();
+            if (drainmindView == null)
+            {
+                //Lance une Nouvelle Partie
+                drainmindView = new DrainMindView(this);
+                mainwindow.Content = drainmindView;
+            }
+            else
+            {
+                //Reprends la Partie en cours
+                mainwindow.Content = drainmindView;
+            }
         }
 
         /// <summary>
@@ -44,8 +59,7 @@ namespace DrainMind.View
         /// <param name="e"></param>
         private void OptionButton_Click(object sender, RoutedEventArgs e)
         {
-            Window mw = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
-            mw.Content = new Options(this);
+            mainwindow.Content = new Options(this);
         }
 
         /// <summary>

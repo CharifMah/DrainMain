@@ -135,6 +135,9 @@
   <data name="Perdu" xml:space="preserve">
     <value>Vous avez perdu !</value>
   </data>
+  <data name="Reprendre" xml:space="preserve">
+    <value>Reprendre</value>
+  </data>
   <data name="Titre" xml:space="preserve">
     <value>Le petit jeu !</value>
   </data>
