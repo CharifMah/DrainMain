@@ -10,6 +10,9 @@
 
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Sprites/Background2.png"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="9*" />

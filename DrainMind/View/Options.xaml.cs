@@ -21,6 +21,7 @@ namespace DrainMind.View
     public partial class Options : Page
     {
         private Page _windowPrecedente;
+        
         private MainWindow mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
 
         /// <summary>
@@ -111,5 +112,55 @@ namespace DrainMind.View
             if (DrainMindGame.Instance != null)
             DrainMindGame.Instance.BackgroundVolume = slider_Son.Value / slider_Son.Maximum;       
         }
+
+        #region CheckBox
+
+        /// <summary>
+        /// Active le son a la valeur du slider
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBoxSound_Checked(object sender, RoutedEventArgs e)
+        {
+            if (DrainMindGame.Instance != null)
+                DrainMindGame.Instance.BackgroundVolume = slider_Son.Value / slider_Son.Maximum;
+        }
+
+        /// <summary>
+        /// Desactive le son
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBoxSound_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (DrainMindGame.Instance != null)
+                DrainMindGame.Instance.BackgroundVolume = 0;
+        }
+
+        /// <summary>
+        /// Active le plein Ecran
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBoxFullScreen_Checked(object sender, RoutedEventArgs e)
+        {
+            mainwindow.WindowStyle = WindowStyle.None;
+            mainwindow.WindowState = WindowState.Maximized;
+            
+        }
+
+        /// <summary>
+        /// Ecran Fenetrer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBoxFullScreen_Unchecked(object sender, RoutedEventArgs e)
+        {
+            mainwindow.WindowState = WindowState.Maximized;
+            mainwindow.WindowStyle = WindowStyle.ThreeDBorderWindow;
+        }
+
+        #endregion
+
     }
 }

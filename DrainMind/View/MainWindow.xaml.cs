@@ -25,7 +25,8 @@ namespace DrainMind
         {
             //Centre la fenetre
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            InitializeComponent();                     
+            InitializeComponent();
+   
         }
 
         /// <summary>
