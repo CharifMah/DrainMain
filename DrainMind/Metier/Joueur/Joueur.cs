@@ -94,7 +94,7 @@ namespace DrainMind
             if (goLeft)
                 ChangeSprite("gauche.png");
             if (goRight)
-                ChangeSprite("droite1.png");
+                ChangeSprite("droite.png");
             if (goUp)
                 ChangeSprite("dos.png");
             if(goDown)
@@ -103,6 +103,10 @@ namespace DrainMind
                 ChangeSprite("diagoSQ.png");
             if (goUp && goLeft)
                 ChangeSprite("diagoZQ.png");
+            if (goDown && goRight)
+                ChangeSprite("diagoSD.png");
+            if (goUp && goRight)
+                ChangeSprite("diagoZD.png");
 
 
         }
