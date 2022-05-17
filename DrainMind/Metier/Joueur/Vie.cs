@@ -14,6 +14,25 @@ namespace DrainMind
         private List<Sprite> ListLife = new List<Sprite>();
         private Canvas uiLife;
 
+        /// <summary>
+        /// Set Ajoute ou envleve de la vie
+        /// </summary>
+        public double _Vie
+        {
+            get { return ListLife.Count; }
+            set
+            {
+                if (ListLife.Count > value)
+                {
+                    RemoveLife(ListLife.Count - value);
+                }
+
+                if (ListLife.Count < value)
+                {
+                    AddLife(value - ListLife.Count);
+                }
+            }
+        }
 
         /// <summary>
         /// Constructor Vie create une barre de vie with amount of lifes
@@ -44,6 +63,7 @@ namespace DrainMind
                 ListLife[i].Put(i * 50, 0);
             }
         }
+
         /// <summary>
         /// Enleve le nombre de vie souhaite
         /// </summary>
@@ -59,6 +79,7 @@ namespace DrainMind
                 }            
             }               
         }
+
         /// <summary>
         /// Ajoute de la vie a la liste de vie
         /// </summary>
@@ -72,28 +93,9 @@ namespace DrainMind
 
                 ListLife.Add(Coeur);
                 uiLife.Children.Add(ListLife[ListLife.Count - 1].Image);
-                ListLife[ListLife.Count - 1].Put(i * 50, 0);
+                ListLife[ListLife.Count - 1].Put((ListLife.Count - 1) * 50, 0);
             }
         }
-        /// <summary>
-        /// Set Ajoute ou envleve de la vie
-        /// </summary>
-        public double _Vie
-        {
-            get { return ListLife.Count; }
-            set
-            {
-                
-                double vie = Math.Min(ListLife.Count, value);
-                if (ListLife.Count - vie != 0)
-                {
-                    RemoveLife(ListLife.Count - vie);
-                }
-               
-                
-            }
-        }
-
 
 
         public override string TypeName => "Vie";
