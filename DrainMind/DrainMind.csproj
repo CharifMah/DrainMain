@@ -43,6 +43,7 @@
     <None Remove="Sprites\droiteTest.png" />
     <None Remove="Sprites\face.png" />
     <None Remove="Sprites\fantome.png" />
+    <None Remove="Sprites\fantomeVert.png" />
     <None Remove="Sprites\fond.png" />
     <None Remove="Sprites\fondTest.png" />
     <None Remove="Sprites\fondTest2.png" />
@@ -85,6 +86,7 @@
     <Resource Include="Sprites\Background2.png" />
     <Resource Include="Sprites\diagoSD.png" />
     <Resource Include="Sprites\diagoZD.png" />
+    <Resource Include="Sprites\fantomeVert.png" />
     <Resource Include="Sprites\Logo.ico" />
     <Resource Include="Sprites\Vie\1.png" />
     <Resource Include="Sprites\Vie\2.png" />
