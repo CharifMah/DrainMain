@@ -70,8 +70,9 @@ namespace DrainMind
                 {
                     DeplacerJoueur(0, speed + 05 * dt.TotalSeconds);
                 }
- 
             AnimationJoueur();
+           
+            
 
             if (compte)
             {
@@ -91,19 +92,19 @@ namespace DrainMind
         public void AnimationJoueur()
         {
             if (goLeft)
-            {
                 ChangeSprite("gauche.png");
-            }
             if (goRight)
-            {
                 ChangeSprite("droite1.png");
-            }
             if (goUp)
-            {
                 ChangeSprite("dos.png");
-            }
             if(goDown)
                 ChangeSprite("face.png");
+            if (goDown && goLeft)
+                ChangeSprite("diagoSQ.png");
+            if (goUp && goLeft)
+                ChangeSprite("diagoZQ.png");
+
+
         }
 
         /// <summary>
