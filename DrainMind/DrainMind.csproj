@@ -11,6 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Sprites\Personnage\**" />
+    <EmbeddedResource Remove="Sprites\Personnage\**" />
+    <None Remove="Sprites\Personnage\**" />
+    <Page Remove="Sprites\Personnage\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Sounds\Son_ambiance_Action.mp3" />
     <None Remove="Sprites\.png" />
     <None Remove="Sprites\0.5.png" />
@@ -23,7 +30,9 @@
     <None Remove="Sprites\6.png" />
     <None Remove="Sprites\BackGround.png" />
     <None Remove="Sprites\Background2.png" />
+    <None Remove="Sprites\diagoSD.png" />
     <None Remove="Sprites\diagoSQ.png" />
+    <None Remove="Sprites\diagoZD.png" />
     <None Remove="Sprites\diagoZQ.png" />
     <None Remove="Sprites\dos.png" />
     <None Remove="Sprites\droite.gif" />
@@ -74,6 +83,8 @@
     </Content>
     <Resource Include="Sprites\Background.png" />
     <Resource Include="Sprites\Background2.png" />
+    <Resource Include="Sprites\diagoSD.png" />
+    <Resource Include="Sprites\diagoZD.png" />
     <Resource Include="Sprites\Logo.ico" />
     <Resource Include="Sprites\Vie\1.png" />
     <Resource Include="Sprites\Vie\2.png" />
@@ -91,10 +102,6 @@
     <Resource Include="Sprites\fondTest2.png" />
     <Resource Include="Sprites\gauche.png" />
     <Resource Include="Sprites\TitreMenu.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Sprites\Personnage\" />
   </ItemGroup>
 
 </Project>
