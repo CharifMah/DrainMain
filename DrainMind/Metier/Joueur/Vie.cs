@@ -15,13 +15,23 @@ namespace DrainMind
         private Canvas uiLife;
 
 
-
+        /// <summary>
+        /// Constructor Vie create une barre de vie with amount of lifes
+        /// </summary>
+        /// <param name="lifeUI">Canvas de la barre de vie</param>
+        /// <param name="g">Game Instance</param>
+        /// <param name="pointLife">Nombre de vie</param>
         public Vie(Canvas lifeUI, Game g, double pointLife) : base(10, 10, lifeUI, g)
         {
             uiLife = lifeUI;
             InitLife(pointLife);
            
         }
+
+        /// <summary>
+        /// Initialise le nombre de vie dans la barre de vie
+        /// </summary>
+        /// <param name="vie">Nombre de vie</param>
         public void InitLife(double vie)
         {        
             for (int i = 0; i < vie; i++)
@@ -33,10 +43,11 @@ namespace DrainMind
                 uiLife.Children.Add(ListLife[i].Image);
                 ListLife[i].Put(i * 50, 0);
             }
-
-
         }
-
+        /// <summary>
+        /// Enleve le nombre de vie souhaite
+        /// </summary>
+        /// <param name="numberOfLife"></param>
         public void RemoveLife(double numberOfLife)
         {
             for (int i = 0; i < numberOfLife; i++)
@@ -46,9 +57,12 @@ namespace DrainMind
                     uiLife.Children.Remove(ListLife[ListLife.Count - 1].Image);
                     ListLife.Remove(ListLife[ListLife.Count - 1]);                    
                 }            
-            }
+            }               
         }
-
+        /// <summary>
+        /// Ajoute de la vie a la liste de vie
+        /// </summary>
+        /// <param name="numberOfLife">Number of lifes you want to add</param>
         public void AddLife(double numberOfLife)
         {
             for (int i = 0; i < numberOfLife; i++)
