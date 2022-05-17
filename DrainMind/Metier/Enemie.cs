@@ -126,9 +126,32 @@ namespace DrainMind
                 Right = 0;
                 //Rebondir();
             }
-            
+
             //Deplacement en direction du joueur
-            MoveXY(-(Left - coordsPlayer[1]) / 90, -(Top - coordsPlayer[0]) / 90);          
+            double moveX = -(Left - (coordsPlayer[1]-75)) / 90;
+            double moveY = -(Top - (coordsPlayer[0]+20)) / 90;
+
+            //if (moveY >= -2 && moveY < 0 && (moveX <= 2 && moveX >= -2))
+            //{
+            //    moveY = -2;
+            //}
+
+            //if (moveY <= 2 && moveY > 0 && (moveX <= 2 && moveX >= -2))
+            //{
+            //    moveY = 2;
+            //}
+
+            //if (moveX >= -2 && moveX < 0 && (moveY <= 2 && moveY >= -2))
+            //{
+            //    moveX = -2;
+            //}
+
+            //if (moveX <= 2 && moveX > 0 && (moveY <= 2 && moveY >= -2))
+            //{
+            //    moveX = 2;
+            //}
+
+            MoveXY(moveX, moveY);
         }
     }
 }
