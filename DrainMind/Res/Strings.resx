@@ -126,6 +126,9 @@
   <data name="Jouer" xml:space="preserve">
     <value>Jouer !</value>
   </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>Nouvelle Partie</value>
+  </data>
   <data name="Options" xml:space="preserve">
     <value>Options</value>
   </data>

@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:DrainMind.View"
       xmlns:res="clr-namespace:DrainMind.Res"
       mc:Ignorable="d" 
-      Title="MenuPrincipale">
+      d:DesignHeight="801.18" d:DesignWidth="1368.696"
+      Title="MenuPrincipale" >
 
 
     <Grid>
@@ -24,6 +25,7 @@
             <RowDefinition Height="5*" />
             <RowDefinition Height="5*" />
             <RowDefinition Height="5*" />
+           
         </Grid.RowDefinitions>
 
         <Button x:Name="PlayButton"
@@ -38,11 +40,23 @@
                 Content="{x:Static res:Strings.Jouer}"
                 />
 
+        <Button x:Name="NewGameButton"
+                Style="{StaticResource CustomButton}"          
+                HorizontalAlignment="Stretch"
+                Grid.Row="2" 
+                Grid.Column="1" 
+                FontSize="50" 
+                VerticalAlignment="Stretch"
+                Margin="20"
+                Content="{x:Static res:Strings.NewGame}"
+                Click="NewGameButton_Click"
+                />
+
         <Button x:Name="OptionButton" 
                 Style="{StaticResource CustomButton}" 
                 Content="{x:Static res:Strings.Options}"
                 HorizontalAlignment="Stretch" 
-                Grid.Row="2" 
+                Grid.Row="3" 
                 Grid.Column="1" 
                 FontSize="50" 
                 VerticalAlignment="Stretch" 
@@ -53,7 +67,7 @@
                 Style="{StaticResource CustomButton}"
                 Content="{x:Static res:Strings.Exit}"
                 HorizontalAlignment="Stretch" 
-                Grid.Row="3" 
+                Grid.Row="4" 
                 Grid.Column="1" 
                 FontSize="50" 
                 Click="ExitButton_Click"

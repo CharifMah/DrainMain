@@ -70,23 +70,16 @@ namespace DrainMind
         /// </summary>
         /// <param name="other">the other object</param>
         public override void CollideEffect(GameItem other)
-        {
-            if (Waiting.TotalMilliseconds <= 0)
-            {
-                        
-                if (other.TypeName == "Joueur")
-                {                  
-                    this.Dispose();
-                    angle = 360 - angle;
-                }
-                else if (other.TypeName == this.TypeName)
-                {
-                    angle = (angle + 180) % 360;
-                }
-                Rebondir();           
+        {        
+            if (other.TypeName == "Joueur")
+            {                  
+                angle = 360 - angle;
             }
-            Waiting = new TimeSpan(0, 0, 0, 0, 100);
-
+            else if (other.TypeName == this.TypeName)
+            {
+                angle = (angle + 180) % 360;
+            }
+            Rebondir();                    
         }
 
         /// <summary>
@@ -131,27 +124,7 @@ namespace DrainMind
             double moveX = -(Left - (coordsPlayer[1]-75)) / 90;
             double moveY = -(Top - (coordsPlayer[0]+20)) / 90;
 
-            //if (moveY >= -2 && moveY < 0 && (moveX <= 2 && moveX >= -2))
-            //{
-            //    moveY = -2;
-            //}
-
-            //if (moveY <= 2 && moveY > 0 && (moveX <= 2 && moveX >= -2))
-            //{
-            //    moveY = 2;
-            //}
-
-            //if (moveX >= -2 && moveX < 0 && (moveY <= 2 && moveY >= -2))
-            //{
-            //    moveX = -2;
-            //}
-
-            //if (moveX <= 2 && moveX > 0 && (moveY <= 2 && moveY >= -2))
-            //{
-            //    moveX = 2;
-            //}
-
-            MoveXY(moveX, moveY);
+            MoveXY(moveX + 05 * dt.TotalSeconds, moveY + 05 * dt.TotalSeconds);
         }
     }
 }

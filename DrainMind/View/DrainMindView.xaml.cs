@@ -139,7 +139,7 @@ namespace DrainMind.View
         /// <param name="e"></param>
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            drainMind.Pause();
+            drainMind.Pause();          
             _MenuPrincipale.PlayButton.Content = DrainMind.Res.Strings.Reprendre;           
             mainwindow.Content = _MenuPrincipale;                     
         }

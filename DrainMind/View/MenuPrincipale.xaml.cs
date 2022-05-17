@@ -70,5 +70,10 @@ namespace DrainMind.View
         {
             Environment.Exit(0);
         }
+
+        private void NewGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainwindow.Content = new DrainMindView(this);
+        }
     }
 }

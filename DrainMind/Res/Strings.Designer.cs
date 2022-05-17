@@ -136,12 +136,21 @@ namespace DrainMind.Res {
                 return ResourceManager.GetString("Retour", resourceCulture);
             }
         }
+        
 
         public static string Son
         {
             get
             {
                 return ResourceManager.GetString("Son", resourceCulture);
+            }
+        }
+
+        public static string NewGame
+        {
+            get
+            {
+                return ResourceManager.GetString("NewGame", resourceCulture);
             }
         }
     }

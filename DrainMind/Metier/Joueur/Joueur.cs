@@ -14,12 +14,11 @@ namespace DrainMind
     public class Joueur : GameItem, IAnimable, IKeyboardInteract
     {        
         private bool compte = false;
+        private bool goLeft = false, goRight = false, goUp = false, goDown = false;
         private double time = 0;
-        private double speed = 50;
-        private double playerLife;
+        private double speed = 20;
+        private Vie playerLife;
         private Game DrainMind;
-        private List<HealthSprite> sideBarHeart;
-        private int LastHeartSprite;
         private TimeSpan Waiting = new TimeSpan(0);
 
         /// <summary>
@@ -32,18 +31,9 @@ namespace DrainMind
         /// <param name="ui">canvas</param>
         public Joueur(double x, double y, Canvas c, Game g, Canvas ui, double life) : base(x,y,c,g,"face.png")
         {
-            sideBarHeart = new List<HealthSprite>();
             DrainMind = g;
-            for (int i = 1; i <= life; i++)
-            {
-                HealthSprite heart = new HealthSprite(ui, g, 1, i*50);
-                sideBarHeart.Add(heart);
-                Game.AddItem(heart);
-                LastHeartSprite = i-1;
-            }
-
-            playerLife = life;
-            c.Focus();
+            playerLife = new Vie(ui,g,life);
+            Game.AddItem(playerLife);
         }      
 
         // TypeName of the player is "Joueur"
@@ -55,42 +45,77 @@ namespace DrainMind
         /// <param name="dt">timespan elasped since last animation</param>
         public void Animate(TimeSpan dt)
         {
+      
             if (Waiting.TotalMilliseconds > 0)
             {
                 Waiting = Waiting.Subtract(dt);
             }
 
+            if (goLeft)
+                {
+                    DeplacerJoueur(-speed + 05 * dt.TotalSeconds, 0);
+
+                }
+                if (goRight)
+                {
+                    DeplacerJoueur(speed + 05 * dt.TotalSeconds, 0);
+
+                }
+                if (goUp)
+                {
+                    DeplacerJoueur(0,  -speed + 05 * dt.TotalSeconds);
+
+                }
+                if (goDown)
+                {
+                    DeplacerJoueur(0, speed + 05 * dt.TotalSeconds);
+                }
+ 
+            AnimationJoueur();
+
             if (compte)
             {
                 time += dt.TotalMilliseconds;
-                if (time > 100)
+                if (time > 500)
                     compte = false;
             }
+
         }
-        
+
+
+        /// <summary>
+        /// Animation, change sprite when the mc move
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="KeyEvent">True for KeyUp False for KeyDown</param>
+        public void AnimationJoueur()
+        {
+            if (goLeft)
+            {
+                ChangeSprite("gauche.png");
+            }
+            if (goRight)
+            {
+                ChangeSprite("droite1.png");
+            }
+            if (goUp)
+            {
+                ChangeSprite("dos.png");
+            }
+            if(goDown)
+                ChangeSprite("face.png");
+        }
+
         /// <summary>
         /// Enleve des point de vie au joueur
         /// </summary>
         /// <param name="damage"></param>
         public void LooseLife(double damage)
         {
-               
-            if (playerLife - damage > 0)
+            if (playerLife._Vie - damage > 0)
             {
-                playerLife -= damage;
-
-                if (sideBarHeart[LastHeartSprite].LifePoint - damage <= 0)
-                {
-                    sideBarHeart[LastHeartSprite].Dispose();
-                    Game.RemoveItem(sideBarHeart[LastHeartSprite]);
-                    sideBarHeart[LastHeartSprite] = null;
-                    LastHeartSprite -= 1;
-                }
-                else
-                {
-                    sideBarHeart[LastHeartSprite].LifePoint -= 0.5;
-                }
-            } 
+                playerLife._Vie -= damage;
+            }
             else
             {
                 Game.Loose();
@@ -103,17 +128,23 @@ namespace DrainMind
         /// <param name="other">the other object</param>
         public override void CollideEffect(GameItem other)
         {
-            if (Waiting.TotalMilliseconds <= 0)
+            if (!compte)
             {
-                if (other.TypeName == "Enemie")
+                if (Waiting.TotalMilliseconds <= 0)
                 {
-                    LooseLife(0.5);              
-                    PlaySound("Bruit.mp3");
-                    compte = true;
-                    time = 0;                
-                }             
+                    if (other.TypeName == "Enemie")
+                    {
+                        LooseLife(1);
+                        other.Dispose();                 
+                        compte = true;
+                        time = 0;
+                        PlaySound("Bruit.mp3");            
+
+                    }
+                }
+                Waiting = new TimeSpan(0, 0, 0, 0, 50);
             }
-            Waiting = new TimeSpan(0, 0, 0, 0, 100);
+            
 
         }
 
@@ -140,8 +171,8 @@ namespace DrainMind
                 MoveXY(x, y);
             }
 
-            Camera.X = this.Left;
-            Camera.Y = this.Top;
+            Camera.X = this.Left + (this.Width) / 2;
+            Camera.Y = this.Top + (this.Height) / 2;
             Camera.MoveCamera(this.Left + (this.Width) / 2,this.Top + (this.Height)/2 );
         }
 
@@ -155,44 +186,38 @@ namespace DrainMind
             {
                 switch (key)
                 {
-                    case Key.Q:
-                        DeplacerJoueur(.05 - speed, 0);
-                        AnimationJoueur(Key.Q);
+                    case Key.Z:
+                        goUp = true;
                         break;
 
-                    case Key.D:
-                        DeplacerJoueur(.05 + speed, 0);
-                        AnimationJoueur(Key.D);
+                    case Key.Q:
+                        goLeft = true;
                         break;
 
                     case Key.S:
-                        DeplacerJoueur(0, .05 + speed);
+                        goDown = true;
                         break;
 
-                    case Key.Z:
-                        DeplacerJoueur(0, .05 - speed);
-                        AnimationJoueur(Key.Z);
+                    case Key.D:
+                        goRight = true;
                         break;
 
+
+                    case Key.Up:
+                        goUp = true;
+                        break;
 
                     case Key.Left:
-                        DeplacerJoueur(.05 - speed, 0);
-                        AnimationJoueur(Key.Left);
-                        break;
-
-                    case Key.Right:
-                        DeplacerJoueur(.05 + speed, 0);
-                        AnimationJoueur(Key.Right);
+                        goLeft = true;
                         break;
 
                     case Key.Down:
-                        DeplacerJoueur(0, .05 + speed);
+                        goDown = true;
                         break;
 
-                    case Key.Up:
-                        DeplacerJoueur(0, .05 - speed);
-                        AnimationJoueur(Key.Up);
-                        break;
+                    case Key.Right:
+                        goRight = true;
+                        break;                
                 }
             }           
         }
@@ -203,30 +228,44 @@ namespace DrainMind
         /// <param name="key">key not pressed anymore</param>
         public void KeyUp(Key key)
         {
-            ChangeSprite("face.png");
-        }
-
-        /// <summary>
-        /// Animation, change sprite when the mc move
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="KeyEvent">True for KeyUp False for KeyDown</param>
-        public void AnimationJoueur(Key key)
-        {
-            if (key == Key.Q || key == Key.Left)
+            if (DrainMind.IsRunning)
             {
-                ChangeSprite("gauche.png");
+                switch (key)
+                {
+                    case Key.Z:
+                        goUp = false;
+                        break;
+
+                    case Key.Q:
+                        goLeft = false;
+                        break;
+
+                    case Key.S:
+                        goDown = false;
+                        break;
+
+                    case Key.D:
+                        goRight = false;
+                        break;
+
+
+                    case Key.Up:
+                        goUp = false;
+                        break;
+
+                    case Key.Left:
+                        goLeft = false;
+                        break;
+
+                    case Key.Down:
+                        goDown = false;
+                        break;
+
+                    case Key.Right:
+                        goRight = false;
+                        break;
+                }
             }
-
-            if (key == Key.D || key == Key.Right)
-            {
-                ChangeSprite("droite1.png");
-            }
-
-            if (key == Key.Z || key == Key.Up)
-            {
-                ChangeSprite("dos.png");
-            }            
         }
 
         /// <summary>
