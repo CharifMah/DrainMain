@@ -50,7 +50,7 @@ namespace DrainMind.View
         /// <param name="e"></param>
         private void CanvasViewer_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
-            e.Handled = true;
+            ///e.Handled = true;
         }
 
         /// <summary>

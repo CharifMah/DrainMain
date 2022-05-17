@@ -33,7 +33,7 @@
 
                         <!--MouseOver Trigger-->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#1C1C1C"/>
+                            <Setter Property="Background" Value="Transparent"/>
                             <Setter Property="Foreground" Value="White" />
                             <Setter Property="Cursor" Value="Hand" />
                             <Setter Property="Content" Value="White"/>

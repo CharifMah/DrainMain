@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace DrainMind.Metier
 {
@@ -17,7 +19,6 @@ namespace DrainMind.Metier
     {
         //Represents a scrollable area, might contain other visible items
         private static ScrollViewer _Camera;
-
         //get position
         private static double _x = 0, _y = 0;
         public static double X
@@ -38,7 +39,6 @@ namespace DrainMind.Metier
         public Camera(double x, double y, Canvas canvas, Game game,ScrollViewer camera) : base(x, y, canvas, game)
         {       
             _Camera = camera;
-
         }
 
         //TypeName of the camera is "Camera"

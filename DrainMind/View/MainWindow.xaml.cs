@@ -9,6 +9,7 @@ using System;
 using DrainMind.Metier;
 using DrainMind.View;
 using System.Linq;
+using DrainMind.Stockage;
 
 namespace DrainMind
 {
@@ -17,7 +18,9 @@ namespace DrainMind
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+
+        private StockOptionsFav _StockOptionsFav = new StockOptionsFav(Directory.GetCurrentDirectory());
+
         /// <summary>
         /// Window du jeux et du MenuPause
         /// </summary>
@@ -26,7 +29,17 @@ namespace DrainMind
             //Centre la fenetre
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-   
+
+
+        }
+        /// <summary>
+        /// Selectionne les item enregister dans les fichiers JSON 
+        /// </summary>
+        /// <param name="_source"></param>
+        /// <param name="_cible"></param>
+        private void SelectFav(bool _cible)
+        {
+
         }
 
         /// <summary>

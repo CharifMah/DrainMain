@@ -7,14 +7,8 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>False</UseWindowsForms>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Stockage\**" />
-    <EmbeddedResource Remove="Stockage\**" />
-    <None Remove="Stockage\**" />
-    <Page Remove="Stockage\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Remove="Sounds\Son_ambiance_Action.mp3" />
@@ -47,6 +41,7 @@
     <None Remove="Sprites\HTournerD.png" />
     <None Remove="Sprites\HTournerG.png" />
     <None Remove="Sprites\joueur.png" />
+    <None Remove="Sprites\Logo.ico" />
     <None Remove="Sprites\moitiervie.png" />
     <None Remove="Sprites\tournerD.png" />
     <None Remove="Sprites\tournerG.png" />
@@ -64,6 +59,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Logo.ico" />
     <Content Include="Sounds\Bruit.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -78,6 +74,7 @@
     </Content>
     <Resource Include="Sprites\Background.png" />
     <Resource Include="Sprites\Background2.png" />
+    <Resource Include="Sprites\Logo.ico" />
     <Resource Include="Sprites\Vie\1.png" />
     <Resource Include="Sprites\Vie\2.png" />
     <Resource Include="Sprites\diagoSQ.png" />

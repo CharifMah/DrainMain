@@ -1,6 +1,11 @@
-﻿using System;
+﻿using DrainMind.Stockage;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,10 +23,12 @@ namespace DrainMind.View
     /// <summary>
     /// Interaction logic for Options.xaml
     /// </summary>
+    [DataContract]
     public partial class Options : Page
     {
-        private Page _windowPrecedente;
-        
+
+
+        private Page _windowPrecedente;        
         private MainWindow mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
 
         /// <summary>
@@ -34,6 +41,8 @@ namespace DrainMind.View
             InitItemComboBox();
             _windowPrecedente = windowPrecedente;
         }
+
+   
 
         /// <summary>
         /// Initialise les Items de la ComboBox
@@ -48,7 +57,6 @@ namespace DrainMind.View
 
             ResolutionComboBox.SelectedItem = $"{Application.Current.MainWindow.Width} x {Application.Current.MainWindow.Height}";
         }
-
 
         /// <summary>
         /// Si la selection de la combobox a changer alors on change la resolution
@@ -145,8 +153,7 @@ namespace DrainMind.View
         private void checkBoxFullScreen_Checked(object sender, RoutedEventArgs e)
         {
             mainwindow.WindowStyle = WindowStyle.None;
-            mainwindow.WindowState = WindowState.Maximized;
-            
+            mainwindow.WindowState = WindowState.Maximized;          
         }
 
         /// <summary>
@@ -156,11 +163,10 @@ namespace DrainMind.View
         /// <param name="e"></param>
         private void checkBoxFullScreen_Unchecked(object sender, RoutedEventArgs e)
         {
-            mainwindow.WindowState = WindowState.Maximized;
+            mainwindow.WindowState = WindowState.Normal;
             mainwindow.WindowStyle = WindowStyle.ThreeDBorderWindow;
         }
 
         #endregion
-
     }
 }
