@@ -47,6 +47,7 @@
     <None Remove="Sprites\fond.png" />
     <None Remove="Sprites\fondTest.png" />
     <None Remove="Sprites\fondTest2.png" />
+    <None Remove="Sprites\FoodPeach.png" />
     <None Remove="Sprites\gauche.png" />
     <None Remove="Sprites\HTournerD.png" />
     <None Remove="Sprites\HTournerG.png" />
@@ -87,6 +88,7 @@
     <Resource Include="Sprites\diagoSD.png" />
     <Resource Include="Sprites\diagoZD.png" />
     <Resource Include="Sprites\fantomeVert.png" />
+    <Resource Include="Sprites\FoodPeach.png" />
     <Resource Include="Sprites\Logo.ico" />
     <Resource Include="Sprites\Vie\1.png" />
     <Resource Include="Sprites\Vie\2.png" />

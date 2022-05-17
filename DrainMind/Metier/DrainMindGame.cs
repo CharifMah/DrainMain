@@ -51,6 +51,7 @@ namespace DrainMind
             AddItem(player);
  
             AddItem(new GenerateurEnemie(this, Canvas, player));
+            AddItem(new GenerateurItem(Canvas, this));
             PlayBackgroundMusic("Son_ambiance_Action.mp3");
             
         }

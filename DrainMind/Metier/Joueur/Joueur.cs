@@ -126,6 +126,14 @@ namespace DrainMind
                 Game.Loose();
             }
         }
+        /// <summary>
+        /// Gagne de la vie
+        /// </summary>
+        /// <param name="Healh"></param>
+        public void GainLife(double Healh)
+        {
+            playerLife._Vie += Healh;
+        }
 
         /// <summary>
         /// Executes the effect of the collision
@@ -144,10 +152,18 @@ namespace DrainMind
                         compte = true;
                         time = 0;
                         PlaySound("Bruit.mp3");            
-
                     }
                 }
                 Waiting = new TimeSpan(0, 0, 0, 0, 50);
+
+                if (other.TypeName == "Peach")
+                {
+                    GainLife(1);
+                    other.Dispose();
+                    compte = true;
+                    time = 0;
+                    PlaySound("Bruit.mp3");
+                }
             }
             
 
