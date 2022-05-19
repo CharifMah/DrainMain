@@ -71,6 +71,11 @@ namespace DrainMind.View
             Environment.Exit(0);
         }
 
+        /// <summary>
+        /// Cree et lance une nouvelle partie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
             mainwindow.Content = new DrainMindView(this);

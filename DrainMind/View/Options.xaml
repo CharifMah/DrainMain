@@ -78,22 +78,29 @@
         <Slider x:Name="slider_Son" 
                 Grid.Column="1"
                 Grid.Row="3" 
-                Value="0" 
                 Background="LightGray"
                 VerticalAlignment="Center"
                 IsSnapToTickEnabled="True"
                 Maximum="100" 
                 Height="20"
                 Margin="50,0,50,0"
+                Thumb.DragCompleted="slider_Son_DragCompleted"
                 Style="{StaticResource CustomSlider1}" 
-                Orientation="Horizontal" Minimum="1" 
+                Minimum="1" 
                 />
+        <TextBlock x:Name="SliderValueTextBox"
+                   Grid.Column="1"
+                   Text="Son : "
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Row="3"
+                   />
 
         <CheckBox x:Name="checkBoxSound" 
                   Style="{StaticResource CustomCheckBox}"
                   Grid.Column="3"
                   Grid.Row="3"
-                  IsChecked="True"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center" 
                   Checked="checkBoxSound_Checked" 
@@ -116,7 +123,7 @@
                   VerticalAlignment="Center" 
                   Checked="checkBoxFullScreen_Checked"
                   Unchecked="checkBoxFullScreen_Unchecked"/>
-        
+
         <TextBlock Text="FullScreen : " 
                    Grid.Column="2"
                    FontSize="20" 
@@ -124,8 +131,5 @@
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center"
                    />
-
-
-
     </Grid>
 </Page>

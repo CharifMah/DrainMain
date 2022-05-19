@@ -1,4 +1,5 @@
-﻿using DrainMind.View;
+﻿using DrainMind.Metier;
+using DrainMind.View;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,56 +10,54 @@ using System.Windows.Controls;
 namespace DrainMind.Stockage
 {
     /// <summary>
-    /// Classe chargée du stockage persistant des devises favorites
+    /// Classe chargée du stockage persistant des Settings
     /// </summary>
     public class StockOptionsFav
     {
         private string folder;
-
+        
         public StockOptionsFav(string folder)
         {
             this.folder = folder;
         }
 
         /// <summary>
-        /// Sauvegarde la devise cible
+        /// Crée un fichier Json avec les Settings
         /// </summary>
-        /// <param name="cible">la devise cible</param>
-        public void SauverCheckBoxScreen(string CheckBox)
+        /// <param name="Settings">Settings a sauvgarde</param>
+        public void SauverSettings(Settings Settings)
         {
             if (Directory.Exists(folder))
             {
-                using (FileStream stream = File.OpenWrite(Path.Combine(folder, "CheckBox.json")))
+                using (FileStream stream = File.OpenWrite(Path.Combine(folder, "Settings.json")))
                 {
-                    DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(string));
-                    ser.WriteObject(stream, CheckBox);
-                    stream.Close();
+                    DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Settings));
+                    ser.WriteObject(stream, Settings);
+
                 }
-            }        
+            }
         }
 
 
         /// <summary>
-        /// Charge la devise cible
+        /// Charge le fichier Json Settings
         /// </summary>
-        /// <returns>la devise cible (null si aucune)</returns>
-        //public bool ChargerCheckBoxScreen()
-        //{
-        //    string d2;
-        //    bool res;
-        //    if (File.Exists(Path.Combine(folder, "CheckBox.json")))
-        //    {
-        //        using (FileStream stream = File.OpenRead(Path.Combine(folder, "CheckBox.json")))
-        //        {
-        //            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(string));
-        //            d2 = (string)ser.ReadObject(stream);
-        //            stream.Close();
-        //        }
-        //    }
-        //    else
-        //        res = false;
+        /// <returns></returns>
+        public Settings ChargerSettings()
+        {
+            Settings d2;
+            if (File.Exists(Path.Combine(folder, "Settings.json")))
+            {
+                using (FileStream stream = File.OpenRead(Path.Combine(folder, "Settings.json")))
+                {
+                    DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Settings));
+                    d2 = ser.ReadObject(stream) as Settings;
+                }
+            }
+            else
+                d2 = null;
 
-        //    return res;
-        //}
+            return d2;
+        }
     }
 }

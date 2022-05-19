@@ -1,4 +1,5 @@
-﻿using DrainMind.Stockage;
+﻿using DrainMind.Metier;
+using DrainMind.Stockage;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,13 +24,11 @@ namespace DrainMind.View
     /// <summary>
     /// Interaction logic for Options.xaml
     /// </summary>
-    [DataContract]
     public partial class Options : Page
     {
-
-
         private Page _windowPrecedente;        
         private MainWindow mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
+        StockOptionsFav Stock = new StockOptionsFav(Environment.CurrentDirectory);
 
         /// <summary>
         /// Constructor
@@ -39,10 +38,21 @@ namespace DrainMind.View
         {
             InitializeComponent();
             InitItemComboBox();
+            LoadSettings();
             _windowPrecedente = windowPrecedente;
         }
+        /// <summary>
+        /// Initialise les controls avec les settings
+        /// </summary>
+        public void LoadSettings()
+        {
+           checkBoxFullScreen.IsChecked = Settings.Get().PLeinEcran;
+           checkBoxSound.IsChecked = Settings.Get().SonOnOff; 
+           slider_Son.Value = Settings.Get().Son;
+           SliderValueTextBox.Text = "Son : " + Settings.Get().Son.ToString();
+        }
 
-   
+        #region ComboBox
 
         /// <summary>
         /// Initialise les Items de la ComboBox
@@ -67,7 +77,7 @@ namespace DrainMind.View
         {
             double width = Application.Current.MainWindow.Width;
             double height = Application.Current.MainWindow.Height;
-    
+
             double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
             double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
 
@@ -94,32 +104,24 @@ namespace DrainMind.View
                     height = 1080;
                     break;
             }
-                mainwindow.Width = width;
-                mainwindow.Height = height;
-                mainwindow.Left = (screenWidth / 2) - (mainwindow.Width / 2);
-                mainwindow.Top = (screenHeight / 2) - (mainwindow.Height / 2);
+            mainwindow.Width = width;
+            mainwindow.Height = height;
+            mainwindow.Left = (screenWidth / 2) - (mainwindow.Width / 2);
+            mainwindow.Top = (screenHeight / 2) - (mainwindow.Height / 2);
         }
+        #endregion
 
         /// <summary>
-        /// Click pour revenir a la fenètre precedente
+        /// Click pour revenir a la fenètre precedente et Sauvgarde les Settings
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             mainwindow.Content = _windowPrecedente;
+            Stock.SauverSettings(Settings.Get());
         }
 
-        /// <summary>
-        /// Slider Value Change la valeur de la musique du jeux
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void slider_Son_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            if (DrainMindGame.Instance != null)
-            DrainMindGame.Instance.BackgroundVolume = slider_Son.Value / slider_Son.Maximum;       
-        }
 
         #region CheckBox
 
@@ -132,6 +134,8 @@ namespace DrainMind.View
         {
             if (DrainMindGame.Instance != null)
                 DrainMindGame.Instance.BackgroundVolume = slider_Son.Value / slider_Son.Maximum;
+            Settings.Get().SonOnOff = checkBoxSound.IsChecked.Value;
+
         }
 
         /// <summary>
@@ -143,6 +147,7 @@ namespace DrainMind.View
         {
             if (DrainMindGame.Instance != null)
                 DrainMindGame.Instance.BackgroundVolume = 0;
+            Settings.Get().SonOnOff = checkBoxSound.IsChecked.Value;
         }
 
         /// <summary>
@@ -153,7 +158,8 @@ namespace DrainMind.View
         private void checkBoxFullScreen_Checked(object sender, RoutedEventArgs e)
         {
             mainwindow.WindowStyle = WindowStyle.None;
-            mainwindow.WindowState = WindowState.Maximized;          
+            mainwindow.WindowState = WindowState.Maximized;
+            Settings.Get().PLeinEcran = checkBoxFullScreen.IsChecked.Value;
         }
 
         /// <summary>
@@ -165,8 +171,23 @@ namespace DrainMind.View
         {
             mainwindow.WindowState = WindowState.Normal;
             mainwindow.WindowStyle = WindowStyle.ThreeDBorderWindow;
+            Settings.Get().PLeinEcran = checkBoxFullScreen.IsChecked.Value;
         }
 
         #endregion
+        /// <summary>
+        /// Slider Value Change la valeur de la musique du jeux
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void slider_Son_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            if (DrainMindGame.Instance != null)
+                DrainMindGame.Instance.BackgroundVolume = slider_Son.Value / slider_Son.Maximum;
+            Settings.Get().Son = slider_Son.Value;
+
+            if (SliderValueTextBox != null)
+                SliderValueTextBox.Text = "Son : " + slider_Son.Value.ToString();
+        }
     }
 }
