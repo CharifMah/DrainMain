@@ -66,6 +66,7 @@ namespace DrainMind
             System.Windows.MessageBox.Show(Res.Strings.Perdu);
             //Affecte le contenu de la mainwindow actuel a un nouveau menu principal
             (Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow).Content = new MenuPrincipale();
+            PlayBackgroundMusic("LooseSound.mp3");
         }
 
         /// <summary>

@@ -41,9 +41,18 @@ namespace DrainMind.View
                 mainwindow.Content = this;
                 drainMind.Resume();          
             }
-            this.DataContext = Experience.Instance;
+            InitDataContext();
             _MenuPrincipale = Menu;
         }
+
+        public void InitDataContext()
+        {
+            XpProgressBar.DataContext = Experience.Instance;
+            TextBlockNiveau.DataContext = Experience.Instance;
+            TextBlockXpProgressBar.DataContext = Experience.Instance;
+
+        }
+
         /// <summary>
         /// Event qui empêche le deplacement avec la mollete de la souris
         /// </summary>
@@ -56,6 +65,7 @@ namespace DrainMind.View
         }
 
         #region MainWindowEvents
+
         /// <summary>
         /// Event quand la taille de l'ecran change rescale les element de la fenetre
         /// </summary>

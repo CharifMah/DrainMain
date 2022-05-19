@@ -18,7 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Sounds\LooseSound.mp3" />
+    <None Remove="Sounds\LvlUp.mp3" />
     <None Remove="Sounds\Son_ambiance_Action.mp3" />
+    <None Remove="Sounds\SoundTake.mp3" />
     <None Remove="Sprites\.png" />
     <None Remove="Sprites\0.5.png" />
     <None Remove="Sprites\1.png" />
@@ -80,7 +83,16 @@
     <Content Include="Sounds\Grandioso.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sounds\LooseSound.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\LvlUp.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sounds\Son_ambiance_Action.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\SoundTake.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Sprites\Background.png" />

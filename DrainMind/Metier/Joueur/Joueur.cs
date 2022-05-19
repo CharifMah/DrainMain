@@ -137,6 +137,7 @@ namespace DrainMind
                         time = 0;
                         XP.XP += 500;
                         PlaySound("Bruit.mp3");
+                        LvlUpEffect();
                     }
                 }
                 Waiting = new TimeSpan(0, 0, 0, 0, 50);
@@ -147,7 +148,7 @@ namespace DrainMind
                     other.Dispose();
                     compte = true;
                     time = 0;
-                    PlaySound("Bruit.mp3");
+                    PlaySound("SoundTake.mp3");
                 }
             }
         }
@@ -280,6 +281,18 @@ namespace DrainMind
         public void GainLife(double Healh)
         {
             playerLife._Vie += Healh;
+        }
+        #endregion
+
+        #region Niveau
+        public void LvlUpEffect()
+        {
+            if (Experience.Instance.XP == 0)
+            {
+                this.speed *= 1.2;
+                PlaySound("LvlUp.mp3");
+            }
+
         }
         #endregion
 
