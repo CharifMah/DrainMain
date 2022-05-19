@@ -34,7 +34,7 @@
 
             </Grid.RowDefinitions>
             
-            <ProgressBar 
+            <ProgressBar
                 Background="White" 
                 VerticalAlignment="Center"
                 HorizontalAlignment="Stretch"
@@ -43,8 +43,14 @@
                 Grid.Row="2"
                 Value="{Binding Path=XP, Mode=OneWay}"
                 Maximum="{Binding Path=XPMax,Mode=OneWay}"
-
             />
+            <TextBlock Text="{Binding Path=Niveau, Mode=OneWay , StringFormat={}Niveau:{0}}"
+                VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Grid.Column="1"
+                       Grid.Row="2"
+                       Margin="0,50,0,0"/>
+
 
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2">
                 <TextBlock.Text>

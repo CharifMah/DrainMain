@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace DrainMind
 {
-    class Vie
+    public class Vie
     {
         private List<Sprite> ListLife = new List<Sprite>();
         private Canvas uiLife;

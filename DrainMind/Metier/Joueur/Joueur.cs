@@ -42,9 +42,7 @@ namespace DrainMind
             playerLife = new Vie(ui,life);
 
             //Creation de l'experience
-            XP = new Experience(50,0);
-            
-    
+            XP = new Experience(0,0);          
         }      
 
         #region Animation

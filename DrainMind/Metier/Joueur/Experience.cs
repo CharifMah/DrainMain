@@ -38,6 +38,7 @@ namespace DrainMind.Metier.Joueur
                 }
                 this.NotifyPropertyChanged();
                 this.NotifyPropertyChanged("XPMax");
+                this.NotifyPropertyChanged("Niveau");
             }
         }
 
