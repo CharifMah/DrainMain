@@ -16,6 +16,7 @@ namespace DrainMind
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// <Author>Charif</Author>
     public partial class MainWindow : Window
     {
 
@@ -24,6 +25,7 @@ namespace DrainMind
         /// <summary>
         /// Window du jeux et du MenuPause
         /// </summary>
+        /// <Author>Charif</Author>
         public MainWindow()
         {
             //Centre la fenetre
@@ -36,6 +38,7 @@ namespace DrainMind
         /// <summary>
         /// Selectionne les settings a charger au lancement
         /// </summary>
+        /// <Author>Charif</Author>
         private void StartupSettings()
         {
             if (Settings.Get().PLeinEcran)
@@ -55,6 +58,7 @@ namespace DrainMind
         /// </summary> 
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void FentrePrincipalDrainMain_Closed(object sender, System.EventArgs e)
         {
             Environment.Exit(0);

@@ -2,8 +2,8 @@
 
     <Style x:Key="CustomButton" TargetType="Button">
         <!--#region Setters Property-->
-        <Setter Property="Background" Value="#1C1C1C"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#1C1C1C"/>
         <Setter Property="FontFamily" Value="Segoe UI regular"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -31,7 +31,8 @@
 
                         <!--MouseOver Trigger-->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Background" Value="white" />
+                            <Setter Property="Opacity" Value="0.40"/>
                             <Setter Property="Foreground" Value="#1C1C1C" />
                             <Setter Property="Cursor" Value="Hand" />
                             <Setter Property="Content" Value="White"/>

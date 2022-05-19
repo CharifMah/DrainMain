@@ -15,7 +15,12 @@ namespace DrainMind.Stockage
     public class StockOptionsFav
     {
         private string folder;
-        
+
+        /// <summary>
+        /// Initialise le chemin du dossier
+        /// </summary>
+        /// <param name="folder">Le path vers la sauvgarde du fichier</param>
+        /// <Author>Charif</Author>
         public StockOptionsFav(string folder)
         {
             this.folder = folder;
@@ -25,6 +30,7 @@ namespace DrainMind.Stockage
         /// Crée un fichier Json avec les Settings
         /// </summary>
         /// <param name="Settings">Settings a sauvgarde</param>
+        /// <Author>Charif</Author>
         public void SauverSettings(Settings Settings)
         {
             if (Directory.Exists(folder))
@@ -42,7 +48,8 @@ namespace DrainMind.Stockage
         /// <summary>
         /// Charge le fichier Json Settings
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Les Settings Sauvgarder</returns>
+        /// <Author>Charif</Author>
         public Settings ChargerSettings()
         {
             Settings d2;

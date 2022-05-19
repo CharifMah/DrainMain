@@ -50,20 +50,7 @@ namespace DrainMind.View
         /// <param name="e"></param>
         private void CanvasViewer_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
-            ///e.Handled = true;
-        }
-
-        /// <summary>
-        /// Event qui empeche le deplacement de la camera avec les touche up,left,down,right
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CanvasViewer_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            //if (e.Key == Key.Up || e.Key == Key.Down || e.Key == Key.Left || e.Key == Key.Right)
-            //{
-            //    e.Handled = true;
-            //}
+            e.Handled = true;
         }
 
         #region MainWindowEvents
@@ -72,6 +59,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Camera.MoveCamera(Camera.X, Camera.Y);
@@ -83,6 +71,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void FentrePrincipalDrainMain_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -116,6 +105,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void Resumebutton_Click(object sender, RoutedEventArgs e)
         {
             drainMind.Resume();
@@ -127,6 +117,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void OptionButton_Click(object sender, RoutedEventArgs e)
         {
             mainwindow.Content = new Options(this);
@@ -137,6 +128,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             drainMind.Pause();          

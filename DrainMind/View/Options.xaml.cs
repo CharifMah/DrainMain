@@ -24,6 +24,7 @@ namespace DrainMind.View
     /// <summary>
     /// Interaction logic for Options.xaml
     /// </summary>
+    /// <Author>Charif</Author>
     public partial class Options : Page
     {
         private Page _windowPrecedente;        
@@ -34,6 +35,7 @@ namespace DrainMind.View
         /// Constructor
         /// </summary>
         /// <param name="windowPrecedente">Recupère la Fenêtre precedente</param>
+        /// <Author>Charif</Author>
         public Options(Page windowPrecedente)
         {
             InitializeComponent();
@@ -44,6 +46,7 @@ namespace DrainMind.View
         /// <summary>
         /// Initialise les controls avec les settings
         /// </summary>
+        /// <Author>Charif</Author>
         public void LoadSettings()
         {
            checkBoxFullScreen.IsChecked = Settings.Get().PLeinEcran;
@@ -57,6 +60,7 @@ namespace DrainMind.View
         /// <summary>
         /// Initialise les Items de la ComboBox
         /// </summary>
+        /// <Author>Charif</Author>
         public void InitItemComboBox()
         {
             ResolutionComboBox.Items.Add("1280 x 720");
@@ -73,6 +77,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender">ComboBox</param>
         /// <param name="e">Selection qui a changer sur la combobox</param>
+        /// <Author>Charif</Author>
         private void ResolutionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             double width = Application.Current.MainWindow.Width;
@@ -116,6 +121,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             mainwindow.Content = _windowPrecedente;
@@ -130,6 +136,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void checkBoxSound_Checked(object sender, RoutedEventArgs e)
         {
             if (DrainMindGame.Instance != null)
@@ -143,6 +150,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void checkBoxSound_Unchecked(object sender, RoutedEventArgs e)
         {
             if (DrainMindGame.Instance != null)
@@ -155,6 +163,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void checkBoxFullScreen_Checked(object sender, RoutedEventArgs e)
         {
             mainwindow.WindowStyle = WindowStyle.None;
@@ -167,6 +176,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void checkBoxFullScreen_Unchecked(object sender, RoutedEventArgs e)
         {
             mainwindow.WindowState = WindowState.Normal;
@@ -180,6 +190,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void slider_Son_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
             if (DrainMindGame.Instance != null)

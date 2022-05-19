@@ -23,9 +23,12 @@ namespace DrainMind.View
         //Garde en memoire la page du jeux en cours
         private DrainMindView drainmindView;
         //Get la MainWindow
-        private Window mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow; 
-        
+        private Window mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
 
+        /// <summary>
+        /// Initialise la page du menu principale
+        /// </summary>
+        /// <Author>Charif</Author>
         public MenuPrincipale()
         {
             InitializeComponent();
@@ -36,6 +39,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             if (drainmindView == null)
@@ -56,6 +60,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void OptionButton_Click(object sender, RoutedEventArgs e)
         {
             mainwindow.Content = new Options(this);
@@ -66,6 +71,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
@@ -76,6 +82,7 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Charif</Author>
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
             mainwindow.Content = new DrainMindView(this);

@@ -40,12 +40,19 @@ namespace DrainMind.Metier
         }
 
         private static Settings instance;
-
+        /// <summary>
+        /// Charge les settings dans le fichier Json
+        /// </summary>
+        /// <Author>Charif</Author>
         private Settings()
         {
             LoadSettings();
         }
-
+        /// <summary>
+        /// Cree une instance si il y en as pas sinon get instance
+        /// </summary>
+        /// <returns>instance settings</returns>
+        /// <Author>Charif</Author>
         public static Settings Get()
         {
             if (instance == null)
@@ -54,8 +61,9 @@ namespace DrainMind.Metier
         }
 
         /// <summary>
-        /// Charge le fichiers des settings StreamReader
+        /// Charge le fichiers des settings dans le fichier json StreamReader
         /// </summary>
+        /// <Author>Charif</Author>
         private void LoadSettings()
         {
             Settings s = Stock.ChargerSettings(); 

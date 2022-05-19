@@ -13,8 +13,8 @@ namespace DrainMind.Metier
 {
     /// <summary>
     /// game's camera, here to follow the mc
-    /// (Charif sérieux les commentaires)
     /// </summary>
+    /// <Author>Charif</Author>
     public class Camera : GameItem
     {
         //Represents a scrollable area, might contain other visible items
@@ -36,6 +36,7 @@ namespace DrainMind.Metier
         /// <param name="canvas">canvas</param>
         /// <param name="game">drainMind</param>
         /// <param name="camera">camera</param>
+        /// <Author>Charif</Author>
         public Camera(double x, double y, Canvas canvas, Game game,ScrollViewer camera) : base(x, y, canvas, game)
         {       
             _Camera = camera;
@@ -43,18 +44,22 @@ namespace DrainMind.Metier
 
         //TypeName of the camera is "Camera"
         public override string TypeName => "Camera";
+
         /// <summary>
         /// Executes the effect of the collision
         /// </summary>
-        /// <param name="other">the other object</param>
+        /// <param name="other"></param>
         public override void CollideEffect(GameItem other)
         {
+            
         }
+
         /// <summary>
         /// move the camera to follow the mc
         /// </summary>
         /// <param name="x">axis x</param>
         /// <param name="y">axis y</param>
+        /// <Author>Charif</Author>
         public static void MoveCamera(double x, double y)
         {
             _Camera.ScrollToVerticalOffset(y - (Application.Current.MainWindow.ActualHeight / 2));
