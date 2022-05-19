@@ -26,6 +26,7 @@ namespace DrainMind
         /// Window du jeux et du MenuPause
         /// </summary>
         /// <Author>Charif</Author>
+        /// <exception cref="System.Windows.Markup.XamlParseException"></exception>
         public MainWindow()
         {
             //Centre la fenetre
@@ -39,6 +40,7 @@ namespace DrainMind
         /// Selectionne les settings a charger au lancement
         /// </summary>
         /// <Author>Charif</Author>
+        /// <exception cref="System.Windows.Markup.XamlParseException"></exception>
         private void StartupSettings()
         {
             if (Settings.Get().PLeinEcran)

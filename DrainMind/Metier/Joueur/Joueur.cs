@@ -5,6 +5,7 @@ using System.Windows.Input;
 using DrainMind.Metier;
 using IUTGame;
 using System.IO;
+using DrainMind.Metier.Joueur;
 
 namespace DrainMind
 {
@@ -18,8 +19,12 @@ namespace DrainMind
         private double time = 0;
         private double speed = 20;
         private Vie playerLife;
+        private Experience XP;
         private Game DrainMind;
         private TimeSpan Waiting = new TimeSpan(0);
+
+        // TypeName of the player is "Joueur"
+        public override string TypeName => "Joueur";
 
         /// <summary>
         /// Constructor of the main character
@@ -32,47 +37,51 @@ namespace DrainMind
         public Joueur(double x, double y, Canvas c, Game g, Canvas ui, double life) : base(x,y,c,g,"face.png")
         {
             DrainMind = g;
-            playerLife = new Vie(ui,g,life);
-            Game.AddItem(playerLife);
+
+            //Creation de la Vie
+            playerLife = new Vie(ui,life);
+
+            //Creation de l'experience
+            XP = new Experience(50,0);
+            
+    
         }      
 
-        // TypeName of the player is "Joueur"
-        public override string TypeName => "Joueur";
-
+        #region Animation
         /// <summary>
         /// Animate the item
         /// </summary>
         /// <param name="dt">timespan elasped since last animation</param>
         public void Animate(TimeSpan dt)
         {
-      
+
             if (Waiting.TotalMilliseconds > 0)
             {
                 Waiting = Waiting.Subtract(dt);
             }
 
             if (goLeft)
-                {
-                    DeplacerJoueur(-speed + 05 * dt.TotalSeconds, 0);
+            {
+                DeplacerJoueur(-speed + 05 * dt.TotalSeconds, 0);
 
-                }
-                if (goRight)
-                {
-                    DeplacerJoueur(speed + 05 * dt.TotalSeconds, 0);
+            }
+            if (goRight)
+            {
+                DeplacerJoueur(speed + 05 * dt.TotalSeconds, 0);
 
-                }
-                if (goUp)
-                {
-                    DeplacerJoueur(0,  -speed + 05 * dt.TotalSeconds);
+            }
+            if (goUp)
+            {
+                DeplacerJoueur(0, -speed + 05 * dt.TotalSeconds);
 
-                }
-                if (goDown)
-                {
-                    DeplacerJoueur(0, speed + 05 * dt.TotalSeconds);
-                }
+            }
+            if (goDown)
+            {
+                DeplacerJoueur(0, speed + 05 * dt.TotalSeconds);
+            }
             AnimationJoueur();
-           
-            
+
+
 
             if (compte)
             {
@@ -82,7 +91,6 @@ namespace DrainMind
             }
 
         }
-
 
         /// <summary>
         /// Animation, change sprite when the mc move
@@ -97,7 +105,7 @@ namespace DrainMind
                 ChangeSprite("droite.png");
             if (goUp)
                 ChangeSprite("dos.png");
-            if(goDown)
+            if (goDown)
                 ChangeSprite("face.png");
             if (goDown && goLeft)
                 ChangeSprite("diagoSQ.png");
@@ -110,31 +118,9 @@ namespace DrainMind
 
 
         }
+        #endregion
 
-        /// <summary>
-        /// Enleve des point de vie au joueur
-        /// </summary>
-        /// <param name="damage"></param>
-        public void LooseLife(double damage)
-        {
-            if (playerLife._Vie - damage > 0)
-            {
-                playerLife._Vie -= damage;
-            }
-            else
-            {
-                Game.Loose();
-            }
-        }
-        /// <summary>
-        /// Gagne de la vie
-        /// </summary>
-        /// <param name="Healh"></param>
-        public void GainLife(double Healh)
-        {
-            playerLife._Vie += Healh;
-        }
-
+        #region Collision
         /// <summary>
         /// Executes the effect of the collision
         /// </summary>
@@ -148,10 +134,11 @@ namespace DrainMind
                     if (other.TypeName == "Enemie")
                     {
                         LooseLife(1);
-                        other.Dispose();                 
+                        other.Dispose();
                         compte = true;
                         time = 0;
-                        PlaySound("Bruit.mp3");            
+                        XP.XP += 500;
+                        PlaySound("Bruit.mp3");
                     }
                 }
                 Waiting = new TimeSpan(0, 0, 0, 0, 50);
@@ -165,8 +152,6 @@ namespace DrainMind
                     PlaySound("Bruit.mp3");
                 }
             }
-            
-
         }
 
         /// <summary>
@@ -178,25 +163,9 @@ namespace DrainMind
         {
             return base.IsCollide(other);
         }
+        #endregion
 
-        /// <summary>
-        /// move the player
-        /// </summary>
-        /// <param name="x">axis x</param>
-        /// <param name="y">axis y</param>
-        public void DeplacerJoueur(double x, double y)
-        {
-            
-            if (this.Left + x >= 0 && this.Right + x <= GameWidth && this.Bottom + y <= GameHeight && this.Top + y >= 0)
-            {
-                MoveXY(x, y);
-            }
-
-            Camera.X = this.Left + (this.Width) / 2;
-            Camera.Y = this.Top + (this.Height) / 2;
-            Camera.MoveCamera(this.Left + (this.Width) / 2,this.Top + (this.Height)/2 );
-        }
-
+        #region KeyboardInteract
         /// <summary>
         /// when a button is pressed
         /// </summary>
@@ -238,9 +207,9 @@ namespace DrainMind
 
                     case Key.Right:
                         goRight = true;
-                        break;                
+                        break;
                 }
-            }           
+            }
         }
 
         /// <summary>
@@ -288,6 +257,51 @@ namespace DrainMind
                 }
             }
         }
+        #endregion
+
+        #region Vie
+        /// <summary>
+        /// Enleve des point de vie au joueur
+        /// </summary>
+        /// <param name="damage"></param>
+        public void LooseLife(double damage)
+        {
+            if (playerLife._Vie - damage > 0)
+            {
+                playerLife._Vie -= damage;
+            }
+            else
+            {
+                Game.Loose();
+            }
+        }
+        /// <summary>
+        /// Gagne de la vie
+        /// </summary>
+        /// <param name="Healh"></param>
+        public void GainLife(double Healh)
+        {
+            playerLife._Vie += Healh;
+        }
+        #endregion
+
+        /// <summary>
+        /// move the player
+        /// </summary>
+        /// <param name="x">axis x</param>
+        /// <param name="y">axis y</param>
+        public void DeplacerJoueur(double x, double y)
+        {
+            
+            if (this.Left + x >= 0 && this.Right + x <= GameWidth && this.Bottom + y <= GameHeight && this.Top + y >= 0)
+            {
+                MoveXY(x, y);
+            }
+
+            Camera.X = this.Left + (this.Width) / 2;
+            Camera.Y = this.Top + (this.Height) / 2;
+            Camera.MoveCamera(this.Left + (this.Width) / 2,this.Top + (this.Height)/2 );
+        }    
 
         /// <summary>
         /// Allows you to obtain the player's contact information

@@ -50,6 +50,7 @@ namespace DrainMind.Stockage
         /// </summary>
         /// <returns>Les Settings Sauvgarder</returns>
         /// <Author>Charif</Author>
+        /// <exception cref="System.Windows.Markup.XamlParseException">arrive pas deserialiser un fichier corompu</exception>
         public Settings ChargerSettings()
         {
             Settings d2;
@@ -60,6 +61,7 @@ namespace DrainMind.Stockage
                     DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Settings));
                     d2 = ser.ReadObject(stream) as Settings;
                 }
+                
             }
             else
                 d2 = null;

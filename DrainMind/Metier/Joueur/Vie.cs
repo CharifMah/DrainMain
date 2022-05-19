@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace DrainMind
 {
-    class Vie : IUTGame.GameItem
+    class Vie
     {
         private List<Sprite> ListLife = new List<Sprite>();
         private Canvas uiLife;
@@ -17,6 +17,7 @@ namespace DrainMind
         /// <summary>
         /// Set Ajoute ou envleve de la vie
         /// </summary>
+        /// <Author>Charif</Author>
         public double _Vie
         {
             get { return ListLife.Count; }
@@ -40,7 +41,8 @@ namespace DrainMind
         /// <param name="lifeUI">Canvas de la barre de vie</param>
         /// <param name="g">Game Instance</param>
         /// <param name="pointLife">Nombre de vie</param>
-        public Vie(Canvas lifeUI, Game g, double pointLife) : base(10, 10, lifeUI, g)
+        /// <Author>Charif</Author>
+        public Vie(Canvas lifeUI, double pointLife)
         {
             uiLife = lifeUI;
             InitLife(pointLife);
@@ -51,6 +53,7 @@ namespace DrainMind
         /// Initialise le nombre de vie dans la barre de vie
         /// </summary>
         /// <param name="vie">Nombre de vie</param>
+        /// <Author>Charif</Author>
         public void InitLife(double vie)
         {        
             for (int i = 0; i < vie; i++)
@@ -68,6 +71,7 @@ namespace DrainMind
         /// Enleve le nombre de vie souhaite
         /// </summary>
         /// <param name="numberOfLife"></param>
+        /// <Author>Charif</Author>
         public void RemoveLife(double numberOfLife)
         {
             for (int i = 0; i < numberOfLife; i++)
@@ -84,6 +88,7 @@ namespace DrainMind
         /// Ajoute de la vie a la liste de vie
         /// </summary>
         /// <param name="numberOfLife">Number of lifes you want to add</param>
+        /// <Author>Charif</Author>
         public void AddLife(double numberOfLife)
         {
             for (int i = 0; i < numberOfLife; i++)
@@ -96,19 +101,5 @@ namespace DrainMind
                 ListLife[ListLife.Count - 1].Put((ListLife.Count - 1) * 50, 0);
             }
         }
-
-
-        public override string TypeName => "Vie";
-
-        public override bool IsCollide(GameItem other)
-        {
-            return false;
-        }
-        public override void CollideEffect(GameItem other)
-        {
-
-        }
-
-
     }
 }

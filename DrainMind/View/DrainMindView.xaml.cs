@@ -1,4 +1,5 @@
 ﻿using DrainMind.Metier;
+using DrainMind.Metier.Joueur;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace DrainMind.View
         {        
             ShowsNavigationUI = false;
             InitializeComponent();
-
+            
             if (drainMind == null)
             {
                 drainMind = new DrainMindGame(canvas, CanvasViewer, UI);
@@ -40,9 +41,9 @@ namespace DrainMind.View
                 mainwindow.Content = this;
                 drainMind.Resume();          
             }
+            this.DataContext = Experience.Instance;
             _MenuPrincipale = Menu;
         }
-
         /// <summary>
         /// Event qui empêche le deplacement avec la mollete de la souris
         /// </summary>
@@ -51,6 +52,7 @@ namespace DrainMind.View
         private void CanvasViewer_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
             e.Handled = true;
+           
         }
 
         #region MainWindowEvents

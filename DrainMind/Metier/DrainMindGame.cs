@@ -16,7 +16,6 @@ namespace DrainMind
         //game's canvas
         private Canvas UIcanvas;
         private Joueur player;
-        private Window mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
         private static DrainMindGame game;
         public static DrainMindGame Instance
         {
@@ -28,6 +27,7 @@ namespace DrainMind
         /// <param name="canvas">game's canvas</param>
         /// <param name="camera">camera which follow the player</param>
         /// <param name="UI">canvas</param>
+        /// <Author>Charif</Author>
         public DrainMindGame(Canvas canvas, ScrollViewer camera,Canvas UI) : base(canvas,"Sprites","Sounds")
         {
             Camera = camera;
@@ -38,6 +38,7 @@ namespace DrainMind
         /// <summary>
         /// Init the first items of the game
         /// </summary>
+        /// <Author>Charif</Author>
         protected override void InitItems()
         {
             double Height = Application.Current.MainWindow.ActualHeight;
@@ -59,11 +60,12 @@ namespace DrainMind
         /// <summary>
         /// What to do when the player looses the game
         /// </summary>
+        /// <Author>Charif</Author>
         protected override void RunWhenLoose()
         {
             System.Windows.MessageBox.Show(Res.Strings.Perdu);
-            mainwindow.Content = new MenuPrincipale();
-
+            //Affecte le contenu de la mainwindow actuel a un nouveau menu principal
+            (Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow).Content = new MenuPrincipale();
         }
 
         /// <summary>
