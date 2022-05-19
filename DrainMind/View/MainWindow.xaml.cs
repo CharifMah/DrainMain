@@ -29,17 +29,25 @@ namespace DrainMind
             //Centre la fenetre
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            StartupSettings();
 
 
         }
         /// <summary>
-        /// Selectionne les item enregister dans les fichiers JSON 
+        /// Selectionne les settings a charger au lancement
         /// </summary>
-        /// <param name="_source"></param>
-        /// <param name="_cible"></param>
-        private void SelectFav(bool _cible)
+        private void StartupSettings()
         {
-
+            if (Settings.Get().PLeinEcran)
+            {
+                this.WindowStyle = WindowStyle.None;
+                this.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+                this.WindowStyle = WindowStyle.ThreeDBorderWindow;
+            }
         }
 
         /// <summary>
