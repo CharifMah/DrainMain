@@ -33,8 +33,8 @@ namespace DrainMind.Metier.Joueur
                 if (_xp >= _xpMax)
                 {
                     _niveau += 1;
-                    _xpMax *= 1.5;
-                    _xp = 0;
+                    _xp -= _xpMax;
+                    _xpMax *= 1.5;                  
                 }
                 this.NotifyPropertyChanged();
                 this.NotifyPropertyChanged("XPMax");

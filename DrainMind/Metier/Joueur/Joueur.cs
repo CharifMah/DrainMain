@@ -18,6 +18,7 @@ namespace DrainMind
         private bool goLeft = false, goRight = false, goUp = false, goDown = false;
         private double time = 0;
         private double speed = 20;
+        private int niveau;
         private Vie playerLife;
         private Experience XP;
         private Game DrainMind;
@@ -287,8 +288,9 @@ namespace DrainMind
         #region Niveau
         public void LvlUpEffect()
         {
-            if (Experience.Instance.XP == 0)
+            if (Experience.Instance.Niveau > niveau)
             {
+                niveau = Experience.Instance.Niveau;
                 this.speed *= 1.2;
                 PlaySound("LvlUp.mp3");
             }
