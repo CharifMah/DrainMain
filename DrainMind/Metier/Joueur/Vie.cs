@@ -14,6 +14,7 @@ namespace DrainMind
         private List<Sprite> ListLife = new List<Sprite>();
         private Canvas uiLife;
         private int vie;
+        private int MaxLife;
 
         /// <summary>
         /// Set Ajoute ou envleve de la vie
@@ -27,7 +28,7 @@ namespace DrainMind
                 vie = value;
                 if (ListLife.Count > value)
                 {
-                    RemoveLife(ListLife.Count - value);
+                    RemoveLife(ListLife.Count  - value);
                 }
 
                 if (ListLife.Count < value)
@@ -44,28 +45,11 @@ namespace DrainMind
         /// <param name="g">Game Instance</param>
         /// <param name="pointLife">Nombre de vie</param>
         /// <Author>Charif</Author>
-        public Vie(Canvas lifeUI, int pointLife)
+        public Vie(Canvas lifeUI, int pointLife, int MaxPv)
         {
             uiLife = lifeUI;
-            InitLife(pointLife);
-           
-        }
-
-        /// <summary>
-        /// Initialise le nombre de vie dans la barre de vie
-        /// </summary>
-        /// <param name="vie">Nombre de vie</param>
-        /// <Author>Charif</Author>
-        public void InitLife(int vie)
-        {        
-            for (int i = 0; i < vie; i++)
-            {
-                Sprite Coeur = new Sprite(SpriteStore.Get(Path.Combine("Vie", "2.png")).Image);
-
-                ListLife.Add(Coeur);
-                uiLife.Children.Add(ListLife[i].Image);
-                ListLife[i].Put(i * 50, 0);
-            }
+            MaxLife = MaxPv;
+            AddLife(pointLife);        
         }
 
         /// <summary>
@@ -92,12 +76,26 @@ namespace DrainMind
         /// <Author>Charif</Author>
         public void AddLife(int numberOfLife)
         {
+            if (ListLife.Count + numberOfLife > MaxLife)
+            {
+                numberOfLife = MaxLife - ListLife.Count;
+            }
             for (int i = 0; i < numberOfLife; i++)
-            {                               
+            {
+                double width = Application.Current.MainWindow.Width;
+                double height = Application.Current.MainWindow.Height;
+
                 Sprite Coeur = new Sprite(SpriteStore.Get(Path.Combine("Vie", "2.png")).Image);
                 ListLife.Add(Coeur);
                 uiLife.Children.Add(ListLife[ListLife.Count - 1].Image);
-                ListLife[ListLife.Count - 1].Put((ListLife.Count - 1) * 50, 0);                                       
+                if (ListLife.Count * 50 < width)
+                {
+                    ListLife[ListLife.Count - 1].Put((ListLife.Count - 1) * 50, 0);
+                }
+                if (ListLife.Count * 50 > width)
+                {
+                    ListLife[ListLife.Count - 1].Put(((ListLife.Count) * 50) - width , 40);
+                }
             }
         }
     }

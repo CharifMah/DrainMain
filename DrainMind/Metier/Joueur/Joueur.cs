@@ -40,7 +40,7 @@ namespace DrainMind
             DrainMind = g;
             
             //Creation de la Vie
-            playerLife = new Vie(ui,life);
+            playerLife = new Vie(ui,life,10);
 
             //Creation de l'experience
             XP = new Experience(0,0);
@@ -141,8 +141,7 @@ namespace DrainMind
                         PlaySound("Bruit.mp3");
                         LvlUpEffect();
                     }
-                }
-                Waiting = new TimeSpan(0, 0, 0, 0, 50);
+                }            
 
                 if (other.TypeName == "Peach")
                 {
@@ -152,6 +151,8 @@ namespace DrainMind
                     time = 0;
                     PlaySound("SoundTake.mp3");
                 }
+
+                Waiting = new TimeSpan(0, 0, 0, 0, 10);
             }
         }
 

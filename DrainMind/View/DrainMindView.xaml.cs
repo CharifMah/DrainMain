@@ -234,7 +234,5 @@ namespace DrainMind.View
         }
 
         #endregion
-
-
     }
 }

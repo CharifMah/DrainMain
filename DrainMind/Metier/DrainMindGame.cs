@@ -51,7 +51,7 @@ namespace DrainMind
             AddItem(cam);
             
             //Creation du joueur       
-            Joueur player = new Joueur(Width / 2, Height / 2, Canvas, this, UIcanvas, 10);
+            Joueur player = new Joueur(Width / 2, Height / 2, Canvas, this, UIcanvas, 50);
             AddItem(player);
  
             AddItem(new GenerateurEnemie(this, Canvas, player));
