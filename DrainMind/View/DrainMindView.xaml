@@ -4,7 +4,6 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DrainMind.View"
-      xmlns:res="clr-namespace:DrainMind.Res"
       mc:Ignorable="d" 
       d:DesignHeight="1080.2" d:DesignWidth="1920.6"
       SizeChanged="Window_SizeChanged" KeyDown="FentrePrincipalDrainMain_KeyDown" >
@@ -109,8 +108,8 @@
                             />
                 </Grid>
             </GroupBox>
-
-            <GroupBox Visibility="Hidden" FontSize="40" x:Name="GroupBoxUpgradeSkill" Grid.Column="1" Grid.Row="1">
+   
+            <GroupBox x:Name="GroupBoxUpgradeSkill" Visibility="{Binding LvlUpUpgradeVisible}" FontSize="40"  Grid.Column="1" Grid.Row="1">
 
                 <GroupBox.Background>
                     <SolidColorBrush Color="WhiteSmoke" Opacity="0.4"/>

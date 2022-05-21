@@ -1,4 +1,5 @@
-﻿using DrainMind.Metier;
+﻿using DrainMind.metier.joueur;
+using DrainMind.Metier;
 using DrainMind.Metier.enemie;
 using DrainMind.Metier.joueur;
 using DrainMind.View;
@@ -52,9 +53,10 @@ namespace DrainMind.Metier
             //Creation de la Camera
             Camera cam = new Camera(Width / 2, Height / 2, Canvas, this, Camera);
             AddItem(cam);
-            
-            //Creation du joueur       
-            Joueur player = new Joueur(Width / 2, Height / 2, Canvas, this, UIcanvas, 3,15);
+
+            //Creation du joueur
+            new StatsPersoModel(10, 0, 0);
+            Joueur player = new Joueur(Width / 2, Height / 2, Canvas, this, new Vie(UIcanvas, 10, 15));
             AddItem(player);
  
             AddItem(new GenerateurEnemie(this,Canvas, player));

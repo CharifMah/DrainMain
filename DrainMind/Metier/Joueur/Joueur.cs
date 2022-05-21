@@ -20,7 +20,6 @@ namespace DrainMind.Metier.joueur
         private bool goLeft = false, goRight = false, goUp = false, goDown = false;
   
         private int niveau;
-        private StatsPersoModel Stats;
         private Vie playerLife;
 
         private bool compte = false;
@@ -37,14 +36,13 @@ namespace DrainMind.Metier.joueur
         /// <param name="c">canvas of the application</param>
         /// <param name="g">drainMind</param>
         /// <param name="ui">canvas</param>
-        public Joueur(double x, double y, Canvas c, DrainMindGame g, Canvas ui, int life,int MaxPv) : base(x,y,c,g,"face.png")
+        public Joueur(double x, double y, Canvas c, DrainMindGame g,Vie vie) : base(x,y,c,g,"face.png")
         {
             DrainMindGame.Instance = g;
-            
-            //Creation de la Vie
-            playerLife = new Vie(ui,life, MaxPv);
 
-            Stats = new StatsPersoModel(10,0,0);
+            //Creation de la Vie
+            playerLife = vie;          
+            
         }      
 
         #region Animation
@@ -62,22 +60,22 @@ namespace DrainMind.Metier.joueur
             }
             if (goLeft)
             {
-                DeplacerJoueur(-Stats.Speed + 05 * dt.TotalSeconds, 0);
+                DeplacerJoueur(-StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds, 0);
 
             }
             if (goRight)
             {
-                DeplacerJoueur(Stats.Speed + 05 * dt.TotalSeconds, 0);
+                DeplacerJoueur(StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds, 0);
 
             }
             if (goUp)
             {
-                DeplacerJoueur(0, -Stats.Speed + 05 * dt.TotalSeconds);
+                DeplacerJoueur(0, -StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds);
 
             }
             if (goDown)
             {
-                DeplacerJoueur(0, Stats.Speed + 05 * dt.TotalSeconds);
+                DeplacerJoueur(0, StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds);
             }
             AnimationJoueur();        
         }
@@ -128,8 +126,8 @@ namespace DrainMind.Metier.joueur
                     enemie.EnemiesModel.Get().NombreEnemie--;
                     Score.Get().EnemieKilled += 1;
                     Score.Get().Point += 10;
-                    Stats.XP += 500;  
-                 
+                    StatsPersoModel.Instance.XP += 500;
+                    StatsPersoModel.Instance.LvlUpUpgradeVisible = Visibility.Visible;
                     compte = true;
                     time = 0;
                     LvlUpEffect();
@@ -288,7 +286,7 @@ namespace DrainMind.Metier.joueur
             if (StatsPersoModel.Instance.Niveau > niveau)
             {
                 niveau = StatsPersoModel.Instance.Niveau;
-                Stats.Speed *= 1.001;
+                StatsPersoModel.Instance.Speed *= 1.001;
                 PlaySound("LvlUp.mp3");    
             }
         }

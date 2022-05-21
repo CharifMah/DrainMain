@@ -33,6 +33,7 @@ namespace DrainMind.View
         {      
             ShowsNavigationUI = false;
             InitializeComponent();
+            GroupBoxUpgradeSkill.Visibility = Visibility.Hidden;
             GroupBoxInfoPerso.Visibility = Visibility.Visible;
              _MenuPrincipale = Menu;
         }
@@ -57,16 +58,17 @@ namespace DrainMind.View
                 drainMind.Resume();
             }
             StartupSettings();
+
         }
 
         /// <summary>
         /// Load Settings (Sounds ...) at the start of the game
         /// </summary>
         public void StartupSettings()
-        {
-            InitDataContext();
+        {          
             ListViewLoadScores();
-
+            InitDataContext();
+            StatsPersoModel.Instance.LvlUpUpgradeVisible = Visibility.Visible;
             if (Settings.Get().Son == 0 || !Settings.Get().SonOnOff)
             {
                 drainMind.BackgroundVolume = 0;
@@ -86,6 +88,7 @@ namespace DrainMind.View
             TextBlockXpProgressBar.DataContext = StatsPersoModel.Instance;
             TextBlockEnemieLeft.DataContext = EnemiesModel.Get();
             TextBlockSpeed.DataContext = StatsPersoModel.Instance;
+            GroupBoxUpgradeSkill.DataContext = StatsPersoModel.Instance;
         }
 
         /// <summary>
@@ -247,7 +250,7 @@ namespace DrainMind.View
         private void ButtonADDSPEED_Click(object sender, RoutedEventArgs e)
         {
             StatsPersoModel.Instance.Speed += 5;
-
+            StatsPersoModel.Instance.LvlUpUpgradeVisible = Visibility.Hidden;
         }
 
 
