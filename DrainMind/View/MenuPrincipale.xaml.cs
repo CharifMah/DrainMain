@@ -24,7 +24,7 @@ namespace DrainMind.View
         //Garde en memoire la page du jeux en cours
         private DrainMindView drainmindView;
         //Get la MainWindow
-        private Window mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
+        private Window mainwindow = MainWindow.GetMainWindow;
 
         /// <summary>
         /// Initialise la page du menu principale
@@ -63,7 +63,9 @@ namespace DrainMind.View
         /// <param name="e"></param>
         /// <Author>Charif</Author>
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
-        {          
+        {
+            DrainMindGame.Instance.Pause();
+            DrainMindGame.Instance.BackgroundVolume = 0;
             drainmindView = new DrainMindView(this);
             mainwindow.Content = drainmindView;
         }

@@ -28,11 +28,11 @@ namespace DrainMind.View
         StockScore Stock = new StockScore(Environment.CurrentDirectory);
 
         public DrainMindView(MenuPrincipale Menu)
-        {        
+        {      
             ShowsNavigationUI = false;
             InitializeComponent();
- 
-            _MenuPrincipale = Menu;
+   
+             _MenuPrincipale = Menu;
         }
 
         #region Init Methode
@@ -43,6 +43,7 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         public void ResumeOrCreateGame()
         {
+
             if (drainMind == null)
             {
                 drainMind = new DrainMindGame(canvas, CanvasViewer, UI);
@@ -154,6 +155,15 @@ namespace DrainMind.View
             e.Handled = true;
 
         }
+        /// <summary>
+        /// Enclencher lorsque que la fenetre ce ferme
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Page_ContextMenuClosing(object sender, ContextMenuEventArgs e)
+        {
+            Stock.SauverScore(LesScores.Get().Scores);
+        }
         #endregion
 
         #region ButtonMenuPause
@@ -203,6 +213,7 @@ namespace DrainMind.View
             drainMind.Pause();          
             _MenuPrincipale.PlayButton.Content = DrainMind.Res.Strings.Reprendre;
             MainWindow.GetMainWindow.Content = _MenuPrincipale;
+            Stock.SauverScore(LesScores.Get().Scores);
         }
 
         #endregion
@@ -213,7 +224,6 @@ namespace DrainMind.View
         {
             GroupBoxPause.Visibility = Visibility.Visible;
             ScoreMenuGroupBox.Visibility = Visibility.Hidden;
-            Stock.SauverScore(LesScores.Get().Scores);
         }
 
         #endregion
@@ -234,5 +244,7 @@ namespace DrainMind.View
         }
 
         #endregion
+
+       
     }
 }
