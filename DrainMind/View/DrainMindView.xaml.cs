@@ -1,4 +1,5 @@
-﻿using DrainMind.Metier;
+﻿using DrainMind.metier.joueur;
+using DrainMind.Metier;
 using DrainMind.Metier.enemie;
 using DrainMind.Metier.joueur;
 using DrainMind.Stockage;
@@ -32,7 +33,7 @@ namespace DrainMind.View
         {      
             ShowsNavigationUI = false;
             InitializeComponent();
-   
+            GroupBoxInfoPerso.Visibility = Visibility.Visible;
              _MenuPrincipale = Menu;
         }
 
@@ -80,10 +81,11 @@ namespace DrainMind.View
         /// </summary>
         public void InitDataContext()
         {
-            XpProgressBar.DataContext = Experience.Instance;
-            TextBlockNiveau.DataContext = Experience.Instance;
-            TextBlockXpProgressBar.DataContext = Experience.Instance;
-            TextBlockEnemieLeft.DataContext = EnemieObservable.Get();
+            XpProgressBar.DataContext = StatsPersoModel.Instance;
+            TextBlockNiveau.DataContext = StatsPersoModel.Instance;
+            TextBlockXpProgressBar.DataContext = StatsPersoModel.Instance;
+            TextBlockEnemieLeft.DataContext = EnemiesModel.Get();
+            TextBlockSpeed.DataContext = StatsPersoModel.Instance;
         }
 
         /// <summary>
@@ -91,7 +93,7 @@ namespace DrainMind.View
         /// </summary>
         public void ListViewLoadScores()
         {
-            foreach (Score score in LesScores.Get().Scores)
+            foreach (Score score in LesScoresModel.Get().Scores)
             {
                 ScoreListView.Items.Add(score);
             }
@@ -207,11 +209,10 @@ namespace DrainMind.View
             drainMind.Pause();          
             _MenuPrincipale.PlayButton.Content = DrainMind.Res.Strings.Reprendre;
             MainWindow.GetMainWindow.Content = _MenuPrincipale;
-            Stock.SauverScore(LesScores.Get().Scores);
+            Stock.SauverScore(LesScoresModel.Get().Scores);
         }
 
         #endregion
-
 
         #region ScoreGroupBox
 
@@ -234,12 +235,25 @@ namespace DrainMind.View
             GroupBoxInfoPerso.Visibility = Visibility.Hidden;
             Score.Destroy();
             Score.Get().Nom = NameInput.Text;
-            LesScores.Get().Scores.Add(Score.Get());
+            LesScoresModel.Get().Scores.Add(Score.Get());
             ResumeOrCreateGame();
         }
 
+
         #endregion
 
-       
+        #region LvlUp Skill Updgrade
+
+        private void ButtonADDSPEED_Click(object sender, RoutedEventArgs e)
+        {
+            StatsPersoModel.Instance.Speed += 5;
+
+        }
+
+
+
+        #endregion
+
+
     }
 }

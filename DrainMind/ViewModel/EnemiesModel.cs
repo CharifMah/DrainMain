@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DrainMind.Metier.enemie
 {
-    public class EnemieObservable : observable.Observable
+    public class EnemiesModel : observable.Observable
     {
         private int _nombreenemie;
         
@@ -19,17 +19,17 @@ namespace DrainMind.Metier.enemie
             }
         }
 
-        private EnemieObservable()
+        private EnemiesModel()
         {
             _nombreenemie = 0;
         }
 
-        private static EnemieObservable Instance;
+        private static EnemiesModel Instance;
 
-        public static EnemieObservable Get()
+        public static EnemiesModel Get()
         {
             if (Instance == null)
-                Instance = new EnemieObservable();
+                Instance = new EnemiesModel();
             return Instance;
         }
     }

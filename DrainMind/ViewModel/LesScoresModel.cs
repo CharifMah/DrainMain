@@ -7,7 +7,7 @@ using System.Text;
 namespace DrainMind.Metier.joueur
 {
     [DataContract]
-    public class LesScores
+    public class LesScoresModel
     {
         private StockScore Stock = new StockScore(Environment.CurrentDirectory);
 
@@ -30,16 +30,16 @@ namespace DrainMind.Metier.joueur
                 _scores = new List<Score>();
         }
 
-        private static LesScores instance;
+        private static LesScoresModel instance;
 
-        public static LesScores Get()
+        public static LesScoresModel Get()
         {
             if (instance == null)
-                instance = new LesScores();
+                instance = new LesScoresModel();
             return instance;
         }
 
-        private LesScores()
+        private LesScoresModel()
         {
             LoadScores();
         }

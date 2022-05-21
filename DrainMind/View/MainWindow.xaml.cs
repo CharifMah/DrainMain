@@ -69,7 +69,7 @@ namespace DrainMind
         /// <Author>Charif</Author>
         private void FentrePrincipalDrainMain_Closed(object sender, System.EventArgs e)
         {
-            _StockScore.SauverScore(LesScores.Get().Scores);
+            _StockScore.SauverScore(LesScoresModel.Get().Scores);
             Environment.Exit(0);
         }
     }

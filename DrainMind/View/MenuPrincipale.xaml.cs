@@ -93,7 +93,7 @@ namespace DrainMind.View
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             StockScore _StockScore = new StockScore(Directory.GetCurrentDirectory());
-            _StockScore.SauverScore(LesScores.Get().Scores);
+            _StockScore.SauverScore(LesScoresModel.Get().Scores);
 
             Environment.Exit(0);
         }

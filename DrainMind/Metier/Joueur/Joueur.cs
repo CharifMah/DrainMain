@@ -7,6 +7,7 @@ using IUTGame;
 using System.IO;
 using DrainMind.Metier.joueur;
 using System.Windows;
+using DrainMind.metier.joueur;
 
 namespace DrainMind.Metier.joueur
 {
@@ -18,15 +19,12 @@ namespace DrainMind.Metier.joueur
       
         private bool goLeft = false, goRight = false, goUp = false, goDown = false;
   
-        private double speed = 20;
         private int niveau;
-
+        private StatsPersoModel Stats;
         private Vie playerLife;
-        private Experience XP;
 
         private bool compte = false;
         private double time = 0;
-
 
         // TypeName of the player is "Joueur"
         public override string TypeName => "Joueur";
@@ -46,8 +44,7 @@ namespace DrainMind.Metier.joueur
             //Creation de la Vie
             playerLife = new Vie(ui,life, MaxPv);
 
-            //Creation de l'experience
-            XP = new Experience(0,0);
+            Stats = new StatsPersoModel(10,0,0);
         }      
 
         #region Animation
@@ -65,22 +62,22 @@ namespace DrainMind.Metier.joueur
             }
             if (goLeft)
             {
-                DeplacerJoueur(-speed + 05 * dt.TotalSeconds, 0);
+                DeplacerJoueur(-Stats.Speed + 05 * dt.TotalSeconds, 0);
 
             }
             if (goRight)
             {
-                DeplacerJoueur(speed + 05 * dt.TotalSeconds, 0);
+                DeplacerJoueur(Stats.Speed + 05 * dt.TotalSeconds, 0);
 
             }
             if (goUp)
             {
-                DeplacerJoueur(0, -speed + 05 * dt.TotalSeconds);
+                DeplacerJoueur(0, -Stats.Speed + 05 * dt.TotalSeconds);
 
             }
             if (goDown)
             {
-                DeplacerJoueur(0, speed + 05 * dt.TotalSeconds);
+                DeplacerJoueur(0, Stats.Speed + 05 * dt.TotalSeconds);
             }
             AnimationJoueur();        
         }
@@ -128,10 +125,10 @@ namespace DrainMind.Metier.joueur
                     LooseLife(1);
                     PlaySound("Bruit.mp3");
 
-                    enemie.EnemieObservable.Get().NombreEnemie--;
+                    enemie.EnemiesModel.Get().NombreEnemie--;
                     Score.Get().EnemieKilled += 1;
                     Score.Get().Point += 10;
-                    XP.XP += 500;  
+                    Stats.XP += 500;  
                  
                     compte = true;
                     time = 0;
@@ -288,13 +285,12 @@ namespace DrainMind.Metier.joueur
         #region Niveau
         public void LvlUpEffect()
         {
-            if (Experience.Instance.Niveau > niveau)
+            if (StatsPersoModel.Instance.Niveau > niveau)
             {
-                niveau = Experience.Instance.Niveau;
-                this.speed *= 1.001;
-                PlaySound("LvlUp.mp3");
+                niveau = StatsPersoModel.Instance.Niveau;
+                Stats.Speed *= 1.001;
+                PlaySound("LvlUp.mp3");    
             }
-
         }
         #endregion
 
@@ -316,7 +312,6 @@ namespace DrainMind.Metier.joueur
             Camera.Y = this.Top + (this.Height) / 2;
             Camera.MoveCamera(this.Left + (this.Width) / 2, this.Top + (this.Height) / 2);
         }
-        #endregion
 
         /// <summary>
         /// Allows you to obtain the player's contact information
@@ -327,5 +322,6 @@ namespace DrainMind.Metier.joueur
             double[] result = { this.Top, this.Right };
             return result;
         }
+        #endregion
     }
 }

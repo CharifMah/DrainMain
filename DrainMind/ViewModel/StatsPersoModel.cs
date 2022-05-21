@@ -1,25 +1,31 @@
-﻿using IUTGame;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
 
-namespace DrainMind.Metier.joueur
+namespace DrainMind.metier.joueur
 {
     /// <summary>
     /// Classe des niveau du personnage la partie actuel
     /// </summary>
-    public class Experience : observable.Observable
+    public class StatsPersoModel : observable.Observable
     {
+        private double speed;
         private double _xp;
         private double _xpMax = 1000;
         private int _niveau;
 
         #region Property
+
+        public double Speed
+        {
+            get { return speed; }
+            set 
+            {
+                speed = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Set Xp et lvl up si xp egal xpmax
         /// </summary>
@@ -27,14 +33,14 @@ namespace DrainMind.Metier.joueur
         public double XP
         {
             get { return _xp; }
-            set 
+            set
             {
                 _xp = value;
                 if (_xp >= _xpMax)
                 {
                     _niveau += 1;
                     _xp -= _xpMax;
-                    _xpMax *= 1.5;                  
+                    _xpMax *= 1.5;
                 }
                 this.NotifyPropertyChanged();
                 this.NotifyPropertyChanged("XPMax");
@@ -54,16 +60,17 @@ namespace DrainMind.Metier.joueur
 
         #endregion
 
-        private static Experience instance;
-        public static Experience Instance
+        private static StatsPersoModel instance;
+        public static StatsPersoModel Instance
         {
             get { return instance; }
         }
 
-        public Experience(double Xp, int niveau)
+        public StatsPersoModel(double Speed,double Xp, int niveau)
         {
-            _xp = Xp;
-            _niveau = niveau;
+            this.speed = Speed;
+            this._xp = Xp;
+            this._niveau = niveau;
             instance = this;
         }
     }

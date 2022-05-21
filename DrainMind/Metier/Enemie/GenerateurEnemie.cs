@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Controls;
+using DrainMind.metier.joueur;
 using DrainMind.Metier.joueur;
 using IUTGame;
 
@@ -52,8 +53,8 @@ namespace DrainMind.Metier.enemie
                 double y = r.NextDouble() * GameHeight/2;
                 Enemie fantomeViolet = new Enemie(x, y, this.canvas, Game, player, "fantome.png");
                 Game.AddItem(fantomeViolet);
-                EnemieObservable.Get().NombreEnemie++;
-                int Sec = r.Next(2000 / (Experience.Instance.Niveau + 1), 3000);
+                EnemiesModel.Get().NombreEnemie++;
+                int Sec = r.Next(2000 / (StatsPersoModel.Instance.Niveau + 1), 3000);
                 timeToCreate = new TimeSpan(0, 0, 0, 0,Sec);                                
             }   
         }

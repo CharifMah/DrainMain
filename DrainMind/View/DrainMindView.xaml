@@ -70,7 +70,7 @@
                        VerticalAlignment="Center" 
                        />
 
-            <GroupBox Visibility="Visible" FontSize="40" x:Name="GroupBoxInfoPerso" Grid.Column="1" Grid.Row="1">
+            <GroupBox Visibility="Hidden" FontSize="40" x:Name="GroupBoxInfoPerso" Grid.Column="1" Grid.Row="1">
 
                 <GroupBox.Background>
                     <SolidColorBrush Color="WhiteSmoke" Opacity="0.4"/>
@@ -102,6 +102,7 @@
                             Name="ButtonTerminerInfo"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
+                            Style="{StaticResource CustomButton}"
                             Content="{x:Static res:Strings.Terminer}"
                             Click="ButtonTerminerInfo_Click"
                             Width="200"
@@ -109,6 +110,49 @@
                 </Grid>
             </GroupBox>
 
+            <GroupBox Visibility="Hidden" FontSize="40" x:Name="GroupBoxUpgradeSkill" Grid.Column="1" Grid.Row="1">
+
+                <GroupBox.Background>
+                    <SolidColorBrush Color="WhiteSmoke" Opacity="0.4"/>
+                </GroupBox.Background>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="TextBlockSpeed"
+                        Text="{Binding Path=Speed, StringFormat={}Speed: {0},Mode=OneWay}" 
+                               FontSize="50" 
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center"
+                               Grid.Row="0" 
+                               Grid.Column="0"
+                               />
+                    <Button 
+                        Name="ButtonADDSPEED"
+                        Grid.Column="1" 
+                        Grid.Row="0"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource CustomButton}"
+                        Width="100"
+                        Height="100"
+                        Content="+"
+                        Click="ButtonADDSPEED_Click"
+                        />
+
+
+
+
+                </Grid>
+            </GroupBox>
 
             <GroupBox Header="Pause" Visibility="Hidden" FontSize="40" x:Name="GroupBoxPause" Grid.Column="1" Grid.Row="1">
 
@@ -198,6 +242,7 @@
 
                 </Grid>
             </GroupBox>
+                     
         </Grid>
     </Grid>
 </Page>
