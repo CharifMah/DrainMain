@@ -18,9 +18,9 @@ namespace DrainMind
         private Game g;
         public GenerateurItem(Canvas canvas, Game game) : base(0,0,canvas, game, "")
         {
-            timeToCreate = new TimeSpan(0, 0, 2);
-            PeachCanvas = canvas;
             g = game;
+            PeachCanvas = canvas;        
+            timeToCreate = new TimeSpan(0, 0, 5);
         }
 
         public override string TypeName => "generateuritem";
@@ -35,10 +35,11 @@ namespace DrainMind
             {
                 double x = r.NextDouble() * GameWidth;
                 double y = r.NextDouble() * GameHeight / 2;
+
                 Food food = new Food(x,y, PeachCanvas,g);
                 Game.AddItem(food);
 
-                int Sec = r.Next(100, 300);
+                int Sec = r.Next(2000, 12000);
                 timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);
             }
         }

@@ -37,6 +37,7 @@ namespace DrainMind.Metier
         {
             Camera = camera;
             UIcanvas = UI;
+
             game = this;
         }
 
@@ -56,7 +57,7 @@ namespace DrainMind.Metier
             Joueur player = new Joueur(Width / 2, Height / 2, Canvas, this, UIcanvas, 3,15);
             AddItem(player);
  
-            AddItem(new GenerateurEnemie(this, Canvas, player));
+            AddItem(new GenerateurEnemie(this,Canvas, player));
             AddItem(new GenerateurItem(Canvas, this));
             PlayBackgroundMusic("Son_ambiance_Action.mp3");
             

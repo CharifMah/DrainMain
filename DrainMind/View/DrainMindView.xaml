@@ -12,6 +12,7 @@
     <Grid>
         <ScrollViewer x:Name="CanvasViewer" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="CanvasViewer_PreviewMouseWheel">
             <Canvas x:Name="canvas" Height="4221" Width="6715">
+                
                 <Canvas.Background>
                     <ImageBrush ImageSource="/Sprites/fond.png"/>
                 </Canvas.Background>

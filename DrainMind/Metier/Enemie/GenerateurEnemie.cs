@@ -53,10 +53,8 @@ namespace DrainMind.Metier.enemie
                 Enemie fantomeViolet = new Enemie(x, y, this.canvas, Game, player, "fantome.png");
                 Game.AddItem(fantomeViolet);
                 EnemieObservable.Get().NombreEnemie++;
-                int Sec = r.Next(20 / (Experience.Instance.Niveau + 1), 30);
-                timeToCreate = new TimeSpan(0, 0, 0, Sec);
-                
-                
+                int Sec = r.Next(2000 / (Experience.Instance.Niveau + 1), 3000);
+                timeToCreate = new TimeSpan(0, 0, 0, 0,Sec);                                
             }   
         }
 

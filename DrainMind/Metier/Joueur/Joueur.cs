@@ -6,6 +6,7 @@ using DrainMind.Metier;
 using IUTGame;
 using System.IO;
 using DrainMind.Metier.joueur;
+using System.Windows;
 
 namespace DrainMind.Metier.joueur
 {
@@ -25,7 +26,7 @@ namespace DrainMind.Metier.joueur
 
         private bool compte = false;
         private double time = 0;
-        private TimeSpan Waiting = new TimeSpan(0);
+
 
         // TypeName of the player is "Joueur"
         public override string TypeName => "Joueur";
@@ -56,12 +57,12 @@ namespace DrainMind.Metier.joueur
         /// <param name="dt">timespan elasped since last animation</param>
         public void Animate(TimeSpan dt)
         {
-
-            if (Waiting.TotalMilliseconds > 0)
+            if (compte)
             {
-                Waiting = Waiting.Subtract(dt);
+                time += dt.TotalMilliseconds;
+                if (time > 500)
+                    compte = false;
             }
-
             if (goLeft)
             {
                 DeplacerJoueur(-speed + 05 * dt.TotalSeconds, 0);
@@ -81,17 +82,7 @@ namespace DrainMind.Metier.joueur
             {
                 DeplacerJoueur(0, speed + 05 * dt.TotalSeconds);
             }
-            AnimationJoueur();
-
-
-
-            if (compte)
-            {
-                time += dt.TotalMilliseconds;
-                if (time > 500)
-                    compte = false;
-            }
-
+            AnimationJoueur();        
         }
 
         /// <summary>
@@ -127,41 +118,39 @@ namespace DrainMind.Metier.joueur
         /// <param name="other">the other object</param>
         public override void CollideEffect(GameItem other)
         {
-           
             if (!compte)
             {
-                if (Waiting.TotalMilliseconds <= 0)
+                if (other.TypeName == "Enemie")
                 {
-                    if (other.TypeName == "Enemie")
-                    {
-
-                        other.Dispose();
-
-        
-                        enemie.EnemieObservable.Get().NombreEnemie--;
-                        compte = true;
-                        time = 0;
-
-                        LooseLife(1);                     
-                        Score.Get().EnemieKilled += 1;
-                        Score.Get().Point += 10;                        
-                        XP.XP += 500;
-
-                        PlaySound("Bruit.mp3");
-                        LvlUpEffect();
-                    }
-                }
-                Waiting = new TimeSpan(0, 0, 0, 0, 50);
-                if (other.TypeName == "Peach")
-                {
-                    GainLife(1);
                     other.Dispose();
+                    other.Collidable = false;   
+                    
+                    LooseLife(1);
+                    PlaySound("Bruit.mp3");
+
+                    enemie.EnemieObservable.Get().NombreEnemie--;
+                    Score.Get().EnemieKilled += 1;
+                    Score.Get().Point += 10;
+                    XP.XP += 500;  
+                 
                     compte = true;
                     time = 0;
-                    PlaySound("SoundTake.mp3");
+                    LvlUpEffect();
                 }
 
-              
+
+                if (other.TypeName == "Peach")
+                {
+                    other.Dispose();
+                    other.Collidable = false;
+
+                    GainLife(1);
+                   
+                    compte = true;
+                    time = 0;
+
+                    PlaySound("SoundTake.mp3");
+                }
             }
         }
 

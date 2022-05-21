@@ -49,8 +49,7 @@ namespace DrainMind.Metier.enemie
         /// <param name="g">game</param>
         /// <param name="nom">name of the sprite</param>
         public Enemie(double x, double y, Canvas c, Game g, Joueur _player, string nom) : base(x, y, c,g,nom)
-        {
-            
+        {           
             player = _player;
         }
 
@@ -70,17 +69,19 @@ namespace DrainMind.Metier.enemie
         /// </summary>
         /// <param name="other">the other object</param>
         public override void CollideEffect(GameItem other)
-        {        
+        {
+           
             if (other.TypeName == "Joueur")
             {                  
-                angle = 360 - angle;
-                this.Dispose();
+                angle = 360 - angle;   
             }
+
             else if (other.TypeName == this.TypeName)
             {
                 angle = (angle + 180) % 360;
             }
-            Rebondir();                    
+            Rebondir();
+      
         }
 
         /// <summary>
@@ -89,8 +90,7 @@ namespace DrainMind.Metier.enemie
         /// <param name="dt">timespan elasped since last animation</param>
         public void Animate(TimeSpan dt)
         {
-            double[] coordsPlayer = player.GetCoordsPlayer();
-
+            
             if (Waiting.TotalMilliseconds > 0)
             {
                 Waiting = Waiting.Subtract(dt);
@@ -121,11 +121,25 @@ namespace DrainMind.Metier.enemie
                 //Rebondir();
             }
 
-            //Deplacement en direction du joueur
-            double moveX = -(Left - (coordsPlayer[1]-75)) / 90;
-            double moveY = -(Top - (coordsPlayer[0]+20)) / 90;
+            MoveEnemie();
 
-            MoveXY(moveX + 05 * dt.TotalSeconds, moveY + 05 * dt.TotalSeconds);
+        }
+        /// <summary>
+        /// Deplacement en direction du joueur
+        /// </summary>
+        /// <Author>Ryan</Author>
+        /// <Co-Author>Charif</Co-Author>
+        public void MoveEnemie()
+        {
+            double[] coordsPlayer = player.GetCoordsPlayer();
+
+            double moveX = -(Left - (coordsPlayer[1] - 75)) / 90;
+            double moveY = -(Top - (coordsPlayer[0] + 20)) / 90;
+
+            if (this.Left != -100000 && this.Top != -100000)
+            {
+                MoveXY(moveX, moveY);
+            }           
         }
     }
 }
