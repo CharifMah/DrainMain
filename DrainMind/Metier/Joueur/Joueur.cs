@@ -136,6 +136,7 @@ namespace DrainMind.Metier.joueur
                     {
 
                         other.Dispose();
+
         
                         enemie.EnemieObservable.Get().NombreEnemie--;
                         compte = true;
