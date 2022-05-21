@@ -144,6 +144,9 @@
   <data name="Retour" xml:space="preserve">
     <value>Retour</value>
   </data>
+  <data name="Score" xml:space="preserve">
+    <value>Score</value>
+  </data>
   <data name="Son" xml:space="preserve">
     <value>Son : </value>
   </data>

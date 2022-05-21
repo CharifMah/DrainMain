@@ -13,16 +13,18 @@ namespace DrainMind
     {
         private List<Sprite> ListLife = new List<Sprite>();
         private Canvas uiLife;
+        private int vie;
 
         /// <summary>
         /// Set Ajoute ou envleve de la vie
         /// </summary>
         /// <Author>Charif</Author>
-        public double _Vie
+        public int _Vie
         {
             get { return ListLife.Count; }
             set
             {
+                vie = value;
                 if (ListLife.Count > value)
                 {
                     RemoveLife(ListLife.Count - value);
@@ -42,7 +44,7 @@ namespace DrainMind
         /// <param name="g">Game Instance</param>
         /// <param name="pointLife">Nombre de vie</param>
         /// <Author>Charif</Author>
-        public Vie(Canvas lifeUI, double pointLife)
+        public Vie(Canvas lifeUI, int pointLife)
         {
             uiLife = lifeUI;
             InitLife(pointLife);
@@ -54,11 +56,10 @@ namespace DrainMind
         /// </summary>
         /// <param name="vie">Nombre de vie</param>
         /// <Author>Charif</Author>
-        public void InitLife(double vie)
+        public void InitLife(int vie)
         {        
             for (int i = 0; i < vie; i++)
             {
-                Sprite DemiCoeur = new Sprite(SpriteStore.Get(Path.Combine("Vie", "1.png")).Image);
                 Sprite Coeur = new Sprite(SpriteStore.Get(Path.Combine("Vie", "2.png")).Image);
 
                 ListLife.Add(Coeur);
@@ -72,7 +73,7 @@ namespace DrainMind
         /// </summary>
         /// <param name="numberOfLife"></param>
         /// <Author>Charif</Author>
-        public void RemoveLife(double numberOfLife)
+        public void RemoveLife(int numberOfLife)
         {
             for (int i = 0; i < numberOfLife; i++)
             {
@@ -89,16 +90,14 @@ namespace DrainMind
         /// </summary>
         /// <param name="numberOfLife">Number of lifes you want to add</param>
         /// <Author>Charif</Author>
-        public void AddLife(double numberOfLife)
+        public void AddLife(int numberOfLife)
         {
             for (int i = 0; i < numberOfLife; i++)
-            {
-                Sprite DemiCoeur = new Sprite(SpriteStore.Get(Path.Combine("Vie", "1.png")).Image);
+            {                               
                 Sprite Coeur = new Sprite(SpriteStore.Get(Path.Combine("Vie", "2.png")).Image);
-
                 ListLife.Add(Coeur);
                 uiLife.Children.Add(ListLife[ListLife.Count - 1].Image);
-                ListLife[ListLife.Count - 1].Put((ListLife.Count - 1) * 50, 0);
+                ListLife[ListLife.Count - 1].Put((ListLife.Count - 1) * 50, 0);                                       
             }
         }
     }

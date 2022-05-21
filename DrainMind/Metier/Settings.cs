@@ -6,13 +6,14 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DrainMind.Metier
 {
     [DataContract]
-    public class Settings
+    public class Settings : observable.Observable
     {
-        StockOptionsFav Stock = new StockOptionsFav(Environment.CurrentDirectory);
+        StockOptions Stock = new StockOptions(Environment.CurrentDirectory);
 
         [DataMember]
         private bool _pleinEcran;
@@ -21,25 +22,68 @@ namespace DrainMind.Metier
         [DataMember]
         private double _Son;
 
+        /// <summary>
+        /// Son Max 100
+        /// </summary>
         public double Son
         {
             get { return _Son; }
-            set { _Son = value; }  
+            set 
+            { 
+                _Son = value;
+                if (DrainMindGame.Instance != null)
+                DrainMindGame.Instance.BackgroundVolume = _Son / 100;
+          
+                if (_Son > 1)
+                    _SonOnOff = true;
+                if (_Son < 1)
+                    _SonOnOff = false;
+                   
+                this.NotifyPropertyChanged("Son");
+
+            }
         }
 
         public bool SonOnOff
         {
             get { return _SonOnOff; }
-            set { _SonOnOff = value; }
+            set 
+            {
+                _SonOnOff = value;
+                if (!_SonOnOff && DrainMindGame.Instance != null)
+                {
+                    DrainMindGame.Instance.BackgroundVolume = 0;
+                }
+                if (_SonOnOff && DrainMindGame.Instance != null)
+                {
+                    DrainMindGame.Instance.BackgroundVolume = _Son / 100;
+                }
+                this.NotifyPropertyChanged("SonOnOff");
+            }
         }
 
         public bool PLeinEcran
         {
             get { return _pleinEcran; }
-            set { _pleinEcran = value; }
+            set 
+            {
+                _pleinEcran = value;
+                if (_pleinEcran)
+                {
+                    MainWindow.GetMainWindow.WindowStyle = WindowStyle.None;
+                    MainWindow.GetMainWindow.WindowState = WindowState.Maximized;
+                }
+                else
+                {
+                    MainWindow.GetMainWindow.WindowState = WindowState.Normal;
+                    MainWindow.GetMainWindow.WindowStyle = WindowStyle.ThreeDBorderWindow;
+                }
+                this.NotifyPropertyChanged();
+            }
         }
 
         private static Settings instance;
+
         /// <summary>
         /// Charge les settings dans le fichier Json
         /// </summary>
@@ -48,6 +92,7 @@ namespace DrainMind.Metier
         {
             LoadSettings();
         }
+
         /// <summary>
         /// Cree une instance si il y en as pas sinon get instance
         /// </summary>

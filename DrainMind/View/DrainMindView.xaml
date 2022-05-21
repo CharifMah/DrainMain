@@ -31,7 +31,6 @@
                 <RowDefinition Height="5*" />
                 <RowDefinition Height="30*" />
                 <RowDefinition Height="5*" />
-
             </Grid.RowDefinitions>
             
             <ProgressBar x:Name="XpProgressBar"
@@ -45,17 +44,16 @@
                 Maximum="{Binding Path=XPMax,Mode=OneWay}"
             />
             <TextBlock x:Name="TextBlockNiveau"
-                Text="{Binding Path=Niveau, Mode=OneWay , StringFormat={}Niveau:{0}}"
+                Text="{Binding Path=Niveau, Mode=OneWay , StringFormat={}Niveau: {0}}"
                 VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Grid.Column="1"
                        Grid.Row="2"
                        Margin="0,50,0,0"/>
 
-
             <TextBlock x:Name="TextBlockXpProgressBar" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2">
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="{}XP:{0}/{1}">
+                    <MultiBinding StringFormat="{}XP: {0}/{1}">
                         <Binding Path="XP" Mode="OneWay"/>
                         <Binding Path="XPMax" Mode="OneWay" />
                     </MultiBinding>
@@ -63,21 +61,22 @@
             </TextBlock>
 
             <GroupBox Header="Pause" Visibility="Hidden" FontSize="40" x:Name="GroupBoxPause" Grid.Column="1" Grid.Row="1">
+
                 <GroupBox.Background>
                     <SolidColorBrush Color="WhiteSmoke" Opacity="0.4"/>
-                    
-                    
                 </GroupBox.Background>
+
                 <Grid>
-                   
+
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="100" />
-
                     </Grid.RowDefinitions>
+
                     <Button x:Name="Resumebutton" 
                             Grid.Row="1"
                             Style="{StaticResource CustomButton}"
@@ -86,7 +85,7 @@
                             Margin="10"
                             Click="Resumebutton_Click"
                             />
-
+                    
                     <Button x:Name="OptionButton" 
                             Style="{StaticResource CustomButton}"
                             Content="{x:Static res:Strings.Options}"
@@ -94,20 +93,62 @@
                             VerticalAlignment="Stretch"
                             Grid.Row="2"    
                             Click="OptionButton_Click"/>
-
+                    
+                    <Button x:Name="ScoreButton" 
+                            Style="{StaticResource CustomButton}"
+                            Content="{x:Static res:Strings.Score}"
+                            Margin="10"
+                            VerticalAlignment="Stretch"
+                            Grid.Row="3"    
+                            Click="ScoreButton_Click"/>
+                                     
                     <Button x:Name="ExitButton" 
                             Style="{StaticResource CustomButton}"
                             Content="{x:Static res:Strings.Exit}" 
                             Margin="10"
-                            Grid.Row="3"   
+                            Grid.Row="4"   
                             VerticalAlignment="Stretch"
                             Click="ExitButton_Click"/>
 
-                   
                 </Grid>
-
             </GroupBox>
-        
+
+
+            <GroupBox Header="Score" Visibility="Hidden" FontSize="40" x:Name="ScoreMenuGroupBox" Grid.Column="1" Grid.Row="1">
+
+                <GroupBox.Background>
+                    <SolidColorBrush Color="WhiteSmoke" Opacity="0.4"/>
+                </GroupBox.Background>
+
+                <Grid>
+
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="100" />
+                    </Grid.RowDefinitions>
+
+                    <ListView x:Name="ScoreListView" Background="Transparent" Grid.Row="0" FontSize="19">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name : " Width="200" DisplayMemberBinding="{Binding Nom , Mode=OneWay}"/>
+                                <GridViewColumn Header="Enemie Killed : " Width="300" DisplayMemberBinding="{Binding EnemieKilled,Mode=OneWay}"/>
+                                <GridViewColumn Header="Score : " Width="200" DisplayMemberBinding="{Binding Point,Mode=OneWay}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                 
+                    <Button x:Name="RetourScoreButton" 
+                            Style="{StaticResource CustomButton}"
+                            Content="{x:Static res:Strings.Retour}" 
+                            Margin="10"
+                            Grid.Row="3" 
+                            VerticalAlignment="Stretch"
+                            Click="RetourScoreButton_Click"/>
+
+                </Grid>
+            </GroupBox>
         </Grid>
     </Grid>
 </Page>

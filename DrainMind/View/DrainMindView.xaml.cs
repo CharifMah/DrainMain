@@ -1,5 +1,6 @@
 ﻿using DrainMind.Metier;
 using DrainMind.Metier.Joueur;
+using DrainMind.Stockage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,16 +25,18 @@ namespace DrainMind.View
     {
         private DrainMindGame drainMind;
         private MenuPrincipale _MenuPrincipale;
-        private Window mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
+        StockScore Stock = new StockScore(Environment.CurrentDirectory);
+        private MainWindow mainwindow = MainWindow.GetMainWindow;
 
         public DrainMindView(MenuPrincipale Menu)
         {        
             ShowsNavigationUI = false;
             InitializeComponent();
-            
+
             if (drainMind == null)
             {
                 drainMind = new DrainMindGame(canvas, CanvasViewer, UI);
+                
                 drainMind.Run();
             }
             if (!drainMind.IsRunning)
@@ -42,27 +45,47 @@ namespace DrainMind.View
                 drainMind.Resume();          
             }
             InitDataContext();
+            StartupSettings();
             _MenuPrincipale = Menu;
         }
 
+        #region Init Methode
+        public void StartupSettings()
+        {
+            if (Settings.Get().Son == 0 || !Settings.Get().SonOnOff)
+            {
+                drainMind.BackgroundVolume = 0;
+                Settings.Get().Son = 0;
+            }
+            else
+                drainMind.BackgroundVolume = Settings.Get().Son;
+
+        }
+
+        /// <summary>
+        /// initialise les dataContext
+        /// </summary>
         public void InitDataContext()
         {
             XpProgressBar.DataContext = Experience.Instance;
             TextBlockNiveau.DataContext = Experience.Instance;
             TextBlockXpProgressBar.DataContext = Experience.Instance;
-
         }
 
         /// <summary>
-        /// Event qui empêche le deplacement avec la mollete de la souris
+        /// Charge les Scores depuis le fichier json ou depuis linstance existante
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CanvasViewer_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        /// <Author>Charif</Author>
+        public void LoadScore()
         {
-            e.Handled = true;
-           
+            Score.Get().Nom = "Charif";
+            Score.Get().EnemieKilled = 999;
+            Score.Get().Point = 99999;
+            this.ScoreListView.Items.Add("Charif");
+
         }
+
+        #endregion
 
         #region MainWindowEvents
 
@@ -108,6 +131,17 @@ namespace DrainMind.View
 
 
         }
+
+        /// <summary>
+        /// Event qui empêche le deplacement avec la mollete de la souris
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CanvasViewer_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            e.Handled = true;
+
+        }
         #endregion
 
         #region ButtonMenuPause
@@ -136,6 +170,19 @@ namespace DrainMind.View
         }
 
         /// <summary>
+        /// Affiche le groupe Box des Scores
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            GroupBoxPause.Visibility = Visibility.Hidden;
+            ScoreMenuGroupBox.Visibility = Visibility.Visible;
+            Stock.SauverScore(Score.Get());
+            LoadScore();
+        }
+
+        /// <summary>
         /// Ouvre le Menu
         /// </summary>
         /// <param name="sender"></param>
@@ -148,6 +195,15 @@ namespace DrainMind.View
             mainwindow.Content = _MenuPrincipale;                     
         }
 
+        #endregion
+
+        #region ScoreGroupBox
+        private void RetourScoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            GroupBoxPause.Visibility = Visibility.Visible;
+            ScoreMenuGroupBox.Visibility = Visibility.Hidden;
+            Stock.SauverScore(Score.Get());
+        }
         #endregion
     }
 }

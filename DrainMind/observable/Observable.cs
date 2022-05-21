@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace DrainMind.observable
 {
     /// <summary> Classe abstraite pour les objets observables.</summary>
+    /// <Author>Charif</Author>
+    [DataContract]
     public abstract class Observable : INotifyPropertyChanged
     {
         /// <summary> Evénement de modification d'une property </summary>

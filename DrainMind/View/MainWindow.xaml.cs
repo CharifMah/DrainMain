@@ -19,8 +19,12 @@ namespace DrainMind
     /// <Author>Charif</Author>
     public partial class MainWindow : Window
     {
+        //StockDesOptions
+        private StockOptions _StockOptionsFav = new StockOptions(Directory.GetCurrentDirectory());
 
-        private StockOptionsFav _StockOptionsFav = new StockOptionsFav(Directory.GetCurrentDirectory());
+        //Recupère la MainWindow Actuel
+        public static MainWindow GetMainWindow
+        { get { return Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow; } }
 
         /// <summary>
         /// Window du jeux et du MenuPause

@@ -9,7 +9,7 @@ namespace DrainMind
     /// <summary>
     /// Game : drainMind
     /// </summary>
-    class DrainMindGame : IUTGame.Game
+    public class DrainMindGame : IUTGame.Game
     {
         //camera which follow the player
         private ScrollViewer Camera;

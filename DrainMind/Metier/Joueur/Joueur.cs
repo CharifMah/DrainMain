@@ -35,15 +35,16 @@ namespace DrainMind
         /// <param name="c">canvas of the application</param>
         /// <param name="g">drainMind</param>
         /// <param name="ui">canvas</param>
-        public Joueur(double x, double y, Canvas c, Game g, Canvas ui, double life) : base(x,y,c,g,"face.png")
+        public Joueur(double x, double y, Canvas c, Game g, Canvas ui, int life) : base(x,y,c,g,"face.png")
         {
             DrainMind = g;
+
 
             //Creation de la Vie
             playerLife = new Vie(ui,life);
 
             //Creation de l'experience
-            XP = new Experience(0,0);          
+            XP = new Experience(0,0);
         }      
 
         #region Animation
@@ -114,8 +115,6 @@ namespace DrainMind
                 ChangeSprite("diagoSD.png");
             if (goUp && goRight)
                 ChangeSprite("diagoZD.png");
-
-
         }
         #endregion
 
@@ -126,6 +125,7 @@ namespace DrainMind
         /// <param name="other">the other object</param>
         public override void CollideEffect(GameItem other)
         {
+           
             if (!compte)
             {
                 if (Waiting.TotalMilliseconds <= 0)
@@ -264,7 +264,7 @@ namespace DrainMind
         /// Enleve des point de vie au joueur
         /// </summary>
         /// <param name="damage"></param>
-        public void LooseLife(double damage)
+        public void LooseLife(int damage)
         {
             if (playerLife._Vie - damage > 0)
             {
@@ -279,7 +279,7 @@ namespace DrainMind
         /// Gagne de la vie
         /// </summary>
         /// <param name="Healh"></param>
-        public void GainLife(double Healh)
+        public void GainLife(int Healh)
         {
             playerLife._Vie += Healh;
         }
@@ -298,6 +298,7 @@ namespace DrainMind
         }
         #endregion
 
+        #region Mouvement
         /// <summary>
         /// move the player
         /// </summary>
@@ -305,7 +306,7 @@ namespace DrainMind
         /// <param name="y">axis y</param>
         public void DeplacerJoueur(double x, double y)
         {
-            
+
             if (this.Left + x >= 0 && this.Right + x <= GameWidth && this.Bottom + y <= GameHeight && this.Top + y >= 0)
             {
                 MoveXY(x, y);
@@ -313,8 +314,9 @@ namespace DrainMind
 
             Camera.X = this.Left + (this.Width) / 2;
             Camera.Y = this.Top + (this.Height) / 2;
-            Camera.MoveCamera(this.Left + (this.Width) / 2,this.Top + (this.Height)/2 );
-        }    
+            Camera.MoveCamera(this.Left + (this.Width) / 2, this.Top + (this.Height) / 2);
+        }
+        #endregion
 
         /// <summary>
         /// Allows you to obtain the player's contact information

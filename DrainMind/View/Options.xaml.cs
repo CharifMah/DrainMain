@@ -27,9 +27,11 @@ namespace DrainMind.View
     /// <Author>Charif</Author>
     public partial class Options : Page
     {
-        private Page _windowPrecedente;        
-        private MainWindow mainwindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
-        StockOptionsFav Stock = new StockOptionsFav(Environment.CurrentDirectory);
+        private Page _windowPrecedente;   
+        
+        private MainWindow mainwindow = MainWindow.GetMainWindow;
+
+        StockOptions Stock = new StockOptions(Environment.CurrentDirectory);
 
         /// <summary>
         /// Constructor
@@ -42,7 +44,9 @@ namespace DrainMind.View
             InitItemComboBox();
             LoadSettings();
             _windowPrecedente = windowPrecedente;
+            DataContext = Settings.Get();
         }
+
         /// <summary>
         /// Initialise les controls avec les settings
         /// </summary>
@@ -116,6 +120,7 @@ namespace DrainMind.View
         }
         #endregion
 
+        #region Button
         /// <summary>
         /// Click pour revenir a la fenètre precedente et Sauvgarde les Settings
         /// </summary>
@@ -127,7 +132,7 @@ namespace DrainMind.View
             mainwindow.Content = _windowPrecedente;
             Stock.SauverSettings(Settings.Get());
         }
-
+        #endregion
 
         #region CheckBox
 
@@ -139,10 +144,8 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void checkBoxSound_Checked(object sender, RoutedEventArgs e)
         {
-            if (DrainMindGame.Instance != null)
-                DrainMindGame.Instance.BackgroundVolume = slider_Son.Value / slider_Son.Maximum;
             Settings.Get().SonOnOff = checkBoxSound.IsChecked.Value;
-
+            RefreshControl();
         }
 
         /// <summary>
@@ -152,10 +155,9 @@ namespace DrainMind.View
         /// <param name="e"></param>
         /// <Author>Charif</Author>
         private void checkBoxSound_Unchecked(object sender, RoutedEventArgs e)
-        {
-            if (DrainMindGame.Instance != null)
-                DrainMindGame.Instance.BackgroundVolume = 0;
+        {          
             Settings.Get().SonOnOff = checkBoxSound.IsChecked.Value;
+            RefreshControl();
         }
 
         /// <summary>
@@ -166,9 +168,9 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void checkBoxFullScreen_Checked(object sender, RoutedEventArgs e)
         {
-            mainwindow.WindowStyle = WindowStyle.None;
-            mainwindow.WindowState = WindowState.Maximized;
+           
             Settings.Get().PLeinEcran = checkBoxFullScreen.IsChecked.Value;
+            RefreshControl();
         }
 
         /// <summary>
@@ -179,12 +181,13 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void checkBoxFullScreen_Unchecked(object sender, RoutedEventArgs e)
         {
-            mainwindow.WindowState = WindowState.Normal;
-            mainwindow.WindowStyle = WindowStyle.ThreeDBorderWindow;
             Settings.Get().PLeinEcran = checkBoxFullScreen.IsChecked.Value;
+            RefreshControl();
         }
 
         #endregion
+
+        #region Slider
         /// <summary>
         /// Slider Value Change la valeur de la musique du jeux
         /// </summary>
@@ -193,12 +196,17 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void slider_Son_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
-            if (DrainMindGame.Instance != null)
-                DrainMindGame.Instance.BackgroundVolume = slider_Son.Value / slider_Son.Maximum;
             Settings.Get().Son = slider_Son.Value;
+            RefreshControl();
 
-            if (SliderValueTextBox != null)
-                SliderValueTextBox.Text = "Son : " + slider_Son.Value.ToString();
+
+        }
+        #endregion
+
+        public void RefreshControl()
+        {
+            SliderValueTextBox.Text = $"Son : {Settings.Get().Son}";
+            checkBoxSound.IsChecked = Settings.Get().SonOnOff;
         }
     }
 }

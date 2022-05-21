@@ -48,7 +48,7 @@ namespace DrainMind
         /// <param name="c">canvas</param>
         /// <param name="g">game</param>
         /// <param name="nom">name of the sprite</param>
-        public Enemie(double x, double y, Canvas c, Game g, Joueur _player, string nom = "fantome.png") : base(x, y, c,g,nom)
+        public Enemie(double x, double y, Canvas c, Game g, Joueur _player, string nom) : base(x, y, c,g,nom)
         {
             ++nombre;
             player = _player;

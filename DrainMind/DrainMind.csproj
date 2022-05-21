@@ -102,7 +102,6 @@
     <Resource Include="Sprites\fantomeVert.png" />
     <Resource Include="Sprites\FoodPeach.png" />
     <Resource Include="Sprites\Logo.ico" />
-    <Resource Include="Sprites\Vie\1.png" />
     <Resource Include="Sprites\Vie\2.png" />
     <Resource Include="Sprites\diagoSQ.png" />
     <Resource Include="Sprites\diagoZQ.png" />

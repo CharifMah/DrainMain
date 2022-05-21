@@ -12,7 +12,7 @@ namespace DrainMind.Stockage
     /// <summary>
     /// Classe chargée du stockage persistant des Settings
     /// </summary>
-    public class StockOptionsFav
+    public class StockOptions
     {
         private string folder;
 
@@ -21,7 +21,7 @@ namespace DrainMind.Stockage
         /// </summary>
         /// <param name="folder">Le path vers la sauvgarde du fichier</param>
         /// <Author>Charif</Author>
-        public StockOptionsFav(string folder)
+        public StockOptions(string folder)
         {
             this.folder = folder;
         }
@@ -35,11 +35,14 @@ namespace DrainMind.Stockage
         {
             if (Directory.Exists(folder))
             {
+                if (File.Exists(Path.Combine(folder, "Settings.json")))
+                {
+                    File.Delete(Path.Combine(folder, "Settings.json"));
+                }
                 using (FileStream stream = File.OpenWrite(Path.Combine(folder, "Settings.json")))
                 {
                     DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Settings));
                     ser.WriteObject(stream, Settings);
-
                 }
             }
         }

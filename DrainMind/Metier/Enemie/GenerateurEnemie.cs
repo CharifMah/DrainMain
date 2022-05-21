@@ -47,8 +47,8 @@ namespace DrainMind
             {            
                 double x = r.NextDouble() * GameWidth;
                 double y = r.NextDouble() * GameHeight/2;
-                Enemie b = new Enemie(x, y, this.canvas, Game, player);
-                Game.AddItem(b);
+                Enemie fantomeViolet = new Enemie(x, y, this.canvas, Game, player, "fantome.png");
+                Game.AddItem(fantomeViolet);
 
                 int Sec = r.Next(100, 300);
                 timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);
