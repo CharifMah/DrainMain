@@ -12,9 +12,9 @@ namespace DrainMind
     public class Vie
     {
         private List<Sprite> ListLife = new List<Sprite>();
+        private List<Sprite> ListEmptyLife = new List<Sprite>();
         private Canvas uiLife;
         private int vie;
-        private int MaxLife;
 
         /// <summary>
         /// Set Ajoute ou envleve de la vie
@@ -48,8 +48,49 @@ namespace DrainMind
         public Vie(Canvas lifeUI, int pointLife, int MaxPv)
         {
             uiLife = lifeUI;
-            MaxLife = MaxPv;
+            AddEmptyLife(MaxPv);
             AddLife(pointLife);        
+        }
+
+        /// <summary>
+        /// Enleve le nombre de vieMax
+        /// </summary>
+        /// <param name="numberOfEmptyLife">Nombre de vie Max a envelver</param>
+        /// <Author>Charif</Author>
+        public void RemoveEmptyLife(int numberOfEmptyLife)
+        {
+            for (int i = 0; i < numberOfEmptyLife; i++)
+            {
+                if (ListEmptyLife.Count - 1 != 0)
+                {
+                    uiLife.Children.Remove(ListEmptyLife[ListEmptyLife.Count - 1].Image);
+                    ListEmptyLife.Remove(ListEmptyLife[ListEmptyLife.Count - 1]);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Ajoute le nombre de Vie Max
+        /// </summary>
+        /// <param name="numberOfEmptyLife">Nombre de Vide max a Ajoute</param>
+        public void AddEmptyLife(int numberOfEmptyLife)
+        {
+            for (int i = 0; i < numberOfEmptyLife; i++)
+            {
+                double width = Application.Current.MainWindow.Width;
+
+                Sprite EmptyCoeur = new Sprite(SpriteStore.Get(Path.Combine("Vie", "1.png")).Image);
+                ListEmptyLife.Add(EmptyCoeur);
+                uiLife.Children.Add(ListEmptyLife[ListEmptyLife.Count - 1].Image);
+                if (ListEmptyLife.Count * 50 < width)
+                {
+                    ListEmptyLife[ListEmptyLife.Count - 1].Put((ListEmptyLife.Count - 1) * 50, 0);
+                }
+                if (ListEmptyLife.Count * 50 > width)
+                {
+                    ListEmptyLife[ListEmptyLife.Count - 1].Put((ListEmptyLife.Count * 50) - width, 40);
+                }
+            }
         }
 
         /// <summary>
@@ -76,14 +117,13 @@ namespace DrainMind
         /// <Author>Charif</Author>
         public void AddLife(int numberOfLife)
         {
-            if (ListLife.Count + numberOfLife > MaxLife)
+            if (ListLife.Count + numberOfLife > ListEmptyLife.Count)
             {
-                numberOfLife = MaxLife - ListLife.Count;
+                numberOfLife = ListEmptyLife.Count - ListLife.Count;
             }
             for (int i = 0; i < numberOfLife; i++)
             {
                 double width = Application.Current.MainWindow.Width;
-                double height = Application.Current.MainWindow.Height;
 
                 Sprite Coeur = new Sprite(SpriteStore.Get(Path.Combine("Vie", "2.png")).Image);
                 ListLife.Add(Coeur);
@@ -94,7 +134,7 @@ namespace DrainMind
                 }
                 if (ListLife.Count * 50 > width)
                 {
-                    ListLife[ListLife.Count - 1].Put(((ListLife.Count) * 50) - width , 40);
+                    ListLife[ListLife.Count - 1].Put((ListLife.Count * 50) - width , 40);
                 }
             }
         }

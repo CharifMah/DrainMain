@@ -59,6 +59,7 @@
     <None Remove="Sprites\moitiervie.png" />
     <None Remove="Sprites\tournerD.png" />
     <None Remove="Sprites\tournerG.png" />
+    <None Remove="Sprites\Vie\1.png" />
     <None Remove="TitreMenu.png" />
   </ItemGroup>
 
@@ -102,6 +103,7 @@
     <Resource Include="Sprites\fantomeVert.png" />
     <Resource Include="Sprites\FoodPeach.png" />
     <Resource Include="Sprites\Logo.ico" />
+    <Resource Include="Sprites\Vie\1.png" />
     <Resource Include="Sprites\Vie\2.png" />
     <Resource Include="Sprites\diagoSQ.png" />
     <Resource Include="Sprites\diagoZQ.png" />

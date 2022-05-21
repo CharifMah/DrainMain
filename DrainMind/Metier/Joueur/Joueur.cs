@@ -35,12 +35,12 @@ namespace DrainMind
         /// <param name="c">canvas of the application</param>
         /// <param name="g">drainMind</param>
         /// <param name="ui">canvas</param>
-        public Joueur(double x, double y, Canvas c, Game g, Canvas ui, int life) : base(x,y,c,g,"face.png")
+        public Joueur(double x, double y, Canvas c, Game g, Canvas ui, int life,int MaxPv) : base(x,y,c,g,"face.png")
         {
             DrainMind = g;
             
             //Creation de la Vie
-            playerLife = new Vie(ui,life,10);
+            playerLife = new Vie(ui,life, MaxPv);
 
             //Creation de l'experience
             XP = new Experience(0,0);
