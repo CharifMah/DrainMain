@@ -1,6 +1,8 @@
 ﻿using DrainMind.Metier.Joueur;
+using DrainMind.Stockage;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,9 +91,10 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
+            StockScore _StockScore = new StockScore(Directory.GetCurrentDirectory());
+            _StockScore.SauverScore(LesScores.Get().Scores);
+
             Environment.Exit(0);
         }
-
-
     }
 }

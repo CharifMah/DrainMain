@@ -6,7 +6,7 @@ using Xunit;
 
 namespace TestUnitaire
 {
-    public class Joueur
+    public class TestJoueur
     {
 
         [Fact]
