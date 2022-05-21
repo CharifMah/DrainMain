@@ -1,5 +1,6 @@
 ﻿using DrainMind.Metier;
-using DrainMind.Metier.Joueur;
+using DrainMind.Metier.enemie;
+using DrainMind.Metier.joueur;
 using DrainMind.Stockage;
 using System;
 using System.Collections.Generic;
@@ -82,6 +83,7 @@ namespace DrainMind.View
             XpProgressBar.DataContext = Experience.Instance;
             TextBlockNiveau.DataContext = Experience.Instance;
             TextBlockXpProgressBar.DataContext = Experience.Instance;
+            TextBlockEnemieLeft.DataContext = EnemieObservable.Get();
         }
 
         /// <summary>
@@ -209,6 +211,7 @@ namespace DrainMind.View
         }
 
         #endregion
+
 
         #region ScoreGroupBox
 

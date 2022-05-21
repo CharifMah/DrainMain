@@ -1,4 +1,4 @@
-﻿using DrainMind.Metier.Joueur;
+﻿using DrainMind.Metier.joueur;
 using System;
 using System.Collections.Generic;
 using System.IO;

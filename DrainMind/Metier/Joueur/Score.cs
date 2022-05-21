@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace DrainMind.Metier.Joueur
+namespace DrainMind.Metier.joueur
 {
     [DataContract]
     public class Score : observable.Observable

@@ -5,23 +5,26 @@ using System.Windows.Input;
 using DrainMind.Metier;
 using IUTGame;
 using System.IO;
-using DrainMind.Metier.Joueur;
+using DrainMind.Metier.joueur;
 
-namespace DrainMind
+namespace DrainMind.Metier.joueur
 {
     /// <summary>
     /// main character of the game
     /// </summary>
     public class Joueur : GameItem, IAnimable, IKeyboardInteract
     {        
-        private bool compte = false;
+      
         private bool goLeft = false, goRight = false, goUp = false, goDown = false;
-        private double time = 0;
+  
         private double speed = 20;
         private int niveau;
+
         private Vie playerLife;
         private Experience XP;
-        private Game DrainMind;
+
+        private bool compte = false;
+        private double time = 0;
         private TimeSpan Waiting = new TimeSpan(0);
 
         // TypeName of the player is "Joueur"
@@ -35,9 +38,9 @@ namespace DrainMind
         /// <param name="c">canvas of the application</param>
         /// <param name="g">drainMind</param>
         /// <param name="ui">canvas</param>
-        public Joueur(double x, double y, Canvas c, Game g, Canvas ui, int life,int MaxPv) : base(x,y,c,g,"face.png")
+        public Joueur(double x, double y, Canvas c, DrainMindGame g, Canvas ui, int life,int MaxPv) : base(x,y,c,g,"face.png")
         {
-            DrainMind = g;
+            DrainMindGame.Instance = g;
             
             //Creation de la Vie
             playerLife = new Vie(ui,life, MaxPv);
@@ -131,18 +134,23 @@ namespace DrainMind
                 {
                     if (other.TypeName == "Enemie")
                     {
-                        LooseLife(1);
+
                         other.Dispose();
-                        Score.Get().EnemieKilled += 1;
-                        Score.Get().Point += 10;
+        
+                        enemie.EnemieObservable.Get().NombreEnemie--;
                         compte = true;
                         time = 0;
+
+                        LooseLife(1);                     
+                        Score.Get().EnemieKilled += 1;
+                        Score.Get().Point += 10;                        
                         XP.XP += 500;
+
                         PlaySound("Bruit.mp3");
                         LvlUpEffect();
                     }
-                }            
-
+                }
+                Waiting = new TimeSpan(0, 0, 0, 0, 50);
                 if (other.TypeName == "Peach")
                 {
                     GainLife(1);
@@ -152,7 +160,7 @@ namespace DrainMind
                     PlaySound("SoundTake.mp3");
                 }
 
-                Waiting = new TimeSpan(0, 0, 0, 0, 10);
+              
             }
         }
 
@@ -174,7 +182,7 @@ namespace DrainMind
         /// <param name="key">key pressed</param>
         public void KeyDown(Key key)
         {
-            if (DrainMind.IsRunning)
+            if (DrainMindGame.Instance.IsRunning)
             {
                 switch (key)
                 {
@@ -220,7 +228,7 @@ namespace DrainMind
         /// <param name="key">key not pressed anymore</param>
         public void KeyUp(Key key)
         {
-            if (DrainMind.IsRunning)
+            if (DrainMindGame.Instance.IsRunning)
             {
                 switch (key)
                 {
@@ -293,7 +301,7 @@ namespace DrainMind
             if (Experience.Instance.Niveau > niveau)
             {
                 niveau = Experience.Instance.Niveau;
-                this.speed *= 1.2;
+                this.speed *= 1.001;
                 PlaySound("LvlUp.mp3");
             }
 

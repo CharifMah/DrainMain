@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using DrainMind.Metier.joueur;
 
-namespace DrainMind
+namespace DrainMind.Metier.enemie
 {
     /// <summary>
     /// ennemies of the game
@@ -18,8 +19,7 @@ namespace DrainMind
         //ennemies's angle
         private double angle = 315;
 
-        //ennemies's number
-        private static int nombre = 0;
+ 
 
         //time interval
         private TimeSpan Waiting = new TimeSpan(0);
@@ -50,7 +50,7 @@ namespace DrainMind
         /// <param name="nom">name of the sprite</param>
         public Enemie(double x, double y, Canvas c, Game g, Joueur _player, string nom) : base(x, y, c,g,nom)
         {
-            ++nombre;
+            
             player = _player;
         }
 
@@ -74,6 +74,7 @@ namespace DrainMind
             if (other.TypeName == "Joueur")
             {                  
                 angle = 360 - angle;
+                this.Dispose();
             }
             else if (other.TypeName == this.TypeName)
             {

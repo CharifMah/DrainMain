@@ -1,4 +1,5 @@
-﻿using DrainMind.Metier.Joueur;
+﻿using DrainMind.Metier;
+using DrainMind.Metier.joueur;
 using DrainMind.Stockage;
 using System;
 using System.Collections.Generic;

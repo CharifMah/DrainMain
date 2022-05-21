@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace DrainMind.Metier.Joueur
+namespace DrainMind.Metier.joueur
 {
     /// <summary>
     /// Classe des niveau du personnage la partie actuel

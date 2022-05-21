@@ -1,10 +1,12 @@
 ﻿using DrainMind.Metier;
+using DrainMind.Metier.enemie;
+using DrainMind.Metier.joueur;
 using DrainMind.View;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DrainMind
+namespace DrainMind.Metier
 {
     /// <summary>
     /// Game : drainMind

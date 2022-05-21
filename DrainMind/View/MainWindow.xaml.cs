@@ -10,7 +10,7 @@ using DrainMind.Metier;
 using DrainMind.View;
 using System.Linq;
 using DrainMind.Stockage;
-using DrainMind.Metier.Joueur;
+using DrainMind.Metier.joueur;
 
 namespace DrainMind
 {
