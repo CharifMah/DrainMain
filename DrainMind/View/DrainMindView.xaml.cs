@@ -98,7 +98,7 @@ namespace DrainMind.View
 
         #endregion
 
-        #region MainWindowEvents
+        #region DrainMindViewEvents
 
         /// <summary>
         /// Event quand la taille de l'ecran change rescale les element de la fenetre
@@ -155,15 +155,7 @@ namespace DrainMind.View
             e.Handled = true;
 
         }
-        /// <summary>
-        /// Enclencher lorsque que la fenetre ce ferme
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Page_ContextMenuClosing(object sender, ContextMenuEventArgs e)
-        {
-            Stock.SauverScore(LesScores.Get().Scores);
-        }
+        
         #endregion
 
         #region ButtonMenuPause

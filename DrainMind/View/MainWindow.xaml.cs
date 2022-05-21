@@ -10,6 +10,7 @@ using DrainMind.Metier;
 using DrainMind.View;
 using System.Linq;
 using DrainMind.Stockage;
+using DrainMind.Metier.Joueur;
 
 namespace DrainMind
 {
@@ -21,6 +22,7 @@ namespace DrainMind
     {
         //StockDesOptions
         private StockOptions _StockOptionsFav = new StockOptions(Directory.GetCurrentDirectory());
+        private StockScore _StockScore = new StockScore(Directory.GetCurrentDirectory());
 
         //Recupère la MainWindow Actuel
         public static MainWindow GetMainWindow
@@ -67,6 +69,7 @@ namespace DrainMind
         /// <Author>Charif</Author>
         private void FentrePrincipalDrainMain_Closed(object sender, System.EventArgs e)
         {
+            _StockScore.SauverScore(LesScores.Get().Scores);
             Environment.Exit(0);
         }
     }
