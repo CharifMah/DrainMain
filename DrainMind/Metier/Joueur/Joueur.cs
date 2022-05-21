@@ -38,8 +38,7 @@ namespace DrainMind
         public Joueur(double x, double y, Canvas c, Game g, Canvas ui, int life) : base(x,y,c,g,"face.png")
         {
             DrainMind = g;
-
-
+            
             //Creation de la Vie
             playerLife = new Vie(ui,life);
 
@@ -134,6 +133,8 @@ namespace DrainMind
                     {
                         LooseLife(1);
                         other.Dispose();
+                        Score.Get().EnemieKilled += 1;
+                        Score.Get().Point += 10;
                         compte = true;
                         time = 0;
                         XP.XP += 500;

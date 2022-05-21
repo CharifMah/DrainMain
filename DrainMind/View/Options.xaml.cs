@@ -203,6 +203,10 @@ namespace DrainMind.View
         }
         #endregion
 
+        /// <summary>
+        /// Sychronise les donnee avec les controles graphique
+        /// </summary>
+        /// <Author>Charif</Author>
         public void RefreshControl()
         {
             SliderValueTextBox.Text = $"Son : {Settings.Get().Son}";

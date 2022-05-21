@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 
@@ -27,16 +28,16 @@ namespace DrainMind.Stockage
         /// </summary>
         /// <param name="Settings">Settings a sauvgarde</param>
         /// <Author>Charif</Author>
-        public void SauverScore(Score score)
+        public void SauverScore(List<Score> score)
         {
             if (Directory.Exists(folder))
             {
-                if (File.Exists(Path.Combine(folder, "Score.json")))
-                    File.Delete(Path.Combine(folder, "Score.json"));
+                if (File.Exists(Path.Combine(folder, "Score.xml")))
+                    File.Delete(Path.Combine(folder, "Score.xml"));
 
-                using (FileStream stream = File.OpenWrite(Path.Combine(folder, "Score.json")))
+                using (FileStream stream = File.OpenWrite(Path.Combine(folder, "Score.xml")))
                 {
-                    DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Score));
+                    DataContractSerializer ser = new DataContractSerializer(typeof(List<Score>));
                     ser.WriteObject(stream, score);
                 }
             }
@@ -49,15 +50,15 @@ namespace DrainMind.Stockage
         /// <returns>Les Settings Sauvgarder</returns>
         /// <Author>Charif</Author>
         /// <exception cref="System.Windows.Markup.XamlParseException">arrive pas deserialiser un fichier corompu</exception>
-        public Score ChargerScore()
+        public List<Score> ChargerScore()
         {
-            Score d2;
-            if (File.Exists(Path.Combine(folder, "Score.json")))
+            List<Score> d2;
+            if (File.Exists(Path.Combine(folder, "Score.xml")))
             {
-                using (FileStream stream = File.OpenRead(Path.Combine(folder, "Score.json")))
+                using (FileStream stream = File.OpenRead(Path.Combine(folder, "Score.xml")))
                 {
-                    DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Score));
-                    d2 = ser.ReadObject(stream) as Score;
+                    DataContractSerializer ser = new DataContractSerializer(typeof(List<Score>));
+                    d2 = ser.ReadObject(stream) as List<Score>;
                 }
 
             }

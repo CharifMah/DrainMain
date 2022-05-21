@@ -7,10 +7,9 @@ using System.Text;
 namespace DrainMind.Metier.Joueur
 {
     [DataContract]
-    public class Score
+    public class Score : observable.Observable
     {
-        StockScore Stock = new StockScore(Environment.CurrentDirectory);
-
+        
         [DataMember]
         private string name;
         [DataMember]
@@ -23,20 +22,41 @@ namespace DrainMind.Metier.Joueur
         public string Nom
         { 
             get { return name; }
-            set { name = value; }
+            set
+            { 
+                name = value;
+                this.NotifyPropertyChanged();
+            }
+            
         }
 
         public int EnemieKilled
-        { get { return enemiekilled; } set { enemiekilled = value; } }
+        { get { return enemiekilled; } set 
+            { 
+                enemiekilled = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         public int Point
-        { get { return point; } set { point = value; } }
+        { 
+            get { return point; } 
+
+            set 
+            { 
+                point = value;
+                this.NotifyPropertyChanged();
+            } 
+        }
 
         #endregion
 
+
         private Score()
         {
-            LoadScore();
+            name = "Bob";
+            enemiekilled=0;
+            point=0;
         }
 
         private static Score instance;
@@ -48,15 +68,12 @@ namespace DrainMind.Metier.Joueur
             return instance;
         }
 
-        private void LoadScore()
+        public static void Destroy()
         {
-            Score s = Stock.ChargerScore();
-            if (s != null)
-            {
-                this.Nom = s.name;
-                this.EnemieKilled = s.enemiekilled;
-                this.Point = s.point;
-            }
+            if (instance != null)
+                instance = null;
         }
+
+
     }
 }

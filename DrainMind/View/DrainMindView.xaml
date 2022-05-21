@@ -43,13 +43,14 @@
                 Value="{Binding Path=XP, Mode=OneWay}"
                 Maximum="{Binding Path=XPMax,Mode=OneWay}"
             />
+            
             <TextBlock x:Name="TextBlockNiveau"
-                Text="{Binding Path=Niveau, Mode=OneWay , StringFormat={}Niveau: {0}}"
-                VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Grid.Column="1"
-                       Grid.Row="2"
-                       Margin="0,50,0,0"/>
+                    Text="{Binding Path=Niveau, Mode=OneWay , StringFormat={}Niveau: {0}}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Margin="0,50,0,0"/>
 
             <TextBlock x:Name="TextBlockXpProgressBar" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2">
                 <TextBlock.Text>
@@ -59,6 +60,46 @@
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
+
+            <GroupBox Visibility="Visible" FontSize="40" x:Name="GroupBoxInfoPerso" Grid.Column="1" Grid.Row="1">
+
+                <GroupBox.Background>
+                    <SolidColorBrush Color="WhiteSmoke" Opacity="0.4"/>
+                </GroupBox.Background>
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Psedo : "
+                               FontSize="50"
+                               Grid.Row="0" 
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center"
+                               />
+
+                    <TextBox x:Name="NameInput"
+                             Grid.Row="1" 
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Stretch"
+                             Margin="50"
+                             />
+
+                    <Button Grid.Row="2" 
+                            Name="ButtonTerminerInfo"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Content="{x:Static res:Strings.Terminer}"
+                            Click="ButtonTerminerInfo_Click"
+                            Width="200"
+                            />
+                </Grid>
+            </GroupBox>
+
 
             <GroupBox Header="Pause" Visibility="Hidden" FontSize="40" x:Name="GroupBoxPause" Grid.Column="1" Grid.Row="1">
 
@@ -112,7 +153,6 @@
 
                 </Grid>
             </GroupBox>
-
 
             <GroupBox Header="Score" Visibility="Hidden" FontSize="40" x:Name="ScoreMenuGroupBox" Grid.Column="1" Grid.Row="1">
 

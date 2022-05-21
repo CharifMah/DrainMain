@@ -13,14 +13,17 @@ namespace DrainMind
     {
         //camera which follow the player
         private ScrollViewer Camera;
+
         //game's canvas
         private Canvas UIcanvas;
-        private Joueur player;
+
         private static DrainMindGame game;
         public static DrainMindGame Instance
         {
             get { return game; }
+            set { game = value; }
         }
+
         /// <summary>
         /// constructor of the game
         /// </summary>
@@ -46,9 +49,9 @@ namespace DrainMind
             //Creation de la Camera
             Camera cam = new Camera(Width / 2, Height / 2, Canvas, this, Camera);
             AddItem(cam);
-
+            
             //Creation du joueur       
-            player = new Joueur(Width / 2, Height / 2, Canvas, this, UIcanvas, 10);
+            Joueur player = new Joueur(Width / 2, Height / 2, Canvas, this, UIcanvas, 10);
             AddItem(player);
  
             AddItem(new GenerateurEnemie(this, Canvas, player));

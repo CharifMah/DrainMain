@@ -150,7 +150,10 @@
   <data name="Son" xml:space="preserve">
     <value>Son : </value>
   </data>
+  <data name="Terminer" xml:space="preserve">
+    <value>Terminer</value>
+  </data>
   <data name="Titre" xml:space="preserve">
-    <value>Le petit jeu !</value>
+    <value>DrainMind</value>
   </data>
 </root>

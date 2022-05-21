@@ -153,12 +153,20 @@ namespace DrainMind.Res {
                 return ResourceManager.GetString("NewGame", resourceCulture);
             }
         }
-
+  
         public static string Score
         {
             get
             {
                 return ResourceManager.GetString("Score", resourceCulture);
+            }
+        }
+
+        public static string Terminer
+        {
+            get
+            {
+                return ResourceManager.GetString("Terminer", resourceCulture);
             }
         }
     }

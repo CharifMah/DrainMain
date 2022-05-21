@@ -26,40 +26,51 @@ namespace DrainMind.View
         private DrainMindGame drainMind;
         private MenuPrincipale _MenuPrincipale;
         StockScore Stock = new StockScore(Environment.CurrentDirectory);
-        private MainWindow mainwindow = MainWindow.GetMainWindow;
 
         public DrainMindView(MenuPrincipale Menu)
         {        
             ShowsNavigationUI = false;
             InitializeComponent();
-
-            if (drainMind == null)
-            {
-                drainMind = new DrainMindGame(canvas, CanvasViewer, UI);
-                
-                drainMind.Run();
-            }
-            if (!drainMind.IsRunning)
-            {
-                mainwindow.Content = this;
-                drainMind.Resume();          
-            }
-            InitDataContext();
-            StartupSettings();
+ 
             _MenuPrincipale = Menu;
         }
 
         #region Init Methode
+
+        /// <summary>
+        /// Launch the Game
+        /// </summary>
+        /// <Author>Charif</Author>
+        public void ResumeOrCreateGame()
+        {
+            if (drainMind == null)
+            {
+                drainMind = new DrainMindGame(canvas, CanvasViewer, UI);
+                drainMind.Run();
+            }
+            if (!drainMind.IsRunning)
+            {
+                MainWindow.GetMainWindow.Content = this;
+                drainMind.Resume();
+            }
+            StartupSettings();
+        }
+
+        /// <summary>
+        /// Load Settings (Sounds ...) at the start of the game
+        /// </summary>
         public void StartupSettings()
         {
+            InitDataContext();
+            ListViewLoadScores();
+
             if (Settings.Get().Son == 0 || !Settings.Get().SonOnOff)
             {
                 drainMind.BackgroundVolume = 0;
                 Settings.Get().Son = 0;
             }
             else
-                drainMind.BackgroundVolume = Settings.Get().Son;
-
+                drainMind.BackgroundVolume = Settings.Get().Son;              
         }
 
         /// <summary>
@@ -73,16 +84,15 @@ namespace DrainMind.View
         }
 
         /// <summary>
-        /// Charge les Scores depuis le fichier json ou depuis linstance existante
+        /// Charge les scores dans la listview
         /// </summary>
-        /// <Author>Charif</Author>
-        public void LoadScore()
+        public void ListViewLoadScores()
         {
-            Score.Get().Nom = "Charif";
-            Score.Get().EnemieKilled = 999;
-            Score.Get().Point = 99999;
-            this.ScoreListView.Items.Add("Charif");
-
+            foreach (Score score in LesScores.Get().Scores)
+            {
+                ScoreListView.Items.Add(score);
+            }
+               
         }
 
         #endregion
@@ -97,9 +107,11 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Camera.MoveCamera(Camera.X, Camera.Y);
+            if (drainMind != null)
+            {
+                Camera.MoveCamera(Camera.X, Camera.Y);
+            }           
         }
-
 
         /// <summary>
         /// Affiche ou rend invisible le menu pause
@@ -166,7 +178,7 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void OptionButton_Click(object sender, RoutedEventArgs e)
         {
-            mainwindow.Content = new Options(this);
+            MainWindow.GetMainWindow.Content = new Options(this);
         }
 
         /// <summary>
@@ -178,8 +190,6 @@ namespace DrainMind.View
         {
             GroupBoxPause.Visibility = Visibility.Hidden;
             ScoreMenuGroupBox.Visibility = Visibility.Visible;
-            Stock.SauverScore(Score.Get());
-            LoadScore();
         }
 
         /// <summary>
@@ -191,19 +201,40 @@ namespace DrainMind.View
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             drainMind.Pause();          
-            _MenuPrincipale.PlayButton.Content = DrainMind.Res.Strings.Reprendre;           
-            mainwindow.Content = _MenuPrincipale;                     
+            _MenuPrincipale.PlayButton.Content = DrainMind.Res.Strings.Reprendre;
+            MainWindow.GetMainWindow.Content = _MenuPrincipale;
         }
 
         #endregion
 
         #region ScoreGroupBox
+
         private void RetourScoreButton_Click(object sender, RoutedEventArgs e)
         {
             GroupBoxPause.Visibility = Visibility.Visible;
             ScoreMenuGroupBox.Visibility = Visibility.Hidden;
-            Stock.SauverScore(Score.Get());
+            Stock.SauverScore(LesScores.Get().Scores);
         }
+
         #endregion
+
+        #region Saisi des information GroupBox
+        /// <summary>
+        /// Button Terminer apres la saisi du psedo lance un partie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonTerminerInfo_Click(object sender, RoutedEventArgs e)
+        {
+            GroupBoxInfoPerso.Visibility = Visibility.Hidden;
+            Score.Destroy();
+            Score.Get().Nom = NameInput.Text;
+            LesScores.Get().Scores.Add(Score.Get());
+            ResumeOrCreateGame();
+        }
+
+        #endregion
+
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrainMind.Metier.Joueur;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,6 +57,18 @@ namespace DrainMind.View
         }
 
         /// <summary>
+        /// Cree et lance une nouvelle partie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <Author>Charif</Author>
+        private void NewGameButton_Click(object sender, RoutedEventArgs e)
+        {          
+            drainmindView = new DrainMindView(this);
+            mainwindow.Content = drainmindView;
+        }
+
+        /// <summary>
         /// Ouvre les options
         /// </summary>
         /// <param name="sender"></param>
@@ -77,15 +90,6 @@ namespace DrainMind.View
             Environment.Exit(0);
         }
 
-        /// <summary>
-        /// Cree et lance une nouvelle partie
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <Author>Charif</Author>
-        private void NewGameButton_Click(object sender, RoutedEventArgs e)
-        {
-            mainwindow.Content = new DrainMindView(this);
-        }
+
     }
 }
