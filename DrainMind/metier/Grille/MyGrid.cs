@@ -100,9 +100,7 @@ namespace DrainMind.metier.Grille
                 sprite.Width = (int)largeurColonne - 2;
                 sprite.Height = (int)hauteurligne - 1;
                 Canvas.SetLeft(sprite, x + 1);
-                Canvas.SetTop(sprite, y + 1);
-              
-
+                Canvas.SetTop(sprite, y + 1);            
             }
             return sprite;
         }
@@ -122,10 +120,9 @@ namespace DrainMind.metier.Grille
 
             for (int i = 0; i < Vie.ListEmptyLife.Count; i++)
             {
-                PutSpriteInCase(i, 0, Vie.ListEmptyLife[i]);
+                PutSpriteInCase(i,0, Vie.ListEmptyLife[i]);
                 canvas.Children.Add(Vie.ListEmptyLife[i]);
             }
-            drawGrid();
         }
     }
 }

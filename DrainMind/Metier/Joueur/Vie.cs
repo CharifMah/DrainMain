@@ -61,7 +61,6 @@ namespace DrainMind
             uiLife = lifeUI;
             MyGrid.NombreDeLigne = 20;
             MyGrid.NombreDeCollumn = 40;
-           lifeUI.Children.Add( MyGrid.drawGrid());
             AddEmptyLife(MaxPv);
             AddLife(pointLife);
             
@@ -114,8 +113,6 @@ namespace DrainMind
                 {
                     uiLife.Children.Remove(_listlife[_listlife.Count - 1]);
                     _listlife.Remove(_listlife[_listlife.Count - 1]);
-                    MyGrid.ResizeCanvas(ref uiLife);
-                    uiLife.Children.Add(MyGrid.drawGrid());
                 }            
             }               
         }
