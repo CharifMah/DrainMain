@@ -38,6 +38,7 @@ namespace DrainMind.View
         {      
             ShowsNavigationUI = false;       
             InitializeComponent();
+           
             GroupBoxUpgradeSkill.Visibility = Visibility.Hidden;
             GroupBoxInfoPerso.Visibility = Visibility.Visible;
              _MenuPrincipale = Menu;
@@ -52,7 +53,7 @@ namespace DrainMind.View
         private void ButtonTerminerInfo_Click(object sender, RoutedEventArgs e)
         {
             GroupBoxInfoPerso.Visibility = Visibility.Hidden;
-            Score.Destroy();
+      
             Score.Get().Nom = NameInput.Text;
             LesScoresModel.Get().Scores.Add(Score.Get());
             ResumeOrCreateGame();
@@ -86,7 +87,9 @@ namespace DrainMind.View
         /// Load Settings (Sounds ...) at the start of the game
         /// </summary>
         public void StartupSettings()
-        {          
+        {
+            Score.Destroy();
+            EnemiesModel.Destroy();
             ListViewLoadScores();
             InitDataContext();
             if (Settings.Get().Son == 0 || !Settings.Get().SonOnOff)
@@ -96,6 +99,7 @@ namespace DrainMind.View
             }
             else
                 drainMind.BackgroundVolume = Settings.Get().Son;
+        
             StatsPersoModel.LvlUpGrpBox = GroupBoxUpgradeSkill;
         }
 
@@ -165,7 +169,11 @@ namespace DrainMind.View
                 //Resume
                 if (GroupBoxPause.Visibility == Visibility.Visible && !Pressed)
                 {
-                    drainMind.Resume();
+                    if (StatsPersoModel.LvlUpGrpBox.Visibility == Visibility.Hidden)
+                    {
+                        drainMind.Resume();
+                    }
+                    
                     GroupBoxPause.Visibility = Visibility.Hidden;
                     Pressed = true;
                 }
@@ -217,7 +225,11 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void Resumebutton_Click(object sender, RoutedEventArgs e)
         {
-            drainMind.Resume();
+            if (StatsPersoModel.LvlUpGrpBox.Visibility == Visibility.Hidden)
+            {
+                drainMind.Resume();
+            }
+            
             GroupBoxPause.Visibility = Visibility.Hidden;
         }
 

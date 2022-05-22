@@ -24,6 +24,13 @@ namespace DrainMind.Metier.enemie
             _nombreenemie = 0;
         }
 
+        public static void Destroy()
+        {
+            if (Instance != null)
+                Instance = null;
+        }
+
+
         private static EnemiesModel Instance;
 
         public static EnemiesModel Get()

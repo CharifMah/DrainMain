@@ -92,6 +92,7 @@ namespace DrainMind.metier.joueur
             this.speed = Speed;
             this._xp = Xp;
             this._niveau = niveau;
+           
             instance = this;
         }
     }
