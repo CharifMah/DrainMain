@@ -31,8 +31,10 @@
     <None Remove="Sprites\4.png" />
     <None Remove="Sprites\5.png" />
     <None Remove="Sprites\6.png" />
+    <None Remove="Sprites\Attaque1.png" />
     <None Remove="Sprites\BackGround.png" />
     <None Remove="Sprites\Background2.png" />
+    <None Remove="Sprites\boss.png" />
     <None Remove="Sprites\diagoSD.png" />
     <None Remove="Sprites\diagoSQ.png" />
     <None Remove="Sprites\diagoZD.png" />
@@ -52,13 +54,18 @@
     <None Remove="Sprites\fondTest2.png" />
     <None Remove="Sprites\FoodPeach.png" />
     <None Remove="Sprites\gauche.png" />
+    <None Remove="Sprites\Gloom.png" />
     <None Remove="Sprites\HTournerD.png" />
     <None Remove="Sprites\HTournerG.png" />
     <None Remove="Sprites\joueur.png" />
     <None Remove="Sprites\Logo.ico" />
     <None Remove="Sprites\moitiervie.png" />
+    <None Remove="Sprites\nightmare.png" />
     <None Remove="Sprites\tournerD.png" />
     <None Remove="Sprites\tournerG.png" />
+    <None Remove="Sprites\Type1Arme1.png" />
+    <None Remove="Sprites\Type1Arme2.png" />
+    <None Remove="Sprites\Type1Arme3.png" />
     <None Remove="Sprites\Vie\1.png" />
     <None Remove="TitreMenu.png" />
   </ItemGroup>
@@ -96,22 +103,26 @@
     <Content Include="Sounds\SoundTake.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Sprites\Attaque1.png" />
     <Resource Include="Sprites\Background.png" />
     <Resource Include="Sprites\Background2.png" />
+    <Resource Include="Sprites\boss.png" />
     <Resource Include="Sprites\diagoSD.png" />
     <Resource Include="Sprites\diagoZD.png" />
     <Resource Include="Sprites\fantomeVert.png" />
     <Resource Include="Sprites\FoodPeach.png" />
+    <Resource Include="Sprites\Gloom.png" />
     <Resource Include="Sprites\Logo.ico" />
+    <Resource Include="Sprites\nightmare.png" />
+    <Resource Include="Sprites\Type1Arme1.png" />
+    <Resource Include="Sprites\Type1Arme2.png" />
+    <Resource Include="Sprites\Type1Arme3.png" />
     <Resource Include="Sprites\Vie\1.png" />
     <Resource Include="Sprites\Vie\2.png" />
     <Resource Include="Sprites\diagoSQ.png" />
     <Resource Include="Sprites\diagoZQ.png" />
     <Resource Include="Sprites\dos.png" />
     <Resource Include="Sprites\droite.png" />
-    <Resource Include="Sprites\droite1.png" />
-    <Resource Include="Sprites\droite2.png" />
-    <Resource Include="Sprites\droite3.png" />
     <Resource Include="Sprites\face.png" />
     <Resource Include="Sprites\fantome.png" />
     <Resource Include="Sprites\fond.png" />
