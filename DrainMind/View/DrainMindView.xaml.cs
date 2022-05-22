@@ -30,6 +30,7 @@ namespace DrainMind.View
         private MenuPrincipale _MenuPrincipale;
         StockScore Stock = new StockScore(Environment.CurrentDirectory);
 
+        private Canvas grid;
         public DrainMindView(MenuPrincipale Menu)
         {      
             ShowsNavigationUI = false;       
@@ -77,7 +78,10 @@ namespace DrainMind.View
                 Settings.Get().Son = 0;
             }
             else
-                drainMind.BackgroundVolume = Settings.Get().Son;              
+                drainMind.BackgroundVolume = Settings.Get().Son;
+
+
+           grid = MyGrid.drawGrid();
         }
 
         /// <summary>
@@ -152,7 +156,28 @@ namespace DrainMind.View
                     Pressed = true;
                 }
             }
-     
+
+            if (e.Key == Key.G)
+            {
+                bool Pressed = false;
+                
+                //Pause
+                if (!Pressed && !UI.Children.Contains(grid))
+                {
+                    UI.Children.Add(grid);
+                    
+                    Pressed = true;
+
+
+                }
+                //Resume
+                if (!Pressed && UI.Children.Contains(grid))
+                {
+                    UI.Children.Remove(grid);
+                    Pressed = true;
+                }
+            }
+
         }
 
         /// <summary>

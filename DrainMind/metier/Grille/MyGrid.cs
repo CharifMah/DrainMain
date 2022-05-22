@@ -1,4 +1,5 @@
-﻿using IUTGame;
+﻿using DrainMind.View.Map;
+using IUTGame;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -15,6 +16,7 @@ namespace DrainMind.metier.Grille
         private static double largeurColonne;
         private static int nombreligne;
         private static int nombrecollumn;
+        private static Canvas ActualGrid;
 
 
         #region Property
@@ -30,6 +32,11 @@ namespace DrainMind.metier.Grille
             get {  return nombrecollumn; }
             set { nombrecollumn = value; }
         }    
+
+        public static Canvas Grid
+        {
+            get { return ActualGrid; }
+        }
 
         #endregion
 
@@ -109,20 +116,22 @@ namespace DrainMind.metier.Grille
         /// Rafraichi les sprite en fonction de la taile de la fenetre
         /// </summary>
         /// <param name="canvas">Le canvas des element ajoute</param>
-        public static void ResizeCanvas(ref Canvas canvas)
+        public static void ResizeCanvas(ref Canvas ui)
         {
-            canvas.Children.Clear();
-            for (int i = 0; i < Vie.ListLife.Count; i++)
+            ui.Children.Clear();
+
+            foreach (KeyValuePair<FrameworkElement,Coordonnees> life in Vie.ListLife)
             {
-                PutSpriteInCase(i,0,Vie.ListLife[i]);
-                canvas.Children.Add(Vie.ListLife[i]);
+                PutSpriteInCase(life.Value.Colonne,life.Value.Ligne, life.Key);
+                ui.Children.Add(life.Key);
             }
 
-            for (int i = 0; i < Vie.ListEmptyLife.Count; i++)
+            foreach (KeyValuePair<FrameworkElement, Coordonnees> life_empty in Vie.ListEmptyLife)
             {
-                PutSpriteInCase(i,0, Vie.ListEmptyLife[i]);
-                canvas.Children.Add(Vie.ListEmptyLife[i]);
+                PutSpriteInCase(life_empty.Value.Colonne, life_empty.Value.Ligne, life_empty.Key);
+                ui.Children.Add(life_empty.Key);
             }
+
         }
     }
 }

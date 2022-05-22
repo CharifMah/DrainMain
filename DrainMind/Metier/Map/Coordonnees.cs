@@ -13,12 +13,18 @@ namespace DrainMind.View.Map
         //Nombre de colonne sur la carte
         private int colonne;
 
+        public int Colonne
+            { get { return colonne; }}
+
+        public int Ligne
+            { get { return ligne; }}
+
         /// <summary>
         /// Constructeur des coordonnes avec la ligne et la colonne
         /// </summary>
         /// <param name="ligne">ligne sur map</param>
         /// <param name="colonne">colonne sur map</param>
-        public Coordonnees(int ligne, int colonne)
+        public Coordonnees(int colonne,int ligne)
         {
             this.ligne = ligne;
             this.colonne = colonne;
