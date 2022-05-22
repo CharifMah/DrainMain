@@ -6,6 +6,7 @@ using DrainMind.Metier.joueur;
 using DrainMind.Stockage;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,10 @@ namespace DrainMind.View
     {
         private DrainMindGame drainMind;
         private MenuPrincipale _MenuPrincipale;
+
+        private SortAdorner listViewSortAdorner = null;
+        private GridViewColumnHeader listViewSortCol = null;
+
         StockScore Stock = new StockScore(Environment.CurrentDirectory);
         public DrainMindView(MenuPrincipale Menu)
         {      
@@ -246,6 +251,28 @@ namespace DrainMind.View
             GroupBoxPause.Visibility = Visibility.Visible;
             ScoreMenuGroupBox.Visibility = Visibility.Hidden;
         }
+
+
+        private void lvUsersColumnHeader_Click(object sender, RoutedEventArgs e)
+        {
+            GridViewColumnHeader column = (sender as GridViewColumnHeader);
+            string sortBy = column.Tag.ToString();
+            if (listViewSortCol != null)
+            {
+                AdornerLayer.GetAdornerLayer(listViewSortCol).Remove(listViewSortAdorner);
+                ScoreListView.Items.SortDescriptions.Clear();
+            }
+
+            ListSortDirection newDir = ListSortDirection.Ascending;
+            if (listViewSortCol == column && listViewSortAdorner.Direction == newDir)
+                newDir = ListSortDirection.Descending;
+
+            listViewSortCol = column;
+            listViewSortAdorner = new SortAdorner(listViewSortCol, newDir);
+            AdornerLayer.GetAdornerLayer(listViewSortCol).Add(listViewSortAdorner);
+            ScoreListView.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
+        }
+    
 
         #endregion
 

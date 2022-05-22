@@ -222,9 +222,21 @@
                     <ListView x:Name="ScoreListView" Background="Transparent" Grid.Row="0" FontSize="19">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Name : " Width="200" DisplayMemberBinding="{Binding Nom , Mode=OneWay}"/>
-                                <GridViewColumn Header="Enemie Killed : " Width="300" DisplayMemberBinding="{Binding EnemieKilled,Mode=OneWay}"/>
-                                <GridViewColumn Header="Score : " Width="200" DisplayMemberBinding="{Binding Point,Mode=OneWay}"/>
+                                <GridViewColumn Width="200" DisplayMemberBinding="{Binding Nom , Mode=OneWay}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Tag="Name" Click="lvUsersColumnHeader_Click">Name : </GridViewColumnHeader>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="300" DisplayMemberBinding="{Binding EnemieKilled,Mode=OneWay}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Tag="EnemieKilled" Click="lvUsersColumnHeader_Click">Enemie Killed :</GridViewColumnHeader>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="200" DisplayMemberBinding="{Binding Point,Mode=OneWay}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Tag="Score" Click="lvUsersColumnHeader_Click">Score :</GridViewColumnHeader>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
