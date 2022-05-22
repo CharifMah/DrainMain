@@ -20,7 +20,7 @@ namespace DrainMind
         {
             g = game;
             PeachCanvas = canvas;        
-            timeToCreate = new TimeSpan(0, 0, 5);
+            timeToCreate = new TimeSpan(0, 0, 1);
         }
 
         public override string TypeName => "generateuritem";
@@ -39,7 +39,7 @@ namespace DrainMind
                 Food food = new Food(x,y, PeachCanvas,g);
                 Game.AddItem(food);
 
-                int Sec = r.Next(2000, 12000);
+                int Sec = r.Next(50, 100);
                 timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);
             }
         }

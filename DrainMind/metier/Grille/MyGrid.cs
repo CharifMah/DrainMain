@@ -1,47 +1,48 @@
-﻿using System;
+﻿using IUTGame;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace DrainMind.metier.Grille
 {
-    public class MyGrid : Canvas
+    public class MyGrid
     {
 
-        private double hauteurcqligne;
-        private double largeurcqColonne;
-        private bool _showgrid;
+        private static double hauteurligne;
+        private static double largeurColonne;
+        private static int nombreligne;
+        private static int nombrecollumn;
 
 
         #region Property
 
-        public bool ShowGrid
+        public static int NombreDeLigne
         {
-            get { return _showgrid; }
-            set
-            {
-                _showgrid = value;
-                if (_showgrid == true)
-                {
-                    drawGrid(10,10);
-                }
-                 
-                if (_showgrid == false)
-                    Clear();
-            }
+            get { return nombreligne; }
+            set { nombreligne = value; }
         }
 
-        #endregion
-       
-
-        private void drawGridLine(int x1, int y1, int x2, int y2)
+        public static int NombreDeCollumn
         {
-            System.Windows.Shapes.Line l = new System.Windows.Shapes.Line();
+            get {  return nombrecollumn; }
+            set { nombrecollumn = value; }
+        }    
+
+        #endregion
+
+        /// <summary>
+        /// Dessine les ligne
+        /// </summary>
+        /// <param name="x1"></param>
+        /// <param name="y1"></param>
+        /// <param name="x2"></param>
+        /// <param name="y2"></param>
+        private static Line drawGridLine(int x1, int y1, int x2, int y2)
+        {
+            Line l = new Line();
 
             l.X1 = x1;
             l.Y1 = y1;
@@ -50,77 +51,81 @@ namespace DrainMind.metier.Grille
 
             l.Stroke = new SolidColorBrush(Colors.Black);
 
-            this.Children.Add(l);
+            return l;
 
         }
 
-        private void drawGrid(int numberLigne, int NumberCollumn)
+        /// <summary>
+        /// Dessine une gille visible
+        /// </summary>
+        /// <param name="numberLigne">Nombre de ligne de la grille</param>
+        /// <param name="NumberCollumn">Nombre de Collumn de la Grille</param>
+        public static Canvas drawGrid()
         {
+            Canvas c = new Canvas();
+            hauteurligne = MainWindow.GetMainWindow.ActualHeight / nombreligne;
+            largeurColonne = MainWindow.GetMainWindow.ActualWidth / nombrecollumn;
 
-            hauteurcqligne = MainWindow.GetMainWindow.ActualHeight / numberLigne;
-            largeurcqColonne = MainWindow.GetMainWindow.ActualWidth / NumberCollumn;
-
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < nombrecollumn; i++)
             {
-                int x = (int)(i * largeurcqColonne);
-                drawGridLine(x, 0, x, (int)MainWindow.GetMainWindow.ActualWidth);
+                int x = (int)(i * largeurColonne);
+                c.Children.Add(drawGridLine(x, 0, x, (int)MainWindow.GetMainWindow.ActualWidth)) ;
             }
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < nombreligne; i++)
             {
-                int y = (int)(i * hauteurcqligne);
-                drawGridLine(0, y, (int)MainWindow.GetMainWindow.ActualWidth, y);
-            }          
+                int y = (int)(i * hauteurligne);
+                c.Children.Add(drawGridLine(0, y, (int)MainWindow.GetMainWindow.ActualWidth, y));
+            }
+            return c;
         }
 
-        private void drawRect(int X, int Y, int width, int height, Color color)
+        /// <summary>
+        /// Dessine un sprite dans la case souhaite
+        /// </summary>
+        /// <param name="idCol">Nombre de la ligne en partant du haut</param>
+        /// <param name="idCol">Nombre de la collumn en partant de la gauche</param>
+        /// <param name="width">Largeur de sprite</param>
+        /// <param name="height">Hauteur du sprite</param>
+        /// <param name="sprite">le sprite a dessinee</param>
+        public static FrameworkElement PutSpriteInCase(int idCol, int idLigne, FrameworkElement sprite)
         {
-            SolidColorBrush colorPen = new SolidColorBrush(color);
-            System.Windows.Shapes.Rectangle rect = new System.Windows.Shapes.Rectangle();
-            rect.Stroke = colorPen;
-            rect.Fill = colorPen;
-            rect.Width = width - 2;
-            rect.Height = height - 2;
-            Canvas.SetLeft(rect, X + 1);
-            Canvas.SetTop(rect, Y + 1);
-            this.Children.Add(rect);
+            hauteurligne = MainWindow.GetMainWindow.ActualHeight / nombreligne;
+            largeurColonne = MainWindow.GetMainWindow.ActualWidth / nombrecollumn;
+
+            int x = (int)(idCol * largeurColonne);
+            int y = (int)(idLigne * hauteurligne);
+            if (sprite != null)
+            {
+                sprite.Width = (int)largeurColonne - 2;
+                sprite.Height = (int)hauteurligne - 1;
+                Canvas.SetLeft(sprite, x + 1);
+                Canvas.SetTop(sprite, y + 1);
+              
+
+            }
+            return sprite;
         }
 
-        protected override void OnMouseDown(MouseButtonEventArgs e)
+        /// <summary>
+        /// Rafraichi les sprite en fonction de la taile de la fenetre
+        /// </summary>
+        /// <param name="canvas">Le canvas des element ajoute</param>
+        public static void ResizeCanvas(ref Canvas canvas)
         {
-            base.OnMouseDown(e);
-           
-            if (e.ButtonState == Mouse.MiddleButton)
+            canvas.Children.Clear();
+            for (int i = 0; i < Vie.ListLife.Count; i++)
             {
-                ShowGrid = true;
+                PutSpriteInCase(i,0,Vie.ListLife[i]);
+                canvas.Children.Add(Vie.ListLife[i]);
             }
 
-            if (e.ButtonState == Mouse.RightButton)
+            for (int i = 0; i < Vie.ListEmptyLife.Count; i++)
             {
-                ShowGrid = false;
+                PutSpriteInCase(i, 0, Vie.ListEmptyLife[i]);
+                canvas.Children.Add(Vie.ListEmptyLife[i]);
             }
-
-
-
-            //Point pos = e.GetPosition(this);
-
-            //int idLigne = (int)(pos.X / largeurcqColonne);
-            //int idCol = (int)(pos.Y / hauteurcqligne);
-
-            //int x = (int)(idLigne * largeurcqColonne);
-            //int y = (int)(idCol * hauteurcqligne);
-
-            //drawRect(x, y, (int)largeurcqColonne, (int)hauteurcqligne, Colors.Black);
-        }
-
-        public void Clear()
-        {
-            this.Children.Clear();
-        }
-
-        protected override void OnRender(DrawingContext dc)
-        {
-            base.OnRender(dc);
+            drawGrid();
         }
     }
 }

@@ -109,6 +109,7 @@ namespace DrainMind.View
 
         #region DrainMindViewEvents
 
+
         /// <summary>
         /// Event quand la taille de l'ecran change rescale les element de la fenetre
         /// </summary>
@@ -120,6 +121,7 @@ namespace DrainMind.View
             if (drainMind != null)
             {
                 Camera.MoveCamera(Camera.X, Camera.Y);
+                MyGrid.ResizeCanvas(ref UI);
             }           
         }
 

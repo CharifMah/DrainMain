@@ -57,7 +57,7 @@ namespace DrainMind.Metier
 
             //Creation du joueur
             new StatsPersoModel(10, 0, 0);
-            Joueur player = new Joueur(Width / 2, Height / 2, Canvas, this, new Vie(UIcanvas, 10, 15));
+            Joueur player = new Joueur(Width / 2, Height / 2, Canvas, this, new Vie(UIcanvas, 10, 20));
             AddItem(player);
  
             AddItem(new GenerateurEnemie(this,Canvas, player));

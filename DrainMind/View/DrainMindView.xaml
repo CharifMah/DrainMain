@@ -20,8 +20,7 @@
             </Canvas>
 
         </ScrollViewer>
-        <Canvas  x:Name="UI"/>
-        <view:MyGrid x:Name="CanvasUIGrid" HorizontalAlignment="Stretch" Background="Transparent" VerticalAlignment="Stretch" Focusable="True"/>
+        <Canvas  x:Name="UI" Focusable="False" IsHitTestVisible="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />

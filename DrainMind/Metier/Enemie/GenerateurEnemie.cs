@@ -30,7 +30,7 @@ namespace DrainMind.Metier.enemie
         public GenerateurEnemie(Game g, Canvas c, Joueur j): base(0,0,c,g)
         {
             this.canvas = c;
-            timeToCreate = new TimeSpan(0, 0, 2);
+            timeToCreate = new TimeSpan(0, 0, 1);
             player = j;
         }
 
