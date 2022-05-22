@@ -16,7 +16,7 @@ namespace DrainMind.metier.Grille
         private static double largeurColonne;
         private static int nombreligne;
         private static int nombrecollumn;
-        private static Canvas ActualGrid;
+        private static Canvas actualgrid;
 
 
         #region Property
@@ -35,7 +35,14 @@ namespace DrainMind.metier.Grille
 
         public static Canvas Grid
         {
-            get { return ActualGrid; }
+            get 
+            { 
+                return actualgrid;
+            }
+            set
+            {
+                actualgrid = value;
+            }
         }
 
         #endregion
@@ -131,7 +138,7 @@ namespace DrainMind.metier.Grille
                 PutSpriteInCase(life_empty.Value.Colonne, life_empty.Value.Ligne, life_empty.Key);
                 ui.Children.Add(life_empty.Key);
             }
-
+            actualgrid = drawGrid();
         }
     }
 }

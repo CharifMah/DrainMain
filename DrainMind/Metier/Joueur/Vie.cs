@@ -14,8 +14,8 @@ namespace DrainMind
 {
     public class Vie
     {
-        private static Dictionary<FrameworkElement,Coordonnees> _listlife = new Dictionary<FrameworkElement, Coordonnees>();
-        private static Dictionary<FrameworkElement, Coordonnees> _listemptylife = new Dictionary<FrameworkElement, Coordonnees>();
+        private static Dictionary<FrameworkElement,Coordonnees> _listlife;
+        private static Dictionary<FrameworkElement, Coordonnees> _listemptylife;
         private Canvas uiLife;
         private int vie;
 
@@ -61,6 +61,8 @@ namespace DrainMind
         public Vie(Canvas lifeUI, int pointLife, int MaxPv)
         {
             uiLife = lifeUI;
+            _listlife = new Dictionary<FrameworkElement, Coordonnees>();
+            _listemptylife = new Dictionary<FrameworkElement, Coordonnees>();
             MyGrid.NombreDeLigne = 20;
             MyGrid.NombreDeCollumn = 40;
             AddEmptyLife(MaxPv);

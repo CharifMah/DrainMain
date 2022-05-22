@@ -29,13 +29,10 @@ namespace DrainMind.View
         private DrainMindGame drainMind;
         private MenuPrincipale _MenuPrincipale;
         StockScore Stock = new StockScore(Environment.CurrentDirectory);
-
-        private Canvas grid;
         public DrainMindView(MenuPrincipale Menu)
         {      
             ShowsNavigationUI = false;       
             InitializeComponent();
-            
             GroupBoxUpgradeSkill.Visibility = Visibility.Hidden;
             GroupBoxInfoPerso.Visibility = Visibility.Visible;
              _MenuPrincipale = Menu;
@@ -61,7 +58,7 @@ namespace DrainMind.View
                 drainMind.Resume();
             }
             StartupSettings();
-
+            MyGrid.Grid = MyGrid.drawGrid();
         }
 
         /// <summary>
@@ -79,9 +76,6 @@ namespace DrainMind.View
             }
             else
                 drainMind.BackgroundVolume = Settings.Get().Son;
-
-
-           grid = MyGrid.drawGrid();
         }
 
         /// <summary>
@@ -162,18 +156,18 @@ namespace DrainMind.View
                 bool Pressed = false;
                 
                 //Pause
-                if (!Pressed && !UI.Children.Contains(grid))
+                if (!Pressed && !UI.Children.Contains(MyGrid.Grid))
                 {
-                    UI.Children.Add(grid);
+                    UI.Children.Add(MyGrid.Grid);
                     
                     Pressed = true;
 
 
                 }
                 //Resume
-                if (!Pressed && UI.Children.Contains(grid))
+                if (!Pressed && UI.Children.Contains(MyGrid.Grid))
                 {
-                    UI.Children.Remove(grid);
+                    UI.Children.Remove(MyGrid.Grid);
                     Pressed = true;
                 }
             }

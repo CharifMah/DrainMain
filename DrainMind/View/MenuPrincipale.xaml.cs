@@ -73,6 +73,7 @@ namespace DrainMind.View
             DrainMindGame.Instance.Pause();
             DrainMindGame.Instance.BackgroundVolume = 0;
             drainmindView = new DrainMindView(this);
+
             mainwindow.Content = drainmindView;
         }
 
