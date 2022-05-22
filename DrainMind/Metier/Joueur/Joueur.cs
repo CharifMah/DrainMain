@@ -115,6 +115,7 @@ namespace DrainMind.Metier.joueur
                 PlaySound("Bruit.mp3");
                 enemie.EnemiesModel.Get().NombreEnemie--;
                 StatsPersoModel.Instance.XP += 500;
+                
                 Score.Get().EnemieKilled += 1;
                 Score.Get().Point += 10;
 

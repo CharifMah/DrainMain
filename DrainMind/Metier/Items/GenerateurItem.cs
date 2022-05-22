@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Controls;
+using DrainMind.metier.joueur;
 using DrainMind.Metier.Items;
 using IUTGame;
 
@@ -39,7 +40,8 @@ namespace DrainMind
                 Food food = new Food(x,y, PeachCanvas,g);
                 Game.AddItem(food);
 
-                int Sec = r.Next(50, 100);
+                int Sec = r.Next(5000 / (StatsPersoModel.Instance.Niveau + 1), 10000 / (StatsPersoModel.Instance.Niveau + 1));
+
                 timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);
             }
         }

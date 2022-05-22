@@ -15,9 +15,23 @@ namespace DrainMind.metier.joueur
         private double _xp;
         private double _xpMax = 1000;
         private int _niveau;
+        private double _Xpmult;
         private static GroupBox _LvlUpGrpBox;
 
         #region Property
+
+        public double Xpmult
+        {
+            get { return _Xpmult; }
+            set 
+            {
+                _Xpmult = value;
+                if (_Xpmult <= 0)
+                {
+                    _Xpmult = 1;
+                }
+            }
+        }
 
         /// <summary>
         /// Vitesse du Personnage
@@ -41,7 +55,7 @@ namespace DrainMind.metier.joueur
             get { return _xp; }
             set
             {
-                _xp = value;
+                _xp = value * _Xpmult;
                 if (_xp >= _xpMax)
                 {
                     _niveau += 1;
@@ -87,12 +101,12 @@ namespace DrainMind.metier.joueur
             get { return instance; }
         }
 
-        public StatsPersoModel(double Speed,double Xp, int niveau)
+        public StatsPersoModel(double Speed,double Xp, int niveau,double CoefXp)
         {
             this.speed = Speed;
             this._xp = Xp;
             this._niveau = niveau;
-           
+            this._Xpmult = CoefXp;
             instance = this;
         }
     }

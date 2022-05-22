@@ -88,6 +88,7 @@ namespace DrainMind.View
         /// </summary>
         public void StartupSettings()
         {
+            //Deletes Old instance
             Score.Destroy();
             EnemiesModel.Destroy();
             ListViewLoadScores();
