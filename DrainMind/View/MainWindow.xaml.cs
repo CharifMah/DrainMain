@@ -11,6 +11,7 @@ using DrainMind.View;
 using System.Linq;
 using DrainMind.Stockage;
 using DrainMind.Metier.joueur;
+using DrainMind.metier.Grille;
 
 namespace DrainMind
 {
@@ -24,9 +25,10 @@ namespace DrainMind
         private StockOptions _StockOptionsFav = new StockOptions(Directory.GetCurrentDirectory());
         private StockScore _StockScore = new StockScore(Directory.GetCurrentDirectory());
 
+        private static MainWindow _instance;
         //Recupère la MainWindow Actuel
         public static MainWindow GetMainWindow
-        { get { return Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow; } }
+        { get { return _instance; } }
 
         /// <summary>
         /// Window du jeux et du MenuPause
@@ -40,7 +42,7 @@ namespace DrainMind
             InitializeComponent();
             StartupSettings();
 
-
+            _instance = this;
         }
         /// <summary>
         /// Selectionne les settings a charger au lancement
@@ -59,6 +61,8 @@ namespace DrainMind
                 this.WindowState = WindowState.Normal;
                 this.WindowStyle = WindowStyle.ThreeDBorderWindow;
             }
+
+   
         }
 
         /// <summary>
@@ -70,6 +74,7 @@ namespace DrainMind
         private void FentrePrincipalDrainMain_Closed(object sender, System.EventArgs e)
         {
             _StockScore.SauverScore(LesScoresModel.Get().Scores);
+            _StockOptionsFav.SauverSettings(Settings.Get());
             Environment.Exit(0);
         }
     }

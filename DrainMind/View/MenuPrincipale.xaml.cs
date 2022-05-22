@@ -1,4 +1,5 @@
-﻿using DrainMind.Metier;
+﻿using DrainMind.metier.Grille;
+using DrainMind.Metier;
 using DrainMind.Metier.joueur;
 using DrainMind.Stockage;
 using System;
@@ -35,7 +36,9 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         public MenuPrincipale()
         {
+       
             InitializeComponent();
+
         }
 
         /// <summary>

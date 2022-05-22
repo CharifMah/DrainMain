@@ -75,5 +75,7 @@
                 Margin="20"/>
 
         <Image x:Name="TitleMenu" Grid.Column="1" Source="../Sprites/TitreMenu.png" Margin="50"/>
+
     </Grid>
+
 </Page>

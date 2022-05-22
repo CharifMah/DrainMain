@@ -1,4 +1,5 @@
-﻿using DrainMind.metier.joueur;
+﻿using DrainMind.metier.Grille;
+using DrainMind.metier.joueur;
 using DrainMind.Metier;
 using DrainMind.Metier.enemie;
 using DrainMind.Metier.joueur;
@@ -31,8 +32,9 @@ namespace DrainMind.View
 
         public DrainMindView(MenuPrincipale Menu)
         {      
-            ShowsNavigationUI = false;
+            ShowsNavigationUI = false;       
             InitializeComponent();
+            
             GroupBoxUpgradeSkill.Visibility = Visibility.Hidden;
             GroupBoxInfoPerso.Visibility = Visibility.Visible;
              _MenuPrincipale = Menu;
@@ -88,7 +90,7 @@ namespace DrainMind.View
             TextBlockXpProgressBar.DataContext = StatsPersoModel.Instance;
             TextBlockEnemieLeft.DataContext = EnemiesModel.Get();
             TextBlockSpeed.DataContext = StatsPersoModel.Instance;
-            GroupBoxUpgradeSkill.DataContext = StatsPersoModel.Instance;
+            GroupBoxUpgradeSkill.DataContext = StatsPersoModel.Instance.LvlUpUpgradeVisible;
         }
 
         /// <summary>
@@ -148,8 +150,7 @@ namespace DrainMind.View
                     Pressed = true;
                 }
             }
-
-
+     
         }
 
         /// <summary>

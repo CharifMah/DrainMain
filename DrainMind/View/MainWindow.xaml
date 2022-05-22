@@ -5,10 +5,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"       
-        xmlns:local="clr-namespace:DrainMind"
+        xmlns:local="clr-namespace:DrainMind" xmlns:view="clr-namespace:DrainMind.metier.Grille"
         mc:Ignorable="d"
         Closed="FentrePrincipalDrainMain_Closed" MinWidth="1280" Title="DrainMind" MinHeight="720" >
-    
+
     <Grid>
         <Frame Name="MenuPrincipaleFrame" Source="MenuPrincipale.xaml"/>
     </Grid>

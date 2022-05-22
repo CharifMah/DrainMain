@@ -1,4 +1,5 @@
-﻿using DrainMind.metier.joueur;
+﻿using DrainMind.metier.Grille;
+using DrainMind.metier.joueur;
 using DrainMind.Metier;
 using DrainMind.Metier.enemie;
 using DrainMind.Metier.joueur;
@@ -38,7 +39,7 @@ namespace DrainMind.Metier
         {
             Camera = camera;
             UIcanvas = UI;
-
+            
             game = this;
         }
 

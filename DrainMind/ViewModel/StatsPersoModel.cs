@@ -18,6 +18,9 @@ namespace DrainMind.metier.joueur
 
         #region Property
 
+        /// <summary>
+        /// Vitesse du Personnage
+        /// </summary>
         public double Speed
         {
             get { return speed; }
@@ -59,12 +62,17 @@ namespace DrainMind.metier.joueur
                 this.NotifyPropertyChanged("LvlUpUpgradeVisible");
             }
         }
-
+        /// <summary>
+        /// Get XpMax du Joueur
+        /// </summary>
         public double XPMax
         {
             get { return _xpMax; }
         }
 
+        /// <summary>
+        /// Recupère le niveau du joueur
+        /// </summary>
         public int Niveau
         {
             get { return _niveau; }
