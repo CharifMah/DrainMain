@@ -224,7 +224,7 @@
                             <GridView>
                                 <GridViewColumn Width="200" DisplayMemberBinding="{Binding Nom , Mode=OneWay}">
                                     <GridViewColumn.Header>
-                                        <GridViewColumnHeader Tag="Name" Click="lvUsersColumnHeader_Click">Name : </GridViewColumnHeader>
+                                        <GridViewColumnHeader Tag="Name" Click="lvUsersColumnHeader_Click">Name :</GridViewColumnHeader>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
                                 <GridViewColumn Width="300" DisplayMemberBinding="{Binding EnemieKilled,Mode=OneWay}">

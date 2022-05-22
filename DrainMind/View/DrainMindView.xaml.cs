@@ -246,13 +246,22 @@ namespace DrainMind.View
 
         #region ScoreGroupBox
 
+        /// <summary>
+        /// Cache la fentre onclick button Retour
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RetourScoreButton_Click(object sender, RoutedEventArgs e)
         {
             GroupBoxPause.Visibility = Visibility.Visible;
             ScoreMenuGroupBox.Visibility = Visibility.Hidden;
         }
 
-
+        /// <summary>
+        /// Event On Click sur le Header de la collumn des scores (Sort)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lvUsersColumnHeader_Click(object sender, RoutedEventArgs e)
         {
             GridViewColumnHeader column = (sender as GridViewColumnHeader);

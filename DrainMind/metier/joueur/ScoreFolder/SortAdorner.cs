@@ -8,6 +8,9 @@ using System.Windows.Media;
 
 namespace DrainMind.View
 {
+	/// <summary>
+	/// Tri des collumn des scores
+	/// </summary>
 	public class SortAdorner : Adorner
 	{
 		private static Geometry ascGeometry =
