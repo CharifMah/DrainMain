@@ -108,7 +108,7 @@
                 </Grid>
             </GroupBox>
 
-            <GroupBox x:Name="GroupBoxUpgradeSkill" Visibility="{Binding Path=LvlUpUpgradeVisible, Mode=OneWay}" FontSize="40"  Grid.Column="1" Grid.Row="1">
+            <GroupBox x:Name="GroupBoxUpgradeSkill" FontSize="40"  Grid.Column="1" Grid.Row="1">
 
                 <GroupBox.Background>
                     <SolidColorBrush Color="WhiteSmoke" Opacity="0.4"/>
@@ -126,8 +126,8 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock x:Name="TextBlockSpeed"
-                        Text="{Binding Path=Speed, StringFormat={}Speed: {0},Mode=OneWay}" 
-                               FontSize="50" 
+                        Text="{Binding Path=Speed, StringFormat={}Speed: {0:#,#.00},Mode=OneWay}" 
+                               FontSize="30" 
                                VerticalAlignment="Center" 
                                HorizontalAlignment="Center"
                                Grid.Row="0" 

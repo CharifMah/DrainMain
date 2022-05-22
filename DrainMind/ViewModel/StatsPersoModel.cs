@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace DrainMind.metier.joueur
 {
@@ -14,7 +15,7 @@ namespace DrainMind.metier.joueur
         private double _xp;
         private double _xpMax = 1000;
         private int _niveau;
-        private Visibility _lvlupUpgradeVisible = Visibility.Hidden;
+        private static GroupBox _LvlUpGrpBox;
 
         #region Property
 
@@ -53,15 +54,15 @@ namespace DrainMind.metier.joueur
             }
         }
 
-        public Visibility LvlUpUpgradeVisible
+        public static GroupBox LvlUpGrpBox
         {
-            get { return _lvlupUpgradeVisible; }
+            get { return _LvlUpGrpBox; }
             set 
-            { 
-                _lvlupUpgradeVisible = value;
-                this.NotifyPropertyChanged("LvlUpUpgradeVisible");
+            {
+                _LvlUpGrpBox = value;
             }
         }
+
         /// <summary>
         /// Get XpMax du Joueur
         /// </summary>

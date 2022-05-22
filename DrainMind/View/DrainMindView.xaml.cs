@@ -43,6 +43,22 @@ namespace DrainMind.View
              _MenuPrincipale = Menu;
         }
 
+        #region Saisi des information GroupBox (Debut du jeux)
+        /// <summary>
+        /// Button Terminer apres la saisi du psedo lance un partie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonTerminerInfo_Click(object sender, RoutedEventArgs e)
+        {
+            GroupBoxInfoPerso.Visibility = Visibility.Hidden;
+            Score.Destroy();
+            Score.Get().Nom = NameInput.Text;
+            LesScoresModel.Get().Scores.Add(Score.Get());
+            ResumeOrCreateGame();
+        }
+        #endregion 
+
         #region Init Methode
 
         /// <summary>
@@ -73,7 +89,6 @@ namespace DrainMind.View
         {          
             ListViewLoadScores();
             InitDataContext();
-            StatsPersoModel.Instance.LvlUpUpgradeVisible = Visibility.Visible;
             if (Settings.Get().Son == 0 || !Settings.Get().SonOnOff)
             {
                 drainMind.BackgroundVolume = 0;
@@ -81,6 +96,7 @@ namespace DrainMind.View
             }
             else
                 drainMind.BackgroundVolume = Settings.Get().Son;
+            StatsPersoModel.LvlUpGrpBox = GroupBoxUpgradeSkill;
         }
 
         /// <summary>
@@ -93,7 +109,6 @@ namespace DrainMind.View
             TextBlockXpProgressBar.DataContext = StatsPersoModel.Instance;
             TextBlockEnemieLeft.DataContext = EnemiesModel.Get();
             TextBlockSpeed.DataContext = StatsPersoModel.Instance;
-            GroupBoxUpgradeSkill.DataContext = StatsPersoModel.Instance.LvlUpUpgradeVisible;
         }
 
         /// <summary>
@@ -285,36 +300,19 @@ namespace DrainMind.View
 
         #endregion
 
-        #region Saisi des information GroupBox
-        /// <summary>
-        /// Button Terminer apres la saisi du psedo lance un partie
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonTerminerInfo_Click(object sender, RoutedEventArgs e)
-        {
-            GroupBoxInfoPerso.Visibility = Visibility.Hidden;
-            Score.Destroy();
-            Score.Get().Nom = NameInput.Text;
-            LesScoresModel.Get().Scores.Add(Score.Get());
-            ResumeOrCreateGame();
-        }
-
-
-        #endregion
-
+       
         #region LvlUp Skill Updgrade
 
         private void ButtonADDSPEED_Click(object sender, RoutedEventArgs e)
         {
             StatsPersoModel.Instance.Speed += 5;
-            StatsPersoModel.Instance.LvlUpUpgradeVisible = Visibility.Hidden;
+            StatsPersoModel.LvlUpGrpBox.Visibility = Visibility.Hidden;
+            DrainMindGame.Instance.Resume();
         }
 
 
 
         #endregion
-
 
     }
 }

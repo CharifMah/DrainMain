@@ -22,8 +22,6 @@ namespace DrainMind.Metier.joueur
         private int niveau;
         private Vie playerLife;
 
-        private bool compte = false;
-        private double time = 0;
 
         // TypeName of the player is "Joueur"
         public override string TypeName => "Joueur";
@@ -52,12 +50,7 @@ namespace DrainMind.Metier.joueur
         /// <param name="dt">timespan elasped since last animation</param>
         public void Animate(TimeSpan dt)
         {
-            if (compte)
-            {
-                time += dt.TotalMilliseconds;
-                if (time > 500)
-                    compte = false;
-            }
+
             if (goLeft)
             {
                 DeplacerJoueur(-StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds, 0);
@@ -113,40 +106,31 @@ namespace DrainMind.Metier.joueur
         /// <param name="other">the other object</param>
         public override void CollideEffect(GameItem other)
         {
-            if (!compte)
+            if (other.TypeName == "Enemie")
             {
-                if (other.TypeName == "Enemie")
-                {
-                    other.Dispose();
-                    other.Collidable = false;   
+                other.Dispose();
+                other.Collidable = false;   
                     
-                    LooseLife(1);
-                    PlaySound("Bruit.mp3");
+                LooseLife(1);
+                PlaySound("Bruit.mp3");
+                enemie.EnemiesModel.Get().NombreEnemie--;
+                StatsPersoModel.Instance.XP += 500;
+                Score.Get().EnemieKilled += 1;
+                Score.Get().Point += 10;
 
-                    enemie.EnemiesModel.Get().NombreEnemie--;
-                    Score.Get().EnemieKilled += 1;
-                    Score.Get().Point += 10;
-                    StatsPersoModel.Instance.XP += 500;
-                    StatsPersoModel.Instance.LvlUpUpgradeVisible = Visibility.Visible;
-                    compte = true;
-                    time = 0;
-                    LvlUpEffect();
-                }
-
-
-                if (other.TypeName == "Peach")
-                {
-                    other.Dispose();
-                    other.Collidable = false;
-
-                    GainLife(1);
-                   
-                    compte = true;
-                    time = 0;
-
-                    PlaySound("SoundTake.mp3");
-                }
+                LvlUpEffect();
             }
+
+
+            if (other.TypeName == "Peach")
+            {
+                other.Dispose();
+                other.Collidable = false;
+
+                GainLife(1);
+                PlaySound("SoundTake.mp3");
+            }
+            
         }
 
         /// <summary>
@@ -285,8 +269,9 @@ namespace DrainMind.Metier.joueur
         {
             if (StatsPersoModel.Instance.Niveau > niveau)
             {
-                niveau = StatsPersoModel.Instance.Niveau;
-                StatsPersoModel.Instance.Speed *= 1.001;
+                niveau = StatsPersoModel.Instance.Niveau;                  
+                StatsPersoModel.LvlUpGrpBox.Visibility = Visibility.Visible;
+                DrainMindGame.Instance.Pause();
                 PlaySound("LvlUp.mp3");    
             }
         }
