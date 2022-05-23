@@ -17,6 +17,12 @@ namespace DrainMind
         private TimeSpan timeToCreate;
         private Canvas PeachCanvas;
         private Game g;
+
+        /// <summary>
+        /// Generateur Item
+        /// </summary>
+        /// <param name="canvas"></param>
+        /// <param name="game"></param>
         public GenerateurItem(Canvas canvas, Game game) : base(0,0,canvas, game, "")
         {
             g = game;
@@ -26,6 +32,10 @@ namespace DrainMind
 
         public override string TypeName => "generateuritem";
 
+        /// <summary>
+        /// Animate
+        /// </summary>
+        /// <param name="dt">delay before the last animation</param>
         public void Animate(TimeSpan dt)
         {
             timeToCreate = timeToCreate - dt;

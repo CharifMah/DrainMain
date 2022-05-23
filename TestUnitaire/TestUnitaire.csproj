@@ -24,4 +24,10 @@
     <ProjectReference Include="..\DrainMind\DrainMind.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="IUTGame">
+      <HintPath>..\DrainMind\IUTGame.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

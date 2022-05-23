@@ -51,7 +51,6 @@ namespace DrainMind.Metier.joueur
 
         #endregion
 
-
         private Score()
         {
             name = "Bob";
@@ -73,7 +72,5 @@ namespace DrainMind.Metier.joueur
             if (instance != null)
                 instance = null;
         }
-
-
     }
 }

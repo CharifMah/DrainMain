@@ -1,4 +1,5 @@
 using DrainMind;
+using DrainMind.Metier.joueur;
 using System;
 using System.Threading;
 using System.Windows.Controls;
@@ -12,10 +13,15 @@ namespace TestUnitaire
         [Fact]
         public void TestVie()
         {
+            
             var t = new Thread(o =>
             {
                 Vie v = new Vie(new Canvas(), 10, 50);
+                Joueur s = new Joueur(0, 0, new Canvas(), new DrainMind.Metier.DrainMindGame(new Canvas(), new ScrollViewer(), new Canvas()), v);
+
                 Assert.Equal(v._Vie, 10);
+                s.LooseLife(10);
+                Assert.Equal(v._Vie,0);
 
                 v.AddLife(50);
                 Assert.Equal(v._Vie, 50);

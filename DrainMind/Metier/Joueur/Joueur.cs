@@ -255,6 +255,8 @@ namespace DrainMind.Metier.joueur
                 Game.Loose();
             }
         }
+
+        
         /// <summary>
         /// Gagne de la vie
         /// </summary>
