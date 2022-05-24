@@ -11,7 +11,7 @@
     <Grid>
         <ScrollViewer x:Name="CanvasViewer" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="CanvasViewer_PreviewMouseWheel">
             <Canvas x:Name="canvas" Height="4221" Width="6715">
-    
+
                 <Canvas.Background>
                     <ImageBrush ImageSource="/Sprites/fond.png"/>
                 </Canvas.Background>
@@ -108,7 +108,7 @@
                 </Grid>
             </GroupBox>
 
-            <GroupBox x:Name="GroupBoxUpgradeSkill" FontSize="40"  Grid.Column="1" Grid.Row="1">
+            <GroupBox x:Name="GroupBoxUpgradeSkill" Visibility="Hidden" FontSize="40"  Grid.Column="1" Grid.Row="1">
 
                 <GroupBox.Background>
                     <SolidColorBrush Color="WhiteSmoke" Opacity="0.4"/>

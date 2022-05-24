@@ -143,7 +143,7 @@ namespace DrainMind.View
         {
             if (drainMind != null)
             {
-                Camera.MoveCamera(Camera.X, Camera.Y);
+                Camera.MoveCamera(StatsPersoModel.Instance.posX, StatsPersoModel.Instance.posY);
                 MyGrid.ResizeCanvas(ref UI);
             }           
         }

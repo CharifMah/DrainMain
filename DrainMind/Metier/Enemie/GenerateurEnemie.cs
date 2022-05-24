@@ -21,7 +21,9 @@ namespace DrainMind.Metier.enemie
 
         private Joueur player;
 
-        
+        private int Sec = 0;
+
+
         /// <summary>
         /// enemies's constructor 
         /// </summary>
@@ -30,6 +32,7 @@ namespace DrainMind.Metier.enemie
         public GenerateurEnemie(Game g, Canvas c, Joueur j): base(0,0,c,g)
         {
             this.canvas = c;
+            
             timeToCreate = new TimeSpan(0, 0, 1);
             player = j;
         }
@@ -46,19 +49,51 @@ namespace DrainMind.Metier.enemie
             timeToCreate = timeToCreate - dt;
 
             Random r = new Random();
+            double x = r.NextDouble() * GameWidth;
+            double y = r.NextDouble() * GameHeight;
 
-            if (timeToCreate.TotalMilliseconds < 0)
+
+            
+            if (timeToCreate.Seconds < 0)
             {            
-                double x = r.NextDouble() * GameWidth;
-                double y = r.NextDouble() * GameHeight/2;
+  
                 Enemie fantomeViolet = new Enemie(x, y, this.canvas, Game, player, "fantome.png");
                 Game.AddItem(fantomeViolet);
-                EnemiesModel.Get().NombreEnemie++;
-                int Sec = r.Next(5000 / (StatsPersoModel.Instance.Niveau + 1), 10000 / (StatsPersoModel.Instance.Niveau + 1));
-                timeToCreate = new TimeSpan(0, 0, 0, 0,Sec);                                
-            }   
-        }
 
+                Sec = r.Next(5000 / (StatsPersoModel.Instance.Niveau * 2 + 1), 10000 / (StatsPersoModel.Instance.Niveau * 2 + 1));
+                timeToCreate = new TimeSpan(0, 0, 0, Sec);               
+            }
+
+            if (timeToCreate.Seconds == Sec/5)
+            {
+                x = r.NextDouble() * GameWidth;
+                y = r.NextDouble() * GameHeight;
+
+                Enemie fantomeVert = new Enemie(x, y, this.canvas, Game, player, "fantomeVert.png");
+                Game.AddItem(fantomeVert);
+            }
+            if (timeToCreate.Seconds == Sec / 4)
+            {
+                x = r.NextDouble() * GameWidth;
+                y = r.NextDouble() * GameHeight;
+
+                Enemie Gloom = new Enemie(x, y, this.canvas, Game, player, "Gloom.png");
+                Game.AddItem(Gloom);
+            }
+            if (timeToCreate.Seconds == Sec / 3)
+            {
+                x = r.NextDouble() * GameWidth;
+                y = r.NextDouble() * GameHeight;
+
+                Enemie nightmare = new Enemie(x, y, this.canvas, Game, player, "nightmare.png");
+                Game.AddItem(nightmare);
+            }
+            if (timeToCreate.Seconds == Sec / 2)
+            {
+                Enemie boss = new Enemie(x, y, this.canvas, Game, player, "boss.png");
+                Game.AddItem(boss);
+            }
+        }
         /// <summary>
         /// Executes the effect of the collision
         /// </summary>

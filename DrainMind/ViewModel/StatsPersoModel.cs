@@ -16,6 +16,8 @@ namespace DrainMind.metier.joueur
         private double _xpMax = 1000;
         private int _niveau;
         private double _Xpmult;
+        private double _posX;
+        private double _posY;
         private static GroupBox _LvlUpGrpBox;
 
         #region Property
@@ -94,6 +96,18 @@ namespace DrainMind.metier.joueur
         public int Niveau
         {
             get { return _niveau; }
+        }
+
+        public double posX
+        {
+            get { return _posX; }
+            set { _posX = value; }
+        }
+
+        public double posY
+        {
+            get { return _posY; }
+            set { _posY = value; }
         }
 
         #endregion

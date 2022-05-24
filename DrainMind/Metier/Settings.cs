@@ -43,7 +43,9 @@ namespace DrainMind.Metier
 
             }
         }
-
+        /// <summary>
+        /// Active ou Desactive le son
+        /// </summary>
         public bool SonOnOff
         {
             get { return _SonOnOff; }

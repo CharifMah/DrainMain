@@ -1,4 +1,5 @@
-﻿using DrainMind.View.Map;
+﻿using DrainMind.metier.joueur;
+using DrainMind.View.Map;
 using IUTGame;
 using System.Collections.Generic;
 using System.Linq;
@@ -138,6 +139,9 @@ namespace DrainMind.metier.Grille
                 PutSpriteInCase(life_empty.Value.Colonne, life_empty.Value.Ligne, life_empty.Key);
                 ui.Children.Add(life_empty.Key);
             }
+
+
+
             actualgrid = drawGrid();
         }
     }

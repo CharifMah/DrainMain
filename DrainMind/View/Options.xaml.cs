@@ -133,8 +133,6 @@ namespace DrainMind.View
         private void LangueComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Res.Strings.Culture = new CultureInfo(e.AddedItems[0].ToString());
-            Thread.CurrentThread.CurrentCulture = Res.Strings.Culture;
-            Thread.CurrentThread.CurrentUICulture = Res.Strings.Culture;
         }
 
 

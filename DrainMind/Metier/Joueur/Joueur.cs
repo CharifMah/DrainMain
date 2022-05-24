@@ -36,8 +36,8 @@ namespace DrainMind.Metier.joueur
         /// <param name="ui">canvas</param>
         public Joueur(double x, double y, Canvas c, DrainMindGame g,Vie vie) : base(x,y,c,g,"face.png")
         {
-            DrainMindGame.Instance = g;
-
+       
+            new StatsPersoModel(10, 0, 0, 1.2);
             //Creation de la Vie
             playerLife = vie;          
             
@@ -294,19 +294,10 @@ namespace DrainMind.Metier.joueur
                 MoveXY(x, y);
             }
 
-            Camera.X = this.Left + (this.Width) / 2;
-            Camera.Y = this.Top + (this.Height) / 2;
-            Camera.MoveCamera(this.Left + (this.Width) / 2, this.Top + (this.Height) / 2);
-        }
+            StatsPersoModel.Instance.posX = this.Left + (this.Width) / 2;
+            StatsPersoModel.Instance.posY = this.Top + (this.Height) / 2;
 
-        /// <summary>
-        /// Allows you to obtain the player's contact information
-        /// </summary>
-        /// <returns>Player's coords on screen</returns>
-        public double[] GetCoordsPlayer()
-        {
-            double[] result = { this.Top, this.Right };
-            return result;
+            Camera.MoveCamera(StatsPersoModel.Instance.posX, StatsPersoModel.Instance.posY);     
         }
         #endregion
     }

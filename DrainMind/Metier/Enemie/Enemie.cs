@@ -5,13 +5,14 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using DrainMind.Metier.joueur;
+using DrainMind.metier.joueur;
 
 namespace DrainMind.Metier.enemie
 {
     /// <summary>
     /// ennemies of the game
     /// </summary>
-    class Enemie : GameItem, IAnimable
+    public class Enemie : GameItem, IAnimable
     {
         //ennemies's speed
         private double vitesse = 200;
@@ -45,19 +46,13 @@ namespace DrainMind.Metier.enemie
         /// <param name="y">axis y</param>
         /// <param name="c">canvas</param>
         /// <param name="g">game</param>
-        /// <param name="nom">name of the sprite</param>
-        public Enemie(double x, double y, Canvas c, Game g, Joueur _player, string nom) : base(x, y, c,g,nom)
+        /// <param name="Spritename">name of the sprite</param>
+        public Enemie(double x, double y, Canvas c, Game g, Joueur _player, string spritename) : base(x, y, c,g,spritename)
         {           
             player = _player;
+            EnemiesModel.Get().NombreEnemie++;
         }
 
-        /// <summary>
-        /// ennemies gain spd
-        /// </summary>
-        private void Rebondir()
-        {            
-            vitesse += 1;
-        }
 
         //TypeNme of ennemies is "Enemie"
         public override string TypeName => "Enemie";
@@ -78,7 +73,7 @@ namespace DrainMind.Metier.enemie
             {
                 angle = (angle + 180) % 360;
             }
-            Rebondir();
+            
       
         }
 
@@ -97,26 +92,18 @@ namespace DrainMind.Metier.enemie
             if (this.Top < 0)
             {
                 Top = 0;
-                angle = 360 - angle;
-                //Rebondir();
             }
             else if (Bottom > GameHeight)
             {
                 Bottom = 0;
-                angle = 360 + angle;
-                //Rebondir();
             }
             else if (Left < 0)
             {
-                angle = (360 + 180 - angle) % 360;
                 Left = 0;
-                //Rebondir();
             }
             else if (Right > GameWidth)
             {
-                angle = (360 + 180 - angle) % 360;
                 Right = 0;
-                //Rebondir();
             }
 
             MoveEnemie();
@@ -129,15 +116,12 @@ namespace DrainMind.Metier.enemie
         /// <Co-Author>Charif</Co-Author>
         public void MoveEnemie()
         {
-            double[] coordsPlayer = player.GetCoordsPlayer();
 
-            double moveX = -(Left - (coordsPlayer[1] - 75)) / 90;
-            double moveY = -(Top - (coordsPlayer[0] + 20)) / 90;
+            double moveX = -(Left - (StatsPersoModel.Instance.posX - 75)) / 90;
+            double moveY = -(Top - (StatsPersoModel.Instance.posY + 20)) / 90;
 
-            if (this.Left != -100000 && this.Top != -100000)
-            {
-                MoveXY(moveX, moveY);
-            }           
+            MoveXY(moveX, moveY);
+                      
         }
     }
 }

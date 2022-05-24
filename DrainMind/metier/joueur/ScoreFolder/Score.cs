@@ -67,6 +67,8 @@ namespace DrainMind.Metier.joueur
             return instance;
         }
 
+
+
         public static void Destroy()
         {
             if (instance != null)

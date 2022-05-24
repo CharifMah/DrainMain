@@ -19,14 +19,6 @@ namespace DrainMind.Metier
     {
         //Represents a scrollable area, might contain other visible items
         private static ScrollViewer _Camera;
-        //get position
-        private static double _x = 0, _y = 0;
-        public static double X
-            {        
-            get { return _x; } set { _x = value; }           
-            }
-        public static double Y
-            { get { return _y; } set { _y = value; } }
 
         /// <summary>
         /// camera's constructor
