@@ -169,5 +169,21 @@ namespace DrainMind.Res {
                 return ResourceManager.GetString("Terminer", resourceCulture);
             }
         }
+
+        public static string Nom
+        {
+            get
+            {
+                return ResourceManager.GetString("Nom", resourceCulture);
+            }
+        }
+
+        public static string EnnemiTue
+        {
+            get
+            {
+                return ResourceManager.GetString("EnnemiTue", resourceCulture);
+            }
+        }
     }
 }

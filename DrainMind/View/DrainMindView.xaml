@@ -67,6 +67,7 @@
                        FontSize="25" 
                        VerticalAlignment="Center" 
                        />
+            
             <GroupBox Visibility="Hidden" FontSize="40" x:Name="GroupBoxInfoPerso" Grid.Column="1" Grid.Row="1">
 
                 <GroupBox.Background>
@@ -223,17 +224,17 @@
                             <GridView>
                                 <GridViewColumn Width="200" DisplayMemberBinding="{Binding Nom , Mode=OneWay}">
                                     <GridViewColumn.Header>
-                                        <GridViewColumnHeader Tag="Name" Click="lvUsersColumnHeader_Click">Name :</GridViewColumnHeader>
+                                        <GridViewColumnHeader Tag="Name" Click="lvUsersColumnHeader_Click" Content="{x:Static res:Strings.Nom}" />
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
                                 <GridViewColumn Width="300" DisplayMemberBinding="{Binding EnemieKilled,Mode=OneWay}">
                                     <GridViewColumn.Header>
-                                        <GridViewColumnHeader Tag="EnemieKilled" Click="lvUsersColumnHeader_Click">Enemie Killed :</GridViewColumnHeader>
+                                        <GridViewColumnHeader Tag="EnemieKilled" Click="lvUsersColumnHeader_Click" Content="{x:Static res:Strings.EnnemiTue}"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
                                 <GridViewColumn Width="200" DisplayMemberBinding="{Binding Point,Mode=OneWay}">
                                     <GridViewColumn.Header>
-                                        <GridViewColumnHeader Tag="Score" Click="lvUsersColumnHeader_Click">Score :</GridViewColumnHeader>
+                                        <GridViewColumnHeader Tag="Score" Click="lvUsersColumnHeader_Click" Content="{x:Static res:Strings.Score}"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
                             </GridView>
