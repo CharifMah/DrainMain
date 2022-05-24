@@ -20,6 +20,9 @@ namespace DrainMind.metier.joueur
 
         #region Property
 
+        /// <summary>
+        /// Defini le multiplicateur XP
+        /// </summary>
         public double Xpmult
         {
             get { return _Xpmult; }
@@ -96,11 +99,19 @@ namespace DrainMind.metier.joueur
         #endregion
 
         private static StatsPersoModel instance;
+
         public static StatsPersoModel Instance
         {
             get { return instance; }
         }
 
+        /// <summary>
+        /// Cree le model qui permet de stocke les stats du personnage et dans le communique a IHM
+        /// </summary>
+        /// <param name="Speed">Vitesse du joueur</param>
+        /// <param name="Xp">Experience du joueur au lancement de la partie</param>
+        /// <param name="niveau">niveau au lancemetn de la partie</param>
+        /// <param name="CoefXp">multiplicateur xp quand lvl Up</param>
         public StatsPersoModel(double Speed,double Xp, int niveau,double CoefXp)
         {
             this.speed = Speed;

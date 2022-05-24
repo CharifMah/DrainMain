@@ -19,8 +19,6 @@ namespace DrainMind.Metier.enemie
         //ennemies's angle
         private double angle = 315;
 
- 
-
         //time interval
         private TimeSpan Waiting = new TimeSpan(0);
 

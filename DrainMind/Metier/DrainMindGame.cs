@@ -52,7 +52,7 @@ namespace DrainMind.Metier
             double Height = Application.Current.MainWindow.ActualHeight;
             double Width = Application.Current.MainWindow.ActualWidth;
             //Creation de la Camera
-            Camera cam = new Camera(Width / 2, Height / 2, Canvas, this, Camera);
+            Camera cam = new Camera(Width / 2, Height / 2, this, Camera);
             AddItem(cam);
 
             //Creation du joueur

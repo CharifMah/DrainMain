@@ -117,17 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Anglais" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="EnnemiTue" xml:space="preserve">
     <value>Enemie Killed :</value>
   </data>
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="Francais" xml:space="preserve">
+    <value>French</value>
+  </data>
   <data name="Gagne" xml:space="preserve">
     <value>You have won</value>
   </data>
   <data name="Jouer" xml:space="preserve">
     <value>Play !</value>
+  </data>
+  <data name="Langue" xml:space="preserve">
+    <value>Language</value>
   </data>
   <data name="NewGame" xml:space="preserve">
     <value>New Game</value>

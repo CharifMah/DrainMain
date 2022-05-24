@@ -177,7 +177,7 @@ namespace DrainMind.Res {
                 return ResourceManager.GetString("Nom", resourceCulture);
             }
         }
-
+        
         public static string EnnemiTue
         {
             get
@@ -185,5 +185,29 @@ namespace DrainMind.Res {
                 return ResourceManager.GetString("EnnemiTue", resourceCulture);
             }
         }
+
+        public static string Langue
+        {
+            get
+            {
+                return ResourceManager.GetString("Langue", resourceCulture);
+            }
+        }
+        public static string Francais
+        {
+            get
+            {
+                return ResourceManager.GetString("Francais", resourceCulture);
+            }
+        }
+
+        public static string Anglais
+        {
+            get
+            {
+                return ResourceManager.GetString("Anglais", resourceCulture);
+            }
+        }
+
     }
 }

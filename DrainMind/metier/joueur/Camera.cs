@@ -37,7 +37,7 @@ namespace DrainMind.Metier
         /// <param name="game">drainMind</param>
         /// <param name="camera">camera</param>
         /// <Author>Charif</Author>
-        public Camera(double x, double y, Canvas canvas, Game game,ScrollViewer camera) : base(x, y, canvas, game)
+        public Camera(double x, double y,Game game,ScrollViewer camera) : base(x, y, new Canvas(), game)
         {       
             _Camera = camera;
         }

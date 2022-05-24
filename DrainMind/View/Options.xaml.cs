@@ -2,12 +2,14 @@
 using DrainMind.Stockage;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -43,8 +45,8 @@ namespace DrainMind.View
             InitializeComponent();
             InitItemComboBox();
             LoadSettings();
-            _windowPrecedente = windowPrecedente;
             DataContext = Settings.Get();
+            _windowPrecedente = windowPrecedente;
         }
 
         /// <summary>
@@ -67,6 +69,7 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         public void InitItemComboBox()
         {
+            //Resolution ComboBox init
             ResolutionComboBox.Items.Add("1280 x 720");
             ResolutionComboBox.Items.Add("1280 x 1024");
             ResolutionComboBox.Items.Add("1600 x 900");
@@ -74,6 +77,14 @@ namespace DrainMind.View
             ResolutionComboBox.Items.Add("1920 x 1080");
 
             ResolutionComboBox.SelectedItem = $"{Application.Current.MainWindow.Width} x {Application.Current.MainWindow.Height}";
+
+            //Langue ComboBox init
+            LangueComboBox.Items.Add("en-US");
+            LangueComboBox.Items.Add("fr-FR");
+
+            LangueComboBox.Text = Thread.CurrentThread.CurrentCulture.Name;
+
+            
         }
 
         /// <summary>
@@ -118,6 +129,15 @@ namespace DrainMind.View
             mainwindow.Left = (screenWidth / 2) - (mainwindow.Width / 2);
             mainwindow.Top = (screenHeight / 2) - (mainwindow.Height / 2);
         }
+
+        private void LangueComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Res.Strings.Culture = new CultureInfo(e.AddedItems[0].ToString());
+            Thread.CurrentThread.CurrentCulture = Res.Strings.Culture;
+            Thread.CurrentThread.CurrentUICulture = Res.Strings.Culture;
+        }
+
+
         #endregion
 
         #region Button
@@ -128,7 +148,7 @@ namespace DrainMind.View
         /// <param name="e"></param>
         /// <Author>Charif</Author>
         private void Back_Click(object sender, RoutedEventArgs e)
-        {
+        {          
             mainwindow.Content = _windowPrecedente;
             Stock.SauverSettings(Settings.Get());
         }
@@ -212,5 +232,7 @@ namespace DrainMind.View
             SliderValueTextBox.Text = $"Son : {Settings.Get().Son}";
             checkBoxSound.IsChecked = Settings.Get().SonOnOff;
         }
+
+        
     }
 }

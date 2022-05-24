@@ -134,5 +134,23 @@
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center"
                    />
+
+
+        <TextBlock x:Name="languageTextBlock" 
+                   Grid.Column="0" 
+                   Grid.Row="4"
+                   HorizontalAlignment="Center"
+                   Margin="10"
+                   FontSize="20" 
+                   Text="{x:Static res:Strings.Langue}" 
+                   VerticalAlignment="Center"/>
+
+        <ComboBox x:Name="LangueComboBox" 
+                  Grid.Column="1" 
+                  HorizontalAlignment="Stretch" 
+                  Grid.Row="4"
+                  VerticalAlignment="Center" 
+                  Margin="20,0,20,0" 
+                  SelectionChanged="LangueComboBox_SelectionChanged"/>
     </Grid>
 </Page>
