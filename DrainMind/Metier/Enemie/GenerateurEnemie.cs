@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Controls;
 using DrainMind.metier.joueur;
 using DrainMind.Metier.joueur;
+using DrainMind.View;
 using IUTGame;
 
 namespace DrainMind.Metier.enemie
@@ -16,25 +17,16 @@ namespace DrainMind.Metier.enemie
         //time interval
         private TimeSpan timeToCreate;
 
-        //canvas of the game
-        private Canvas canvas;
-
-        private Joueur player;
-
         private int Sec = 0;
-
 
         /// <summary>
         /// enemies's constructor 
         /// </summary>
         /// <param name="g">drainMind</param>
         /// <param name="c">canvas</param>
-        public GenerateurEnemie(Game g, Canvas c, Joueur j): base(0,0,c,g)
-        {
-            this.canvas = c;
-            
+        public GenerateurEnemie(): base(0,0,DrainMindView.MainCanvas,DrainMindGame.Instance)
+        {       
             timeToCreate = new TimeSpan(0, 0, 0,0,500);
-            player = j;
         }
 
         //Type name of the generator is "generateur"
@@ -65,12 +57,13 @@ namespace DrainMind.Metier.enemie
             double x = r.NextDouble() * GameWidth;
             double y = r.NextDouble() * GameHeight;
     
-            Enemie enemie = new Enemie(x, y, Game, player, NameSprite);
+            Enemie enemie = new Enemie(x, y, NameSprite);
             Game.AddItem(enemie);
 
             Sec = r.Next(3000, 5000);
             timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);    
         }
+
         /// <summary>
         /// Executes the effect of the collision
         /// </summary>

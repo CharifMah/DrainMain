@@ -1,4 +1,5 @@
-﻿using IUTGame;
+﻿using DrainMind.View;
+using IUTGame;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace DrainMind.Metier.Items
         //ennemies's number
         private static int foodnumber = 0;
 
-        public Food(double x, double y, Canvas canvas, Game game, string spriteName = "FoodPeach.png") : base(x, y, canvas, game, spriteName)
+
+        public Food(double x, double y) : base(x, y, DrainMindView.MainCanvas, DrainMindGame.Instance, "FoodPeach.png")
         {
             ++foodnumber;
             this.ChangeScale(2,2);

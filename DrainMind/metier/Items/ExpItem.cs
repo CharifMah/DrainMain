@@ -10,6 +10,11 @@ namespace DrainMind.metier.Items
 {
     public class ExpItem : IUTGame.GameItem, IAnimable
     {
+        /// <summary>
+        /// Boule experience
+        /// </summary>
+        /// <param name="x">Postion x</param>
+        /// <param name="y">Positon y</param>
         public ExpItem(double x, double y) : base(x, y, DrainMind.View.DrainMindView.MainCanvas, DrainMindGame.Instance, "Exp.png")
         {
             this.ChangeScale(0.3, 0.3);

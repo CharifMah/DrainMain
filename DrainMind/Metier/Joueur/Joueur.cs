@@ -228,6 +228,7 @@ namespace DrainMind.Metier.joueur
         #endregion
 
         #region Vie
+
         /// <summary>
         /// Enleve des point de vie au joueur
         /// </summary>
@@ -253,9 +254,13 @@ namespace DrainMind.Metier.joueur
         {
             playerLife._Vie += Healh;
         }
+
         #endregion
 
         #region Niveau
+        /// <summary>
+        /// Empeche le joueur de ce deplace apres la fermeture de la fenetre de LVLUP
+        /// </summary>
         public void LvlUpEffect()
         {
             if (StatsPersoModel.Instance.XP >= StatsPersoModel.Instance.XPMax)
@@ -269,6 +274,7 @@ namespace DrainMind.Metier.joueur
         #endregion
 
         #region Mouvement
+
         /// <summary>
         /// move the player
         /// </summary>
@@ -287,6 +293,7 @@ namespace DrainMind.Metier.joueur
 
             Camera.MoveCamera(StatsPersoModel.Instance.posX, StatsPersoModel.Instance.posY);     
         }
+
         #endregion
     }
 }

@@ -51,8 +51,8 @@ namespace DrainMind.Metier
             Joueur player = new Joueur(Width / 2, Height / 2, this, new Vie(DrainMindView.UIcanvas, 30, 30));
             AddItem(player);
  
-            AddItem(new GenerateurEnemie(this,Canvas, player));
-            AddItem(new GenerateurItem(Canvas, this));
+            AddItem(new GenerateurEnemie());
+            AddItem(new GenerateurItem());
             PlayBackgroundMusic("Son_ambiance_Action.mp3");
 
 

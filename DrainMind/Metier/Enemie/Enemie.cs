@@ -1,6 +1,7 @@
 ﻿using DrainMind.metier.Items;
 using DrainMind.metier.joueur;
 using DrainMind.Metier.joueur;
+using DrainMind.View;
 using IUTGame;
 using System;
 using System.Windows.Controls;
@@ -43,7 +44,7 @@ namespace DrainMind.Metier.enemie
         /// <param name="c">canvas</param>
         /// <param name="g">game</param>
         /// <param name="Spritename">name of the sprite</param>
-        public Enemie(double x, double y, Game g, Joueur _player, string spritename) : base(x, y, DrainMind.View.DrainMindView.MainCanvas,g,spritename)
+        public Enemie(double x, double y,string spritename) : base(x, y,DrainMindView.MainCanvas,DrainMindGame.Instance,spritename)
         {           
             ChangeScale(0.7, 0.7);
             EnemiesModel.Get().NombreEnemie++;
