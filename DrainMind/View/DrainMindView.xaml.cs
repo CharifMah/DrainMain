@@ -179,12 +179,12 @@ namespace DrainMind.View
                 }
             }
 
-            if (e.Key == Key.G)
+            if (e.Key == Key.G && DrainMindGame.Instance != null)
             {
                 bool Pressed = false;
                 
                 //Pause
-                if (!Pressed && !UI.Children.Contains(MyGrid.Grid))
+                if (!Pressed && !UI.Children.Contains(MyGrid.Grid) )
                 {
                     UI.Children.Add(MyGrid.Grid);
                     

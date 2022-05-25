@@ -60,7 +60,7 @@ namespace DrainMind.metier.joueur
             get { return _xp; }
             set
             {
-                _xp = value * _Xpmult;
+                _xp += value * _Xpmult;
                 if (_xp >= _xpMax)
                 {
                     _niveau += 1;
@@ -126,12 +126,12 @@ namespace DrainMind.metier.joueur
         /// <param name="Xp">Experience du joueur au lancement de la partie</param>
         /// <param name="niveau">niveau au lancemetn de la partie</param>
         /// <param name="CoefXp">multiplicateur xp quand lvl Up</param>
-        public StatsPersoModel(double Speed,double Xp, int niveau,double CoefXp)
+        public StatsPersoModel(double Speed)
         {
             this.speed = Speed;
-            this._xp = Xp;
-            this._niveau = niveau;
-            this._Xpmult = CoefXp;
+            this._xp = 0;
+            this._niveau = 1;
+            this._Xpmult = 1.2;
             instance = this;
         }
     }

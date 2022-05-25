@@ -1,5 +1,6 @@
 using DrainMind;
 using DrainMind.metier.Grille;
+using DrainMind.metier.joueur;
 using DrainMind.Metier.enemie;
 using DrainMind.Metier.joueur;
 using System;
@@ -69,6 +70,22 @@ namespace TestUnitaire
             });
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
+        }
+
+        [Fact]
+        public void testXp()
+        {
+
+            var t = new Thread(o =>
+            {
+                ///Creation d'une partie
+                StatsPersoModel.Instance.XP += 10;
+                Assert.Equal(StatsPersoModel.Instance.XP, 10 * StatsPersoModel.Instance.Xpmult);
+
+            });
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+         
         }
     }
 }

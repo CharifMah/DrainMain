@@ -19,7 +19,7 @@ namespace DrainMind.Metier.joueur
       
         private bool goLeft = false, goRight = false, goUp = false, goDown = false;
   
-        private int niveau;
+        private int niveau = 1;
         private Vie playerLife;
 
 
@@ -36,8 +36,8 @@ namespace DrainMind.Metier.joueur
         /// <param name="ui">canvas</param>
         public Joueur(double x, double y, Canvas c, DrainMindGame g,Vie vie) : base(x,y,c,g,"face.png")
         {
-       
-            new StatsPersoModel(10, 0, 0, 1.2);
+            ChangeScale(0.7,0.7);
+            new StatsPersoModel(10);
             //Creation de la Vie
             playerLife = vie;          
             
@@ -114,7 +114,7 @@ namespace DrainMind.Metier.joueur
                 LooseLife(1);
                 PlaySound("Bruit.mp3");
                 enemie.EnemiesModel.Get().NombreEnemie--;
-                StatsPersoModel.Instance.XP += 500;
+                //StatsPersoModel.Instance.XP += 50;
                 
                 Score.Get().EnemieKilled += 1;
                 Score.Get().Point += 10;
@@ -146,6 +146,7 @@ namespace DrainMind.Metier.joueur
         #endregion
 
         #region KeyboardInteract
+
         /// <summary>
         /// when a button is pressed
         /// </summary>

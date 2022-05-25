@@ -29,31 +29,33 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="5*" />
                 <RowDefinition Height="30*" />
-                <RowDefinition Height="5*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <ProgressBar x:Name="XpProgressBar"
-                Background="White" 
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch"
-                Height="20"  
-                Grid.Column="1"
-                Grid.Row="2"
-                Value="{Binding Path=XP, Mode=OneWay}"
-                Maximum="{Binding Path=XPMax,Mode=OneWay}"
+                    Background="WhiteSmoke"
+                    Opacity="0.5"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    Height="25"  
+                    Grid.ColumnSpan="3"
+                    Grid.Row="2"
+                    Value="{Binding Path=XP,Mode=OneWay}"
+                    Maximum="{Binding Path=XPMax,Mode=OneWay}"
             />
 
             <TextBlock x:Name="TextBlockNiveau"
                     Text="{Binding Path=Niveau, Mode=OneWay , StringFormat={}Niveau: {0}}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
-                    Grid.Column="1"
+                    Grid.Column="2"
                     Grid.Row="2"
-                    Margin="0,50,0,0"/>
+                    />
 
             <TextBlock x:Name="TextBlockXpProgressBar" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2">
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="{}XP: {0}/{1}">
+                    <MultiBinding StringFormat="{}XP: {0:#,0.00}/{1}">
                         <Binding Path="XP" Mode="OneWay"/>
                         <Binding Path="XPMax" Mode="OneWay" />
                     </MultiBinding>

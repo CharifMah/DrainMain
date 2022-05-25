@@ -23,6 +23,7 @@ namespace DrainMind.Metier.Items
 
         public override void CollideEffect(GameItem other)
         {
+
         }
     }
 }

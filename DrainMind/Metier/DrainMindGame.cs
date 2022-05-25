@@ -17,7 +17,7 @@ namespace DrainMind.Metier
     {
         //camera which follow the player
         private ScrollViewer Camera;
-
+     
         //game's canvas
         private Canvas UIcanvas;
 
@@ -56,13 +56,14 @@ namespace DrainMind.Metier
             AddItem(cam);
 
             //Creation du joueur
-            Joueur player = new Joueur(Width / 2, Height / 2, Canvas, this, new Vie(UIcanvas, 3, 20));
+            Joueur player = new Joueur(Width / 2, Height / 2, Canvas, this, new Vie(UIcanvas, 30, 30));
             AddItem(player);
  
             AddItem(new GenerateurEnemie(this,Canvas, player));
             AddItem(new GenerateurItem(Canvas, this));
             PlayBackgroundMusic("Son_ambiance_Action.mp3");
-            
+
+
         }
 
         /// <summary>

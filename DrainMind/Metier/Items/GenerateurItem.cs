@@ -47,12 +47,12 @@ namespace DrainMind
                 double x = r.NextDouble() * GameWidth;
                 double y = r.NextDouble() * GameHeight / 2;
 
-                Food food = new Food(x,y, PeachCanvas,g);
+                Food food = new Food(x,y, PeachCanvas,g, "FoodPeach.png");
                 Game.AddItem(food);
 
                 int Sec = r.Next(5000 / (StatsPersoModel.Instance.Niveau + 1), 10000 / (StatsPersoModel.Instance.Niveau + 1));
 
-                timeToCreate = new TimeSpan(0, 0, 0, 0, 200);
+                timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);
             }
         }
 

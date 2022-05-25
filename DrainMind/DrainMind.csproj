@@ -47,6 +47,7 @@
     <None Remove="Sprites\droite2.png" />
     <None Remove="Sprites\droite3.png" />
     <None Remove="Sprites\droiteTest.png" />
+    <None Remove="Sprites\Exp.png" />
     <None Remove="Sprites\face.png" />
     <None Remove="Sprites\fantome.png" />
     <None Remove="Sprites\fantomeVert.png" />
@@ -111,6 +112,7 @@
     <Resource Include="Sprites\boss.png" />
     <Resource Include="Sprites\diagoSD.png" />
     <Resource Include="Sprites\diagoZD.png" />
+    <Resource Include="Sprites\Exp.png" />
     <Resource Include="Sprites\fantomeVert.png" />
     <Resource Include="Sprites\FoodPeach.png" />
     <Resource Include="Sprites\Gloom.png" />

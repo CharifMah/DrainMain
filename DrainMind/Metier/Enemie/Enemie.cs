@@ -1,11 +1,9 @@
-﻿using IUTGame;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using DrainMind.Metier.joueur;
+﻿using DrainMind.metier.Items;
 using DrainMind.metier.joueur;
+using DrainMind.Metier.joueur;
+using IUTGame;
+using System;
+using System.Windows.Controls;
 
 namespace DrainMind.Metier.enemie
 {
@@ -38,7 +36,8 @@ namespace DrainMind.Metier.enemie
         }
 
         private Joueur player;
-
+        private Canvas _c;
+        private Exp xp;
         /// <summary>
         /// ennemies constructor
         /// </summary>
@@ -50,7 +49,9 @@ namespace DrainMind.Metier.enemie
         public Enemie(double x, double y, Canvas c, Game g, Joueur _player, string spritename) : base(x, y, c,g,spritename)
         {           
             player = _player;
+            ChangeScale(0.7, 0.7);
             EnemiesModel.Get().NombreEnemie++;
+            _c = c;
         }
 
 
@@ -63,10 +64,12 @@ namespace DrainMind.Metier.enemie
         /// <param name="other">the other object</param>
         public override void CollideEffect(GameItem other)
         {
-           
-            if (other.TypeName == "Joueur")
-            {                  
-                angle = 360 - angle;   
+               
+
+            if (other.TypeName == "Joueur" && xp == null)
+            {
+                xp = new Exp(this.Left, this.Top, _c);
+                Game.AddItem(xp);
             }
 
             else if (other.TypeName == this.TypeName)
@@ -119,9 +122,10 @@ namespace DrainMind.Metier.enemie
 
             double moveX = -(Left - (StatsPersoModel.Instance.posX - 75)) / 90;
             double moveY = -(Top - (StatsPersoModel.Instance.posY + 20)) / 90;
-
+            
             MoveXY(moveX, moveY);
-                      
+
+           
         }
     }
 }
