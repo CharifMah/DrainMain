@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DrainMind.View"
-      xmlns:res="clr-namespace:DrainMind.Res"
+      xmlns:res="clr-namespace:DrainMind.Res" xmlns:metier="clr-namespace:DrainMind.Metier" d:DataContext="{d:DesignInstance Type=metier:Settings}"
       mc:Ignorable="d" 
       d:DesignHeight="801.18" d:DesignWidth="1368.696"
       Title="Options" Background="Blue">
@@ -92,7 +92,7 @@
                 />
         <TextBlock x:Name="SliderValueTextBox"
                    Grid.Column="1"
-                   Text="{Binding Son , Mode=OneWay}"
+                   Text="{Binding Son ,StringFormat=Son : {0}, Mode=OneWay}"
                    FontSize="15"
                    IsHitTestVisible="False"
                    VerticalAlignment="Center"

@@ -31,9 +31,8 @@ namespace DrainMind.Metier
         /// <param name="UI">canvas</param>
         /// <Author>Charif</Author>
         public DrainMindGame() : base(DrainMindView.MainCanvas,"Sprites","Sounds")
-        {
-       
-            game = this;
+        {    
+            game = this;  
         }
 
         /// <summary>
@@ -58,17 +57,16 @@ namespace DrainMind.Metier
             Random r = new Random();
             int selectMusic = r.Next(1,4);
 
+            Instance.BackgroundVolume = Settings.Get().Son / 100;
+
             if (selectMusic == 1)
                 PlayBackgroundMusic("Son_ambiance_Action.mp3");
             if (selectMusic == 2)
                 PlayBackgroundMusic("Angello.mp3");
             if (selectMusic >= 3)
                 PlayBackgroundMusic("Gouttes.mp3");
+
             
-
-
-
-
         }
 
         /// <summary>

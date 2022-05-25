@@ -57,8 +57,6 @@ namespace DrainMind.View
         {
            checkBoxFullScreen.IsChecked = Settings.Get().PLeinEcran;
            checkBoxSound.IsChecked = Settings.Get().SonOnOff; 
-           slider_Son.Value = Settings.Get().Son;
-           SliderValueTextBox.Text = "Son : " + Settings.Get().Son.ToString();
         }
 
         #region ComboBox
@@ -216,8 +214,6 @@ namespace DrainMind.View
         {
             Settings.Get().Son = slider_Son.Value;
             RefreshControl();
-
-
         }
         #endregion
 
@@ -227,7 +223,6 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         public void RefreshControl()
         {
-            SliderValueTextBox.Text = $"Son : {Settings.Get().Son}";
             checkBoxSound.IsChecked = Settings.Get().SonOnOff;
         }
 

@@ -64,9 +64,13 @@ namespace DrainMind.View
 
         public DrainMindView(MenuPrincipale Menu)
         {      
-            ShowsNavigationUI = false;       
+            ShowsNavigationUI = false;
+          
             InitializeComponent();
             _drainMindView = this;
+     
+            //Deletes Old instance          
+            EnemiesModel.Destroy();       
 
             GroupBoxUpgradeSkill.Visibility = Visibility.Hidden;
             GroupBoxInfoPerso.Visibility = Visibility.Visible;
@@ -76,6 +80,7 @@ namespace DrainMind.View
             _upgradeSkillGrpBox = GroupBoxUpgradeSkill;
             _MenuPrincipale = Menu;
 
+            
 
             //Minuteur
             _timer = new DateTime(0);
@@ -94,9 +99,10 @@ namespace DrainMind.View
         private void ButtonTerminerInfo_Click(object sender, RoutedEventArgs e)
         {
             GroupBoxInfoPerso.Visibility = Visibility.Hidden;
+
             Score.Destroy();
             Score.Get().Nom = NameInput.Text;
-            LesScoresModel.Get().Scores.Add(Score.Get());
+            LesScoresModel.Get().Scores.Add(Score.Get());      
 
             //DebutDuJeux
             ResumeOrCreateGame();
@@ -112,7 +118,6 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         public void ResumeOrCreateGame()
         {
-
             if (drainMind == null)
             {
                 drainMind = new DrainMindGame();
@@ -123,27 +128,10 @@ namespace DrainMind.View
                 MainWindow.GetMainWindow.Content = this;
                 drainMind.Resume();
             }
-            StartupSettings();
-            MyGrid.Grid = MyGrid.drawGrid();
-        }
 
-        /// <summary>
-        /// Load Settings (Sounds ...) at the start of the game
-        /// </summary>
-        public void StartupSettings()
-        {
-            //Deletes Old instance          
-            EnemiesModel.Destroy();
-            ListViewLoadScores();
+            MyGrid.Grid = MyGrid.drawGrid();
             InitDataContext();
-            if (Settings.Get().Son == 0 || !Settings.Get().SonOnOff)
-            {
-                drainMind.BackgroundVolume = 0;
-                Settings.Get().Son = 0;
-            }
-            else
-                drainMind.BackgroundVolume = Settings.Get().Son;
-        
+            ListViewLoadScores();
         }
 
         /// <summary>

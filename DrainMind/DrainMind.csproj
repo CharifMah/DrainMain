@@ -21,9 +21,11 @@
     <None Remove="Sounds\Angello.mp3" />
     <None Remove="Sounds\Gouttes.mp3" />
     <None Remove="Sounds\LooseSound.mp3" />
+    <None Remove="Sounds\LvlUp - Copy.mp3" />
     <None Remove="Sounds\LvlUp.mp3" />
     <None Remove="Sounds\Son_ambiance_Action.mp3" />
     <None Remove="Sounds\SoundTake.mp3" />
+    <None Remove="Sounds\SoundTake2.mp3" />
     <None Remove="Sprites\.png" />
     <None Remove="Sprites\0.5.png" />
     <None Remove="Sprites\1.png" />
@@ -98,6 +100,9 @@
     <Content Include="Sounds\LooseSound.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sounds\LvlUp - Copy.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sounds\LvlUp.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -105,6 +110,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Sounds\SoundTake.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\SoundTake2.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Sprites\AmmoArme1.png" />

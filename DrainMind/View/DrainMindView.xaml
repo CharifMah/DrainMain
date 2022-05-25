@@ -10,6 +10,7 @@
 
     <Grid>
         <ScrollViewer x:Name="scrollviewer" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="CanvasViewer_PreviewMouseWheel">
+            
             <Canvas x:Name="canvas" Height="4221" Width="6715">
 
                 <Canvas.Background>
@@ -19,8 +20,11 @@
             </Canvas>
 
         </ScrollViewer>
+        
         <Canvas  x:Name="UI" Focusable="False" IsHitTestVisible="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        
         <Grid>
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="10*" />
@@ -32,7 +36,9 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            
             <TextBlock x:Name="TimerTextBlock" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1"/>
+            
             <ProgressBar x:Name="XpProgressBar"
                     Background="WhiteSmoke"
                     Opacity="0.5"

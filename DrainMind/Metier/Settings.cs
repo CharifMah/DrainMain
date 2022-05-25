@@ -100,7 +100,7 @@ namespace DrainMind.Metier
         }
 
         /// <summary>
-        /// Cree une instance si il y en as pas sinon get instance
+        /// Recupere ou cree une instance
         /// </summary>
         /// <returns>instance settings</returns>
         /// <Author>Charif</Author>
