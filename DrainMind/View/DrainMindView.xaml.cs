@@ -53,7 +53,7 @@ namespace DrainMind.View
         private void ButtonTerminerInfo_Click(object sender, RoutedEventArgs e)
         {
             GroupBoxInfoPerso.Visibility = Visibility.Hidden;
-      
+            Score.Destroy();
             Score.Get().Nom = NameInput.Text;
             LesScoresModel.Get().Scores.Add(Score.Get());
             ResumeOrCreateGame();
@@ -88,8 +88,7 @@ namespace DrainMind.View
         /// </summary>
         public void StartupSettings()
         {
-            //Deletes Old instance
-            Score.Destroy();
+            //Deletes Old instance          
             EnemiesModel.Destroy();
             ListViewLoadScores();
             InitDataContext();
@@ -313,7 +312,6 @@ namespace DrainMind.View
 
         #endregion
 
-       
         #region LvlUp Skill Updgrade
 
         private void ButtonADDSPEED_Click(object sender, RoutedEventArgs e)

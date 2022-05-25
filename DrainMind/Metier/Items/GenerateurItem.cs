@@ -52,7 +52,7 @@ namespace DrainMind
 
                 int Sec = r.Next(5000 / (StatsPersoModel.Instance.Niveau + 1), 10000 / (StatsPersoModel.Instance.Niveau + 1));
 
-                timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);
+                timeToCreate = new TimeSpan(0, 0, 0, 0, 200);
             }
         }
 

@@ -54,7 +54,7 @@ namespace DrainMind.Metier.enemie
 
 
             
-            if (timeToCreate.Seconds < 0)
+            if (timeToCreate.TotalSeconds < 0)
             {            
   
                 Enemie fantomeViolet = new Enemie(x, y, this.canvas, Game, player, "fantome.png");
@@ -64,7 +64,7 @@ namespace DrainMind.Metier.enemie
                 timeToCreate = new TimeSpan(0, 0, 0, Sec);               
             }
 
-            if (timeToCreate.Seconds == Sec/5)
+            if (timeToCreate.TotalSeconds == Sec/5)
             {
                 x = r.NextDouble() * GameWidth;
                 y = r.NextDouble() * GameHeight;
@@ -72,7 +72,7 @@ namespace DrainMind.Metier.enemie
                 Enemie fantomeVert = new Enemie(x, y, this.canvas, Game, player, "fantomeVert.png");
                 Game.AddItem(fantomeVert);
             }
-            if (timeToCreate.Seconds == Sec / 4)
+            if (timeToCreate.TotalSeconds == Sec / 4)
             {
                 x = r.NextDouble() * GameWidth;
                 y = r.NextDouble() * GameHeight;
@@ -80,7 +80,7 @@ namespace DrainMind.Metier.enemie
                 Enemie Gloom = new Enemie(x, y, this.canvas, Game, player, "Gloom.png");
                 Game.AddItem(Gloom);
             }
-            if (timeToCreate.Seconds == Sec / 3)
+            if (timeToCreate.TotalSeconds == Sec / 3)
             {
                 x = r.NextDouble() * GameWidth;
                 y = r.NextDouble() * GameHeight;
@@ -88,7 +88,7 @@ namespace DrainMind.Metier.enemie
                 Enemie nightmare = new Enemie(x, y, this.canvas, Game, player, "nightmare.png");
                 Game.AddItem(nightmare);
             }
-            if (timeToCreate.Seconds == Sec / 2)
+            if (timeToCreate.TotalSeconds == Sec / 2)
             {
                 Enemie boss = new Enemie(x, y, this.canvas, Game, player, "boss.png");
                 Game.AddItem(boss);
