@@ -19,6 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace DrainMind.View
 {
@@ -32,15 +33,16 @@ namespace DrainMind.View
         private SortAdorner listViewSortAdorner = null;
         private GridViewColumnHeader listViewSortCol = null;
 
-        StockScore Stock = new StockScore(Environment.CurrentDirectory);
-
+        private StockScore Stock = new StockScore(Environment.CurrentDirectory);
         //game's canvas
         private static Canvas _uicanvas;
         private static ScrollViewer _scrollviewer;
         private static Canvas _maincanvas;
         private static DrainMindView _drainMindView;
         private static GroupBox _upgradeSkillGrpBox;
-        
+        private DateTime _timer;
+        private static DispatcherTimer timer;
+
         #region Property
 
         public static Canvas MainCanvas
@@ -73,7 +75,14 @@ namespace DrainMind.View
             _maincanvas = canvas;
             _upgradeSkillGrpBox = GroupBoxUpgradeSkill;
             _MenuPrincipale = Menu;
-          
+
+
+            //Minuteur
+            _timer = new DateTime(0);
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_Tick;
+           
         }
 
         #region Saisi des information GroupBox (Debut du jeux)
@@ -88,7 +97,10 @@ namespace DrainMind.View
             Score.Destroy();
             Score.Get().Nom = NameInput.Text;
             LesScoresModel.Get().Scores.Add(Score.Get());
+
+            //DebutDuJeux
             ResumeOrCreateGame();
+            timer.Start();
         }
         #endregion 
 
@@ -160,92 +172,6 @@ namespace DrainMind.View
 
         #endregion
 
-        #region DrainMindViewEvents
-
-
-        /// <summary>
-        /// Event quand la taille de l'ecran change rescale les element de la fenetre
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <Author>Charif</Author>
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (drainMind != null)
-            {
-                Camera.MoveCamera(StatsPersoModel.Instance.posX, StatsPersoModel.Instance.posY);
-                MyGrid.ResizeCanvas(ref UI);
-            }           
-        }
-
-        /// <summary>
-        /// Affiche ou rend invisible le menu pause
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <Author>Charif</Author>
-        private void FentrePrincipalDrainMain_KeyDown(object sender, KeyEventArgs e)
-        {
-
-            if (e.Key == Key.Escape)
-            {
-                bool Pressed = false;
-                //Pause
-                if (GroupBoxPause.Visibility == Visibility.Hidden && !Pressed)
-                {
-                    drainMind.Pause();
-                    GroupBoxPause.Visibility = Visibility.Visible;
-                    Pressed = true;
-                }
-                //Resume
-                if (GroupBoxPause.Visibility == Visibility.Visible && !Pressed)
-                {
-                    if (GroupBoxUpgradeSkill.Visibility == Visibility.Hidden)
-                    {
-                        drainMind.Resume();
-                    }
-                    
-                    GroupBoxPause.Visibility = Visibility.Hidden;
-                    Pressed = true;
-                }
-            }
-
-            if (e.Key == Key.G && DrainMindGame.Instance != null)
-            {
-                bool Pressed = false;
-                
-                //Pause
-                if (!Pressed && !UI.Children.Contains(MyGrid.Grid) )
-                {
-                    UI.Children.Add(MyGrid.Grid);
-                    
-                    Pressed = true;
-
-
-                }
-                //Resume
-                if (!Pressed && UI.Children.Contains(MyGrid.Grid))
-                {
-                    UI.Children.Remove(MyGrid.Grid);
-                    Pressed = true;
-                }
-            }
-
-        }
-
-        /// <summary>
-        /// Event qui empêche le deplacement avec la mollete de la souris
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CanvasViewer_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
-        {
-            e.Handled = true;
-
-        }
-        
-        #endregion
-
         #region ButtonMenuPause
 
         /// <summary>
@@ -259,6 +185,7 @@ namespace DrainMind.View
             if (GroupBoxUpgradeSkill.Visibility == Visibility.Hidden)
             {
                 drainMind.Resume();
+                timer.Start();
             }
             
             GroupBoxPause.Visibility = Visibility.Hidden;
@@ -294,7 +221,8 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            drainMind.Pause();          
+            drainMind.Pause();
+            timer.Stop();
             _MenuPrincipale.PlayButton.Content = DrainMind.Res.Strings.Reprendre;
             MainWindow.GetMainWindow.Content = _MenuPrincipale;
             Stock.SauverScore(LesScoresModel.Get().Scores);
@@ -346,9 +274,10 @@ namespace DrainMind.View
         #region LvlUp Skill Updgrade
 
         public static void ShowUpgradeGrpBox()
-        {
+        {      
             _upgradeSkillGrpBox.Visibility = Visibility.Visible;
-            DrainMindGame.Instance.Pause();
+            timer.Stop();
+            DrainMindGame.Instance.Pause();          
         }
 
         private void ButtonADDSPEED_Click(object sender, RoutedEventArgs e)
@@ -356,9 +285,108 @@ namespace DrainMind.View
             StatsPersoModel.Instance.Speed += 5;
             GroupBoxUpgradeSkill.Visibility = Visibility.Hidden;
             DrainMindGame.Instance.Resume();
+            timer.Start();
         }
 
 
+
+        #endregion
+
+        #region Events
+
+        /// <summary>
+        /// Refresh le Timer Toute les secondes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void timer_Tick(object sender, EventArgs e)
+        {
+            _timer = _timer.AddSeconds(1);
+            TimerTextBlock.Text = _timer.ToString("mm:ss");
+        }
+
+        /// <summary>
+        /// Event quand la taille de l'ecran change rescale les element de la fenetre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <Author>Charif</Author>
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (drainMind != null)
+            {
+                Camera.MoveCamera(StatsPersoModel.Instance.posX, StatsPersoModel.Instance.posY);
+                MyGrid.ResizeCanvas(ref UI);
+            }
+        }
+
+        /// <summary>
+        /// Affiche ou rend invisible le menu pause
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <Author>Charif</Author>
+        private void FentrePrincipalDrainMain_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.Key == Key.Escape)
+            {
+                bool Pressed = false;
+                //Pause
+                if (GroupBoxPause.Visibility == Visibility.Hidden && !Pressed)
+                {
+                    drainMind.Pause();
+                    timer.Stop();
+                    GroupBoxPause.Visibility = Visibility.Visible;
+                    Pressed = true;
+                }
+                //Resume
+                if (GroupBoxPause.Visibility == Visibility.Visible && !Pressed)
+                {
+                    if (GroupBoxUpgradeSkill.Visibility == Visibility.Hidden)
+                    {
+                        drainMind.Resume();
+                        timer.Start();
+                    }
+
+                    GroupBoxPause.Visibility = Visibility.Hidden;
+                    Pressed = true;
+                }
+            }
+
+            if (e.Key == Key.G && DrainMindGame.Instance != null)
+            {
+                bool Pressed = false;
+
+                //Pause
+                if (!Pressed && !UI.Children.Contains(MyGrid.Grid))
+                {
+                    UI.Children.Add(MyGrid.Grid);
+
+                    Pressed = true;
+
+
+                }
+                //Resume
+                if (!Pressed && UI.Children.Contains(MyGrid.Grid))
+                {
+                    UI.Children.Remove(MyGrid.Grid);
+                    Pressed = true;
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Event qui empêche le deplacement avec la mollete de la souris
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CanvasViewer_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            e.Handled = true;
+
+        }
 
         #endregion
 

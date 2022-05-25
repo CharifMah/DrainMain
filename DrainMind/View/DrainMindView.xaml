@@ -32,7 +32,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
+            <TextBlock x:Name="TimerTextBlock" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1"/>
             <ProgressBar x:Name="XpProgressBar"
                     Background="WhiteSmoke"
                     Opacity="0.5"
