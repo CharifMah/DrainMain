@@ -116,7 +116,7 @@
                 </Grid>
             </GroupBox>
 
-            <GroupBox x:Name="GroupBoxUpgradeSkill" Visibility="Hidden" FontSize="40"  Grid.Column="1" Grid.Row="1">
+            <GroupBox x:Name="GroupBoxUpgradeSkill" Visibility="Visible" FontSize="40"  Grid.Column="1" Grid.Row="1">
 
                 <GroupBox.Background>
                     <SolidColorBrush Color="WhiteSmoke" Opacity="0.4"/>
@@ -142,7 +142,6 @@
                                Grid.Column="0"
                                />
                     <Button 
-                        Name="ButtonADDSPEED"
                         Grid.Column="1" 
                         Grid.Row="0"
                         VerticalAlignment="Center" 
@@ -151,7 +150,29 @@
                         Width="100"
                         Height="100"
                         Content="+"
-                        Click="ButtonADDSPEED_Click"
+                        Click="ButtonAddSpeed_Click"
+                        />
+
+                    <TextBlock x:Name="TextBlockXp"
+                        Text="{Binding Path=Xpmult,Mode=OneWay}" 
+                               FontSize="30" 
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center"
+                               Grid.Row="1" 
+                               Grid.Column="0"
+                               />
+                    
+                    <Button 
+                        Grid.Column="1" 
+                        Grid.Row="1"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource CustomButton}"
+                        Width="200"
+                        Height="100"
+                        BorderBrush="Yellow"
+                        Click="DoubleXp_Button_Click"
+                        Content="2X XP"
                         />
 
 

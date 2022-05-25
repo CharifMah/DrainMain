@@ -276,9 +276,24 @@ namespace DrainMind.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonADDSPEED_Click(object sender, RoutedEventArgs e)
+        private void ButtonAddSpeed_Click(object sender, RoutedEventArgs e)
         {
             StatsPersoModel.Instance.Speed += 5;
+
+            CloseUpgradeGrpBox();
+        }
+
+        private void DoubleXp_Button_Click(object sender, RoutedEventArgs e)
+        {
+            StatsPersoModel.Instance.Xpmult = 2;
+            CloseUpgradeGrpBox();
+        }
+
+        /// <summary>
+        /// Ferme la groupe Box et relance le timer
+        /// </summary>
+        private void CloseUpgradeGrpBox()
+        {
             GroupBoxUpgradeSkill.Visibility = Visibility.Hidden;
             DrainMindGame.Instance.Resume();
             timer.Start();
@@ -286,7 +301,7 @@ namespace DrainMind.View
 
         #endregion
 
-        #region Events
+        #region Events DrainMindView
 
         /// <summary>
         /// Refresh le Timer Toute les secondes
@@ -384,5 +399,6 @@ namespace DrainMind.View
 
         #endregion
 
+        
     }
 }

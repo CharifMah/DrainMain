@@ -4,12 +4,15 @@ using IUTGame;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Timers;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace DrainMind.metier.Items
 {
     public class ExpItem : IUTGame.GameItem, IAnimable
     {
+ 
         /// <summary>
         /// Boule experience
         /// </summary>
@@ -17,7 +20,10 @@ namespace DrainMind.metier.Items
         /// <param name="y">Positon y</param>
         public ExpItem(double x, double y) : base(x, y, DrainMind.View.DrainMindView.MainCanvas, DrainMindGame.Instance, "Exp.png")
         {
+           
             this.ChangeScale(0.3, 0.3);
+  
+
         }
 
         public override string TypeName => "Exp";
@@ -27,27 +33,31 @@ namespace DrainMind.metier.Items
             if (this.Collidable)
             {
                 MoveXpToPlayer();
+
             }
         }
 
         public override void CollideEffect(GameItem other)
         {
             if (other.TypeName == "Joueur")
-            {             
+            {
                 this.Dispose();
-
                 if (Collidable)
                 {
                     if (StatsPersoModel.Instance.XP + (10 * StatsPersoModel.Instance.Xpmult) >= StatsPersoModel.Instance.XPMax)
                     {
+                        
+               
                         PlaySound("LvlUp.mp3");
                     }
-                    StatsPersoModel.Instance.XP = 10;                  
-                }   
-                
-                this.Collidable = false;                                       
+                    StatsPersoModel.Instance.XP = 10;
+                }
+                new TextItem(this.Left,this.Top);
+                this.Collidable = false;
             }
         }
+
+       
 
         /// <summary>
         /// Deplacement en direction du joueur
