@@ -36,8 +36,7 @@ namespace DrainMind.Metier.enemie
         }
 
         private Joueur player;
-        private Canvas _c;
-        private Exp xp;
+        private ExpItem xp;
         /// <summary>
         /// ennemies constructor
         /// </summary>
@@ -46,12 +45,11 @@ namespace DrainMind.Metier.enemie
         /// <param name="c">canvas</param>
         /// <param name="g">game</param>
         /// <param name="Spritename">name of the sprite</param>
-        public Enemie(double x, double y, Canvas c, Game g, Joueur _player, string spritename) : base(x, y, c,g,spritename)
+        public Enemie(double x, double y, Game g, Joueur _player, string spritename) : base(x, y, DrainMind.View.DrainMindView.MainCanvas,g,spritename)
         {           
             player = _player;
             ChangeScale(0.7, 0.7);
             EnemiesModel.Get().NombreEnemie++;
-            _c = c;
         }
 
 
@@ -67,9 +65,12 @@ namespace DrainMind.Metier.enemie
                
 
             if (other.TypeName == "Joueur" && xp == null)
-            {
-                xp = new Exp(this.Left, this.Top, _c);
+            {         
+                xp = new ExpItem(this.Left, this.Top);
                 Game.AddItem(xp);
+
+                this.Dispose();
+                this.Collidable = false;
             }
 
             else if (other.TypeName == this.TypeName)

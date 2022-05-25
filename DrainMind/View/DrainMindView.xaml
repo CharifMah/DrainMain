@@ -9,7 +9,7 @@
       SizeChanged="Window_SizeChanged" KeyDown="FentrePrincipalDrainMain_KeyDown" >
 
     <Grid>
-        <ScrollViewer x:Name="CanvasViewer" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="CanvasViewer_PreviewMouseWheel">
+        <ScrollViewer x:Name="scrollviewer" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="CanvasViewer_PreviewMouseWheel">
             <Canvas x:Name="canvas" Height="4221" Width="6715">
 
                 <Canvas.Background>

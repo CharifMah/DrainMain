@@ -3,6 +3,7 @@ using DrainMind.metier.Grille;
 using DrainMind.metier.joueur;
 using DrainMind.Metier.enemie;
 using DrainMind.Metier.joueur;
+using DrainMind.View;
 using System;
 using System.Threading;
 using System.Windows.Controls;
@@ -21,7 +22,7 @@ namespace TestUnitaire
             {
                 Canvas ui = new Canvas();
                 Vie v = new Vie(ui, 10, 50);
-                Joueur s = new Joueur(0, 0, new Canvas(), new DrainMind.Metier.DrainMindGame(new Canvas(), new ScrollViewer(), ui), v);
+                Joueur s = new Joueur(0, 0, new DrainMind.Metier.DrainMindGame(), v);
 
                 Assert.Equal(v._Vie, 10);
                 s.LooseLife(10);
@@ -57,10 +58,10 @@ namespace TestUnitaire
             var t = new Thread(o =>
             {
                 ///Creation d'une partie
-                DrainMind.Metier.DrainMindGame g = new DrainMind.Metier.DrainMindGame(new Canvas(), new ScrollViewer(), new Canvas());
+                DrainMind.Metier.DrainMindGame g = new DrainMind.Metier.DrainMindGame();
                 Vie v = new Vie(new Canvas(), 10, 50);
-                Joueur s = new Joueur(0, 0, new Canvas(), g, v);
-                Enemie e = new Enemie(0, 0, new Canvas(), g, s, "");
+                Joueur s = new Joueur(0, 0,g,v);
+                Enemie e = new Enemie(0, 0, g, s, "");
 
                 //Meme Position
                 Assert.Equal(e.IsCollide(s), true);

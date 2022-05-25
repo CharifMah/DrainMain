@@ -65,7 +65,7 @@ namespace DrainMind.Metier.enemie
             double x = r.NextDouble() * GameWidth;
             double y = r.NextDouble() * GameHeight;
     
-            Enemie enemie = new Enemie(x, y, this.canvas, Game, player, NameSprite);
+            Enemie enemie = new Enemie(x, y, Game, player, NameSprite);
             Game.AddItem(enemie);
 
             Sec = r.Next(5000 - StatsPersoModel.Instance.Niveau * 100, 10000 - StatsPersoModel.Instance.Niveau * 100);

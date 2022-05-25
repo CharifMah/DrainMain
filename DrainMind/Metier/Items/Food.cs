@@ -23,7 +23,11 @@ namespace DrainMind.Metier.Items
 
         public override void CollideEffect(GameItem other)
         {
-
+            if (other.TypeName == "Joueur")
+            {
+                this.Dispose();
+                this.Collidable = false;
+            }
         }
     }
 }

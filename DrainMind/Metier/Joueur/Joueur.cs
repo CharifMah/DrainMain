@@ -8,6 +8,7 @@ using System.IO;
 using DrainMind.Metier.joueur;
 using System.Windows;
 using DrainMind.metier.joueur;
+using DrainMind.View;
 
 namespace DrainMind.Metier.joueur
 {
@@ -18,8 +19,7 @@ namespace DrainMind.Metier.joueur
     {        
       
         private bool goLeft = false, goRight = false, goUp = false, goDown = false;
-  
-        private int niveau = 1;
+
         private Vie playerLife;
 
 
@@ -34,12 +34,12 @@ namespace DrainMind.Metier.joueur
         /// <param name="c">canvas of the application</param>
         /// <param name="g">drainMind</param>
         /// <param name="ui">canvas</param>
-        public Joueur(double x, double y, Canvas c, DrainMindGame g,Vie vie) : base(x,y,c,g,"face.png")
+        public Joueur(double x, double y, DrainMindGame g,Vie v) : base(x,y,DrainMindView.MainCanvas,g,"face.png")
         {
             ChangeScale(0.7,0.7);
             new StatsPersoModel(10);
             //Creation de la Vie
-            playerLife = vie;          
+            playerLife = v;          
             
         }      
 
@@ -50,7 +50,6 @@ namespace DrainMind.Metier.joueur
         /// <param name="dt">timespan elasped since last animation</param>
         public void Animate(TimeSpan dt)
         {
-
             if (goLeft)
             {
                 DeplacerJoueur(-StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds, 0);
@@ -70,7 +69,8 @@ namespace DrainMind.Metier.joueur
             {
                 DeplacerJoueur(0, StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds);
             }
-            AnimationJoueur();        
+            AnimationJoueur();
+        
         }
 
         /// <summary>
@@ -108,9 +108,6 @@ namespace DrainMind.Metier.joueur
         {
             if (other.TypeName == "Enemie")
             {
-                other.Dispose();
-                other.Collidable = false;   
-                    
                 LooseLife(1);
                 PlaySound("Bruit.mp3");
                 enemie.EnemiesModel.Get().NombreEnemie--;
@@ -119,19 +116,18 @@ namespace DrainMind.Metier.joueur
                 Score.Get().EnemieKilled += 1;
                 Score.Get().Point += 10;
 
+                
+            }
+            if (other.TypeName == "Exp")
+            {
+               
                 LvlUpEffect();
             }
-
-
             if (other.TypeName == "Peach")
             {
-                other.Dispose();
-                other.Collidable = false;
-
                 GainLife(1);
                 PlaySound("SoundTake.mp3");
-            }
-            
+            }            
         }
 
         /// <summary>
@@ -271,13 +267,14 @@ namespace DrainMind.Metier.joueur
         #region Niveau
         public void LvlUpEffect()
         {
-            if (StatsPersoModel.Instance.Niveau > niveau)
+            if (StatsPersoModel.Instance.XP >= StatsPersoModel.Instance.XPMax)
             {
-                niveau = StatsPersoModel.Instance.Niveau;                  
-                StatsPersoModel.LvlUpGrpBox.Visibility = Visibility.Visible;
-                DrainMindGame.Instance.Pause();
-                PlaySound("LvlUp.mp3");    
-            }
+
+                goDown = false;
+                goLeft = false;
+                goRight = false;
+                goUp = false;
+            }                             
         }
         #endregion
 

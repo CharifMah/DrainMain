@@ -29,19 +29,51 @@ namespace DrainMind.View
     {
         private DrainMindGame drainMind;
         private MenuPrincipale _MenuPrincipale;
-
         private SortAdorner listViewSortAdorner = null;
         private GridViewColumnHeader listViewSortCol = null;
 
         StockScore Stock = new StockScore(Environment.CurrentDirectory);
+
+        //game's canvas
+        private static Canvas _uicanvas;
+        private static ScrollViewer _scrollviewer;
+        private static Canvas _maincanvas;
+        private static DrainMindView _drainMindView;
+        private static GroupBox _upgradeSkillGrpBox;
+        
+        #region Property
+
+        public static Canvas MainCanvas
+        {
+            get { return _maincanvas; }
+        }
+
+        public static Canvas UIcanvas
+        {
+            get { return _uicanvas; }
+        }
+
+        public static ScrollViewer ScrollViewer
+        {
+            get { return _scrollviewer; }
+        }
+
+        #endregion
+
         public DrainMindView(MenuPrincipale Menu)
         {      
             ShowsNavigationUI = false;       
             InitializeComponent();
-           
+            _drainMindView = this;
+
             GroupBoxUpgradeSkill.Visibility = Visibility.Hidden;
             GroupBoxInfoPerso.Visibility = Visibility.Visible;
-             _MenuPrincipale = Menu;
+            _scrollviewer = scrollviewer;
+            _uicanvas = UI;
+            _maincanvas = canvas;
+            _upgradeSkillGrpBox = GroupBoxUpgradeSkill;
+            _MenuPrincipale = Menu;
+          
         }
 
         #region Saisi des information GroupBox (Debut du jeux)
@@ -71,7 +103,7 @@ namespace DrainMind.View
 
             if (drainMind == null)
             {
-                drainMind = new DrainMindGame(canvas, CanvasViewer, UI);
+                drainMind = new DrainMindGame();
                 drainMind.Run();
             }
             if (!drainMind.IsRunning)
@@ -100,7 +132,6 @@ namespace DrainMind.View
             else
                 drainMind.BackgroundVolume = Settings.Get().Son;
         
-            StatsPersoModel.LvlUpGrpBox = GroupBoxUpgradeSkill;
         }
 
         /// <summary>
@@ -169,7 +200,7 @@ namespace DrainMind.View
                 //Resume
                 if (GroupBoxPause.Visibility == Visibility.Visible && !Pressed)
                 {
-                    if (StatsPersoModel.LvlUpGrpBox.Visibility == Visibility.Hidden)
+                    if (GroupBoxUpgradeSkill.Visibility == Visibility.Hidden)
                     {
                         drainMind.Resume();
                     }
@@ -225,7 +256,7 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void Resumebutton_Click(object sender, RoutedEventArgs e)
         {
-            if (StatsPersoModel.LvlUpGrpBox.Visibility == Visibility.Hidden)
+            if (GroupBoxUpgradeSkill.Visibility == Visibility.Hidden)
             {
                 drainMind.Resume();
             }
@@ -314,10 +345,16 @@ namespace DrainMind.View
 
         #region LvlUp Skill Updgrade
 
+        public static void ShowUpgradeGrpBox()
+        {
+            _upgradeSkillGrpBox.Visibility = Visibility.Visible;
+            DrainMindGame.Instance.Pause();
+        }
+
         private void ButtonADDSPEED_Click(object sender, RoutedEventArgs e)
         {
             StatsPersoModel.Instance.Speed += 5;
-            StatsPersoModel.LvlUpGrpBox.Visibility = Visibility.Hidden;
+            GroupBoxUpgradeSkill.Visibility = Visibility.Hidden;
             DrainMindGame.Instance.Resume();
         }
 

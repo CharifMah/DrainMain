@@ -14,13 +14,7 @@ namespace DrainMind.Metier
     /// Game : drainMind
     /// </summary>
     public class DrainMindGame : IUTGame.Game
-    {
-        //camera which follow the player
-        private ScrollViewer Camera;
-     
-        //game's canvas
-        private Canvas UIcanvas;
-
+    {  
         private static DrainMindGame game;
         public static DrainMindGame Instance
         {
@@ -35,11 +29,9 @@ namespace DrainMind.Metier
         /// <param name="camera">camera which follow the player</param>
         /// <param name="UI">canvas</param>
         /// <Author>Charif</Author>
-        public DrainMindGame(Canvas canvas, ScrollViewer camera,Canvas UI) : base(canvas,"Sprites","Sounds")
+        public DrainMindGame() : base(DrainMindView.MainCanvas,"Sprites","Sounds")
         {
-            Camera = camera;
-            UIcanvas = UI;
-            
+       
             game = this;
         }
 
@@ -52,11 +44,11 @@ namespace DrainMind.Metier
             double Height = Application.Current.MainWindow.ActualHeight;
             double Width = Application.Current.MainWindow.ActualWidth;
             //Creation de la Camera
-            Camera cam = new Camera(Width / 2, Height / 2, this, Camera);
+            Camera cam = new Camera(Width / 2, Height / 2, this);
             AddItem(cam);
 
             //Creation du joueur
-            Joueur player = new Joueur(Width / 2, Height / 2, Canvas, this, new Vie(UIcanvas, 30, 30));
+            Joueur player = new Joueur(Width / 2, Height / 2, this, new Vie(DrainMindView.UIcanvas, 30, 30));
             AddItem(player);
  
             AddItem(new GenerateurEnemie(this,Canvas, player));

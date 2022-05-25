@@ -1,4 +1,5 @@
-﻿using IUTGame;
+﻿using DrainMind.View;
+using IUTGame;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,6 @@ namespace DrainMind.Metier
     /// <Author>Charif</Author>
     public class Camera : GameItem
     {
-        //Represents a scrollable area, might contain other visible items
-        private static ScrollViewer _Camera;
 
         /// <summary>
         /// camera's constructor
@@ -29,9 +28,8 @@ namespace DrainMind.Metier
         /// <param name="game">drainMind</param>
         /// <param name="camera">camera</param>
         /// <Author>Charif</Author>
-        public Camera(double x, double y,Game game,ScrollViewer camera) : base(x, y, new Canvas(), game)
+        public Camera(double x, double y,Game game) : base(x, y, new Canvas(), game)
         {       
-            _Camera = camera;
         }
 
         //TypeName of the camera is "Camera"
@@ -54,8 +52,8 @@ namespace DrainMind.Metier
         /// <Author>Charif</Author>
         public static void MoveCamera(double x, double y)
         {
-            _Camera.ScrollToVerticalOffset(y - (Application.Current.MainWindow.ActualHeight / 2));
-            _Camera.ScrollToHorizontalOffset(x - (Application.Current.MainWindow.ActualWidth / 2));
+            DrainMindView.ScrollViewer.ScrollToVerticalOffset(y - (Application.Current.MainWindow.ActualHeight / 2));
+            DrainMindView.ScrollViewer.ScrollToHorizontalOffset(x - (Application.Current.MainWindow.ActualWidth / 2));
         }
     }
 }

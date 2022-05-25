@@ -11,9 +11,9 @@ namespace DrainMind.metier.joueur
     /// </summary>
     public class StatsPersoModel : observable.Observable
     {
-        private double speed;
+        private double _speed;
         private double _xp;
-        private double _xpMax = 1000;
+        private double _xpMax;
         private int _niveau;
         private double _Xpmult;
         private double _posX;
@@ -43,10 +43,10 @@ namespace DrainMind.metier.joueur
         /// </summary>
         public double Speed
         {
-            get { return speed; }
+            get { return _speed; }
             set 
             {
-                speed = value;
+                _speed = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -59,26 +59,19 @@ namespace DrainMind.metier.joueur
         {
             get { return _xp; }
             set
-            {
+            {       
                 _xp += value * _Xpmult;
+
                 if (_xp >= _xpMax)
                 {
                     _niveau += 1;
                     _xp -= _xpMax;
                     _xpMax *= 1.5;
+                    DrainMind.View.DrainMindView.ShowUpgradeGrpBox();
+                    this.NotifyPropertyChanged("XPMax");
+                    this.NotifyPropertyChanged("Niveau");
                 }
-                this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged("XPMax");
-                this.NotifyPropertyChanged("Niveau");
-            }
-        }
-
-        public static GroupBox LvlUpGrpBox
-        {
-            get { return _LvlUpGrpBox; }
-            set 
-            {
-                _LvlUpGrpBox = value;
+                this.NotifyPropertyChanged();              
             }
         }
 
@@ -128,10 +121,11 @@ namespace DrainMind.metier.joueur
         /// <param name="CoefXp">multiplicateur xp quand lvl Up</param>
         public StatsPersoModel(double Speed)
         {
-            this.speed = Speed;
-            this._xp = 0;
+            this._speed = Speed;
+            this._xp = 0.0;
             this._niveau = 1;
             this._Xpmult = 1.2;
+            this._xpMax = 100;
             instance = this;
         }
     }
