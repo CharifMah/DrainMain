@@ -33,7 +33,7 @@ namespace DrainMind.Metier.enemie
         {
             this.canvas = c;
             
-            timeToCreate = new TimeSpan(0, 0, 1);
+            timeToCreate = new TimeSpan(0, 0, 0,0,500);
             player = j;
         }
 
@@ -68,7 +68,7 @@ namespace DrainMind.Metier.enemie
             Enemie enemie = new Enemie(x, y, Game, player, NameSprite);
             Game.AddItem(enemie);
 
-            Sec = r.Next(5000 - StatsPersoModel.Instance.Niveau * 100, 10000 - StatsPersoModel.Instance.Niveau * 100);
+            Sec = r.Next(3000, 5000);
             timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);    
         }
         /// <summary>

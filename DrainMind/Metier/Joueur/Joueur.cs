@@ -108,19 +108,10 @@ namespace DrainMind.Metier.joueur
         {
             if (other.TypeName == "Enemie")
             {
-                LooseLife(1);
-                PlaySound("Bruit.mp3");
-                enemie.EnemiesModel.Get().NombreEnemie--;
-                //StatsPersoModel.Instance.XP += 50;
-                
-                Score.Get().EnemieKilled += 1;
-                Score.Get().Point += 10;
-
-                
+                LooseLife(1);            
             }
             if (other.TypeName == "Exp")
-            {
-               
+            {             
                 LvlUpEffect();
             }
             if (other.TypeName == "Peach")
@@ -269,7 +260,6 @@ namespace DrainMind.Metier.joueur
         {
             if (StatsPersoModel.Instance.XP >= StatsPersoModel.Instance.XPMax)
             {
-
                 goDown = false;
                 goLeft = false;
                 goRight = false;

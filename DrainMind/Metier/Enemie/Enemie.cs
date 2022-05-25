@@ -69,6 +69,12 @@ namespace DrainMind.Metier.enemie
                 xp = new ExpItem(this.Left, this.Top);
                 Game.AddItem(xp);
 
+                PlaySound("Bruit.mp3");
+                enemie.EnemiesModel.Get().NombreEnemie--;
+
+                Score.Get().EnemieKilled += 1;
+                Score.Get().Point += 10;
+
                 this.Dispose();
                 this.Collidable = false;
             }
