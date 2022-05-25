@@ -57,8 +57,6 @@ namespace DrainMind.Metier
             Random r = new Random();
             int selectMusic = r.Next(1,4);
 
-            Instance.BackgroundVolume = Settings.Get().Son / 100;
-
             if (selectMusic == 1)
                 PlayBackgroundMusic("Son_ambiance_Action.mp3");
             if (selectMusic == 2)

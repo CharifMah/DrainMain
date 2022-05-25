@@ -122,6 +122,7 @@ namespace DrainMind.View
             {
                 drainMind = new DrainMindGame();
                 drainMind.Run();
+                drainMind.BackgroundVolume = (Settings.Get().Son / 100);
             }
             if (!drainMind.IsRunning)
             {
