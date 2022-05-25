@@ -7,6 +7,7 @@ namespace DrainMind.Metier.enemie
 {
     public class EnemiesModel : observable.Observable
     {
+
         private int _nombreenemie;
         
         public int NombreEnemie

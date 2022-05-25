@@ -13,29 +13,9 @@ namespace DrainMind.Metier.enemie
     /// </summary>
     public class Enemie : GameItem, IAnimable
     {
-        //ennemies's speed
-        private double vitesse = 200;
-
-        //ennemies's angle
-        private double angle = 315;
-
         //time interval
-        private TimeSpan Waiting = new TimeSpan(0);
-
-        //spd property's of ennemies
-        protected double Vitesse
-        {
-            get { return vitesse; }
-            set { vitesse = value; }
-        }
-
-        //angle property's of ennemies
-        protected double Angle
-        {
-            get { return angle; }
-            set { angle = value; }
-        }
-
+        private TimeSpan _waiting = new TimeSpan(0);
+        
         /// <summary>
         /// ennemies constructor
         /// </summary>
@@ -58,15 +38,13 @@ namespace DrainMind.Metier.enemie
         /// </summary>
         /// <param name="other">the other object</param>
         public override void CollideEffect(GameItem other)
-        {
-               
-
+        {               
             if (other.TypeName == "Joueur")
             {
                 this.Dispose();
                 if (this.Collidable)
                 {
-                    ExpItem xp = new ExpItem(this.Left, this.Top);
+                    ExpItem xp = new ExpItem(this.Left + (this.Width / 2), this.Top + (this.Height / 2));
                     Game.AddItem(xp);
 
                     PlaySound("Bruit.mp3");
@@ -76,14 +54,7 @@ namespace DrainMind.Metier.enemie
                     Score.Get().Point += 10;
                 }                            
                 this.Collidable = false;
-            }
-
-            else if (other.TypeName == this.TypeName)
-            {
-                angle = (angle + 180) % 360;
-            }
-            
-      
+            }   
         }
 
         /// <summary>
@@ -93,9 +64,9 @@ namespace DrainMind.Metier.enemie
         public void Animate(TimeSpan dt)
         {
             
-            if (Waiting.TotalMilliseconds > 0)
+            if (_waiting.TotalMilliseconds > 0)
             {
-                Waiting = Waiting.Subtract(dt);
+                _waiting = _waiting.Subtract(dt);
             }
 
             if (this.Top < 0)
@@ -127,8 +98,8 @@ namespace DrainMind.Metier.enemie
         public void MoveEnemie()
         {
 
-            double moveX = -(Left - (StatsPersoModel.Instance.posX - 75)) / 90;
-            double moveY = -(Top - (StatsPersoModel.Instance.posY + 20)) / 90;
+            double moveX = -(this.Left + (this.Width / 2) - (StatsPersoModel.Instance.posX - 75)) / 90;
+            double moveY = -(this.Top + (this.Height / 2) - (StatsPersoModel.Instance.posY + 20)) / 90;
             
             MoveXY(moveX, moveY);
 
