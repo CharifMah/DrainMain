@@ -4,6 +4,7 @@ using DrainMind.Metier;
 using DrainMind.Metier.enemie;
 using DrainMind.Metier.joueur;
 using DrainMind.View;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,7 +54,19 @@ namespace DrainMind.Metier
  
             AddItem(new GenerateurEnemie());
             AddItem(new GenerateurItem());
-            PlayBackgroundMusic("Son_ambiance_Action.mp3");
+
+            Random r = new Random();
+            int selectMusic = r.Next(1,4);
+
+            if (selectMusic == 1)
+                PlayBackgroundMusic("Son_ambiance_Action.mp3");
+            if (selectMusic == 2)
+                PlayBackgroundMusic("Angello.mp3");
+            if (selectMusic >= 3)
+                PlayBackgroundMusic("Gouttes.mp3");
+            
+
+
 
 
         }

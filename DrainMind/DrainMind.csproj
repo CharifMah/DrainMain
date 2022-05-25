@@ -18,6 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Sounds\Angello.mp3" />
+    <None Remove="Sounds\Gouttes.mp3" />
     <None Remove="Sounds\LooseSound.mp3" />
     <None Remove="Sounds\LvlUp.mp3" />
     <None Remove="Sounds\Son_ambiance_Action.mp3" />
@@ -84,13 +86,13 @@
 
   <ItemGroup>
     <Content Include="Logo.ico" />
+    <Content Include="Sounds\Angello.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sounds\Bruit.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sounds\Alice.mp3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Sounds\Grandioso.mp3">
+    <Content Include="Sounds\Gouttes.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Sounds\LooseSound.mp3">
