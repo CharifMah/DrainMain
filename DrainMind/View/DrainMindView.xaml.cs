@@ -273,6 +273,9 @@ namespace DrainMind.View
 
         #region LvlUp Skill Updgrade
 
+        /// <summary>
+        /// Affiche et met en pause la groupe Box
+        /// </summary>
         public static void ShowUpgradeGrpBox()
         {      
             _upgradeSkillGrpBox.Visibility = Visibility.Visible;
@@ -280,6 +283,11 @@ namespace DrainMind.View
             DrainMindGame.Instance.Pause();          
         }
 
+        /// <summary>
+        /// Cache la groupebox et Ajoute de la Vitesse au joueur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonADDSPEED_Click(object sender, RoutedEventArgs e)
         {
             StatsPersoModel.Instance.Speed += 5;
@@ -287,8 +295,6 @@ namespace DrainMind.View
             DrainMindGame.Instance.Resume();
             timer.Start();
         }
-
-
 
         #endregion
 

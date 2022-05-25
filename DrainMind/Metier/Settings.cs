@@ -43,6 +43,7 @@ namespace DrainMind.Metier
 
             }
         }
+
         /// <summary>
         /// Active ou Desactive le son
         /// </summary>
@@ -64,6 +65,9 @@ namespace DrainMind.Metier
             }
         }
 
+        /// <summary>
+        /// True Si pleinEcran sinon False
+        /// </summary>
         public bool PLeinEcran
         {
             get { return _pleinEcran; }

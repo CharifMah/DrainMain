@@ -35,8 +35,6 @@ namespace DrainMind.Metier.enemie
             set { angle = value; }
         }
 
-        private Joueur player;
-        private ExpItem xp;
         /// <summary>
         /// ennemies constructor
         /// </summary>
@@ -47,11 +45,9 @@ namespace DrainMind.Metier.enemie
         /// <param name="Spritename">name of the sprite</param>
         public Enemie(double x, double y, Game g, Joueur _player, string spritename) : base(x, y, DrainMind.View.DrainMindView.MainCanvas,g,spritename)
         {           
-            player = _player;
             ChangeScale(0.7, 0.7);
             EnemiesModel.Get().NombreEnemie++;
         }
-
 
         //TypeNme of ennemies is "Enemie"
         public override string TypeName => "Enemie";
@@ -64,18 +60,20 @@ namespace DrainMind.Metier.enemie
         {
                
 
-            if (other.TypeName == "Joueur" && xp == null)
-            {         
-                xp = new ExpItem(this.Left, this.Top);
-                Game.AddItem(xp);
-
-                PlaySound("Bruit.mp3");
-                enemie.EnemiesModel.Get().NombreEnemie--;
-
-                Score.Get().EnemieKilled += 1;
-                Score.Get().Point += 10;
-
+            if (other.TypeName == "Joueur")
+            {
                 this.Dispose();
+                if (this.Collidable)
+                {
+                    ExpItem xp = new ExpItem(this.Left, this.Top);
+                    Game.AddItem(xp);
+
+                    PlaySound("Bruit.mp3");
+                    enemie.EnemiesModel.Get().NombreEnemie--;
+
+                    Score.Get().EnemieKilled += 1;
+                    Score.Get().Point += 10;
+                }                            
                 this.Collidable = false;
             }
 
@@ -119,6 +117,7 @@ namespace DrainMind.Metier.enemie
             MoveEnemie();
 
         }
+
         /// <summary>
         /// Deplacement en direction du joueur
         /// </summary>

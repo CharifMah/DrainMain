@@ -18,9 +18,21 @@ namespace DrainMind.metier.joueur
         private double _Xpmult;
         private double _posX;
         private double _posY;
-        private static GroupBox _LvlUpGrpBox;
 
         #region Property
+
+        /// <summary>
+        /// Vitesse du Personnage
+        /// </summary>
+        public double Speed
+        {
+            get { return _speed; }
+            set
+            {
+                _speed = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Defini le multiplicateur XP
@@ -35,19 +47,6 @@ namespace DrainMind.metier.joueur
                 {
                     _Xpmult = 1;
                 }
-            }
-        }
-
-        /// <summary>
-        /// Vitesse du Personnage
-        /// </summary>
-        public double Speed
-        {
-            get { return _speed; }
-            set 
-            {
-                _speed = value;
-                this.NotifyPropertyChanged();
             }
         }
 
@@ -91,12 +90,18 @@ namespace DrainMind.metier.joueur
             get { return _niveau; }
         }
 
+        /// <summary>
+        /// Position X du Joueur
+        /// </summary>
         public double posX
         {
             get { return _posX; }
             set { _posX = value; }
         }
 
+        /// <summary>
+        /// Position Y du Joueur
+        /// </summary>
         public double posY
         {
             get { return _posY; }
