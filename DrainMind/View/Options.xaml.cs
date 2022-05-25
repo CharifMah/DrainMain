@@ -79,10 +79,7 @@ namespace DrainMind.View
             //Langue ComboBox init
             LangueComboBox.Items.Add("en-US");
             LangueComboBox.Items.Add("fr-FR");
-
-            LangueComboBox.Text = Thread.CurrentThread.CurrentCulture.Name;
-
-            
+           
         }
 
         /// <summary>
@@ -129,8 +126,9 @@ namespace DrainMind.View
         }
 
         private void LangueComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Res.Strings.Culture = new CultureInfo(e.AddedItems[0].ToString());
+        {           
+            Settings.Get().Culturename = e.AddedItems[0].ToString();
+            Res.Strings.Culture = new CultureInfo(Settings.Get().Culturename);
         }
 
 

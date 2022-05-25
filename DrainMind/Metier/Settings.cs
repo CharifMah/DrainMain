@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -21,6 +22,10 @@ namespace DrainMind.Metier
         private bool _SonOnOff;
         [DataMember]
         private double _Son;
+        [DataMember]
+        private string _culturename;
+
+       
 
         /// <summary>
         /// Son Max 100
@@ -88,6 +93,19 @@ namespace DrainMind.Metier
             }
         }
 
+        /// <summary>
+        /// Choisi la langue
+        /// </summary>
+        public string Culturename
+        {
+            get { return _culturename; }
+            set 
+            {
+                _culturename = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         private static Settings instance;
 
         /// <summary>
@@ -117,13 +135,19 @@ namespace DrainMind.Metier
         /// <Author>Charif</Author>
         private void LoadSettings()
         {
-            Settings s = Stock.ChargerSettings(); 
+            Settings s = Stock.ChargerSettings();
             if (s != null)
             {
                 this._pleinEcran = s.PLeinEcran;
                 this._SonOnOff = s.SonOnOff;
                 this._Son = s.Son;
-            }            
+                this._culturename = s.Culturename;
+            }
+            if (s.Culturename == null)
+            {
+                this._culturename = Thread.CurrentThread.CurrentCulture.Name;
+            }
+               
         }
     }
 }

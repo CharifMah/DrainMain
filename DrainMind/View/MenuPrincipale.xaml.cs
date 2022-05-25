@@ -70,10 +70,13 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
-            DrainMindGame.Instance.Pause();
-            DrainMindGame.Instance.BackgroundVolume = 0;
-            DrainMindGame.Instance = null;
-            
+            if (DrainMindGame.Instance != null)
+            {
+                DrainMindGame.Instance.Pause();
+                DrainMindGame.Instance.BackgroundVolume = 0;
+                DrainMindGame.Instance = null;
+            }
+                    
             drainmindView = new DrainMindView(this);
 
             mainwindow.Content = drainmindView;

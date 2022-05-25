@@ -146,6 +146,7 @@
                    VerticalAlignment="Center"/>
 
         <ComboBox x:Name="LangueComboBox" 
+                  SelectedItem="{Binding Culturename , Mode=OneWay}"
                   Grid.Column="1" 
                   HorizontalAlignment="Stretch" 
                   Grid.Row="4"

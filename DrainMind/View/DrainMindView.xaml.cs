@@ -80,8 +80,7 @@ namespace DrainMind.View
             _upgradeSkillGrpBox = GroupBoxUpgradeSkill;
             _MenuPrincipale = Menu;
 
-            
-
+           
             //Minuteur
             _timer = new DateTime(0);
             timer = new DispatcherTimer();

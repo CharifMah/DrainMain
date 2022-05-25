@@ -10,6 +10,7 @@ namespace DrainMind.View.Map
     {
         //Nombre de ligne sur la carte
         private int ligne;
+
         //Nombre de colonne sur la carte
         private int colonne;
 
