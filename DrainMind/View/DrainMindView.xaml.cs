@@ -285,7 +285,7 @@ namespace DrainMind.View
 
         private void DoubleXp_Button_Click(object sender, RoutedEventArgs e)
         {
-            StatsPersoModel.Instance.Xpmult = 2;
+            StatsPersoModel.Instance.Xpmult *= 2;
             CloseUpgradeGrpBox();
         }
 
