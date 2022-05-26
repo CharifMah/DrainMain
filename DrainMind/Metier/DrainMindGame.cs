@@ -44,11 +44,11 @@ namespace DrainMind.Metier
             double Height = Application.Current.MainWindow.ActualHeight;
             double Width = Application.Current.MainWindow.ActualWidth;
             //Creation de la Camera
-            Camera cam = new Camera(Width / 2, Height / 2, this);
+            Camera cam = new Camera(Width / 2, Height / 2);
             AddItem(cam);
 
             //Creation du joueur
-            Joueur player = new Joueur(Width / 2, Height / 2, this, new Vie(DrainMindView.UIcanvas, 30, 30));
+            Joueur player = new Joueur(Width / 2, Height / 2, new Vie(DrainMindView.UIcanvas, 30, 30));
             AddItem(player);
  
             AddItem(new GenerateurEnemie());

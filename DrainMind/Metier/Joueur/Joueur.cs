@@ -34,7 +34,7 @@ namespace DrainMind.Metier.joueur
         /// <param name="c">canvas of the application</param>
         /// <param name="g">drainMind</param>
         /// <param name="ui">canvas</param>
-        public Joueur(double x, double y, DrainMindGame g,Vie v) : base(x,y,DrainMindView.MainCanvas,g,"face.png")
+        public Joueur(double x, double y,Vie v) : base(x,y,DrainMindView.MainCanvas,DrainMindGame.Instance,"face.png")
         {
             ChangeScale(0.7,0.7);
             new StatsPersoModel(10);
