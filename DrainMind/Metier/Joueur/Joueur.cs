@@ -20,9 +20,6 @@ namespace DrainMind.Metier.joueur
       
         private bool goLeft = false, goRight = false, goUp = false, goDown = false;
 
-        private Vie playerLife;
-
-
         // TypeName of the player is "Joueur"
         public override string TypeName => "Joueur";
 
@@ -34,14 +31,13 @@ namespace DrainMind.Metier.joueur
         /// <param name="c">canvas of the application</param>
         /// <param name="g">drainMind</param>
         /// <param name="ui">canvas</param>
-        public Joueur(double x, double y,Vie v) : base(x,y,DrainMindView.MainCanvas,DrainMindGame.Instance,"face.png")
+        public Joueur(double x, double y) : base(x,y,DrainMindView.MainCanvas,DrainMindGame.Instance,"face.png")
         {
             ChangeScale(0.7,0.7);
-            new StatsPersoModel(10);
-      
-            //Creation de la Vie
-            playerLife = v;          
-            
+            new StatsPersoModel(10,20,30);
+            StatsPersoModel.Instance.posX = x;
+            StatsPersoModel.Instance.posY = y;
+
         }      
 
         #region Animation
@@ -54,7 +50,6 @@ namespace DrainMind.Metier.joueur
             if (goLeft)
             {
                 DeplacerJoueur(-StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds, 0);
-
             }
             if (goRight)
             {
@@ -68,10 +63,9 @@ namespace DrainMind.Metier.joueur
             }
             if (goDown)
             {
-                DeplacerJoueur(0, StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds);
+                DeplacerJoueur(0, StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds);             
             }
-            AnimationJoueur();
-        
+            AnimationJoueur();            
         }
 
         /// <summary>
@@ -236,9 +230,9 @@ namespace DrainMind.Metier.joueur
         /// <param name="damage"></param>
         public void LooseLife(int damage)
         {
-            if (playerLife._Vie - damage > 0)
+            if (StatsPersoModel.Instance.Life._Vie - damage > 0)
             {
-                playerLife._Vie -= damage;
+                StatsPersoModel.Instance.Life._Vie -= damage;
             }
             else
             {
@@ -253,7 +247,7 @@ namespace DrainMind.Metier.joueur
         /// <param name="Healh"></param>
         public void GainLife(int Healh)
         {
-            playerLife._Vie += Healh;
+            StatsPersoModel.Instance.Life._Vie += Healh;
         }
 
         #endregion

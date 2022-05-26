@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Timers;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace DrainMind.metier.Items
@@ -19,11 +20,9 @@ namespace DrainMind.metier.Items
         /// <param name="x">Postion x</param>
         /// <param name="y">Positon y</param>
         public ExpItem(double x, double y) : base(x, y, DrainMind.View.DrainMindView.MainCanvas, DrainMindGame.Instance, "Exp.png")
-        {
-           
+        {      
             this.ChangeScale(0.3, 0.3);
-  
-
+ 
         }
 
         public override string TypeName => "Exp";
@@ -45,14 +44,12 @@ namespace DrainMind.metier.Items
                 if (Collidable)
                 {
                     if (StatsPersoModel.Instance.XP + (10 * StatsPersoModel.Instance.Xpmult) >= StatsPersoModel.Instance.XPMax)
-                    {
-                        
-               
+                    {                                    
                         PlaySound("LvlUp.mp3");
                     }
                     StatsPersoModel.Instance.XP = 10;
+                    new TextItem(this.Left, this.Top, $"+{10 * StatsPersoModel.Instance.Xpmult}", Brushes.Yellow);
                 }
-                new TextItem(this.Left,this.Top);
                 this.Collidable = false;
             }
         }

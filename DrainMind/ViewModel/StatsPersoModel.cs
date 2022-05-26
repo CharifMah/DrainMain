@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrainMind.View;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,6 +19,7 @@ namespace DrainMind.metier.joueur
         private double _Xpmult;
         private double _posX;
         private double _posY;
+        private Vie _vie;
 
         #region Property
 
@@ -108,6 +110,14 @@ namespace DrainMind.metier.joueur
             set { _posY = value; }
         }
 
+        /// <summary>
+        /// Get actual life
+        /// </summary>
+        public Vie Life
+        {
+            get { return _vie; }
+        }
+
         #endregion
 
         private static StatsPersoModel instance;
@@ -124,13 +134,14 @@ namespace DrainMind.metier.joueur
         /// <param name="Xp">Experience du joueur au lancement de la partie</param>
         /// <param name="niveau">niveau au lancemetn de la partie</param>
         /// <param name="CoefXp">multiplicateur xp quand lvl Up</param>
-        public StatsPersoModel(double Speed)
+        public StatsPersoModel(double Speed,int life,int maxlife)
         {
             this._speed = Speed;
             this._xp = 0.0;
             this._niveau = 1;
             this._Xpmult = 1.0;
             this._xpMax = 100;
+            _vie = new Vie(life, maxlife);
             instance = this;
         }
     }

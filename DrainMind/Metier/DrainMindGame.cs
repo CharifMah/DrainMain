@@ -43,12 +43,9 @@ namespace DrainMind.Metier
         {
             double Height = Application.Current.MainWindow.ActualHeight;
             double Width = Application.Current.MainWindow.ActualWidth;
-            //Creation de la Camera
-            Camera cam = new Camera(Width / 2, Height / 2);
-            AddItem(cam);
 
             //Creation du joueur
-            Joueur player = new Joueur(Width / 2, Height / 2, new Vie(DrainMindView.UIcanvas, 30, 30));
+            Joueur player = new Joueur(Width / 2, Height / 2);
             AddItem(player);
  
             AddItem(new GenerateurEnemie());
@@ -77,6 +74,7 @@ namespace DrainMind.Metier
             //Affecte le contenu de la mainwindow actuel a un nouveau menu principal
             (Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow).Content = new MenuPrincipale();
             PlayBackgroundMusic("LooseSound.mp3");
+            BackgroundVolume = 0;
         }
 
         /// <summary>

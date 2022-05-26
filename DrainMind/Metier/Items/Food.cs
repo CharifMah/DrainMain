@@ -1,4 +1,6 @@
-﻿using DrainMind.View;
+﻿using DrainMind.metier.Items;
+using DrainMind.metier.joueur;
+using DrainMind.View;
 using IUTGame;
 using System;
 using System.Collections.Generic;
@@ -6,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace DrainMind.Metier.Items
 {
@@ -28,7 +31,14 @@ namespace DrainMind.Metier.Items
             if (other.TypeName == "Joueur")
             {
                 this.Dispose();
+
+                if (this.Collidable)
+                {
+                    new TextItem(this.Left, this.Top, $"+❤", Brushes.Red);
+                }
+               
                 this.Collidable = false;
+            
             }
         }
     }

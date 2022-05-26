@@ -10,7 +10,7 @@
 
     <Grid>
         <ScrollViewer x:Name="scrollviewer" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="CanvasViewer_PreviewMouseWheel">
-            
+
             <Canvas x:Name="canvas" Height="4221" Width="6715">
 
                 <Canvas.Background>
@@ -20,7 +20,6 @@
             </Canvas>
 
         </ScrollViewer>
-        
         <Canvas  x:Name="UI" Focusable="False" IsHitTestVisible="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         
         <Grid>
@@ -37,8 +36,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             
-            <TextBlock x:Name="TimerTextBlock"
-                       Text="{Binding M}"
+            <TextBlock x:Name="TimerTextBlock"                 
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Center"
                 Grid.Column="1"
@@ -121,7 +119,7 @@
                 </Grid>
             </GroupBox>
 
-            <GroupBox x:Name="GroupBoxUpgradeSkill" Visibility="Hidden" FontSize="40"  Grid.Column="1" Grid.Row="1">
+            <GroupBox x:Name="GroupBoxUpgradeSkill" Visibility="Visible" FontSize="40"  Grid.Column="1" Grid.Row="1">
 
                 <GroupBox.Background>
                     <SolidColorBrush Color="WhiteSmoke" Opacity="0.4"/>
@@ -133,6 +131,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
@@ -178,6 +178,20 @@
                         BorderBrush="Yellow"
                         Click="DoubleXp_Button_Click"
                         Content="2X XP"
+                        />
+
+
+                    <Button 
+                        Grid.Column="1" 
+                        Grid.Row="2"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource CustomButton}"
+                        Width="200"
+                        Height="100"
+                        BorderBrush="Red"
+                        Content="+❤❤"
+                        Click="AddLife_Button_Click"
                         />
 
 

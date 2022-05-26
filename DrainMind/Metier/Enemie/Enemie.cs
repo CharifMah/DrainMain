@@ -97,8 +97,8 @@ namespace DrainMind.Metier.enemie
         public void MoveEnemie()
         {
 
-            double moveX = -(this.Left + (this.Width / 2) - (StatsPersoModel.Instance.posX - 75)) / 90;
-            double moveY = -(this.Top + (this.Height / 2) - (StatsPersoModel.Instance.posY + 20)) / 90;
+            double moveX = -(this.Left + (this.Width / 2) - (StatsPersoModel.Instance.posX)) / 90;
+            double moveY = -(this.Top + (this.Height / 2) - (StatsPersoModel.Instance.posY)) / 90;
             
             MoveXY(moveX, moveY);
 

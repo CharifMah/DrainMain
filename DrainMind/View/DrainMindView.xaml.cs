@@ -296,6 +296,12 @@ namespace DrainMind.View
             CloseUpgradeGrpBox();
         }
 
+        private void AddLife_Button_Click(object sender, RoutedEventArgs e)
+        {
+            StatsPersoModel.Instance.Life.AddLife(2);
+            CloseUpgradeGrpBox();
+        }
+
         /// <summary>
         /// Ferme la groupe Box et relance le timer
         /// </summary>
@@ -405,6 +411,7 @@ namespace DrainMind.View
         }
 
         #endregion
+
        
     }
 }

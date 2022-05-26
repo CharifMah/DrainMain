@@ -16,34 +16,8 @@ namespace DrainMind.Metier
     /// game's camera, here to follow the mc
     /// </summary>
     /// <Author>Charif</Author>
-    public class Camera : GameItem
+    public class Camera
     {
-
-        /// <summary>
-        /// camera's constructor
-        /// </summary>
-        /// <param name="x">axis x</param>
-        /// <param name="y">axis y</param>
-        /// <param name="canvas">canvas</param>
-        /// <param name="game">drainMind</param>
-        /// <param name="camera">camera</param>
-        /// <Author>Charif</Author>
-        public Camera(double x, double y) : base(x, y, new Canvas(), DrainMindGame.Instance)
-        {       
-        }
-
-        //TypeName of the camera is "Camera"
-        public override string TypeName => "Camera";
-
-        /// <summary>
-        /// Executes the effect of the collision
-        /// </summary>
-        /// <param name="other"></param>
-        public override void CollideEffect(GameItem other)
-        {
-            
-        }
-
         /// <summary>
         /// move the camera to follow the mc
         /// </summary>

@@ -23,7 +23,6 @@ namespace DrainMind
         {
             get { return _listlife; }
         }
-
         public static Dictionary<FrameworkElement, Coordonnees> ListEmptyLife
         {
             get { return _listemptylife; }
@@ -39,6 +38,7 @@ namespace DrainMind
             set
             {
                 vie = value;
+
                 if (_listlife.Count > value)
                 {
                     RemoveLife(_listlife.Count  - value);
@@ -58,9 +58,9 @@ namespace DrainMind
         /// <param name="g">Game Instance</param>
         /// <param name="pointLife">Nombre de vie</param>
         /// <Author>Charif</Author>
-        public Vie(Canvas lifeUI, int pointLife, int MaxPv)
+        public Vie(int pointLife, int MaxPv)
         {
-            uiLife = lifeUI;
+            uiLife = DrainMind.View.DrainMindView.UIcanvas;
             _listlife = new Dictionary<FrameworkElement, Coordonnees>();
             _listemptylife = new Dictionary<FrameworkElement, Coordonnees>();
             AddEmptyLife(MaxPv);

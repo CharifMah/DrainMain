@@ -21,7 +21,7 @@ namespace TestUnitaire
             var t = new Thread(o =>
             {
                 Canvas ui = new Canvas();
-                Vie v = new Vie(ui, 10, 50);
+                Vie v = new Vie(10, 50);
                 Joueur s = new Joueur(0, 0, v);
 
                 Assert.Equal(v._Vie, 10);
@@ -59,8 +59,8 @@ namespace TestUnitaire
             {
                 ///Creation d'une partie
                 DrainMind.Metier.DrainMindGame g = new DrainMind.Metier.DrainMindGame();
-                Vie v = new Vie(new Canvas(), 10, 50);
-                Joueur s = new Joueur(0, 0,v);
+                Vie v = new Vie(10, 50);
+                Joueur s = new Joueur(0, 0);
                 Enemie e = new Enemie(0, 0,"");
 
                 //Meme Position
