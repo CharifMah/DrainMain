@@ -50,8 +50,9 @@ namespace DrainMind.Metier.enemie
                     {
                         StatsPersoModel.Instance.Life._Vie -= 1;
                     }
-                    else
+                    else if (StatsPersoModel.Instance.Life._Vie >= 1)
                     {
+                        StatsPersoModel.Instance.Life._Vie -= 1;
                         Game.Loose();
                     }
 

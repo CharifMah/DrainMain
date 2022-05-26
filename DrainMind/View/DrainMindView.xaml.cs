@@ -64,6 +64,7 @@ namespace DrainMind.View
             get { return _scrollviewer; }
         }
 
+
         #endregion
 
         public DrainMindView(MenuPrincipale Menu)
@@ -133,6 +134,7 @@ namespace DrainMind.View
 
             MyGrid.Grid = MyGrid.drawGrid();
             timer.Start();
+            GenerateurEnemie.GeneratorTimer.Start();
         }
 
         #endregion
@@ -179,6 +181,7 @@ namespace DrainMind.View
             if (GroupBoxUpgradeSkill.Visibility == Visibility.Hidden)
             {
                 drainMind.Resume();
+                GenerateurEnemie.GeneratorTimer.Start();
                 timer.Start();
             }
             
@@ -217,6 +220,8 @@ namespace DrainMind.View
         {
             drainMind.Pause();
             timer.Stop();
+            GenerateurEnemie.GeneratorTimer.Stop();
+
             _MenuPrincipale.PlayButton.Content = DrainMind.Res.Strings.Reprendre;
             MainWindow.GetMainWindow.Content = _MenuPrincipale;
             Stock.SauverScore(LesScoresModel.Get().Scores);
@@ -274,6 +279,7 @@ namespace DrainMind.View
         {      
             _upgradeSkillGrpBox.Visibility = Visibility.Visible;
             timer.Stop();
+            GenerateurEnemie.GeneratorTimer.Stop();
             DrainMindGame.Instance.Pause();          
         }
 
@@ -317,6 +323,7 @@ namespace DrainMind.View
         {
             GroupBoxUpgradeSkill.Visibility = Visibility.Hidden;
             DrainMindGame.Instance.Resume();
+            GenerateurEnemie.GeneratorTimer.Start();
             timer.Start();
         }
 
@@ -366,6 +373,7 @@ namespace DrainMind.View
                 if (GroupBoxPause.Visibility == Visibility.Hidden && !Pressed)
                 {
                     drainMind.Pause();
+                    GenerateurEnemie.GeneratorTimer.Stop();
                     timer.Stop();
                     GroupBoxPause.Visibility = Visibility.Visible;
                     Pressed = true;
@@ -376,6 +384,7 @@ namespace DrainMind.View
                     if (GroupBoxUpgradeSkill.Visibility == Visibility.Hidden)
                     {
                         drainMind.Resume();
+                        GenerateurEnemie.GeneratorTimer.Start();
                         timer.Start();
                     }
 

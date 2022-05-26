@@ -21,7 +21,12 @@ namespace DrainMind.Metier.enemie
         //Time
         private DateTime _timer;
         //Minuteur
-        private DispatcherTimer timer;
+        private static DispatcherTimer timer;
+
+        public static DispatcherTimer GeneratorTimer
+        {
+            get { return timer; }
+        }
 
         /// <summary>
         /// enemies's constructor 
@@ -34,41 +39,56 @@ namespace DrainMind.Metier.enemie
             _timer = new DateTime(0);
             timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(100) };
             timer.Tick += CreateEnemieWave;
-            timer.Start();
         }
-        ~GenerateurEnemie()
-        {
-            timer = null;
-            this.Dispose();
-        }
+
 
         //Type name of the generator is "generateur"
         public override string TypeName => "generateur";
 
         internal void CreateEnemieWave(object sender, EventArgs e)
         {
-            _timer = _timer.AddMilliseconds(100);
-
-            if (100 == _timer.TimeOfDay.TotalMilliseconds)
+            if (DrainMindGame.Instance != null)
             {
-                CreateEnemie("fantomeVert.png", 10, 300);
+                _timer = _timer.AddMilliseconds(100);
+
+                if (100 == _timer.TimeOfDay.TotalMilliseconds)
+                {
+                    CreateEnemie("fantomeVert.png", 10, 300);
+                }
+
+                if (5000 == _timer.TimeOfDay.TotalMilliseconds)
+                {
+                    CreateEnemie("fantomeVert.png", 6, 300);
+                    CreateEnemie("fantome.png", 6, 300);
+                }
+
+                if (10000 == _timer.TimeOfDay.TotalMilliseconds)
+                {
+                    CreateEnemie("boss.png", 3, 300);
+                }
+
+                if (10000 == _timer.TimeOfDay.TotalMilliseconds)
+                {
+                    CreateEnemie("Gloom.png", 100, 100);
+                }
+
+                if (30000 == _timer.TimeOfDay.TotalMilliseconds)
+                {
+                    CreateEnemie("nightmare.png", 100, 50);
+                }
+
+                if (60000 == _timer.TimeOfDay.TotalMilliseconds)
+                {
+                    CreateEnemie("boss.png", 100, 0);
+                }
             }
-
-            if (5000 == _timer.TimeOfDay.TotalMilliseconds)
+            else
             {
-                CreateEnemie("fantomeVert.png", 6, 300);
-                CreateEnemie("fantome.png", 6, 300);
+                this.Dispose();
+                timer.Stop();
+                timer = null;
             }
-
-            if (10000 == _timer.TimeOfDay.TotalMilliseconds)
-            {
-                CreateEnemie("boss.png", 3, 300);
-            }
-
-            if (10000 == _timer.TimeOfDay.TotalMilliseconds)
-            {
-                CreateEnemie("Gloom.png", 500, 1000);
-            }                    
+           
         }
 
         private static async void CreateEnemie(string NameSprite,int number,int delaymilisecond)
