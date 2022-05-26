@@ -1,10 +1,10 @@
 ﻿using DrainMind.metier.Grille;
 using DrainMind.metier.joueur;
+using DrainMind.metier.joueur.ScoreFolder;
 using DrainMind.Metier;
 using DrainMind.Metier.enemie;
-using DrainMind.Metier.joueur;
 using DrainMind.Stockage;
-using DrainMind.View.Map;
+using DrainMind.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,6 +51,7 @@ namespace DrainMind.View
         public static Canvas MainCanvas
         {
             get { return _maincanvas; }
+            set { _maincanvas = value; }
         }
 
         public static Canvas UIcanvas

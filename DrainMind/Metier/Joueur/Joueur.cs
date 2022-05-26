@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Input;
-using DrainMind.Metier;
 using IUTGame;
 using System.IO;
 using DrainMind.Metier.joueur;
 using System.Windows;
-using DrainMind.metier.joueur;
 using DrainMind.View;
+using DrainMind.ViewModel;
+using DrainMind.metier.joueur;
 
 namespace DrainMind.Metier.joueur
 {

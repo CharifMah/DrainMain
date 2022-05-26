@@ -1,10 +1,11 @@
-﻿using DrainMind.Stockage;
+﻿using DrainMind.metier.joueur.ScoreFolder;
+using DrainMind.Stockage;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace DrainMind.Metier.joueur
+namespace DrainMind.ViewModel
 {
     [DataContract]
     public class LesScoresModel

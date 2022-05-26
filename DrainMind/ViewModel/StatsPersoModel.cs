@@ -1,11 +1,12 @@
-﻿using DrainMind.View;
+﻿using DrainMind.metier.joueur;
+using DrainMind.View;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DrainMind.metier.joueur
+namespace DrainMind.ViewModel
 {
     /// <summary>
     /// Classe des niveau du personnage la partie actuel
@@ -32,7 +33,7 @@ namespace DrainMind.metier.joueur
             set
             {
                 _speed = value;
-                this.NotifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 
@@ -42,7 +43,7 @@ namespace DrainMind.metier.joueur
         public double Xpmult
         {
             get { return _Xpmult; }
-            set 
+            set
             {
                 _Xpmult = value;
                 if (_Xpmult <= 0)
@@ -60,7 +61,7 @@ namespace DrainMind.metier.joueur
         {
             get { return _xp; }
             set
-            {       
+            {
                 _xp += value * _Xpmult;
 
                 if (_xp >= _xpMax)
@@ -68,11 +69,11 @@ namespace DrainMind.metier.joueur
                     _niveau += 1;
                     _xp -= _xpMax;
                     _xpMax *= 1.5;
-                    DrainMind.View.DrainMindView.ShowUpgradeGrpBox();
-                    this.NotifyPropertyChanged("XPMax");
-                    this.NotifyPropertyChanged("Niveau");
+                    DrainMindView.ShowUpgradeGrpBox();
+                    NotifyPropertyChanged("XPMax");
+                    NotifyPropertyChanged("Niveau");
                 }
-                this.NotifyPropertyChanged();              
+                NotifyPropertyChanged();
             }
         }
 
@@ -135,13 +136,13 @@ namespace DrainMind.metier.joueur
         /// <param name="Xp">Experience du joueur au lancement de la partie</param>
         /// <param name="niveau">niveau au lancemetn de la partie</param>
         /// <param name="CoefXp">multiplicateur xp quand lvl Up</param>
-        public StatsPersoModel(double Speed,int life,int maxlife)
+        public StatsPersoModel(double Speed, int life, int maxlife)
         {
-            this._speed = Speed;
-            this._xp = 0.0;
-            this._niveau = 1;
-            this._Xpmult = 1.0;
-            this._xpMax = 100;
+            _speed = Speed;
+            _xp = 0.0;
+            _niveau = 1;
+            _Xpmult = 1.0;
+            _xpMax = 100;
             _vie = new Vie(life, maxlife);
             instance = this;
         }

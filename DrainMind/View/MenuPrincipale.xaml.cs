@@ -1,7 +1,7 @@
 ﻿using DrainMind.metier.Grille;
 using DrainMind.Metier;
-using DrainMind.Metier.joueur;
 using DrainMind.Stockage;
+using DrainMind.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;

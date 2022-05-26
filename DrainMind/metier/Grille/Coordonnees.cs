@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DrainMind.View.Map
+namespace DrainMind.metier.Grille
 {
     public class Coordonnees
     {
@@ -15,17 +15,17 @@ namespace DrainMind.View.Map
         private int colonne;
 
         public int Colonne
-            { get { return colonne; }}
+        { get { return colonne; } }
 
         public int Ligne
-            { get { return ligne; }}
+        { get { return ligne; } }
 
         /// <summary>
         /// Constructeur des coordonnes avec la ligne et la colonne
         /// </summary>
         /// <param name="ligne">ligne sur map</param>
         /// <param name="colonne">colonne sur map</param>
-        public Coordonnees(int colonne,int ligne)
+        public Coordonnees(int colonne, int ligne)
         {
             this.ligne = ligne;
             this.colonne = colonne;

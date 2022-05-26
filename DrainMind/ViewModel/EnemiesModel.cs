@@ -1,16 +1,17 @@
-﻿using DrainMind.Metier.joueur;
-using DrainMind.View.Map;
+﻿using DrainMind.metier.Grille;
+using DrainMind.Metier.enemie;
+using DrainMind.Metier.joueur;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DrainMind.Metier.enemie
+namespace DrainMind.ViewModel
 {
     public class EnemiesModel : observable.Observable
     {
 
         private int _nombreenemie;
-        private Dictionary<Enemie,Coordonnees> _lesenemies;
+        private Dictionary<Enemie, Coordonnees> _lesenemies;
 
         #region
 
@@ -20,11 +21,11 @@ namespace DrainMind.Metier.enemie
             set
             {
                 _nombreenemie = value;
-                this.NotifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 
-        public Dictionary<Enemie,Coordonnees> Lesenemies
+        public Dictionary<Enemie, Coordonnees> Lesenemies
         { get { return _lesenemies; } }
 
         #endregion

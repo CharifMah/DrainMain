@@ -1,7 +1,7 @@
 ﻿using DrainMind.metier.Items;
-using DrainMind.metier.joueur;
-using DrainMind.Metier.joueur;
+using DrainMind.metier.joueur.ScoreFolder;
 using DrainMind.View;
+using DrainMind.ViewModel;
 using IUTGame;
 using System;
 using System.Windows.Controls;
@@ -69,11 +69,12 @@ namespace DrainMind.Metier.enemie
             Game.AddItem(xp);
 
             PlaySound("Bruit.mp3");
-            enemie.EnemiesModel.Get().NombreEnemie--;
-            EnemiesModel.Get().Lesenemies.Remove(this);
-
+     
             Score.Get().EnemieKilled += 1;
-            Score.Get().Point += 10;       
+            Score.Get().Point += 10;
+
+            EnemiesModel.Get().NombreEnemie--;
+            EnemiesModel.Get().Lesenemies.Remove(this);
         }
 
         /// <summary>

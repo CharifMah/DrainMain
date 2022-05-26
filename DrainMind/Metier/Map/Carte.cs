@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DrainMind.metier.Grille;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DrainMind.View.Map
+namespace DrainMind.metier.map
 {
     /// <summary>
     /// carte du jeu

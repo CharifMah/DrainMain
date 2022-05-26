@@ -1,5 +1,4 @@
 ﻿using DrainMind.metier.Grille;
-using DrainMind.View.Map;
 using IUTGame;
 using System;
 using System.Collections.Generic;
@@ -10,11 +9,11 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DrainMind
+namespace DrainMind.metier.joueur
 {
     public class Vie
     {
-        private static Dictionary<FrameworkElement,Coordonnees> _listlife;
+        private static Dictionary<FrameworkElement, Coordonnees> _listlife;
         private static Dictionary<FrameworkElement, Coordonnees> _listemptylife;
         private Canvas uiLife;
         private int vie;
@@ -41,7 +40,7 @@ namespace DrainMind
 
                 if (_listlife.Count > value)
                 {
-                    RemoveLife(_listlife.Count  - value);
+                    RemoveLife(_listlife.Count - value);
                 }
 
                 if (_listlife.Count < value)
@@ -60,11 +59,11 @@ namespace DrainMind
         /// <Author>Charif</Author>
         public Vie(int pointLife, int MaxPv)
         {
-            uiLife = DrainMind.View.DrainMindView.UIcanvas;
+            uiLife = View.DrainMindView.UIcanvas;
             _listlife = new Dictionary<FrameworkElement, Coordonnees>();
             _listemptylife = new Dictionary<FrameworkElement, Coordonnees>();
             AddEmptyLife(MaxPv);
-            AddLife(pointLife);                  
+            AddLife(pointLife);
         }
 
         /// <summary>
@@ -95,9 +94,9 @@ namespace DrainMind
                 Sprite EmptyCoeur = new Sprite(SpriteStore.Get(Path.Combine("Vie", "1.png")).Image);
                 EmptyCoeur.Image.Width = 50;
                 EmptyCoeur.Image.Height = 50;
-               
+
                 uiLife.Children.Add(MyGrid.PutSpriteInCase(_listemptylife.Count, 0, EmptyCoeur.Image));
-                _listemptylife.Add(EmptyCoeur.Image, new Coordonnees(_listemptylife.Count,0));
+                _listemptylife.Add(EmptyCoeur.Image, new Coordonnees(_listemptylife.Count, 0));
 
             }
         }
@@ -115,8 +114,8 @@ namespace DrainMind
                 {
                     uiLife.Children.Remove(_listlife.Keys.Last());
                     _listlife.Remove(_listlife.Keys.Last());
-                }            
-            }               
+                }
+            }
         }
 
         /// <summary>
@@ -133,13 +132,13 @@ namespace DrainMind
             for (int i = 0; i < numberOfLife; i++)
             {
                 Sprite Coeur = new Sprite(SpriteStore.Get(Path.Combine("Vie", "2.png")).Image);
-             
+
                 uiLife.Children.Add(MyGrid.PutSpriteInCase(_listlife.Count, 0, Coeur.Image));
-                _listlife.Add(Coeur.Image,new Coordonnees(_listlife.Count, 0));
+                _listlife.Add(Coeur.Image, new Coordonnees(_listlife.Count, 0));
 
 
             }
-             
+
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using DrainMind.Metier.joueur;
+﻿using DrainMind.metier.joueur.ScoreFolder;
 using System;
 using System.Collections.Generic;
 using System.IO;

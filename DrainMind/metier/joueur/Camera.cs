@@ -10,7 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace DrainMind.Metier
+namespace DrainMind.metier.joueur
 {
     /// <summary>
     /// game's camera, here to follow the mc
@@ -26,8 +26,8 @@ namespace DrainMind.Metier
         /// <Author>Charif</Author>
         public static void MoveCamera(double x, double y)
         {
-            DrainMindView.ScrollViewer.ScrollToVerticalOffset(y - (Application.Current.MainWindow.ActualHeight / 2));
-            DrainMindView.ScrollViewer.ScrollToHorizontalOffset(x - (Application.Current.MainWindow.ActualWidth / 2));
+            DrainMindView.ScrollViewer.ScrollToVerticalOffset(y - Application.Current.MainWindow.ActualHeight / 2);
+            DrainMindView.ScrollViewer.ScrollToHorizontalOffset(x - Application.Current.MainWindow.ActualWidth / 2);
         }
     }
 }

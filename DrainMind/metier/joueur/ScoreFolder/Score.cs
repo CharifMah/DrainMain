@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace DrainMind.Metier.joueur
+namespace DrainMind.metier.joueur.ScoreFolder
 {
     [DataContract]
     public class Score : observable.Observable
     {
-        
+
         [DataMember]
         private string name;
         [DataMember]
@@ -20,33 +20,35 @@ namespace DrainMind.Metier.joueur
         #region Property
 
         public string Nom
-        { 
+        {
             get { return name; }
             set
-            { 
+            {
                 name = value;
-                this.NotifyPropertyChanged();
+                NotifyPropertyChanged();
             }
-            
+
         }
 
         public int EnemieKilled
-        { get { return enemiekilled; } set 
-            { 
+        {
+            get { return enemiekilled; }
+            set
+            {
                 enemiekilled = value;
-                this.NotifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 
         public int Point
-        { 
-            get { return point; } 
+        {
+            get { return point; }
 
-            set 
-            { 
+            set
+            {
                 point = value;
-                this.NotifyPropertyChanged();
-            } 
+                NotifyPropertyChanged();
+            }
         }
 
         #endregion
@@ -54,8 +56,8 @@ namespace DrainMind.Metier.joueur
         private Score()
         {
             name = "Bob";
-            enemiekilled=0;
-            point=0;
+            enemiekilled = 0;
+            point = 0;
         }
 
         private static Score instance;

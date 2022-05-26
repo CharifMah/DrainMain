@@ -1,6 +1,5 @@
 ﻿using DrainMind.metier.joueur;
 using DrainMind.View;
-using DrainMind.View.Map;
 using IUTGame;
 using System.Collections.Generic;
 using System.Linq;

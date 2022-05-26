@@ -1,5 +1,5 @@
-﻿using DrainMind.metier.joueur;
-using DrainMind.Metier;
+﻿using DrainMind.Metier;
+using DrainMind.ViewModel;
 using IUTGame;
 using System;
 using System.Collections.Generic;

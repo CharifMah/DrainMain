@@ -10,8 +10,8 @@ using DrainMind.Metier;
 using DrainMind.View;
 using System.Linq;
 using DrainMind.Stockage;
-using DrainMind.Metier.joueur;
 using DrainMind.metier.Grille;
+using DrainMind.ViewModel;
 
 namespace DrainMind
 {

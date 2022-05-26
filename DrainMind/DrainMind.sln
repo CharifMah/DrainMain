@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrainMind", "DrainMind.csproj", "{1AC75365-D1FC-4FB4-9EF8-8731C2ECDE9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUnitaire", "..\TestUnitaire\TestUnitaire.csproj", "{3A6757D9-D593-475D-BB77-9E78D17AA9D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestUnitaire", "..\TestUnitaire\TestUnitaire.csproj", "{3A6757D9-D593-475D-BB77-9E78D17AA9D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
