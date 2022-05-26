@@ -1,4 +1,5 @@
 ﻿using DrainMind.metier.joueur;
+using DrainMind.View;
 using DrainMind.View.Map;
 using IUTGame;
 using System.Collections.Generic;
@@ -122,20 +123,20 @@ namespace DrainMind.metier.Grille
         /// Rafraichi les sprite en fonction de la taile de la fenetre
         /// </summary>
         /// <param name="canvas">Le canvas des element ajoute</param>
-        public static void ResizeCanvas(ref Canvas ui)
+        public static void ResizeCanvas()
         {
-            ui.Children.Clear();
+            DrainMindView.UIcanvas.Children.Clear();
 
             foreach (KeyValuePair<FrameworkElement,Coordonnees> life in Vie.ListLife)
             {
                 PutSpriteInCase(life.Value.Colonne,life.Value.Ligne, life.Key);
-                ui.Children.Add(life.Key);
+                DrainMindView.UIcanvas.Children.Add(life.Key);
             }
 
             foreach (KeyValuePair<FrameworkElement, Coordonnees> life_empty in Vie.ListEmptyLife)
             {
                 PutSpriteInCase(life_empty.Value.Colonne, life_empty.Value.Ligne, life_empty.Key);
-                ui.Children.Add(life_empty.Key);
+                DrainMindView.UIcanvas.Children.Add(life_empty.Key);
             }
 
             actualgrid = drawGrid();

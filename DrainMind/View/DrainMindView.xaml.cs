@@ -53,6 +53,7 @@ namespace DrainMind.View
         public static Canvas UIcanvas
         {
             get { return _uicanvas; }
+            set { _uicanvas = value; }
         }
 
         public static ScrollViewer ScrollViewer
@@ -79,8 +80,10 @@ namespace DrainMind.View
             _maincanvas = canvas;
             _upgradeSkillGrpBox = GroupBoxUpgradeSkill;
             _MenuPrincipale = Menu;
+            MyGrid.NombreDeLigne = 20;
+            MyGrid.NombreDeCollumn = 40;
 
-           
+
             //Minuteur
             _timer = new DateTime(0);
             timer = new DispatcherTimer();
@@ -325,7 +328,7 @@ namespace DrainMind.View
             if (drainMind != null)
             {
                 Camera.MoveCamera(StatsPersoModel.Instance.posX, StatsPersoModel.Instance.posY);
-                MyGrid.ResizeCanvas(ref UI);
+                MyGrid.ResizeCanvas();
             }
         }
 

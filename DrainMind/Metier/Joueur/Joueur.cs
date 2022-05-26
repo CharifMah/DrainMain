@@ -38,6 +38,7 @@ namespace DrainMind.Metier.joueur
         {
             ChangeScale(0.7,0.7);
             new StatsPersoModel(10);
+      
             //Creation de la Vie
             playerLife = v;          
             

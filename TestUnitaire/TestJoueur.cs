@@ -27,13 +27,13 @@ namespace TestUnitaire
                 Assert.Equal(v._Vie, 10);
                 s.LooseLife(10);
                 Assert.Equal(v._Vie,0);
-                MyGrid.ResizeCanvas(ref ui);
+                MyGrid.ResizeCanvas();
                 v.AddLife(50);
                 Assert.Equal(v._Vie, 50);
 
                 v.RemoveLife(49);
                 Assert.Equal(v._Vie, 1);
-                MyGrid.ResizeCanvas(ref ui);
+                MyGrid.ResizeCanvas();
                 v.AddLife(19);
                 Assert.Equal(v._Vie, 20);
 
@@ -42,7 +42,7 @@ namespace TestUnitaire
 
                 v.AddEmptyLife(5);
                 Assert.Equal(v._Vie, 15);
-                MyGrid.ResizeCanvas(ref ui);
+                MyGrid.ResizeCanvas();
                 v.AddLife(100);
                 Assert.Equal(v._Vie, 55);
             });
@@ -61,7 +61,7 @@ namespace TestUnitaire
                 DrainMind.Metier.DrainMindGame g = new DrainMind.Metier.DrainMindGame();
                 Vie v = new Vie(new Canvas(), 10, 50);
                 Joueur s = new Joueur(0, 0,g,v);
-                Enemie e = new Enemie(0, 0, g, s, "");
+                Enemie e = new Enemie(0, 0,"");
 
                 //Meme Position
                 Assert.Equal(e.IsCollide(s), true);

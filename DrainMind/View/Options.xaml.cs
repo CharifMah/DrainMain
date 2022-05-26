@@ -1,4 +1,5 @@
-﻿using DrainMind.Metier;
+﻿using DrainMind.metier.Grille;
+using DrainMind.Metier;
 using DrainMind.Stockage;
 using System;
 using System.Collections.Generic;
@@ -79,7 +80,14 @@ namespace DrainMind.View
             //Langue ComboBox init
             LangueComboBox.Items.Add("en-US");
             LangueComboBox.Items.Add("fr-FR");
-           
+
+            GridSizeComboBox.Items.Add("10 x 30");
+            GridSizeComboBox.Items.Add("20 x 40");
+            GridSizeComboBox.Items.Add("30 x 50");
+            GridSizeComboBox.Items.Add("40 x 60");
+            GridSizeComboBox.Items.Add("50 x 70");
+
+
         }
 
         /// <summary>
@@ -123,6 +131,34 @@ namespace DrainMind.View
             mainwindow.Height = height;
             mainwindow.Left = (screenWidth / 2) - (mainwindow.Width / 2);
             mainwindow.Top = (screenHeight / 2) - (mainwindow.Height / 2);
+        }
+
+        private void GridSizeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (e.AddedItems[0].ToString())
+            {
+                case "10 x 30":
+                    MyGrid.NombreDeLigne = 10;
+                    MyGrid.NombreDeCollumn = 30;
+                    break;
+                case "20 x 40":
+                    MyGrid.NombreDeLigne = 20;
+                    MyGrid.NombreDeCollumn = 40;
+                    break;
+                case "30 x 50":
+                    MyGrid.NombreDeLigne = 20;
+                    MyGrid.NombreDeCollumn = 50;
+                    break;
+                case "40 x 60":
+                    MyGrid.NombreDeLigne = 40;
+                    MyGrid.NombreDeCollumn = 60;
+                    break;
+                case "50 x 70":
+                    MyGrid.NombreDeLigne = 50;
+                    MyGrid.NombreDeCollumn = 70;
+                    break;
+            }
+            MyGrid.ResizeCanvas();
         }
 
         private void LangueComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -224,6 +260,5 @@ namespace DrainMind.View
             checkBoxSound.IsChecked = Settings.Get().SonOnOff;
         }
 
-        
     }
 }

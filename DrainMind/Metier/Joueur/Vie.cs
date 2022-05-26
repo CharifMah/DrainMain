@@ -63,11 +63,8 @@ namespace DrainMind
             uiLife = lifeUI;
             _listlife = new Dictionary<FrameworkElement, Coordonnees>();
             _listemptylife = new Dictionary<FrameworkElement, Coordonnees>();
-            MyGrid.NombreDeLigne = 20;
-            MyGrid.NombreDeCollumn = 40;
             AddEmptyLife(MaxPv);
-            AddLife(pointLife);
-            
+            AddLife(pointLife);                  
         }
 
         /// <summary>
