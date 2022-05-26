@@ -37,7 +37,12 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             
-            <TextBlock x:Name="TimerTextBlock" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1"/>
+            <TextBlock x:Name="TimerTextBlock"
+                       Text="{Binding M}"
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center"
+                Grid.Column="1"
+                />
             
             <ProgressBar x:Name="XpProgressBar"
                     Background="WhiteSmoke"
@@ -116,7 +121,7 @@
                 </Grid>
             </GroupBox>
 
-            <GroupBox x:Name="GroupBoxUpgradeSkill" Visibility="Visible" FontSize="40"  Grid.Column="1" Grid.Row="1">
+            <GroupBox x:Name="GroupBoxUpgradeSkill" Visibility="Hidden" FontSize="40"  Grid.Column="1" Grid.Row="1">
 
                 <GroupBox.Background>
                     <SolidColorBrush Color="WhiteSmoke" Opacity="0.4"/>

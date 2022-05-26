@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using DrainMind.metier.joueur;
 using DrainMind.Metier.joueur;
 using DrainMind.View;
@@ -12,10 +16,12 @@ namespace DrainMind.Metier.enemie
     /// <summary>
     /// generate the enemies
     /// </summary>
-    public class GenerateurEnemie : GameItem, IAnimable
+    public class GenerateurEnemie : GameItem
     {
-        //time interval
-        private TimeSpan timeToCreate;
+        //Time
+        private DateTime _timer;
+        //Minuteur
+        private DispatcherTimer timer;
 
         private int Sec = 0;
 
@@ -26,48 +32,68 @@ namespace DrainMind.Metier.enemie
         /// <param name="c">canvas</param>
         public GenerateurEnemie(): base(0,0,DrainMindView.MainCanvas,DrainMindGame.Instance)
         {       
-            timeToCreate = new TimeSpan(0, 0, 0,0,500);
+            //Minuteur
+            _timer = new DateTime(0);
+            timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(100) };
+            timer.Tick += CreateEnemieWave;
+            timer.Start();
         }
 
         //Type name of the generator is "generateur"
         public override string TypeName => "generateur";
 
-        /// <summary>
-        /// Animate the item
-        /// </summary>
-        /// <param name="dt">timespan elasped since last animation</param>
-        public void Animate(TimeSpan dt)
+        internal void CreateEnemieWave(object sender, EventArgs e)
         {
-            timeToCreate = timeToCreate - dt;
-       
-            if (timeToCreate.TotalSeconds < 0)
-            {            
-                CreateEnemie("fantome.png");
-                CreateEnemie("fantomeVert.png"); 
-                CreateEnemie("Gloom.png");
-                CreateEnemie("nightmare.png");
-                CreateEnemie("boss.png");
-            
+            _timer = _timer.AddMilliseconds(100);
+
+            if (100 == _timer.TimeOfDay.TotalMilliseconds)
+            {                
+                CreateEnemie("fantomeVert.png",10,300);
             }
+
+            if (5000 == _timer.TimeOfDay.TotalMilliseconds)
+            {
+                CreateEnemie("fantomeVert.png",6,300);
+                CreateEnemie("fantome.png",6,300);
+            }
+
+            if (10000 == _timer.TimeOfDay.TotalMilliseconds)
+            {
+                CreateEnemie("boss.png",3,300);
+            }
+
+            if (10000 == _timer.TimeOfDay.TotalMilliseconds)
+            {
+                CreateEnemie("Gloom.png", 5000, 1000);
+            }
+           
         }
 
-        public void CreateEnemie(string NameSprite )
+        public async void CreateEnemie(string NameSprite,int number,int delaymilisecond)
         {
             Random r = new Random();
-            double x = r.NextDouble() * GameWidth;
-            double y = r.NextDouble() * GameHeight;
-    
-            Enemie enemie = new Enemie(x, y, NameSprite);
-            Game.AddItem(enemie);
+            for (int i = 0; i < number; i++)
+            {
+                double x = r.NextDouble() * GameWidth;
+                double y = r.NextDouble() * GameHeight;
+               
+                Enemie enemie = new Enemie(x, y, NameSprite);
+                Game.AddItem(enemie);
 
-            Sec = r.Next(3000, 5000);
-            timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);    
+                //Delay de delaymilisecond ms entre chaque spawn
+                await Task.Delay(delaymilisecond);
+            }                
         }
+
+        
 
         /// <summary>
         /// Executes the effect of the collision
         /// </summary>
         /// <param name="other">the other object</param>
-        public override void CollideEffect(GameItem other) { }
+        public override void CollideEffect(GameItem other) 
+        {
+            this.Collidable = false;
+        }
     }
 }

@@ -62,8 +62,7 @@ namespace DrainMind.Metier.enemie
         /// </summary>
         /// <param name="dt">timespan elasped since last animation</param>
         public void Animate(TimeSpan dt)
-        {
-            
+        {         
             if (_waiting.TotalMilliseconds > 0)
             {
                 _waiting = _waiting.Subtract(dt);

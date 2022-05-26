@@ -40,7 +40,8 @@ namespace DrainMind.View
         private static Canvas _maincanvas;
         private static DrainMindView _drainMindView;
         private static GroupBox _upgradeSkillGrpBox;
-        private DateTime _timer;
+
+        private static DateTime _timer;
         private static DispatcherTimer timer;
 
         #region Property
@@ -65,11 +66,11 @@ namespace DrainMind.View
 
         public DrainMindView(MenuPrincipale Menu)
         {      
-            ShowsNavigationUI = false;
-          
-            InitializeComponent();
+            ShowsNavigationUI = false;       
+            InitializeComponent();   
             _drainMindView = this;
-     
+
+
             //Deletes Old instance          
             EnemiesModel.Destroy();       
 
@@ -104,15 +105,14 @@ namespace DrainMind.View
 
             Score.Destroy();
             Score.Get().Nom = NameInput.Text;
-            LesScoresModel.Get().Scores.Add(Score.Get());      
+            LesScoresModel.Get().Scores.Add(Score.Get());
 
             //DebutDuJeux
             ResumeOrCreateGame();
-            timer.Start();
-        }
-        #endregion 
 
-        #region Init Methode
+            InitDataContext();
+            ListViewLoadScores();
+        }
 
         /// <summary>
         /// Launch the Game
@@ -133,9 +133,13 @@ namespace DrainMind.View
             }
 
             MyGrid.Grid = MyGrid.drawGrid();
-            InitDataContext();
-            ListViewLoadScores();
+            timer.Start();
         }
+
+        #endregion
+
+        #region Init Methode
+
 
         /// <summary>
         /// initialise les dataContext
@@ -401,7 +405,6 @@ namespace DrainMind.View
         }
 
         #endregion
-
-        
+       
     }
 }
