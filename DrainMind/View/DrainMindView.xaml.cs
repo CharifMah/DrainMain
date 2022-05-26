@@ -34,6 +34,7 @@ namespace DrainMind.View
         private GridViewColumnHeader listViewSortCol = null;
 
         private StockScore Stock = new StockScore(Environment.CurrentDirectory);
+
         //game's canvas
         private static Canvas _uicanvas;
         private static ScrollViewer _scrollviewer;

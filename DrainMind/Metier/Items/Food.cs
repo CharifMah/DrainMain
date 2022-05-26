@@ -34,6 +34,8 @@ namespace DrainMind.Metier.Items
 
                 if (this.Collidable)
                 {
+                    StatsPersoModel.Instance.Life._Vie += 2;
+                    PlaySound("SoundTake.mp3");
                     new TextItem(this.Left, this.Top, $"+❤", Brushes.Red);
                 }
                

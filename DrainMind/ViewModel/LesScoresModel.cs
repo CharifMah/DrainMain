@@ -19,6 +19,9 @@ namespace DrainMind.Metier.joueur
             get { return _scores; }
         }
 
+        /// <summary>
+        /// Charge les scores sinon en cree une nouvelle liste
+        /// </summary>
         private void LoadScores()
         {
             List<Score> s = Stock.ChargerScore();

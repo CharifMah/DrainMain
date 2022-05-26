@@ -122,6 +122,7 @@ namespace DrainMind.metier.joueur
 
         private static StatsPersoModel instance;
 
+        //Donne acces aux stats du joueur
         public static StatsPersoModel Instance
         {
             get { return instance; }

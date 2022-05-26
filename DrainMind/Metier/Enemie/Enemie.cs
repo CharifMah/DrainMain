@@ -44,6 +44,16 @@ namespace DrainMind.Metier.enemie
                 this.Dispose();
                 if (this.Collidable)
                 {
+                    
+                    if (StatsPersoModel.Instance.Life._Vie - 1 > 0)
+                    {
+                        StatsPersoModel.Instance.Life._Vie -= 1;
+                    }
+                    else
+                    {
+                        Game.Loose();
+                    }
+
                     ExpItem xp = new ExpItem(this.Left + (this.Width / 2), this.Top + (this.Height / 2));
                     Game.AddItem(xp);
 

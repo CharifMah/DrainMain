@@ -37,7 +37,6 @@ namespace DrainMind.Metier.joueur
             new StatsPersoModel(10,20,30);
             StatsPersoModel.Instance.posX = x;
             StatsPersoModel.Instance.posY = y;
-
         }      
 
         #region Animation
@@ -101,19 +100,10 @@ namespace DrainMind.Metier.joueur
         /// <param name="other">the other object</param>
         public override void CollideEffect(GameItem other)
         {
-            if (other.TypeName == "Enemie")
-            {
-                LooseLife(1);            
-            }
             if (other.TypeName == "Exp")
             {             
                 LvlUpEffect();
-            }
-            if (other.TypeName == "Peach")
-            {
-                GainLife(1);
-                PlaySound("SoundTake.mp3");
-            }            
+            }          
         }
 
         /// <summary>
@@ -220,36 +210,6 @@ namespace DrainMind.Metier.joueur
                 }
             }
         }
-        #endregion
-
-        #region Vie
-
-        /// <summary>
-        /// Enleve des point de vie au joueur
-        /// </summary>
-        /// <param name="damage"></param>
-        public void LooseLife(int damage)
-        {
-            if (StatsPersoModel.Instance.Life._Vie - damage > 0)
-            {
-                StatsPersoModel.Instance.Life._Vie -= damage;
-            }
-            else
-            {
-                Game.Loose();
-            }
-        }
-
-        
-        /// <summary>
-        /// Gagne de la vie
-        /// </summary>
-        /// <param name="Healh"></param>
-        public void GainLife(int Healh)
-        {
-            StatsPersoModel.Instance.Life._Vie += Healh;
-        }
-
         #endregion
 
         #region Niveau
