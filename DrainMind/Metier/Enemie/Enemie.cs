@@ -1,4 +1,5 @@
-﻿using DrainMind.metier.Items;
+﻿using DrainMind.metier.Grille;
+using DrainMind.metier.Items;
 using DrainMind.metier.joueur.ScoreFolder;
 using DrainMind.View;
 using DrainMind.ViewModel;
@@ -28,7 +29,7 @@ namespace DrainMind.Metier.enemie
         {           
             ChangeScale(0.7, 0.7);
             EnemiesModel.Get().NombreEnemie++;
-            EnemiesModel.Get().Lesenemies.Add(this,new View.Map.Coordonnees((int)x, (int)y));
+            EnemiesModel.Get().Lesenemies.Add(this,new Coordonnees((int)x, (int)y));
         }
 
         //TypeNme of ennemies is "Enemie"

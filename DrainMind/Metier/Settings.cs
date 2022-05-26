@@ -143,7 +143,7 @@ namespace DrainMind.Metier
                 this._Son = s.Son;
                 this._culturename = s.Culturename;
             }
-            if (s.Culturename == null)
+            if (s != null && s.Culturename == null  )
             {
                 this._culturename = Thread.CurrentThread.CurrentCulture.Name;
             }

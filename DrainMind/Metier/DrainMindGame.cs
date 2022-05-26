@@ -1,4 +1,5 @@
 ﻿using DrainMind.metier.Grille;
+using DrainMind.metier.Items;
 using DrainMind.metier.joueur;
 using DrainMind.Metier;
 using DrainMind.Metier.enemie;
