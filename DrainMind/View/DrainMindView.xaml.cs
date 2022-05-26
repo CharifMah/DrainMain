@@ -4,6 +4,7 @@ using DrainMind.Metier;
 using DrainMind.Metier.enemie;
 using DrainMind.Metier.joueur;
 using DrainMind.Stockage;
+using DrainMind.View.Map;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -303,6 +304,15 @@ namespace DrainMind.View
             CloseUpgradeGrpBox();
         }
 
+        private void Bombe_Button_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (KeyValuePair<Enemie,Coordonnees> enemie in EnemiesModel.Get().Lesenemies)
+            {
+                enemie.Key.Destroy();
+            }
+            CloseUpgradeGrpBox();
+        }
+
         /// <summary>
         /// Ferme la groupe Box et relance le timer
         /// </summary>
@@ -411,8 +421,8 @@ namespace DrainMind.View
 
         }
 
-        #endregion
 
+        #endregion
        
     }
 }

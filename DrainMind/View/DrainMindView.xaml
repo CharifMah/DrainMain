@@ -195,6 +195,20 @@
                         />
 
 
+                    <Button 
+                        Grid.Column="1" 
+                        Grid.Row="3"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource CustomButton}"
+                        Width="200"
+                        Height="100"
+                        BorderBrush="Green"
+                        Content="💣"
+                        Click="Bombe_Button_Click"
+                        />
+
+
 
 
                 </Grid>

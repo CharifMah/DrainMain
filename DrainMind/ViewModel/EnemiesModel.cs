@@ -1,4 +1,5 @@
 ﻿using DrainMind.Metier.joueur;
+using DrainMind.View.Map;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,20 +10,32 @@ namespace DrainMind.Metier.enemie
     {
 
         private int _nombreenemie;
-        
+        private Dictionary<Enemie,Coordonnees> _lesenemies;
+
+        #region
+
         public int NombreEnemie
         {
             get { return _nombreenemie; }
-            set 
+            set
             {
                 _nombreenemie = value;
                 this.NotifyPropertyChanged();
             }
         }
 
+        public Dictionary<Enemie,Coordonnees> Lesenemies
+        { get { return _lesenemies; } }
+
+        #endregion
+
+
+
+
         private EnemiesModel()
         {
             _nombreenemie = 0;
+            _lesenemies = new Dictionary<Enemie, Coordonnees>();
         }
 
         public static void Destroy()

@@ -210,6 +210,7 @@ namespace DrainMind.Metier.joueur
                 }
             }
         }
+
         #endregion
 
         #region Niveau

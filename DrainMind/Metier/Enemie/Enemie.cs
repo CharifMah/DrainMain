@@ -28,6 +28,7 @@ namespace DrainMind.Metier.enemie
         {           
             ChangeScale(0.7, 0.7);
             EnemiesModel.Get().NombreEnemie++;
+            EnemiesModel.Get().Lesenemies.Add(this,new View.Map.Coordonnees((int)x, (int)y));
         }
 
         //TypeNme of ennemies is "Enemie"
@@ -41,10 +42,9 @@ namespace DrainMind.Metier.enemie
         {               
             if (other.TypeName == "Joueur")
             {
-                this.Dispose();
+                
                 if (this.Collidable)
-                {
-                    
+                {                   
                     if (StatsPersoModel.Instance.Life._Vie - 1 > 0)
                     {
                         StatsPersoModel.Instance.Life._Vie -= 1;
@@ -54,17 +54,26 @@ namespace DrainMind.Metier.enemie
                         Game.Loose();
                     }
 
-                    ExpItem xp = new ExpItem(this.Left + (this.Width / 2), this.Top + (this.Height / 2));
-                    Game.AddItem(xp);
+                    Destroy();
 
-                    PlaySound("Bruit.mp3");
-                    enemie.EnemiesModel.Get().NombreEnemie--;
-
-                    Score.Get().EnemieKilled += 1;
-                    Score.Get().Point += 10;
-                }                            
-                this.Collidable = false;
+                }                                           
             }   
+        }
+
+        public void Destroy()
+        {
+            this.Dispose();
+            this.Collidable = false;
+
+            ExpItem xp = new ExpItem(this.Left + (this.Width / 2), this.Top + (this.Height / 2));
+            Game.AddItem(xp);
+
+            PlaySound("Bruit.mp3");
+            enemie.EnemiesModel.Get().NombreEnemie--;
+            EnemiesModel.Get().Lesenemies.Remove(this);
+
+            Score.Get().EnemieKilled += 1;
+            Score.Get().Point += 10;       
         }
 
         /// <summary>
