@@ -23,8 +23,6 @@ namespace DrainMind.Metier.enemie
         //Minuteur
         private DispatcherTimer timer;
 
-        private int Sec = 0;
-
         /// <summary>
         /// enemies's constructor 
         /// </summary>
@@ -38,6 +36,11 @@ namespace DrainMind.Metier.enemie
             timer.Tick += CreateEnemieWave;
             timer.Start();
         }
+        ~GenerateurEnemie()
+        {
+            timer = null;
+            this.Dispose();
+        }
 
         //Type name of the generator is "generateur"
         public override string TypeName => "generateur";
@@ -47,45 +50,45 @@ namespace DrainMind.Metier.enemie
             _timer = _timer.AddMilliseconds(100);
 
             if (100 == _timer.TimeOfDay.TotalMilliseconds)
-            {                
-                CreateEnemie("fantomeVert.png",10,300);
+            {
+                CreateEnemie("fantomeVert.png", 10, 300);
             }
 
             if (5000 == _timer.TimeOfDay.TotalMilliseconds)
             {
-                CreateEnemie("fantomeVert.png",6,300);
-                CreateEnemie("fantome.png",6,300);
+                CreateEnemie("fantomeVert.png", 6, 300);
+                CreateEnemie("fantome.png", 6, 300);
             }
 
             if (10000 == _timer.TimeOfDay.TotalMilliseconds)
             {
-                CreateEnemie("boss.png",3,300);
+                CreateEnemie("boss.png", 3, 300);
             }
 
             if (10000 == _timer.TimeOfDay.TotalMilliseconds)
             {
-                CreateEnemie("Gloom.png", 5000, 1000);
-            }
-           
+                CreateEnemie("Gloom.png", 500, 1000);
+            }                    
         }
 
-        public async void CreateEnemie(string NameSprite,int number,int delaymilisecond)
+        private static async void CreateEnemie(string NameSprite,int number,int delaymilisecond)
         {
             Random r = new Random();
             for (int i = 0; i < number; i++)
             {
-                double x = r.NextDouble() * GameWidth;
-                double y = r.NextDouble() * GameHeight;
-               
-                Enemie enemie = new Enemie(x, y, NameSprite);
-                Game.AddItem(enemie);
 
-                //Delay de delaymilisecond ms entre chaque spawn
-                await Task.Delay(delaymilisecond);
-            }                
+                double x = r.NextDouble() * DrainMindView.MainCanvas.Width;
+                double y = r.NextDouble() * DrainMindView.MainCanvas.Height;
+                if (DrainMindGame.Instance != null)
+                {
+                    Enemie enemie = new Enemie(x, y, NameSprite);
+                    DrainMindGame.Instance.AddItem(enemie);
+
+                    //Delay de delaymilisecond ms entre chaque spawn
+                    await Task.Delay(delaymilisecond);
+                }                                  
+            }                     
         }
-
-        
 
         /// <summary>
         /// Executes the effect of the collision

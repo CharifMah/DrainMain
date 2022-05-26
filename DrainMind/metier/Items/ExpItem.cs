@@ -32,7 +32,7 @@ namespace DrainMind.metier.Items
             if (this.Collidable)
             {
                 MoveXpToPlayer();
-
+                
             }
         }
 

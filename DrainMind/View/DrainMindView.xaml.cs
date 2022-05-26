@@ -40,10 +40,9 @@ namespace DrainMind.View
         private static Canvas _uicanvas;
         private static ScrollViewer _scrollviewer;
         private static Canvas _maincanvas;
-        private static DrainMindView _drainMindView;
         private static GroupBox _upgradeSkillGrpBox;
 
-        private static DateTime _timer;
+        private DateTime _timer;
         private static DispatcherTimer timer;
 
         #region Property
@@ -71,12 +70,10 @@ namespace DrainMind.View
         {      
             ShowsNavigationUI = false;       
             InitializeComponent();   
-            _drainMindView = this;
-
 
             //Deletes Old instance          
-            EnemiesModel.Destroy();       
-
+            EnemiesModel.Destroy();   
+            
             GroupBoxUpgradeSkill.Visibility = Visibility.Hidden;
             GroupBoxInfoPerso.Visibility = Visibility.Visible;
             _scrollviewer = scrollviewer;
@@ -84,16 +81,15 @@ namespace DrainMind.View
             _maincanvas = canvas;
             _upgradeSkillGrpBox = GroupBoxUpgradeSkill;
             _MenuPrincipale = Menu;
+
             MyGrid.NombreDeLigne = 20;
             MyGrid.NombreDeCollumn = 40;
 
-
             //Minuteur
             _timer = new DateTime(0);
-            timer = new DispatcherTimer();
+            timer  = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
-           
+            timer.Tick += timer_Tick;          
         }
 
         #region Saisi des information GroupBox (Debut du jeux)

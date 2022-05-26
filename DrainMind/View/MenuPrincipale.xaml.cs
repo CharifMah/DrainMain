@@ -72,9 +72,7 @@ namespace DrainMind.View
         {
             if (DrainMindGame.Instance != null)
             {
-                DrainMindGame.Instance.Pause();
-                DrainMindGame.Instance.BackgroundVolume = 0;
-                DrainMindGame.Instance = null;
+                DrainMindGame.Instance.StopGame();     
             }
                     
             drainmindView = new DrainMindView(this);

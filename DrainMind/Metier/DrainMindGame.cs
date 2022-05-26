@@ -5,6 +5,7 @@ using DrainMind.Metier;
 using DrainMind.Metier.enemie;
 using DrainMind.Metier.joueur;
 using DrainMind.View;
+using IUTGame;
 using System;
 using System.Linq;
 using System.Windows;
@@ -75,7 +76,7 @@ namespace DrainMind.Metier
             //Affecte le contenu de la mainwindow actuel a un nouveau menu principal
             (Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow).Content = new MenuPrincipale();
             PlayBackgroundMusic("LooseSound.mp3");
-            BackgroundVolume = 0;
+            StopGame();       
         }
 
         /// <summary>
@@ -84,6 +85,22 @@ namespace DrainMind.Metier
         protected override void RunWhenWin()
         {
            System.Windows.MessageBox.Show(Res.Strings.Gagne);
+        }
+
+        /// <summary>
+        /// Remove All GameItem
+        /// </summary>
+        public void StopGame()
+        {
+            this.Pause();
+            this.BackgroundVolume = 0;
+            game = null;
+
+            foreach (GameItem item in ListItems())
+            {
+                this.RemoveItem(item);
+                item.Dispose();                
+            }      
         }
     }
 }

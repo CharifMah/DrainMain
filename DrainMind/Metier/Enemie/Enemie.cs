@@ -66,8 +66,11 @@ namespace DrainMind.Metier.enemie
             this.Dispose();
             this.Collidable = false;
 
+            if (DrainMindGame.Instance != null)
+            {         
             ExpItem xp = new ExpItem(this.Left + (this.Width / 2), this.Top + (this.Height / 2));
-            Game.AddItem(xp);
+            DrainMindGame.Instance.AddItem(xp);
+            }
 
             PlaySound("Bruit.mp3");
      

@@ -25,27 +25,26 @@ namespace TestUnitaire
                 Vie v = new Vie(10, 50);
                 Joueur s = new Joueur(0, 0);
 
-                Assert.Equal(v._Vie, 10);
+                Assert.Equal(10,v._Vie);
+                Assert.Equal(0,v._Vie);
 
-                Assert.Equal(v._Vie,0);
-                MyGrid.ResizeCanvas();
                 v.AddLife(50);
-                Assert.Equal(v._Vie, 50);
+                Assert.Equal(50,v._Vie);
 
                 v.RemoveLife(49);
-                Assert.Equal(v._Vie, 1);
-                MyGrid.ResizeCanvas();
+                Assert.Equal(1, v._Vie);
+
                 v.AddLife(19);
-                Assert.Equal(v._Vie, 20);
+                Assert.Equal(20, v._Vie);
 
                 v.RemoveEmptyLife(5);
-                Assert.Equal(v._Vie, 15);
+                Assert.Equal(15, v._Vie);
 
                 v.AddEmptyLife(5);
-                Assert.Equal(v._Vie, 15);
-                MyGrid.ResizeCanvas();
+                Assert.Equal(15, v._Vie);
+
                 v.AddLife(100);
-                Assert.Equal(v._Vie, 55);
+                Assert.Equal(55, v._Vie);
             });
             t.SetApartmentState(ApartmentState.STA);
             t.Start();         
