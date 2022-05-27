@@ -276,11 +276,14 @@ namespace DrainMind.View
         /// Affiche et met en pause la groupe Box
         /// </summary>
         public static void ShowUpgradeGrpBox()
-        {      
-            _upgradeSkillGrpBox.Visibility = Visibility.Visible;
-            timer.Stop();
-            GenerateurEnemie.GeneratorTimer.Stop();
-            DrainMindGame.Instance.Pause();          
+        {
+            if (DrainMindGame.Instance != null)
+            {
+                _upgradeSkillGrpBox.Visibility = Visibility.Visible;
+                timer.Stop();
+                GenerateurEnemie.GeneratorTimer.Stop();
+                DrainMindGame.Instance.Pause();
+            }            
         }
 
         /// <summary>

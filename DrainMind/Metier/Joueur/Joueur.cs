@@ -37,7 +37,7 @@ namespace DrainMind.Metier.joueur
         public Joueur(double x, double y) : base(x,y,DrainMindView.MainCanvas,DrainMindGame.Instance, "Personnage/face.png")
         {
             ChangeScale(0.7,0.7);
-            new StatsPersoModel(5,20,30);
+            new StatsPersoModel(5,30,30);
             StatsPersoModel.Instance.posX = x;
             StatsPersoModel.Instance.posY = y;
         }      

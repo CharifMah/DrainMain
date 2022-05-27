@@ -161,15 +161,16 @@ namespace DrainMind.Metier.enemie
             {
                 _Iscollide = false;
                 Random r = new Random();
+
                 //Reste sur place
-                if (r.Next(1, 5) <= 3)
+                if (r.Next(1, 5) < 3)
                 {
                     return;
                 }
+
                 int rdm = r.Next(1, 10);
                 int angle = 0;
 
-                //int angle = Math.ata²
                 switch (rdm)
                 {
                     case 1:

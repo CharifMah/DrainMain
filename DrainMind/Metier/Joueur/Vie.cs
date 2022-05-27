@@ -17,6 +17,7 @@ namespace DrainMind.metier.joueur
         private static Dictionary<FrameworkElement, Coordonnees> _listemptylife;
         private Canvas uiLife;
         private int vie;
+        private int ligne = 0;
 
         public static Dictionary<FrameworkElement, Coordonnees> ListLife
         {
@@ -94,9 +95,12 @@ namespace DrainMind.metier.joueur
                 Sprite EmptyCoeur = new Sprite(SpriteStore.Get(Path.Combine("Vie", "1.png")).Image);
                 EmptyCoeur.Image.Width = 50;
                 EmptyCoeur.Image.Height = 50;
-
-                uiLife.Children.Add(MyGrid.PutSpriteInCase(_listemptylife.Count, 0, EmptyCoeur.Image));
-                _listemptylife.Add(EmptyCoeur.Image, new Coordonnees(_listemptylife.Count, 0));
+                if (_listemptylife.Count <= MyGrid.NombreDeCollumn && ligne == 0)
+                {
+                    uiLife.Children.Add(MyGrid.PutSpriteInCase(_listemptylife.Count, ligne, EmptyCoeur.Image));
+                    _listemptylife.Add(EmptyCoeur.Image, new Coordonnees(_listemptylife.Count, ligneé));
+                }
+               
 
             }
         }
