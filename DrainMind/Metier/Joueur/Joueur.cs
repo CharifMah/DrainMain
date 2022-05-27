@@ -101,7 +101,7 @@ namespace DrainMind.Metier.joueur
         public override void CollideEffect(GameItem other)
         {
             if (other.TypeName == "Exp")
-            {             
+            {         
                 LvlUpEffect();
             }          
         }

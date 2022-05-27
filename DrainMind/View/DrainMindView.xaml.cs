@@ -309,7 +309,7 @@ namespace DrainMind.View
 
         private void Bombe_Button_Click(object sender, RoutedEventArgs e)
         {
-            foreach (KeyValuePair<Enemie,Coordonnees> enemie in EnemiesModel.Get().Lesenemies)
+            foreach (KeyValuePair<EnemieBase,Coordonnees> enemie in EnemiesModel.Get().Lesenemies)
             {
                 enemie.Key.Destroy();
             }

@@ -119,7 +119,7 @@
                 </Grid>
             </GroupBox>
 
-            <GroupBox x:Name="GroupBoxUpgradeSkill" Visibility="Visible" FontSize="40"  Grid.Column="1" Grid.Row="1">
+            <GroupBox x:Name="GroupBoxUpgradeSkill" Visibility="Hidden" FontSize="40"  Grid.Column="1" Grid.Row="1">
 
                 <GroupBox.Background>
                     <SolidColorBrush Color="WhiteSmoke" Opacity="0.4"/>

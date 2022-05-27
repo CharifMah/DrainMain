@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using DrainMind.metier.enemie;
 using DrainMind.metier.joueur;
 using DrainMind.Metier.joueur;
 using DrainMind.View;
@@ -26,6 +27,11 @@ namespace DrainMind.Metier.enemie
         public static DispatcherTimer GeneratorTimer
         {
             get { return timer; }
+        }
+
+        public enum TypeEnemie
+        {
+            fantome, fantomevert, boss, gloom, zebre
         }
 
         /// <summary>
@@ -53,33 +59,34 @@ namespace DrainMind.Metier.enemie
 
                 if (100 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie("fantomeVert.png", 10, 300);
+                    CreateEnemie(TypeEnemie.fantome, 10, 300);
                 }
 
                 if (5000 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie("fantomeVert.png", 6, 300);
-                    CreateEnemie("fantome.png", 6, 300);
+                    CreateEnemie(TypeEnemie.fantomevert, 6, 300);
+                    CreateEnemie(TypeEnemie.fantome, 6, 300);
                 }
 
                 if (10000 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie("boss.png", 3, 300);
+                    CreateEnemie(TypeEnemie.zebre, 3, 300);
+                    CreateEnemie(TypeEnemie.gloom, 100, 100);
                 }
 
-                if (10000 == _timer.TimeOfDay.TotalMilliseconds)
+                if (15000 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie("Gloom.png", 100, 100);
+                    CreateEnemie(TypeEnemie.boss, 5, 10);
                 }
 
                 if (30000 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie("nightmare.png", 100, 50);
+                    CreateEnemie(TypeEnemie.zebre, 100, 50);
                 }
 
                 if (60000 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie("boss.png", 100, 0);
+                    CreateEnemie(TypeEnemie.boss, 100, 10);
                 }
             }
             else
@@ -91,19 +98,38 @@ namespace DrainMind.Metier.enemie
            
         }
 
-        private static async void CreateEnemie(string NameSprite,int number,int delaymilisecond)
+        private static async void CreateEnemie(TypeEnemie typeEnemie,int number,int delaymilisecond)
         {
             Random r = new Random();
+            EnemieBase n = null;
             for (int i = 0; i < number; i++)
             {
-
                 double x = r.NextDouble() * DrainMindView.MainCanvas.Width;
                 double y = r.NextDouble() * DrainMindView.MainCanvas.Height;
                 if (DrainMindGame.Instance != null)
                 {
-                    Enemie enemie = new Enemie(x, y, NameSprite);
-                    DrainMindGame.Instance.AddItem(enemie);
-
+                    switch (typeEnemie)
+                    {
+                        case TypeEnemie.fantomevert:
+                            n = new EnemieFvert(x, y);
+                            break;
+                        case TypeEnemie.boss:
+                            n = new EnemieBoss(x, y);                     
+                            break;
+                        case TypeEnemie.gloom:
+                            n = new EnemieGloom(x, y);
+                            break;
+                        case TypeEnemie.zebre:
+                            n = new EnemieNightmare(x, y);
+                            break;
+                        default: n = new EnemieBase(x, y);
+                            break;                  
+                    }
+                    if (n != null)
+                    {
+                        DrainMindGame.Instance.AddItem(n);
+                    }
+            
                     //Delay de delaymilisecond ms entre chaque spawn
                     await Task.Delay(delaymilisecond);
                 }                                  

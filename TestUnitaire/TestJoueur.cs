@@ -64,9 +64,7 @@ namespace TestUnitaire
                 Enemie e = new Enemie(0, 0,"");
 
                 //Meme Position
-                Assert.Equal(e.IsCollide(s), true);
-
-
+                Assert.True(e.IsCollide(s));
 
             });
             t.SetApartmentState(ApartmentState.STA);
