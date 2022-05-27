@@ -51,6 +51,11 @@ namespace DrainMind.Metier.enemie
         //Type name of the generator is "generateur"
         public override string TypeName => "generateur";
 
+        /// <summary>
+        /// Cree des vague d enemie en fonction du timer
+        /// </summary>
+        /// <param name="sender">timer.Tick</param>
+        /// <param name="e">event timer</param>
         internal void CreateEnemieWave(object sender, EventArgs e)
         {
             if (DrainMindGame.Instance != null)
@@ -86,7 +91,7 @@ namespace DrainMind.Metier.enemie
 
                 if (60000 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie(TypeEnemie.boss, 100, 10);
+                    CreateEnemie(TypeEnemie.boss, 10, 10);
                 }
             }
             else
@@ -98,6 +103,12 @@ namespace DrainMind.Metier.enemie
            
         }
 
+        /// <summary>
+        /// Cree des enemie a une postion aleatoire
+        /// </summary>
+        /// <param name="typeEnemie">le type de enemie</param>
+        /// <param name="number">le nombre d enemie a cree</param>
+        /// <param name="delaymilisecond">temps entre chaque creation</param>
         private static async void CreateEnemie(TypeEnemie typeEnemie,int number,int delaymilisecond)
         {
             Random r = new Random();
