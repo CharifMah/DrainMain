@@ -35,6 +35,7 @@ namespace DrainMind.Metier.enemie
         /// <param name="c">canvas</param>
         /// <param name="g">game</param>
         /// <param name="Spritename">name of the sprite</param>
+        /// <Author>Charif</Author>
         public EnemieBase(double x, double y,string spritename = "Enemie/fantome.png") : base(x, y, DrainMindView.MainCanvas, DrainMindGame.Instance, spritename)
         {
             ChangeScale(0.7, 0.7);
@@ -58,6 +59,7 @@ namespace DrainMind.Metier.enemie
         /// Executes the effect of the collision
         /// </summary>
         /// <param name="other">the other object</param>
+        /// <Author>Charif</Author>
         public override void CollideEffect(GameItem other)
         {
             if (other.TypeName == "Joueur")
@@ -143,8 +145,7 @@ namespace DrainMind.Metier.enemie
         /// <summary>
         /// Deplacement en direction du joueur
         /// </summary>
-        /// <Author>Ryan</Author>
-        /// <Co-Author>Charif</Co-Author>
+        ///<Author>Charif</Author>
         public void MoveEnemie()
         {
             double ePosX = this.Left + (this.Width / 2);

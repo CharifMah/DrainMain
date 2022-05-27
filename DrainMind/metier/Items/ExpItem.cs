@@ -54,20 +54,18 @@ namespace DrainMind.metier.Items
             }
         }
 
-       
+
 
         /// <summary>
         /// Deplacement en direction du joueur
         /// </summary>
-        /// <Author>Ryan</Author>
-        /// <Co-Author>Charif</Co-Author>
+        /// <Author>Charif</Author>
         public void MoveXpToPlayer()
         {
-
-            double moveX = -(Left - (StatsPersoModel.Instance.posX)) / 12;
-            double moveY = -(Top - (StatsPersoModel.Instance.posY)) / 12;
-
-             MoveXY(moveX, moveY);
+            double ePosX = this.Left + (this.Width / 2);
+            double ePosY = this.Top + (this.Height / 2);
+            double _angle = Math.Atan2(StatsPersoModel.Instance.posY - ePosY, StatsPersoModel.Instance.posX - ePosX) * (180 / Math.PI);
+            MoveDA(10, _angle);
 
         }
     }

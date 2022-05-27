@@ -17,6 +17,7 @@ namespace DrainMind.Metier.enemie
     /// <summary>
     /// generate the enemies
     /// </summary>
+    /// <Author>Charif</Author>
     public class GenerateurEnemie : GameItem
     {
         //Time
@@ -56,6 +57,7 @@ namespace DrainMind.Metier.enemie
         /// </summary>
         /// <param name="sender">timer.Tick</param>
         /// <param name="e">event timer</param>
+        /// <Author>Charif</Author>
         internal void CreateEnemieWave(object sender, EventArgs e)
         {
             if (DrainMindGame.Instance != null)
@@ -109,6 +111,7 @@ namespace DrainMind.Metier.enemie
         /// <param name="typeEnemie">le type de enemie</param>
         /// <param name="number">le nombre d enemie a cree</param>
         /// <param name="delaymilisecond">temps entre chaque creation</param>
+        /// <Author>Charif</Author>
         private static async void CreateEnemie(TypeEnemie typeEnemie,int number,int delaymilisecond)
         {
             Random r = new Random();
@@ -151,6 +154,7 @@ namespace DrainMind.Metier.enemie
         /// Executes the effect of the collision
         /// </summary>
         /// <param name="other">the other object</param>
+        /// <Author>Charif</Author>
         public override void CollideEffect(GameItem other) 
         {
             this.Collidable = false;
