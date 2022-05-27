@@ -11,13 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Sprites\Personnage\**" />
-    <EmbeddedResource Remove="Sprites\Personnage\**" />
-    <None Remove="Sprites\Personnage\**" />
-    <Page Remove="Sprites\Personnage\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Sounds\Angello.mp3" />
     <None Remove="Sounds\Gouttes.mp3" />
     <None Remove="Sounds\LooseSound.mp3" />
@@ -40,26 +33,21 @@
     <None Remove="Sprites\BackGround.png" />
     <None Remove="Sprites\Background2.png" />
     <None Remove="Sprites\boss.png" />
-    <None Remove="Sprites\diagoSD.png" />
-    <None Remove="Sprites\diagoSQ.png" />
-    <None Remove="Sprites\diagoZD.png" />
-    <None Remove="Sprites\diagoZQ.png" />
-    <None Remove="Sprites\dos.png" />
     <None Remove="Sprites\droite.gif" />
-    <None Remove="Sprites\droite.png" />
-    <None Remove="Sprites\droite1.png" />
-    <None Remove="Sprites\droite2.png" />
     <None Remove="Sprites\droite3.png" />
     <None Remove="Sprites\droiteTest.png" />
+    <None Remove="Sprites\Enemie\boss.png" />
+    <None Remove="Sprites\Enemie\fantome.png" />
+    <None Remove="Sprites\Enemie\fantomeVert.png" />
+    <None Remove="Sprites\Enemie\Gloom.png" />
+    <None Remove="Sprites\Enemie\nightmare.png" />
     <None Remove="Sprites\Exp.png" />
-    <None Remove="Sprites\face.png" />
     <None Remove="Sprites\fantome.png" />
     <None Remove="Sprites\fantomeVert.png" />
     <None Remove="Sprites\fond.png" />
     <None Remove="Sprites\fondTest.png" />
     <None Remove="Sprites\fondTest2.png" />
     <None Remove="Sprites\FoodPeach.png" />
-    <None Remove="Sprites\gauche.png" />
     <None Remove="Sprites\Gloom.png" />
     <None Remove="Sprites\HTournerD.png" />
     <None Remove="Sprites\HTournerG.png" />
@@ -67,6 +55,18 @@
     <None Remove="Sprites\Logo.ico" />
     <None Remove="Sprites\moitiervie.png" />
     <None Remove="Sprites\nightmare.png" />
+    <None Remove="Sprites\Personnage\diagoSD.png" />
+    <None Remove="Sprites\Personnage\diagoSQ.png" />
+    <None Remove="Sprites\Personnage\diagoZD.png" />
+    <None Remove="Sprites\Personnage\diagoZQ.png" />
+    <None Remove="Sprites\Personnage\dos.png" />
+    <None Remove="Sprites\Personnage\droite.png" />
+    <None Remove="Sprites\Personnage\droite1.png" />
+    <None Remove="Sprites\Personnage\droite2.png" />
+    <None Remove="Sprites\Personnage\face.png" />
+    <None Remove="Sprites\Personnage\gauche.png" />
+    <None Remove="Sprites\Personnage\gauche1.png" />
+    <None Remove="Sprites\Personnage\gauche2.png" />
     <None Remove="Sprites\tournerD.png" />
     <None Remove="Sprites\tournerG.png" />
     <None Remove="Sprites\Type1Arme1.png" />
@@ -119,30 +119,34 @@
     <Resource Include="Sprites\Attaque1.png" />
     <Resource Include="Sprites\Background.png" />
     <Resource Include="Sprites\Background2.png" />
-    <Resource Include="Sprites\boss.png" />
-    <Resource Include="Sprites\diagoSD.png" />
-    <Resource Include="Sprites\diagoZD.png" />
+    <Resource Include="Sprites\Enemie\boss.png" />
+    <Resource Include="Sprites\Enemie\fantome.png" />
+    <Resource Include="Sprites\Enemie\fantomeVert.png" />
+    <Resource Include="Sprites\Enemie\Gloom.png" />
+    <Resource Include="Sprites\Enemie\nightmare.png" />
     <Resource Include="Sprites\Exp.png" />
-    <Resource Include="Sprites\fantomeVert.png" />
     <Resource Include="Sprites\FoodPeach.png" />
-    <Resource Include="Sprites\Gloom.png" />
     <Resource Include="Sprites\Logo.ico" />
-    <Resource Include="Sprites\nightmare.png" />
+    <Resource Include="Sprites\Personnage\diagoSD.png" />
+    <Resource Include="Sprites\Personnage\diagoSQ.png" />
+    <Resource Include="Sprites\Personnage\diagoZD.png" />
+    <Resource Include="Sprites\Personnage\diagoZQ.png" />
+    <Resource Include="Sprites\Personnage\dos.png" />
+    <Resource Include="Sprites\Personnage\droite.png" />
+    <Resource Include="Sprites\Personnage\droite1.png" />
+    <Resource Include="Sprites\Personnage\droite2.png" />
+    <Resource Include="Sprites\Personnage\face.png" />
+    <Resource Include="Sprites\Personnage\gauche.png" />
+    <Resource Include="Sprites\Personnage\gauche1.png" />
+    <Resource Include="Sprites\Personnage\gauche2.png" />
     <Resource Include="Sprites\Type1Arme1.png" />
     <Resource Include="Sprites\Type1Arme2.png" />
     <Resource Include="Sprites\Type1Arme3.png" />
     <Resource Include="Sprites\Vie\1.png" />
     <Resource Include="Sprites\Vie\2.png" />
-    <Resource Include="Sprites\diagoSQ.png" />
-    <Resource Include="Sprites\diagoZQ.png" />
-    <Resource Include="Sprites\dos.png" />
-    <Resource Include="Sprites\droite.png" />
-    <Resource Include="Sprites\face.png" />
-    <Resource Include="Sprites\fantome.png" />
     <Resource Include="Sprites\fond.png" />
     <Resource Include="Sprites\fondTest.png" />
     <Resource Include="Sprites\fondTest2.png" />
-    <Resource Include="Sprites\gauche.png" />
     <Resource Include="Sprites\TitreMenu.png" />
   </ItemGroup>
 

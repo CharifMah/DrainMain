@@ -35,7 +35,7 @@ namespace DrainMind.Metier.enemie
         /// <param name="c">canvas</param>
         /// <param name="g">game</param>
         /// <param name="Spritename">name of the sprite</param>
-        public EnemieBase(double x, double y,string spritename = "fantome.png") : base(x, y, DrainMindView.MainCanvas, DrainMindGame.Instance, spritename)
+        public EnemieBase(double x, double y,string spritename = "Enemie/fantome.png") : base(x, y, DrainMindView.MainCanvas, DrainMindGame.Instance, spritename)
         {
             ChangeScale(0.7, 0.7);
             EnemiesModel.Get().NombreEnemie++;

@@ -7,7 +7,7 @@ namespace DrainMind.metier.enemie
 {
     public class EnemieNightmare : EnemieBase
     {
-        public EnemieNightmare(double x, double y, string spritename = "nightmare.png") : base(x, y, spritename)
+        public EnemieNightmare(double x, double y, string spritename = "Enemie/nightmare.png") : base(x, y, spritename)
         {
             this._speed = 7;
             this._XPpoint = 40;

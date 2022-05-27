@@ -19,6 +19,9 @@ namespace DrainMind.Metier.joueur
     {        
       
         private bool goLeft = false, goRight = false, goUp = false, goDown = false;
+        private int counter = 0;
+        private static string[] ArrayDroite = new string[4] { "Personnage/droite.png", "Personnage/droite1.png", "Personnage/droite.png", "Personnage/droite2.png" };
+        private static string[] ArrayGauche = new string[4] { "Personnage/gauche.png", "Personnage/gauche1.png", "Personnage/gauche.png", "Personnage/gauche2.png" };
 
         // TypeName of the player is "Joueur"
         public override string TypeName => "Joueur";
@@ -31,7 +34,7 @@ namespace DrainMind.Metier.joueur
         /// <param name="c">canvas of the application</param>
         /// <param name="g">drainMind</param>
         /// <param name="ui">canvas</param>
-        public Joueur(double x, double y) : base(x,y,DrainMindView.MainCanvas,DrainMindGame.Instance,"face.png")
+        public Joueur(double x, double y) : base(x,y,DrainMindView.MainCanvas,DrainMindGame.Instance, "Personnage/face.png")
         {
             ChangeScale(0.7,0.7);
             new StatsPersoModel(5,20,30);
@@ -72,24 +75,32 @@ namespace DrainMind.Metier.joueur
         /// </summary>
         /// <param name="key"></param>
         /// <param name="KeyEvent">True for KeyUp False for KeyDown</param>
-        public void AnimationJoueur()
+        private void AnimationJoueur()
         {
             if (goLeft)
-                ChangeSprite("gauche.png");
+                ChangeSprite(ArrayGauche[counter]);
             if (goRight)
-                ChangeSprite("droite.png");
+                ChangeSprite(ArrayDroite[counter]);
             if (goUp)
-                ChangeSprite("dos.png");
+                ChangeSprite("Personnage/dos.png");
             if (goDown)
-                ChangeSprite("face.png");
+                ChangeSprite("Personnage/face.png");
             if (goDown && goLeft)
-                ChangeSprite("diagoSQ.png");
+                ChangeSprite("Personnage/diagoSQ.png");
             if (goUp && goLeft)
-                ChangeSprite("diagoZQ.png");
+                ChangeSprite("Personnage/diagoZQ.png");
             if (goDown && goRight)
-                ChangeSprite("diagoSD.png");
+                ChangeSprite("Personnage/diagoSD.png");
             if (goUp && goRight)
-                ChangeSprite("diagoZD.png");
+                ChangeSprite("Personnage/diagoZD.png");
+         
+            counter++;
+
+            if (counter == 3)
+            {
+                counter = 0;
+            }
+
         }
         #endregion
 
