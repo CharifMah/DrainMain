@@ -11,12 +11,20 @@ using System.Windows.Controls;
 
 namespace DrainMind.metier.joueur
 {
+    /// <summary>
+    /// Life's class of the player
+    /// </summary>
     public class Vie
     {
+        //List of the lives
         private static Dictionary<FrameworkElement, Coordonnees> _listlife;
+        //List of th empty lives
         private static Dictionary<FrameworkElement, Coordonnees> _listemptylife;
+        //Canvas of the lives
         private Canvas uiLife;
+        //Life
         private int vie;
+        //ligne where the lives are
         private int ligne = 0;
 
         public static Dictionary<FrameworkElement, Coordonnees> ListLife
@@ -52,11 +60,11 @@ namespace DrainMind.metier.joueur
         }
 
         /// <summary>
-        /// Constructor Vie create une barre de vie with amount of lifes
+        /// Constructor Vie create a life bar with amount of lifes
         /// </summary>
-        /// <param name="lifeUI">Canvas de la barre de vie</param>
+        /// <param name="lifeUI">Canvas life bar</param>
         /// <param name="g">Game Instance</param>
-        /// <param name="pointLife">Nombre de vie</param>
+        /// <param name="pointLife">Nomber of life</param>
         /// <Author>Charif</Author>
         public Vie(int pointLife, int MaxPv)
         {
@@ -68,9 +76,9 @@ namespace DrainMind.metier.joueur
         }
 
         /// <summary>
-        /// Enleve le nombre de vieMax
+        /// Remove number of vieMax
         /// </summary>
-        /// <param name="numberOfEmptyLife">Nombre de vie Max a envelver</param>
+        /// <param name="numberOfEmptyLife">number of life max to remove</param>
         /// <Author>Charif</Author>
         public void RemoveEmptyLife(int numberOfEmptyLife)
         {
@@ -85,9 +93,10 @@ namespace DrainMind.metier.joueur
         }
 
         /// <summary>
-        /// Ajoute le nombre de Vie Max
+        /// Add number of Vie Max
         /// </summary>
-        /// <param name="numberOfEmptyLife">Nombre de Vide max a Ajoute</param>
+        /// <param name="numberOfEmptyLife">Nomber of VieMax to add</param>
+        /// <author>Charif</author>
         public void AddEmptyLife(int numberOfEmptyLife)
         {
             for (int i = 0; i < numberOfEmptyLife; i++)
@@ -98,15 +107,13 @@ namespace DrainMind.metier.joueur
                 if (_listemptylife.Count <= MyGrid.NombreDeCollumn && ligne == 0)
                 {
                     uiLife.Children.Add(MyGrid.PutSpriteInCase(_listemptylife.Count, ligne, EmptyCoeur.Image));
-                    _listemptylife.Add(EmptyCoeur.Image, new Coordonnees(_listemptylife.Count, ligneé));
+                    _listemptylife.Add(EmptyCoeur.Image, new Coordonnees(_listemptylife.Count, ligne));
                 }
-               
-
             }
         }
 
         /// <summary>
-        /// Enleve le nombre de vie souhaite
+        /// Remove life
         /// </summary>
         /// <param name="numberOfLife"></param>
         /// <Author>Charif</Author>
@@ -123,7 +130,7 @@ namespace DrainMind.metier.joueur
         }
 
         /// <summary>
-        /// Ajoute de la vie a la liste de vie
+        /// Add Life to the list of lives
         /// </summary>
         /// <param name="numberOfLife">Number of lifes you want to add</param>
         /// <Author>Charif</Author>
