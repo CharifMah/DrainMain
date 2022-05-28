@@ -10,6 +10,9 @@ using System.Windows.Shapes;
 
 namespace DrainMind.metier.Grille
 {
+    /// <summary>
+    /// grid of the game
+    /// </summary>
     public class MyGrid
     {
         private static double hauteurligne;
@@ -47,12 +50,13 @@ namespace DrainMind.metier.Grille
         #endregion
 
         /// <summary>
-        /// Dessine les ligne
+        /// Draw lines
         /// </summary>
-        /// <param name="x1"></param>
-        /// <param name="y1"></param>
-        /// <param name="x2"></param>
-        /// <param name="y2"></param>
+        /// <param name="x1">beginning of the line on x axis</param>
+        /// <param name="y1">beginning of the line on y axis</param>
+        /// <param name="x2">ending of the line on x axis</param>
+        /// <param name="y2">ending of the line on y axis</param>
+        /// <author>Charif</author>
         private static Line drawGridLine(int x1, int y1, int x2, int y2)
         {
             Line l = new Line();
@@ -69,10 +73,11 @@ namespace DrainMind.metier.Grille
         }
 
         /// <summary>
-        /// Dessine une gille visible
+        /// Draw a visible line
         /// </summary>
-        /// <param name="numberLigne">Nombre de ligne de la grille</param>
-        /// <param name="NumberCollumn">Nombre de Collumn de la Grille</param>
+        /// <param name="numberLigne">Grid's number of line</param>
+        /// <param name="NumberCollumn">Grid's number of column</param>
+        /// <author>Charif</author>
         public static Canvas drawGrid()
         {
             Canvas c = new Canvas();
@@ -94,13 +99,14 @@ namespace DrainMind.metier.Grille
         }
 
         /// <summary>
-        /// Dessine un sprite dans la case souhaite
+        /// Draw sprite of the grid
         /// </summary>
-        /// <param name="idCol">Nombre de la ligne en partant du haut</param>
-        /// <param name="idCol">Nombre de la collumn en partant de la gauche</param>
-        /// <param name="width">Largeur de sprite</param>
-        /// <param name="height">Hauteur du sprite</param>
-        /// <param name="sprite">le sprite a dessinee</param>
+        /// <param name="idCol">Number of life from the top</param>
+        /// <param name="idCol">Number of column from left</param>
+        /// <param name="width">Width of the sprite</param>
+        /// <param name="height">Height of the sprite</param>
+        /// <param name="sprite">Sprite to draw</param>
+        /// <author>Charif</author>
         public static FrameworkElement PutSpriteInCase(int idCol, int idLigne, FrameworkElement sprite)
         {
             hauteurligne = MainWindow.GetMainWindow.ActualHeight / nombreligne;
@@ -119,9 +125,11 @@ namespace DrainMind.metier.Grille
         }
 
         /// <summary>
+        /// Refresh sprite depending of the width of the window
         /// Rafraichi les sprite en fonction de la taile de la fenetre
         /// </summary>
-        /// <param name="canvas">Le canvas des element ajoute</param>
+        /// <param name="canvas">Canvas of added element</param>
+        /// <author>Charif</author>
         public static void ResizeCanvas()
         {
             DrainMindView.UIcanvas.Children.Clear();
