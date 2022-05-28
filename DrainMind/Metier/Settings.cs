@@ -11,6 +11,9 @@ using System.Windows;
 
 namespace DrainMind.Metier
 {
+    /// <summary>
+    /// Settings of the game
+    /// </summary>
     [DataContract]
     public class Settings : observable.Observable
     {
@@ -28,7 +31,7 @@ namespace DrainMind.Metier
        
 
         /// <summary>
-        /// Son Max 100
+        /// Max of the sound : 100
         /// </summary>
         public double Son
         {
@@ -50,7 +53,7 @@ namespace DrainMind.Metier
         }
 
         /// <summary>
-        /// Active ou Desactive le son
+        /// Allow to turn on or turn off the sound
         /// </summary>
         public bool SonOnOff
         {
@@ -71,7 +74,7 @@ namespace DrainMind.Metier
         }
 
         /// <summary>
-        /// True Si pleinEcran sinon False
+        /// True if full screen else False
         /// </summary>
         public bool PLeinEcran
         {
@@ -94,7 +97,7 @@ namespace DrainMind.Metier
         }
 
         /// <summary>
-        /// Choisi la langue
+        /// Allow to chose the language
         /// </summary>
         public string Culturename
         {
@@ -109,7 +112,7 @@ namespace DrainMind.Metier
         private static Settings instance;
 
         /// <summary>
-        /// Charge les settings dans le fichier Json
+        /// Save settings in a Json file
         /// </summary>
         /// <Author>Charif</Author>
         private Settings()
@@ -118,7 +121,7 @@ namespace DrainMind.Metier
         }
 
         /// <summary>
-        /// Recupere ou cree une instance
+        /// Get or create an instance
         /// </summary>
         /// <returns>instance settings</returns>
         /// <Author>Charif</Author>
@@ -130,7 +133,7 @@ namespace DrainMind.Metier
         }
 
         /// <summary>
-        /// Charge le fichiers des settings dans le fichier json StreamReader
+        /// Load settings file in the json file StreamReader
         /// </summary>
         /// <Author>Charif</Author>
         private void LoadSettings()
