@@ -11,11 +11,14 @@ using System.Windows.Threading;
 
 namespace DrainMind.metier.Items
 {
+    /// <summary>
+    /// Exp of the item
+    /// </summary>
     public class ExpItem : IUTGame.GameItem, IAnimable
     {
  
         /// <summary>
-        /// Boule experience
+        /// Experience
         /// </summary>
         /// <param name="x">Postion x</param>
         /// <param name="y">Positon y</param>
@@ -27,6 +30,10 @@ namespace DrainMind.metier.Items
 
         public override string TypeName => "Exp";
 
+        /// <summary>
+        /// Animate the item
+        /// </summary>
+        /// <param name="dt">time span</param>
         public void Animate(TimeSpan dt)
         {
             if (this.Collidable)
@@ -36,6 +43,10 @@ namespace DrainMind.metier.Items
             }
         }
 
+        /// <summary>
+        /// Executes the effect of the collision
+        /// </summary>
+        /// <param name="other">other objet</param>
         public override void CollideEffect(GameItem other)
         {
             if (other.TypeName == "Joueur")
@@ -57,7 +68,7 @@ namespace DrainMind.metier.Items
 
 
         /// <summary>
-        /// Deplacement en direction du joueur
+        /// movement towards the player
         /// </summary>
         /// <Author>Charif</Author>
         public void MoveXpToPlayer()
