@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DrainMind.metier.Grille
 {
+    /// <summary>
+    /// Coordinates of anything on the game
+    /// </summary>
     public class Coordonnees
     {
         //Nombre de ligne sur la carte
@@ -21,10 +24,11 @@ namespace DrainMind.metier.Grille
         { get { return ligne; } }
 
         /// <summary>
-        /// Constructeur des coordonnes avec la ligne et la colonne
+        /// Constructor of cordinates with lines and columns
         /// </summary>
-        /// <param name="ligne">ligne sur map</param>
-        /// <param name="colonne">colonne sur map</param>
+        /// <param name="ligne">line of the map</param>
+        /// <param name="colonne">column on the map</param>
+        /// <author>Inès</author>
         public Coordonnees(int colonne, int ligne)
         {
             this.ligne = ligne;
@@ -32,10 +36,11 @@ namespace DrainMind.metier.Grille
         }
 
         /// <summary>
-        /// Détermine si les deux instances d'objet sont égales
+        /// Tells if two instances are the same or not
         /// </summary>
-        /// <param name="obj">objet de la comparaison</param>
-        /// <returns>bool si egal ou non</returns>
+        /// <param name="obj">Object of the comparaision</param>
+        /// <returns>if equal or not</returns>
+        /// <author>Charif</author>
         public override bool Equals(object obj)
         {
             return obj is Coordonnees coordonnees &&
@@ -44,9 +49,9 @@ namespace DrainMind.metier.Grille
         }
 
         /// <summary>
-        /// Code de hachage pour l'objet actuel
+        /// Hash code for the object
         /// </summary>
-        /// <returns>retourne combinaison hashcode</returns>
+        /// <returns>return combinaise hashcode</returns>
         public override int GetHashCode()
         {
             return HashCode.Combine(ligne, colonne);
