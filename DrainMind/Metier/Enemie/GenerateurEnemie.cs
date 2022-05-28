@@ -53,7 +53,7 @@ namespace DrainMind.Metier.enemie
         public override string TypeName => "generateur";
 
         /// <summary>
-        /// Cree des vague d enemie en fonction du timer
+        /// Create enemy depending of timer
         /// </summary>
         /// <param name="sender">timer.Tick</param>
         /// <param name="e">event timer</param>
@@ -106,11 +106,11 @@ namespace DrainMind.Metier.enemie
         }
 
         /// <summary>
-        /// Cree des enemie a une postion aleatoire
+        /// Create enemy at a random position
         /// </summary>
-        /// <param name="typeEnemie">le type de enemie</param>
-        /// <param name="number">le nombre d enemie a cree</param>
-        /// <param name="delaymilisecond">temps entre chaque creation</param>
+        /// <param name="typeEnemie">type of enemy</param>
+        /// <param name="number">number of enemy</param>
+        /// <param name="delaymilisecond">time between creation</param>
         /// <Author>Charif</Author>
         private static async void CreateEnemie(TypeEnemie typeEnemie,int number,int delaymilisecond)
         {

@@ -88,7 +88,7 @@ namespace DrainMind.Metier.enemie
         }
 
         /// <summary>
-        /// tue l enemie
+        /// Kill the enemy
         /// </summary>
         public void Destroy()
         {
@@ -143,7 +143,7 @@ namespace DrainMind.Metier.enemie
         }
 
         /// <summary>
-        /// Deplacement en direction du joueur
+        /// Moving towards the player
         /// </summary>
         ///<Author>Charif</Author>
         public void MoveEnemie()
