@@ -73,8 +73,10 @@ namespace DrainMind.Metier.joueur
         /// <summary>
         /// Animation, change sprite when the mc move
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="key">key pressed</param>
         /// <param name="KeyEvent">True for KeyUp False for KeyDown</param>
+        /// <author>Inès</author>
+        /// <co-author>Charif</co-autor>
         private void AnimationJoueur()
         {
             if (goLeft)
@@ -109,6 +111,7 @@ namespace DrainMind.Metier.joueur
         /// Executes the effect of the collision
         /// </summary>
         /// <param name="other">the other object</param>
+        /// <author>Charif</author>
         public override void CollideEffect(GameItem other)
         {
             if (other.TypeName == "Exp")
@@ -122,6 +125,7 @@ namespace DrainMind.Metier.joueur
         /// </summary>
         /// <param name="other">the other object</param>
         /// <returns>true if this collide with other</returns>
+        /// <author>Charif</author>
         public override bool IsCollide(GameItem other)
         {
             return base.IsCollide(other);
@@ -134,6 +138,8 @@ namespace DrainMind.Metier.joueur
         /// when a button is pressed
         /// </summary>
         /// <param name="key">key pressed</param>
+        /// <author>Inès</author>
+        /// <co-author>Charif</co-author>
         public void KeyDown(Key key)
         {
             if (DrainMindGame.Instance.IsRunning)
@@ -180,6 +186,8 @@ namespace DrainMind.Metier.joueur
         /// when the button is not pressed anymore
         /// </summary>
         /// <param name="key">key not pressed anymore</param>
+        /// <author>Inès</author>
+        /// <co-author>Charif</co-author>
         public void KeyUp(Key key)
         {
             if (DrainMindGame.Instance.IsRunning)
@@ -226,8 +234,9 @@ namespace DrainMind.Metier.joueur
 
         #region Niveau
         /// <summary>
-        /// Empeche le joueur de ce deplace apres la fermeture de la fenetre de LVLUP
+        /// Prevent player to move after the closing of the window LVLUP
         /// </summary>
+        /// <author>Charif</author>
         public void LvlUpEffect()
         {
             if (StatsPersoModel.Instance.XP >= StatsPersoModel.Instance.XPMax)
@@ -247,6 +256,7 @@ namespace DrainMind.Metier.joueur
         /// </summary>
         /// <param name="x">axis x</param>
         /// <param name="y">axis y</param>
+        /// <author>Charif</author>
         public void DeplacerJoueur(double x, double y)
         {
 
