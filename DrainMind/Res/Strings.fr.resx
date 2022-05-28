@@ -121,7 +121,7 @@
     <value>Anglais</value>
   </data>
   <data name="EnnemiTue" xml:space="preserve">
-    <value>Ennemituée</value>
+    <value>Ennemis tués</value>
   </data>
   <data name="Exit" xml:space="preserve">
     <value>Quitter</value>
@@ -142,7 +142,7 @@
     <value>Nouvelle Partie</value>
   </data>
   <data name="Nom" xml:space="preserve">
-    <value>Nom :</value>
+    <value>Nom</value>
   </data>
   <data name="Options" xml:space="preserve">
     <value>Options</value>
