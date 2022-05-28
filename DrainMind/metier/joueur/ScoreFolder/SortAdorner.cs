@@ -9,7 +9,7 @@ using System.Windows.Media;
 namespace DrainMind.metier.joueur.ScoreFolder
 {
     /// <summary>
-    /// Tri des collumn des scores
+    /// sorting score columns
     /// </summary>
     public class SortAdorner : Adorner
     {
@@ -19,14 +19,26 @@ namespace DrainMind.metier.joueur.ScoreFolder
         private static Geometry descGeometry =
             Geometry.Parse("M 0 0 L 3.5 4 L 7 0 Z");
 
+        /// <summary>
+        /// Specifies the direction of the sorting
+        /// </summary>
         public ListSortDirection Direction { get; private set; }
 
+        /// <summary>
+        /// Creates a Adorner to indicate sort direction. 
+        /// </summary>
+        /// <param name="element">element</param>
+        /// <param name="dir">direction</param>
         public SortAdorner(UIElement element, ListSortDirection dir)
             : base(element)
         {
             Direction = dir;
         }
 
+        /// <summary>
+        /// Participates in rendering operations directed by the disposition system
+        /// </summary>
+        /// <param name="drawingContext">Drawing instructions for a specific element</param>
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
