@@ -21,8 +21,8 @@ namespace DrainMind.metier.Items
         /// <summary>
         /// Generateur Item
         /// </summary>
-        /// <param name="canvas"></param>
-        /// <param name="game"></param>
+        /// <param name="canvas">canvas</param>
+        /// <param name="game">drain mind</param>
         public GenerateurItem() : base(0, 0, DrainMindView.MainCanvas, DrainMindGame.Instance, "")
         {
             timeToCreate = new TimeSpan(0, 0, 1);
