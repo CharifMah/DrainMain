@@ -8,11 +8,14 @@ using System.Windows.Threading;
 
 namespace DrainMind.metier.Items
 {
+    /// <summary>
+    /// Text of the item
+    /// </summary>
     public class TextItem
     {
 
         /// <summary>
-        /// Cree un label et l affiche pendant une certaine duree
+        /// Create label et show it for some time
         /// </summary>
         /// <param name="x">Position X</param>
         /// <param name="y">Position Y</param>
@@ -22,7 +25,7 @@ namespace DrainMind.metier.Items
         }
 
         /// <summary>
-        /// Affiche un label pendant une certaine duree
+        /// Show the label for some time
         /// </summary>
         /// <param name="x">Position X</param>
         /// <param name="y">Position Y</param>
