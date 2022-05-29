@@ -3,6 +3,7 @@ using DrainMind.metier.joueur;
 using DrainMind.metier.joueur.ScoreFolder;
 using DrainMind.Metier;
 using DrainMind.Metier.enemie;
+using DrainMind.Metier.joueur;
 using DrainMind.Stockage;
 using DrainMind.ViewModel;
 using System;
@@ -63,7 +64,6 @@ namespace DrainMind.View
         {
             get { return _scrollviewer; }
         }
-
 
         #endregion
 
@@ -283,6 +283,7 @@ namespace DrainMind.View
                 timer.Stop();
                 GenerateurEnemie.GeneratorTimer.Stop();
                 DrainMindGame.Instance.Pause();
+                Joueur.StopMove();
             }            
         }
 
@@ -379,6 +380,7 @@ namespace DrainMind.View
                     GenerateurEnemie.GeneratorTimer.Stop();
                     timer.Stop();
                     GroupBoxPause.Visibility = Visibility.Visible;
+                    Joueur.StopMove();
                     Pressed = true;
                 }
                 //Resume

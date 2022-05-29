@@ -25,11 +25,17 @@ namespace DrainMind.Metier.enemie
         //Minuteur
         private static DispatcherTimer timer;
 
+        /// <summary>
+        /// Timer de creation 
+        /// </summary>
         public static DispatcherTimer GeneratorTimer
         {
             get { return timer; }
         }
 
+        /// <summary>
+        /// Enumeration des different enemie
+        /// </summary>
         public enum TypeEnemie
         {
             fantome, fantomevert, boss, gloom, zebre

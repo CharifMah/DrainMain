@@ -77,7 +77,6 @@ namespace DrainMind.metier.Items
             double ePosY = this.Top + (this.Height / 2);
             double _angle = Math.Atan2(StatsPersoModel.Instance.posY - ePosY, StatsPersoModel.Instance.posX - ePosX) * (180 / Math.PI);
             MoveDA(10, _angle);
-
         }
     }
 }

@@ -139,7 +139,6 @@ namespace DrainMind.Metier.enemie
             }
 
             MoveEnemie();
-
         }
 
         /// <summary>

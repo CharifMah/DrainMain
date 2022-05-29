@@ -18,7 +18,7 @@ namespace DrainMind.Metier.joueur
     public class Joueur : GameItem, IAnimable, IKeyboardInteract
     {        
       
-        private bool goLeft = false, goRight = false, goUp = false, goDown = false;
+        private static bool goLeft = false, goRight = false, goUp = false, goDown = false;
         private int counter = 0;
         private static string[] ArrayDroite = new string[4] { "Personnage/droite.png", "Personnage/droite1.png", "Personnage/droite.png", "Personnage/droite2.png" };
         private static string[] ArrayGauche = new string[4] { "Personnage/gauche.png", "Personnage/gauche1.png", "Personnage/gauche.png", "Personnage/gauche2.png" };
@@ -49,6 +49,7 @@ namespace DrainMind.Metier.joueur
         /// <param name="dt">timespan elasped since last animation</param>
         public void Animate(TimeSpan dt)
         {
+
             if (goLeft)
             {
                 DeplacerJoueur(-StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds, 0);
@@ -114,10 +115,7 @@ namespace DrainMind.Metier.joueur
         /// <author>Charif</author>
         public override void CollideEffect(GameItem other)
         {
-            if (other.TypeName == "Exp")
-            {         
-                LvlUpEffect();
-            }          
+    
         }
 
         /// <summary>
@@ -232,23 +230,6 @@ namespace DrainMind.Metier.joueur
 
         #endregion
 
-        #region Niveau
-        /// <summary>
-        /// Prevent player to move after the closing of the window LVLUP
-        /// </summary>
-        /// <author>Charif</author>
-        public void LvlUpEffect()
-        {
-            if (StatsPersoModel.Instance.XP >= StatsPersoModel.Instance.XPMax)
-            {
-                goDown = false;
-                goLeft = false;
-                goRight = false;
-                goUp = false;
-            }                             
-        }
-        #endregion
-
         #region Mouvement
 
         /// <summary>
@@ -269,6 +250,14 @@ namespace DrainMind.Metier.joueur
             StatsPersoModel.Instance.posY = this.Top + (this.Height) / 2;
 
             Camera.MoveCamera(StatsPersoModel.Instance.posX, StatsPersoModel.Instance.posY);     
+        }
+
+        public static void StopMove()
+        {
+            goDown = false;
+            goLeft = false;
+            goRight = false;
+            goUp = false;
         }
 
         #endregion
