@@ -1,6 +1,7 @@
 ﻿using DrainMind.metier.Grille;
 using DrainMind.metier.Items;
 using DrainMind.metier.joueur;
+using DrainMind.metier.weapon;
 using DrainMind.Metier;
 using DrainMind.Metier.enemie;
 using DrainMind.Metier.joueur;
@@ -52,6 +53,7 @@ namespace DrainMind.Metier
  
             AddItem(new GenerateurEnemie());
             AddItem(new GenerateurItem());
+
 
             Random r = new Random();
             int selectMusic = r.Next(1,4);

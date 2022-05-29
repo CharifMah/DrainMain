@@ -12,12 +12,16 @@ namespace DrainMind.metier.weapon
 {
     public class AmmoBase : IUTGame.GameItem,IAnimable
     {
-        private EnemieBase _target;
+        private static EnemieBase _target;
         private double _firespeed;
+        private double _damage;
+
+
         private TimeSpan delayTargetNull;
         public AmmoBase(string spriteName = "AmmoArme1.png") : base(StatsPersoModel.Instance.posX, StatsPersoModel.Instance.posY, DrainMindView.MainCanvas, DrainMindGame.Instance, spriteName)
         {
-            _firespeed = 10;
+            _firespeed = 50;
+            
             _target = EnemiesModel.Get().GetNearestEnemie();
             delayTargetNull = new TimeSpan(0);
         }
@@ -30,33 +34,34 @@ namespace DrainMind.metier.weapon
             if (_target != null && _target.Collidable)
             {
                 MoveToEnemie();
-            }
-            else
-            {
-                MoveDA(_firespeed, Orientation);
 
-                if (_firespeed > 5)
+                if (_target.life - _damage <= 0)
                 {
-                    _firespeed -= 1;
+                    if (_firespeed > 5)
+                    {
+                        _firespeed -= 1;
+                    }
+                    MoveDA(_firespeed, Orientation);
                 }
-                
-                if (delayTargetNull.TotalMilliseconds > 1000)
-                {
-                    this.Dispose();
-                    this.Collidable = false;
-                }      
             }
+            else 
+            {
+                if ( delayTargetNull.TotalMilliseconds > 1000)
+                {
+                    this.Collidable = false;
+                    this.Dispose();
+                }
+                MoveDA(_firespeed, Orientation);
+            }
+
         }
 
         public override void CollideEffect(GameItem other)
         {
             if (other.TypeName == "Enemie")
             {
-                ((EnemieBase)other).Destroy();
-                this.Dispose();
-                this.Collidable = false;
+                _target = null;
             }
-          
         }
 
         /// <summary>
@@ -64,7 +69,6 @@ namespace DrainMind.metier.weapon
         /// </summary>
         private void MoveToEnemie()
         {
-
             double _angle = Math.Atan2(_target.Top - this.Top, _target.Left - this.Left) * (180 / Math.PI);
 
             this.Orientation = _angle;

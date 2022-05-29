@@ -72,7 +72,7 @@ namespace DrainMind.View
         {
             if (DrainMindGame.Instance != null)
             {
-                DrainMindGame.Instance.StopGame();     
+                DrainMindGame.Instance.StopGame();
             }
                     
             drainmindView = new DrainMindView(this);

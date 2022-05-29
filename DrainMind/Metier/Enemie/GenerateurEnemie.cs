@@ -66,34 +66,30 @@ namespace DrainMind.Metier.enemie
 
                 if (100 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie(TypeEnemie.fantome, 10, 300);
-                }
-
-                if (5000 == _timer.TimeOfDay.TotalMilliseconds)
-                {
-                    CreateEnemie(TypeEnemie.fantomevert, 6, 300);
-                    CreateEnemie(TypeEnemie.fantome, 6, 300);
+                    CreateEnemie(TypeEnemie.fantome, 16, 500);
+                    CreateEnemie(TypeEnemie.fantomevert, 20, 10);
                 }
 
                 if (10000 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie(TypeEnemie.zebre, 3, 300);
-                    CreateEnemie(TypeEnemie.gloom, 100, 100);
+                    CreateEnemie(TypeEnemie.zebre, 10, 300);
+                    CreateEnemie(TypeEnemie.gloom, 70, 1000);
                 }
 
-                if (15000 == _timer.TimeOfDay.TotalMilliseconds)
+                if (35000 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie(TypeEnemie.boss, 5, 10);
+                    CreateEnemie(TypeEnemie.boss, 2, 10);
                 }
 
-                if (30000 == _timer.TimeOfDay.TotalMilliseconds)
+                if (90000 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie(TypeEnemie.zebre, 100, 50);
+                    CreateEnemie(TypeEnemie.zebre, 10, 50);
+                    CreateEnemie(TypeEnemie.gloom, 70, 200);
                 }
 
-                if (60000 == _timer.TimeOfDay.TotalMilliseconds)
+                if (130000 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie(TypeEnemie.boss, 10, 10);
+                    CreateEnemie(TypeEnemie.boss, 100, 150);
                 }
             }
             else

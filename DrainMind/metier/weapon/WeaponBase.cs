@@ -17,11 +17,11 @@ namespace DrainMind.metier.weapon
         //Time
         private DateTime _timer;
         //Minuteur
-        private static DispatcherTimer timer;
+        private DispatcherTimer timer;
 
         public WeaponBase(string spriteName = "") : base(StatsPersoModel.Instance.posX, StatsPersoModel.Instance.posY, DrainMindView.MainCanvas, DrainMindGame.Instance, spriteName)
         {
-            _firesdelay = 1000;
+            _firesdelay = 1500;
             //Minuteur
             _timer = new DateTime(0);
             timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(_firesdelay) };
@@ -44,7 +44,7 @@ namespace DrainMind.metier.weapon
         /// <exception cref="NotImplementedException"></exception>
         private void Fire(object sender, EventArgs e)
         {
-            if (EnemiesModel.Get().Lesenemies.Count > 0 && DrainMindGame.Instance.IsRunning)
+            if (EnemiesModel.Get().Lesenemies.Count > 0 && DrainMindGame.Instance != null)
             {
                 AmmoBase n = new AmmoBase();
                 DrainMindGame.Instance.AddItem(n);

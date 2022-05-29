@@ -7,6 +7,7 @@ using DrainMind.ViewModel;
 using IUTGame;
 using System;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace DrainMind.Metier.enemie
 {
@@ -29,8 +30,18 @@ namespace DrainMind.Metier.enemie
         protected double _ePosX;
         protected double _ePosY;
         protected int _life;
+        protected int _maxlife;
         protected TypeEnemie _typeenemie;
         protected string _soundHit;
+   
+        public int maxlife
+        {
+            get { return _maxlife; }
+        }
+        public int life
+        {
+            get { return _life; }
+        }
 
         /// <summary>
         /// ennemies constructor
@@ -47,6 +58,7 @@ namespace DrainMind.Metier.enemie
             EnemiesModel.Get().NombreEnemie++;
             EnemiesModel.Get().Lesenemies.Add(this);
             _life = 1;
+            _maxlife = 1;
             _ePosX = x;
             _ePosY = y;
             _Iscollide = false;   
@@ -74,8 +86,8 @@ namespace DrainMind.Metier.enemie
             if (other.TypeName == "Joueur")
             {
                 if (this.Collidable)
-                {
-                    int val = StatsPersoModel.Instance.Life._Vie - _damage;
+                {                 
+                    int val = StatsPersoModel.Instance.Life._Vie - (_damage * _life);
 
                     if (val > 0)
                     {
@@ -86,23 +98,28 @@ namespace DrainMind.Metier.enemie
                         StatsPersoModel.Instance.Life._Vie = 0;
                         Game.Loose();
                     }
-
-                    if (_life > 0)
-                    {
-                        _life -= 1;
-                        PlaySound(_soundHit);
-                    }
-                    else
-                    {
-                        _life = 0;
-                        Destroy();
-                    }               
+                    Destroy();
                 }
             }
             if (other.TypeName == "Enemie")
             {
                 _Iscollide = true;
+            }
 
+            if (other.TypeName == "Ammunition")
+            {
+                if (other.Collidable)
+                {
+                    other.Collidable = false;
+                    other.Dispose();
+                    DrainMindGame.Instance.RemoveItem(other);
+                    if (this.Collidable)
+                    {
+                        LooseLife(1);
+                    }
+
+                    new TextItem(other.Left,other.Top,$"-{1}",Brushes.Red);               
+                }              
             }
         }
 
@@ -111,9 +128,6 @@ namespace DrainMind.Metier.enemie
         /// </summary>
         public void Destroy()
         {
-            this.Dispose();
-            this.Collidable = false;
-
             if (DrainMindGame.Instance != null)
             {
                 ExpItem xp = new ExpItem(this.Left + (this.Width / 2), this.Top + (this.Height / 2));
@@ -127,6 +141,26 @@ namespace DrainMind.Metier.enemie
 
             EnemiesModel.Get().NombreEnemie--;
             EnemiesModel.Get().Lesenemies.Remove(this);
+
+            this.Dispose();
+            this.Collidable = false;
+
+            if (DrainMindGame.Instance != null)
+                DrainMindGame.Instance.RemoveItem(this);
+        }
+
+        public void LooseLife(int dammage)
+        {
+            if (_life - dammage > 0)
+            {
+                _life -= dammage;
+                PlaySound(_soundHit);
+            }
+            else
+            {
+                _life = 0;
+                Destroy();
+            }
         }
 
         /// <summary>

@@ -21,8 +21,9 @@ namespace DrainMind.metier.enemie
             this._speed = 7;
             this._XPpoint = 40;
             this._life = 2;
+            this._maxlife = 2;
             this._damage = 2;
-            _typeenemie = TypeEnemie.zebre;
+            this._typeenemie = TypeEnemie.zebre;
             this._soundHit = "Hit4.mp3";
         }
     }

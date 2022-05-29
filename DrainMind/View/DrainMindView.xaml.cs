@@ -318,7 +318,7 @@ namespace DrainMind.View
         {
             foreach (EnemieBase enemie in EnemiesModel.Get().Lesenemies.ToList())
             {
-                enemie.Destroy();
+                enemie.LooseLife(1);
             }
             CloseUpgradeGrpBox();
         }
@@ -437,7 +437,7 @@ namespace DrainMind.View
 
         private void GetMainWindow_Deactivated(object sender, EventArgs e)
         {
-            if (GroupBoxPause.Visibility == Visibility.Hidden)
+            if (GroupBoxPause.Visibility == Visibility.Hidden && DrainMindGame.Instance != null)
             {
                 drainMind.Pause();
                 GenerateurEnemie.GeneratorTimer.Stop();

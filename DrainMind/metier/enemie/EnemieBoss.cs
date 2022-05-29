@@ -18,15 +18,16 @@ namespace DrainMind.metier.enemie
         /// <param name="spritename">name of sprite</param>
         public EnemieBoss(double x, double y, string spritename = "Enemie/boss.png") : base(x, y, spritename)
         {
-            this._speed = 13;
+            this._speed = 5;
             this._XPpoint = 100;
             this._damage = 3;
-            this._life = 3;
+            this._life = 30;
+            this._maxlife = 30;
             this._soundHit = "Hit5.mp3";
             this._traverseEnemie = true;
-            _minspeed = _speed;
-            _maxspeed = _speed * 4;
-            _typeenemie = TypeEnemie.boss;
+            this._minspeed = _speed;
+            this._maxspeed = _speed * 4;
+            this._typeenemie = TypeEnemie.boss;
         }
     }
 }

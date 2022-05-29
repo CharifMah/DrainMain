@@ -29,7 +29,7 @@ namespace DrainMind.metier.Items
         /// </summary>
         /// <param name="x">Position X</param>
         /// <param name="y">Position Y</param>
-        public async void PopLabel(double x, double y,string txt,Brush couleur)
+        private async void PopLabel(double x, double y,string txt,Brush couleur)
         {
             Label t = new Label();
             t.Content = txt;

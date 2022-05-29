@@ -50,21 +50,35 @@ namespace DrainMind.ViewModel
         /// Recupere lenemie le plus proche
         /// </summary>
         /// <returns>EnemieBase le plus proche du joueur</returns>
+        /// <Author>Charif</Author>
         public EnemieBase GetNearestEnemie()
         {
-            double distance = Math.Sqrt((Math.Pow(StatsPersoModel.Instance.posX - _lesenemies[0].Left, 2) + Math.Pow(StatsPersoModel.Instance.posX - _lesenemies[0].Top, 2)));
+            double distance = CalculDistance(StatsPersoModel.Instance.posX, _lesenemies[0].Left, StatsPersoModel.Instance.posY, _lesenemies[0].Top);
             EnemieBase enemieBase = null;
 
             for (int i = 0; i < _lesenemies.Count; i++)
             {    
-                if (distance >= Math.Sqrt((Math.Pow(StatsPersoModel.Instance.posX - _lesenemies[i].Left, 2) + Math.Pow(StatsPersoModel.Instance.posX - _lesenemies[i].Top, 2))))
+                if (distance >= CalculDistance(StatsPersoModel.Instance.posX, _lesenemies[i].Left, StatsPersoModel.Instance.posY, _lesenemies[i].Top))
                 {
-                    distance = Math.Sqrt((Math.Pow(StatsPersoModel.Instance.posX - _lesenemies[i].Left, 2) + Math.Pow(StatsPersoModel.Instance.posX - _lesenemies[i].Top, 2)));
+                    distance = CalculDistance(StatsPersoModel.Instance.posX, _lesenemies[i].Left, StatsPersoModel.Instance.posY, _lesenemies[i].Top);
                     enemieBase = _lesenemies[i];
                 }
             }
-
+           
             return enemieBase;
+        }
+        /// <summary>
+        /// Calcule la distance entre deux point
+        /// </summary>
+        /// <param name="x1">Position x1</param>
+        /// <param name="x2">Position x2</param>
+        /// <param name="y1">Position y1</param>
+        /// <param name="y2">Position y2</param>
+        /// <Author>Charif</Author>
+        /// <returns></returns>
+        private double CalculDistance(double x1, double x2 , double y1, double y2 )
+        {
+           return Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
         }
 
         private static EnemiesModel Instance;

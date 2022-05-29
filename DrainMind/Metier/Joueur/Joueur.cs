@@ -45,6 +45,7 @@ namespace DrainMind.Metier.joueur
             y += this.Height / 2;
             StatsPersoModel.Instance.posX = x;
             StatsPersoModel.Instance.posY = y;
+
             WeaponBase w = new WeaponBase();
             DrainMindGame.Instance.AddItem(w);
         }
