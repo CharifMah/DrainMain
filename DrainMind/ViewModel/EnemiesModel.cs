@@ -21,6 +21,10 @@ namespace DrainMind.ViewModel
             set
             {
                 _nombreenemie = value;
+                if (_nombreenemie < 0)
+                {
+                    _nombreenemie = 0;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -42,6 +46,26 @@ namespace DrainMind.ViewModel
                 Instance = null;
         }
 
+        /// <summary>
+        /// Recupere lenemie le plus proche
+        /// </summary>
+        /// <returns>EnemieBase le plus proche du joueur</returns>
+        public EnemieBase GetNearestEnemie()
+        {
+            double distance = Math.Sqrt((Math.Pow(StatsPersoModel.Instance.posX - _lesenemies[0].Left, 2) + Math.Pow(StatsPersoModel.Instance.posX - _lesenemies[0].Top, 2)));
+            EnemieBase enemieBase = null;
+
+            for (int i = 0; i < _lesenemies.Count; i++)
+            {    
+                if (distance >= Math.Sqrt((Math.Pow(StatsPersoModel.Instance.posX - _lesenemies[i].Left, 2) + Math.Pow(StatsPersoModel.Instance.posX - _lesenemies[i].Top, 2))))
+                {
+                    distance = Math.Sqrt((Math.Pow(StatsPersoModel.Instance.posX - _lesenemies[i].Left, 2) + Math.Pow(StatsPersoModel.Instance.posX - _lesenemies[i].Top, 2)));
+                    enemieBase = _lesenemies[i];
+                }
+            }
+
+            return enemieBase;
+        }
 
         private static EnemiesModel Instance;
 

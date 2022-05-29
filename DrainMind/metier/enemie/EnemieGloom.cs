@@ -18,9 +18,11 @@ namespace DrainMind.metier.enemie
         /// <param name="spritename">name of the sprite</param>
         public EnemieGloom(double x, double y, string spritename = "Enemie/Gloom.png") : base(x, y, spritename)
         {
-            this._speed = 5;
+            this._speed = 7;
             this._XPpoint = 15;
             this._damage = 1;
+            _typeenemie = TypeEnemie.gloom;
+            this._soundKill = "Hit3.mp3";
         }
     }
 }

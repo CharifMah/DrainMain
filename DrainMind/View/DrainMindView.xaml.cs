@@ -294,7 +294,7 @@ namespace DrainMind.View
         /// <param name="e"></param>
         private void ButtonAddSpeed_Click(object sender, RoutedEventArgs e)
         {
-            StatsPersoModel.Instance.Speed += 5;
+            StatsPersoModel.Instance.Speed += 1;
 
             CloseUpgradeGrpBox();
         }

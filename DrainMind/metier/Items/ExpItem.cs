@@ -16,14 +16,17 @@ namespace DrainMind.metier.Items
     /// </summary>
     public class ExpItem : IUTGame.GameItem, IAnimable
     {
- 
+        protected double _speed;
+        protected double _XpBase;
         /// <summary>
         /// Experience
         /// </summary>
         /// <param name="x">Postion x</param>
         /// <param name="y">Positon y</param>
         public ExpItem(double x, double y) : base(x, y, DrainMind.View.DrainMindView.MainCanvas, DrainMindGame.Instance, "Exp.png")
-        {      
+        {
+            _speed = StatsPersoModel.Instance.Speed * 2;
+            _XpBase = 10;
             this.ChangeScale(0.3, 0.3);
  
         }
@@ -54,12 +57,12 @@ namespace DrainMind.metier.Items
                 this.Dispose();
                 if (Collidable)
                 {
-                    if (StatsPersoModel.Instance.XP + (10 * StatsPersoModel.Instance.Xpmult) >= StatsPersoModel.Instance.XPMax)
+                    if (StatsPersoModel.Instance.XP + (_XpBase * StatsPersoModel.Instance.Xpmult) >= StatsPersoModel.Instance.XPMax)
                     {                                    
                         PlaySound("LvlUp.mp3");
                     }
-                    StatsPersoModel.Instance.XP = 10;
-                    new TextItem(this.Left, this.Top, $"+{10 * StatsPersoModel.Instance.Xpmult}", Brushes.Yellow);
+                    StatsPersoModel.Instance.XP = _XpBase;
+                    new TextItem(this.Left, this.Top, $"+{_XpBase * StatsPersoModel.Instance.Xpmult}", Brushes.Yellow);
                 }
                 this.Collidable = false;
             }
@@ -68,7 +71,7 @@ namespace DrainMind.metier.Items
 
 
         /// <summary>
-        /// movement towards the player
+        /// Xp movement towards the player
         /// </summary>
         /// <Author>Charif</Author>
         public void MoveXpToPlayer()
@@ -76,7 +79,7 @@ namespace DrainMind.metier.Items
             double ePosX = this.Left + (this.Width / 2);
             double ePosY = this.Top + (this.Height / 2);
             double _angle = Math.Atan2(StatsPersoModel.Instance.posY - ePosY, StatsPersoModel.Instance.posX - ePosX) * (180 / Math.PI);
-            MoveDA(10, _angle);
+            MoveDA(_speed, _angle);
         }
     }
 }

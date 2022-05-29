@@ -9,6 +9,8 @@ using System.Windows;
 using DrainMind.View;
 using DrainMind.ViewModel;
 using DrainMind.metier.joueur;
+using System.Windows.Threading;
+using DrainMind.metier.weapon;
 
 namespace DrainMind.Metier.joueur
 {
@@ -22,6 +24,7 @@ namespace DrainMind.Metier.joueur
         private int counter = 0;
         private static string[] ArrayDroite = new string[4] { "Personnage/droite.png", "Personnage/droite1.png", "Personnage/droite.png", "Personnage/droite2.png" };
         private static string[] ArrayGauche = new string[4] { "Personnage/gauche.png", "Personnage/gauche1.png", "Personnage/gauche.png", "Personnage/gauche2.png" };
+
 
         // TypeName of the player is "Joueur"
         public override string TypeName => "Joueur";
@@ -38,9 +41,13 @@ namespace DrainMind.Metier.joueur
         {
             ChangeScale(0.7,0.7);
             new StatsPersoModel(5,30,30);
+            x += this.Width / 2;
+            y += this.Height / 2;
             StatsPersoModel.Instance.posX = x;
             StatsPersoModel.Instance.posY = y;
-        }      
+            WeaponBase w = new WeaponBase();
+            DrainMindGame.Instance.AddItem(w);
+        }
 
         #region Animation
         /// <summary>
@@ -115,7 +122,10 @@ namespace DrainMind.Metier.joueur
         /// <author>Charif</author>
         public override void CollideEffect(GameItem other)
         {
-    
+            if (other.TypeName == "Enemie")
+            {
+                PlaySound("hurt.mp3");
+            }
         }
 
         /// <summary>

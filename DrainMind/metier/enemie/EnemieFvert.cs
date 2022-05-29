@@ -19,6 +19,8 @@ namespace DrainMind.metier.enemie
         public EnemieFvert(double x, double y, string spritename = "Enemie/fantomeVert.png") : base(x, y, spritename)
         {
             this._speed = 4;
+            _typeenemie = TypeEnemie.fantomevert;
+            this._soundKill = "Hit1.mp3";
         }
     }
 }

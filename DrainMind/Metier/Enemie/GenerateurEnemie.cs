@@ -33,13 +33,7 @@ namespace DrainMind.Metier.enemie
             get { return timer; }
         }
 
-        /// <summary>
-        /// Enumeration des different enemie
-        /// </summary>
-        public enum TypeEnemie
-        {
-            fantome, fantomevert, boss, gloom, zebre
-        }
+
 
         /// <summary>
         /// enemies's constructor 

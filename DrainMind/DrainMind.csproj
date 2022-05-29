@@ -13,10 +13,13 @@
   <ItemGroup>
     <None Remove="Sounds\Angello.mp3" />
     <None Remove="Sounds\Gouttes.mp3" />
+    <None Remove="Sounds\hurt.mp3" />
     <None Remove="Sounds\LooseSound.mp3" />
     <None Remove="Sounds\LvlUp - Copy.mp3" />
     <None Remove="Sounds\LvlUp.mp3" />
     <None Remove="Sounds\Son_ambiance_Action.mp3" />
+    <None Remove="Sounds\SoundBubl.mp3" />
+    <None Remove="Sounds\Soundhit.mp3" />
     <None Remove="Sounds\SoundTake.mp3" />
     <None Remove="Sounds\SoundTake2.mp3" />
     <None Remove="Sprites\.png" />
@@ -97,6 +100,21 @@
     <Content Include="Sounds\Gouttes.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sounds\Hit1.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Hit2.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Hit3.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Hit4.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\hurt.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sounds\LooseSound.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -107,6 +125,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Sounds\Son_ambiance_Action.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\SoundBubl.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Hit5.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Sounds\SoundTake.mp3">

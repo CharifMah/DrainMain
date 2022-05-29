@@ -1,4 +1,5 @@
-﻿using DrainMind.metier.Grille;
+﻿using DrainMind.metier.enemie;
+using DrainMind.metier.Grille;
 using DrainMind.metier.Items;
 using DrainMind.metier.joueur.ScoreFolder;
 using DrainMind.View;
@@ -25,7 +26,9 @@ namespace DrainMind.Metier.enemie
         protected bool _traverseEnemie;
         protected int _minspeed;
         protected int _maxspeed;
-
+        protected double _ePosX;
+        protected double _ePosY;
+        protected TypeEnemie _typeenemie;
 
         /// <summary>
         /// ennemies constructor
@@ -42,14 +45,17 @@ namespace DrainMind.Metier.enemie
             EnemiesModel.Get().NombreEnemie++;
             EnemiesModel.Get().Lesenemies.Add(this);
 
+            _ePosX = x;
+            _ePosY = y;
             _Iscollide = false;   
-            _soundKill = "Bruit.mp3";
+            _soundKill = "Hit1.mp3";
             _XPpoint = 10;
             _damage = 1;
             _traverseEnemie = false;
             _speed = 3;
             _minspeed = 0;
             _maxspeed = _speed * 2;
+            _typeenemie = TypeEnemie.fantome;
         }
 
         //TypeNme of ennemies is "Enemie"
@@ -147,10 +153,10 @@ namespace DrainMind.Metier.enemie
         ///<Author>Charif</Author>
         public void MoveEnemie()
         {
-            double ePosX = this.Left + (this.Width / 2);
-            double ePosY = this.Top + (this.Height / 2);
+            _ePosX = this.Left + (this.Width / 2);
+            _ePosY = this.Top + (this.Height / 2);
 
-            double _angle = Math.Atan2(StatsPersoModel.Instance.posY - ePosY, StatsPersoModel.Instance.posX - ePosX) * (180 / Math.PI);
+            double _angle = Math.Atan2(StatsPersoModel.Instance.posY - _ePosY, StatsPersoModel.Instance.posX - _ePosX) * (180 / Math.PI);
 
             if (!_Iscollide || _traverseEnemie)
             {
