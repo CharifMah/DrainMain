@@ -40,14 +40,14 @@ namespace DrainMind.Metier.enemie
         {
             ChangeScale(0.7, 0.7);
             EnemiesModel.Get().NombreEnemie++;
-            EnemiesModel.Get().Lesenemies.Add(this, new Coordonnees((int)x, (int)y));
+            EnemiesModel.Get().Lesenemies.Add(this);
 
-            _Iscollide = false;
-            _speed = 3;
+            _Iscollide = false;   
             _soundKill = "Bruit.mp3";
             _XPpoint = 10;
             _damage = 1;
             _traverseEnemie = false;
+            _speed = 3;
             _minspeed = 0;
             _maxspeed = _speed * 2;
         }

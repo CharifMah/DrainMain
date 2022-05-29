@@ -313,9 +313,9 @@ namespace DrainMind.View
 
         private void Bombe_Button_Click(object sender, RoutedEventArgs e)
         {
-            foreach (KeyValuePair<EnemieBase,Coordonnees> enemie in EnemiesModel.Get().Lesenemies)
+            foreach (EnemieBase enemie in EnemiesModel.Get().Lesenemies.ToList())
             {
-                enemie.Key.Destroy();
+                enemie.Destroy();
             }
             CloseUpgradeGrpBox();
         }

@@ -11,7 +11,7 @@ namespace DrainMind.ViewModel
     {
 
         private int _nombreenemie;
-        private Dictionary<EnemieBase, Coordonnees> _lesenemies;
+        private List<EnemieBase> _lesenemies;
 
         #region
 
@@ -25,7 +25,7 @@ namespace DrainMind.ViewModel
             }
         }
 
-        public Dictionary<EnemieBase, Coordonnees> Lesenemies
+        public List<EnemieBase> Lesenemies
         { get { return _lesenemies; } }
 
         #endregion
@@ -33,7 +33,7 @@ namespace DrainMind.ViewModel
         private EnemiesModel()
         {
             _nombreenemie = 0;
-            _lesenemies = new Dictionary<EnemieBase, Coordonnees>();
+            _lesenemies = new List<EnemieBase>();
         }
 
         public static void Destroy()

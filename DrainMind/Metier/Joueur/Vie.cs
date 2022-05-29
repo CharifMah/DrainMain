@@ -146,10 +146,7 @@ namespace DrainMind.metier.joueur
 
                 uiLife.Children.Add(MyGrid.PutSpriteInCase(_listlife.Count, 0, Coeur.Image));
                 _listlife.Add(Coeur.Image, new Coordonnees(_listlife.Count, 0));
-
-
             }
-
         }
     }
 }
