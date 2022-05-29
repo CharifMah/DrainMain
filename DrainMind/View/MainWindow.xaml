@@ -10,7 +10,11 @@
         Closed="FentrePrincipalDrainMain_Closed" MinWidth="1280" Title="DrainMind" MinHeight="720" >
 
     <Grid>
-        <Frame Name="MenuPrincipaleFrame" Source="MenuPrincipale.xaml"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Frame Name="MenuPrincipaleFrame" Source="MenuPrincipale.xaml" Grid.ColumnSpan="2"/>
     </Grid>
-    
+
 </Window>

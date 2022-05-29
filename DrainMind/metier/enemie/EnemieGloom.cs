@@ -22,7 +22,7 @@ namespace DrainMind.metier.enemie
             this._XPpoint = 15;
             this._damage = 1;
             _typeenemie = TypeEnemie.gloom;
-            this._soundKill = "Hit3.mp3";
+            this._soundHit = "Hit3.mp3";
         }
     }
 }

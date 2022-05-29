@@ -44,7 +44,7 @@ namespace DrainMind.metier.weapon
         /// <exception cref="NotImplementedException"></exception>
         private void Fire(object sender, EventArgs e)
         {
-            if (EnemiesModel.Get().Lesenemies.Count > 0)
+            if (EnemiesModel.Get().Lesenemies.Count > 0 && DrainMindGame.Instance.IsRunning)
             {
                 AmmoBase n = new AmmoBase();
                 DrainMindGame.Instance.AddItem(n);

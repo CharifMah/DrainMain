@@ -20,7 +20,7 @@ namespace DrainMind.metier.enemie
         {
             this._speed = 4;
             _typeenemie = TypeEnemie.fantomevert;
-            this._soundKill = "Hit1.mp3";
+            this._soundHit = "Hit1.mp3";
         }
     }
 }

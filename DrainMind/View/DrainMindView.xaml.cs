@@ -90,8 +90,11 @@ namespace DrainMind.View
             _timer = new DateTime(0);
             timer  = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;          
+            timer.Tick += timer_Tick;
+            MainWindow.GetMainWindow.Deactivated += GetMainWindow_Deactivated;
         }
+
+       
 
         #region Saisi des information GroupBox (Debut du jeux)
         /// <summary>
@@ -432,8 +435,19 @@ namespace DrainMind.View
 
         }
 
+        private void GetMainWindow_Deactivated(object sender, EventArgs e)
+        {
+            if (GroupBoxPause.Visibility == Visibility.Hidden)
+            {
+                drainMind.Pause();
+                GenerateurEnemie.GeneratorTimer.Stop();
+                timer.Stop();
+                GroupBoxPause.Visibility = Visibility.Visible;
+                Joueur.StopMove();
+            }
+        }
 
         #endregion
-       
+
     }
 }

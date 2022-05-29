@@ -28,7 +28,9 @@ namespace DrainMind.Metier.enemie
         protected int _maxspeed;
         protected double _ePosX;
         protected double _ePosY;
+        protected int _life;
         protected TypeEnemie _typeenemie;
+        protected string _soundHit;
 
         /// <summary>
         /// ennemies constructor
@@ -44,11 +46,11 @@ namespace DrainMind.Metier.enemie
             ChangeScale(0.7, 0.7);
             EnemiesModel.Get().NombreEnemie++;
             EnemiesModel.Get().Lesenemies.Add(this);
-
+            _life = 1;
             _ePosX = x;
             _ePosY = y;
             _Iscollide = false;   
-            _soundKill = "Hit1.mp3";
+            _soundKill = "hurt.mp3";
             _XPpoint = 10;
             _damage = 1;
             _traverseEnemie = false;
@@ -56,6 +58,7 @@ namespace DrainMind.Metier.enemie
             _minspeed = 0;
             _maxspeed = _speed * 2;
             _typeenemie = TypeEnemie.fantome;
+            _soundHit = "Hit1.mp3";
         }
 
         //TypeNme of ennemies is "Enemie"
@@ -83,7 +86,17 @@ namespace DrainMind.Metier.enemie
                         StatsPersoModel.Instance.Life._Vie = 0;
                         Game.Loose();
                     }
-                    Destroy();
+
+                    if (_life > 0)
+                    {
+                        _life -= 1;
+                        PlaySound(_soundHit);
+                    }
+                    else
+                    {
+                        _life = 0;
+                        Destroy();
+                    }               
                 }
             }
             if (other.TypeName == "Enemie")
