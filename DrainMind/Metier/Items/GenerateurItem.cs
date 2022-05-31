@@ -48,7 +48,7 @@ namespace DrainMind.metier.Items
                 Food food = new Food(x, y);
                 Game.AddItem(food);
 
-                int Sec = r.Next(5000 / (StatsPersoModel.Instance.Niveau + 1), 10000 / (StatsPersoModel.Instance.Niveau + 1));
+                int Sec = r.Next(5000 / (StatsPersoModel.Get().Niveau + 1), 10000 / (StatsPersoModel.Get().Niveau + 1));
 
                 timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);
             }

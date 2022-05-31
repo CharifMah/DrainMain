@@ -18,13 +18,31 @@ namespace DrainMind.Metier.joueur
     /// main character of the game
     /// </summary>
     public class Joueur : GameItem, IAnimable, IKeyboardInteract
-    {        
-      
+    {
+        private static double _posX;
+        private static double _posY;
         private static bool goLeft = false, goRight = false, goUp = false, goDown = false;
         private int counter = 0;
         private static string[] ArrayDroite = new string[4] { "Personnage/droite.png", "Personnage/droite1.png", "Personnage/droite.png", "Personnage/droite2.png" };
         private static string[] ArrayGauche = new string[4] { "Personnage/gauche.png", "Personnage/gauche1.png", "Personnage/gauche.png", "Personnage/gauche2.png" };
 
+        /// <summary>
+        /// Position X du Joueur
+        /// </summary>
+        public static double PosX
+        {
+            get { return _posX; }
+            set { _posX = value; }
+        }
+
+        /// <summary>
+        /// Position Y du Joueur
+        /// </summary>
+        public static double PosY
+        {
+            get { return _posY; }
+            set { _posY = value; }
+        }
 
         // TypeName of the player is "Joueur"
         public override string TypeName => "Joueur";
@@ -40,11 +58,10 @@ namespace DrainMind.Metier.joueur
         public Joueur(double x, double y) : base(x,y,DrainMindView.MainCanvas,DrainMindGame.Instance, "Personnage/face.png")
         {
             ChangeScale(0.7,0.7);
-            new StatsPersoModel(5,30,30);
             x += this.Width / 2;
             y += this.Height / 2;
-            StatsPersoModel.Instance.posX = x;
-            StatsPersoModel.Instance.posY = y;
+            _posX = x;
+            _posY = y;
 
             WeaponBase w = new WeaponBase();
             DrainMindGame.Instance.AddItem(w);
@@ -60,21 +77,21 @@ namespace DrainMind.Metier.joueur
 
             if (goLeft)
             {
-                DeplacerJoueur(-StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds, 0);
+                DeplacerJoueur(-StatsPersoModel.Get().Speed + 05 * dt.TotalSeconds, 0);
             }
             if (goRight)
             {
-                DeplacerJoueur(StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds, 0);
+                DeplacerJoueur(StatsPersoModel.Get().Speed + 05 * dt.TotalSeconds, 0);
 
             }
             if (goUp)
             {
-                DeplacerJoueur(0, -StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds);
+                DeplacerJoueur(0, -StatsPersoModel.Get().Speed + 05 * dt.TotalSeconds);
 
             }
             if (goDown)
             {
-                DeplacerJoueur(0, StatsPersoModel.Instance.Speed + 05 * dt.TotalSeconds);             
+                DeplacerJoueur(0, StatsPersoModel.Get().Speed + 05 * dt.TotalSeconds);             
             }
             AnimationJoueur();            
         }
@@ -257,10 +274,10 @@ namespace DrainMind.Metier.joueur
                 MoveXY(x, y);
             }
 
-            StatsPersoModel.Instance.posX = this.Left + (this.Width) / 2;
-            StatsPersoModel.Instance.posY = this.Top + (this.Height) / 2;
+            _posX = this.Left + (this.Width) / 2;
+            _posY = this.Top + (this.Height) / 2;
 
-            Camera.MoveCamera(StatsPersoModel.Instance.posX, StatsPersoModel.Instance.posY);     
+            Camera.MoveCamera(_posX, _posY);     
         }
 
         public static void StopMove()

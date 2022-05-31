@@ -1,5 +1,6 @@
 ﻿using DrainMind.Metier;
 using DrainMind.Metier.enemie;
+using DrainMind.Metier.joueur;
 using DrainMind.View;
 using DrainMind.ViewModel;
 using IUTGame;
@@ -19,7 +20,7 @@ namespace DrainMind.metier.weapon
         //Minuteur
         private DispatcherTimer timer;
 
-        public WeaponBase(string spriteName = "") : base(StatsPersoModel.Instance.posX, StatsPersoModel.Instance.posY, DrainMindView.MainCanvas, DrainMindGame.Instance, spriteName)
+        public WeaponBase(string spriteName = "") : base(Joueur.PosX, Joueur.PosY, DrainMindView.MainCanvas, DrainMindGame.Instance, spriteName)
         {
             _firesdelay = 1500;
             //Minuteur

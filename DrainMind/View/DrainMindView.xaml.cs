@@ -150,11 +150,11 @@ namespace DrainMind.View
         /// </summary>
         public void InitDataContext()
         {
-            XpProgressBar.DataContext = StatsPersoModel.Instance;
-            TextBlockNiveau.DataContext = StatsPersoModel.Instance;
-            TextBlockXpProgressBar.DataContext = StatsPersoModel.Instance;
+            XpProgressBar.DataContext = StatsPersoModel.Get();
+            TextBlockNiveau.DataContext = StatsPersoModel.Get();
+            TextBlockXpProgressBar.DataContext = StatsPersoModel.Get();
             TextBlockEnemieLeft.DataContext = EnemiesModel.Get();
-            TextBlockSpeed.DataContext = StatsPersoModel.Instance;
+            TextBlockSpeed.DataContext = StatsPersoModel.Get();
         }
 
         /// <summary>
@@ -297,20 +297,20 @@ namespace DrainMind.View
         /// <param name="e"></param>
         private void ButtonAddSpeed_Click(object sender, RoutedEventArgs e)
         {
-            StatsPersoModel.Instance.Speed += 1;
+            StatsPersoModel.Get().Speed += 1;
 
             CloseUpgradeGrpBox();
         }
 
         private void DoubleXp_Button_Click(object sender, RoutedEventArgs e)
         {
-            StatsPersoModel.Instance.Xpmult *= 2;
+            StatsPersoModel.Get().Xpmult *= 2;
             CloseUpgradeGrpBox();
         }
 
         private void AddLife_Button_Click(object sender, RoutedEventArgs e)
         {
-            StatsPersoModel.Instance.Life.AddLife(2);
+            StatsPersoModel.Get().Life.AddLife(2);
             CloseUpgradeGrpBox();
         }
 
@@ -359,7 +359,7 @@ namespace DrainMind.View
         {
             if (drainMind != null)
             {
-                Camera.MoveCamera(StatsPersoModel.Instance.posX, StatsPersoModel.Instance.posY);
+                Camera.MoveCamera(Joueur.PosX, Joueur.PosY);
                 MyGrid.ResizeCanvas();
             }
         }

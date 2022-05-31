@@ -2,6 +2,7 @@
 using DrainMind.metier.Grille;
 using DrainMind.metier.Items;
 using DrainMind.metier.joueur.ScoreFolder;
+using DrainMind.Metier.joueur;
 using DrainMind.View;
 using DrainMind.ViewModel;
 using IUTGame;
@@ -87,15 +88,15 @@ namespace DrainMind.Metier.enemie
             {
                 if (this.Collidable)
                 {                 
-                    int val = StatsPersoModel.Instance.Life._Vie - (_damage * _life);
+                    int val = StatsPersoModel.Get().Life._Vie - (_damage * _life);
 
                     if (val > 0)
                     {
-                        StatsPersoModel.Instance.Life._Vie = val;
+                        StatsPersoModel.Get().Life._Vie = val;
                     }
                     else
                     {
-                        StatsPersoModel.Instance.Life._Vie = 0;
+                        StatsPersoModel.Get().Life._Vie = 0;
                         Game.Loose();
                     }
                     Destroy();
@@ -203,7 +204,7 @@ namespace DrainMind.Metier.enemie
             _ePosX = this.Left + (this.Width / 2);
             _ePosY = this.Top + (this.Height / 2);
 
-            double _angle = Math.Atan2(StatsPersoModel.Instance.posY - _ePosY, StatsPersoModel.Instance.posX - _ePosX) * (180 / Math.PI);
+            double _angle = Math.Atan2(Joueur.PosY - _ePosY, Joueur.PosX - _ePosX) * (180 / Math.PI);
 
             if (!_Iscollide || _traverseEnemie)
             {

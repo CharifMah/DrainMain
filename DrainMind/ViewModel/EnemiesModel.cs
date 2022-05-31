@@ -53,14 +53,14 @@ namespace DrainMind.ViewModel
         /// <Author>Charif</Author>
         public EnemieBase GetNearestEnemie()
         {
-            double distance = CalculDistance(StatsPersoModel.Instance.posX, _lesenemies[0].Left, StatsPersoModel.Instance.posY, _lesenemies[0].Top);
-            EnemieBase enemieBase = null;
+            double distance = CalculDistance(Joueur.PosX, _lesenemies[0].Left, Joueur.PosY, _lesenemies[0].Top);
+            EnemieBase enemieBase = _lesenemies[0];
 
             for (int i = 0; i < _lesenemies.Count; i++)
             {    
-                if (distance >= CalculDistance(StatsPersoModel.Instance.posX, _lesenemies[i].Left, StatsPersoModel.Instance.posY, _lesenemies[i].Top))
+                if (distance >= CalculDistance(Joueur.PosX, _lesenemies[i].Left, Joueur.PosY, _lesenemies[i].Top))
                 {
-                    distance = CalculDistance(StatsPersoModel.Instance.posX, _lesenemies[i].Left, StatsPersoModel.Instance.posY, _lesenemies[i].Top);
+                    distance = CalculDistance(Joueur.PosX, _lesenemies[i].Left, Joueur.PosY, _lesenemies[i].Top);
                     enemieBase = _lesenemies[i];
                 }
             }

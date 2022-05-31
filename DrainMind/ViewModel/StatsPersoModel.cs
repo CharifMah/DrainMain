@@ -18,8 +18,7 @@ namespace DrainMind.ViewModel
         private double _xpMax;
         private int _niveau;
         private double _Xpmult;
-        private double _posX;
-        private double _posY;
+
         private Vie _vie;
 
         #region Property
@@ -93,23 +92,7 @@ namespace DrainMind.ViewModel
             get { return _niveau; }
         }
 
-        /// <summary>
-        /// Position X du Joueur
-        /// </summary>
-        public double posX
-        {
-            get { return _posX; }
-            set { _posX = value; }
-        }
 
-        /// <summary>
-        /// Position Y du Joueur
-        /// </summary>
-        public double posY
-        {
-            get { return _posY; }
-            set { _posY = value; }
-        }
 
         /// <summary>
         /// Get actual life
@@ -121,30 +104,26 @@ namespace DrainMind.ViewModel
 
         #endregion
 
-        private static StatsPersoModel instance;
+        private static StatsPersoModel _instance;
 
-        //Donne acces aux stats du joueur
-        public static StatsPersoModel Instance
+        public static StatsPersoModel Get()
         {
-            get { return instance; }
+            if (_instance == null)
+                _instance = new StatsPersoModel();
+            return _instance;
         }
 
         /// <summary>
         /// Cree le model qui permet de stocke les stats du personnage et dans le communique a IHM
         /// </summary>
-        /// <param name="Speed">Vitesse du joueur</param>
-        /// <param name="Xp">Experience du joueur au lancement de la partie</param>
-        /// <param name="niveau">niveau au lancemetn de la partie</param>
-        /// <param name="CoefXp">multiplicateur xp quand lvl Up</param>
-        public StatsPersoModel(double Speed, int life, int maxlife)
+        private StatsPersoModel()
         {
-            _speed = Speed;
+            _speed = 5;
             _xp = 0.0;
             _niveau = 1;
             _Xpmult = 1.0;
             _xpMax = 100;
-            _vie = new Vie(life, maxlife);
-            instance = this;
+            _vie = new Vie(30, 30);
         }
     }
 }

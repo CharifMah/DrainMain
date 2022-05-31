@@ -1,5 +1,6 @@
 ﻿using DrainMind.Metier;
 using DrainMind.Metier.enemie;
+using DrainMind.Metier.joueur;
 using DrainMind.View;
 using DrainMind.ViewModel;
 using IUTGame;
@@ -18,7 +19,7 @@ namespace DrainMind.metier.weapon
 
 
         private TimeSpan delayTargetNull;
-        public AmmoBase(string spriteName = "AmmoArme1.png") : base(StatsPersoModel.Instance.posX, StatsPersoModel.Instance.posY, DrainMindView.MainCanvas, DrainMindGame.Instance, spriteName)
+        public AmmoBase(string spriteName = "AmmoArme1.png") : base(Joueur.PosX, Joueur.PosY, DrainMindView.MainCanvas, DrainMindGame.Instance, spriteName)
         {
             _firespeed = 50;
             

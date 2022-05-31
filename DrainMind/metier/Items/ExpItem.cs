@@ -1,4 +1,5 @@
 ﻿using DrainMind.Metier;
+using DrainMind.Metier.joueur;
 using DrainMind.ViewModel;
 using IUTGame;
 using System;
@@ -25,7 +26,7 @@ namespace DrainMind.metier.Items
         /// <param name="y">Positon y</param>
         public ExpItem(double x, double y) : base(x, y, DrainMind.View.DrainMindView.MainCanvas, DrainMindGame.Instance, "Exp.png")
         {
-            _speed = StatsPersoModel.Instance.Speed * 2;
+            _speed = StatsPersoModel.Get().Speed * 2;
             _XpBase = 10;
             this.ChangeScale(0.3, 0.3);
  
@@ -57,12 +58,12 @@ namespace DrainMind.metier.Items
                 this.Dispose();
                 if (Collidable)
                 {
-                    if (StatsPersoModel.Instance.XP + (_XpBase * StatsPersoModel.Instance.Xpmult) >= StatsPersoModel.Instance.XPMax)
+                    if (StatsPersoModel.Get().XP + (_XpBase * StatsPersoModel.Get().Xpmult) >= StatsPersoModel.Get().XPMax)
                     {                                    
                         PlaySound("LvlUp.mp3");
                     }
-                    StatsPersoModel.Instance.XP = _XpBase;
-                    new TextItem(this.Left, this.Top, $"+{_XpBase * StatsPersoModel.Instance.Xpmult}", Brushes.Yellow);
+                    StatsPersoModel.Get().XP = _XpBase;
+                    new TextItem(this.Left, this.Top, $"+{_XpBase * StatsPersoModel.Get().Xpmult}", Brushes.Yellow);
                 }
                 this.Collidable = false;
             }
@@ -78,7 +79,7 @@ namespace DrainMind.metier.Items
         {
             double ePosX = this.Left + (this.Width / 2);
             double ePosY = this.Top + (this.Height / 2);
-            double _angle = Math.Atan2(StatsPersoModel.Instance.posY - ePosY, StatsPersoModel.Instance.posX - ePosX) * (180 / Math.PI);
+            double _angle = Math.Atan2(Joueur.PosY - ePosY, Joueur.PosX - ePosX) * (180 / Math.PI);
             MoveDA(_speed, _angle);
         }
     }
