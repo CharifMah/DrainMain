@@ -81,11 +81,11 @@ namespace DrainMind.View
             LangueComboBox.Items.Add("en-US");
             LangueComboBox.Items.Add("fr-FR");
 
-            GridSizeComboBox.Items.Add("10 x 30");
-            GridSizeComboBox.Items.Add("20 x 40");
-            GridSizeComboBox.Items.Add("30 x 50");
-            GridSizeComboBox.Items.Add("40 x 60");
-            GridSizeComboBox.Items.Add("50 x 70");
+            //GridSizeComboBox.Items.Add("10 x 30");
+            //GridSizeComboBox.Items.Add("20 x 40");
+            //GridSizeComboBox.Items.Add("30 x 50");
+            //GridSizeComboBox.Items.Add("40 x 60");
+            //GridSizeComboBox.Items.Add("50 x 70");
 
 
         }

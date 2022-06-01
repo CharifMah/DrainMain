@@ -154,13 +154,13 @@
                   Margin="20,0,20,0" 
                   SelectionChanged="LangueComboBox_SelectionChanged"/>
 
-        <ComboBox x:Name="GridSizeComboBox" 
+        <!--<ComboBox x:Name="GridSizeComboBox" 
                   Grid.Column="1" 
                   HorizontalAlignment="Stretch" 
                   Grid.Row="5"
                   VerticalAlignment="Center" 
                   Margin="20,0,20,0" 
-                  SelectionChanged="GridSizeComboBox_SelectionChanged"/>
+                  SelectionChanged="GridSizeComboBox_SelectionChanged"/>-->
 
 
     </Grid>
