@@ -125,5 +125,9 @@ namespace DrainMind.ViewModel
             _xpMax = 100;
             _vie = new Vie(30, 30);
         }
+        public static void Reset()
+        {
+            _instance = null;
+        }
     }
 }

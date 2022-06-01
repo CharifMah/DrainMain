@@ -22,7 +22,7 @@ namespace DrainMind.metier.weapon
 
         public WeaponBase(string spriteName = "") : base(Joueur.PosX, Joueur.PosY, DrainMindView.MainCanvas, DrainMindGame.Instance, spriteName)
         {
-            _firesdelay = 1500;
+            _firesdelay = 700;
             //Minuteur
             _timer = new DateTime(0);
             timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(_firesdelay) };

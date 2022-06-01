@@ -6,6 +6,7 @@ using DrainMind.Metier;
 using DrainMind.Metier.enemie;
 using DrainMind.Metier.joueur;
 using DrainMind.View;
+using DrainMind.ViewModel;
 using IUTGame;
 using System;
 using System.Linq;
@@ -97,11 +98,14 @@ namespace DrainMind.Metier
             this.Pause();
             this.BackgroundVolume = 0;
             game = null;
-
+            StatsPersoModel.Reset();
+            EnemiesModel.Reset();
+            Instance = null;
             foreach (GameItem item in ListItems())
             {
                 this.RemoveItem(item);
-                item.Dispose();                
+                item.Dispose(); 
+                
             }      
         }
     }

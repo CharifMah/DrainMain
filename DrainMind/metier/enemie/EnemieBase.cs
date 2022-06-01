@@ -2,6 +2,7 @@
 using DrainMind.metier.Grille;
 using DrainMind.metier.Items;
 using DrainMind.metier.joueur.ScoreFolder;
+using DrainMind.Metier.Items;
 using DrainMind.Metier.joueur;
 using DrainMind.View;
 using DrainMind.ViewModel;
@@ -56,8 +57,6 @@ namespace DrainMind.Metier.enemie
         public EnemieBase(double x, double y,string spritename = "Enemie/fantome.png") : base(x, y, DrainMindView.MainCanvas, DrainMindGame.Instance, spritename)
         {
             ChangeScale(0.7, 0.7);
-            EnemiesModel.Get().NombreEnemie++;
-            EnemiesModel.Get().Lesenemies.Add(this);
             _life = 1;
             _maxlife = 1;
             _ePosX = x;
@@ -67,9 +66,9 @@ namespace DrainMind.Metier.enemie
             _XPpoint = 10;
             _damage = 1;
             _traverseEnemie = false;
-            _speed = 3;
+            _speed = 5;
             _minspeed = 0;
-            _maxspeed = _speed * 2;
+            _maxspeed = 20;
             _typeenemie = TypeEnemie.fantome;
             _soundHit = "Hit1.mp3";
         }
@@ -113,7 +112,10 @@ namespace DrainMind.Metier.enemie
                 {
                     other.Collidable = false;
                     other.Dispose();
+
+                    if (DrainMindGame.Instance != null)
                     DrainMindGame.Instance.RemoveItem(other);
+
                     if (this.Collidable)
                     {
                         LooseLife(1);
@@ -131,7 +133,7 @@ namespace DrainMind.Metier.enemie
         {
             if (DrainMindGame.Instance != null)
             {
-                ExpItem xp = new ExpItem(this.Left + (this.Width / 2), this.Top + (this.Height / 2));
+                ExpItem xp = new ExpItem(this.Left + (this.Width / 2), this.Top + (this.Height / 2),_XPpoint);
                 DrainMindGame.Instance.AddItem(xp);
             }
 
@@ -143,11 +145,19 @@ namespace DrainMind.Metier.enemie
             EnemiesModel.Get().NombreEnemie--;
             EnemiesModel.Get().Lesenemies.Remove(this);
 
+
+            if (_typeenemie == TypeEnemie.boss)
+            {
+                Food food = new Food(this.Left, this.Top);
+                Game.AddItem(food);
+            }
+
             this.Dispose();
             this.Collidable = false;
 
             if (DrainMindGame.Instance != null)
                 DrainMindGame.Instance.RemoveItem(this);
+
         }
 
         public void LooseLife(int dammage)
@@ -170,29 +180,10 @@ namespace DrainMind.Metier.enemie
         /// <param name="dt">timespan elasped since last animation</param>
         public void Animate(TimeSpan dt)
         {
-            if (_waiting.TotalMilliseconds > 0)
+            if (Collidable)
             {
-                _waiting = _waiting.Subtract(dt);
-            }
-
-            if (this.Top < 0)
-            {
-                Top = 0;
-            }
-            else if (Bottom > GameHeight)
-            {
-                Bottom = 0;
-            }
-            else if (Left < 0)
-            {
-                Left = 0;
-            }
-            else if (Right > GameWidth)
-            {
-                Right = 0;
-            }
-
-            MoveEnemie();
+                MoveEnemie();
+            }           
         }
 
         /// <summary>

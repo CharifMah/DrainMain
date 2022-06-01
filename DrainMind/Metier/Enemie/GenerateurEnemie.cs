@@ -10,6 +10,7 @@ using DrainMind.metier.enemie;
 using DrainMind.metier.joueur;
 using DrainMind.Metier.joueur;
 using DrainMind.View;
+using DrainMind.ViewModel;
 using IUTGame;
 
 namespace DrainMind.Metier.enemie
@@ -66,8 +67,8 @@ namespace DrainMind.Metier.enemie
 
                 if (100 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie(TypeEnemie.fantome, 16, 500);
-                    CreateEnemie(TypeEnemie.fantomevert, 20, 10);
+                    CreateEnemie(TypeEnemie.fantome, 160, 100);
+                    CreateEnemie(TypeEnemie.fantomevert, 20, 100);
                 }
 
                 if (10000 == _timer.TimeOfDay.TotalMilliseconds)
@@ -78,18 +79,18 @@ namespace DrainMind.Metier.enemie
 
                 if (35000 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie(TypeEnemie.boss, 2, 10);
+                    CreateEnemie(TypeEnemie.boss, 5, 100);
                 }
 
                 if (90000 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie(TypeEnemie.zebre, 10, 50);
-                    CreateEnemie(TypeEnemie.gloom, 70, 200);
+                    CreateEnemie(TypeEnemie.zebre, 50, 500);
+                    CreateEnemie(TypeEnemie.gloom, 100, 1000);
                 }
 
                 if (130000 == _timer.TimeOfDay.TotalMilliseconds)
                 {
-                    CreateEnemie(TypeEnemie.boss, 100, 150);
+                    CreateEnemie(TypeEnemie.boss, 30, 1500);
                 }
             }
             else
@@ -138,6 +139,8 @@ namespace DrainMind.Metier.enemie
                     if (n != null)
                     {
                         DrainMindGame.Instance.AddItem(n);
+                        EnemiesModel.Get().NombreEnemie++;
+                        EnemiesModel.Get().Lesenemies.Add(n);
                     }
             
                     //Delay de delaymilisecond ms entre chaque spawn

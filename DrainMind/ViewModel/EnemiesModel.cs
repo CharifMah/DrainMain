@@ -40,12 +40,6 @@ namespace DrainMind.ViewModel
             _lesenemies = new List<EnemieBase>();
         }
 
-        public static void Destroy()
-        {
-            if (Instance != null)
-                Instance = null;
-        }
-
         /// <summary>
         /// Recupere lenemie le plus proche
         /// </summary>
@@ -76,18 +70,23 @@ namespace DrainMind.ViewModel
         /// <param name="y2">Position y2</param>
         /// <Author>Charif</Author>
         /// <returns></returns>
-        private double CalculDistance(double x1, double x2 , double y1, double y2 )
+        public double CalculDistance(double x1, double x2 , double y1, double y2 )
         {
            return Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
         }
 
-        private static EnemiesModel Instance;
+        private static EnemiesModel _instance;
 
         public static EnemiesModel Get()
         {
-            if (Instance == null)
-                Instance = new EnemiesModel();
-            return Instance;
+            if (_instance == null)
+                _instance = new EnemiesModel();
+            return _instance;
+        }
+
+        public static void Reset()
+        {
+            _instance = null;
         }
     }
 }

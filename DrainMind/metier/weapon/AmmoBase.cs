@@ -1,5 +1,6 @@
 ﻿using DrainMind.Metier;
 using DrainMind.Metier.enemie;
+using DrainMind.Metier.Items;
 using DrainMind.Metier.joueur;
 using DrainMind.View;
 using DrainMind.ViewModel;
@@ -16,14 +17,15 @@ namespace DrainMind.metier.weapon
         private static EnemieBase _target;
         private double _firespeed;
         private double _damage;
-
+        private double _angle;
 
         private TimeSpan delayTargetNull;
         public AmmoBase(string spriteName = "AmmoArme1.png") : base(Joueur.PosX, Joueur.PosY, DrainMindView.MainCanvas, DrainMindGame.Instance, spriteName)
         {
-            _firespeed = 50;
-            
+            _firespeed = 30;
             _target = EnemiesModel.Get().GetNearestEnemie();
+            _angle = Math.Atan2(_target.Top - this.Top, _target.Left - this.Left) * (180 / Math.PI);
+
             delayTargetNull = new TimeSpan(0);
         }
 
@@ -34,24 +36,10 @@ namespace DrainMind.metier.weapon
             delayTargetNull += (dt);
             if (_target != null && _target.Collidable)
             {
-                MoveToEnemie();
-
-                if (_target.life - _damage <= 0)
-                {
-                    if (_firespeed > 5)
-                    {
-                        _firespeed -= 1;
-                    }
-                    MoveDA(_firespeed, Orientation);
-                }
+                MoveToEnemie();              
             }
             else 
             {
-                if ( delayTargetNull.TotalMilliseconds > 1000)
-                {
-                    this.Collidable = false;
-                    this.Dispose();
-                }
                 MoveDA(_firespeed, Orientation);
             }
 
@@ -69,12 +57,13 @@ namespace DrainMind.metier.weapon
         /// Va en direction de lenemie le plus proche
         /// </summary>
         private void MoveToEnemie()
-        {
-            double _angle = Math.Atan2(_target.Top - this.Top, _target.Left - this.Left) * (180 / Math.PI);
-
+        {        
             this.Orientation = _angle;
             MoveDA(_firespeed, _angle);
             
         }
+
+  
+
     }
 }

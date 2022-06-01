@@ -19,17 +19,18 @@ namespace DrainMind.metier.Items
     {
         protected double _speed;
         protected double _XpBase;
+        private double _amountXp;
         /// <summary>
         /// Experience
         /// </summary>
         /// <param name="x">Postion x</param>
         /// <param name="y">Positon y</param>
-        public ExpItem(double x, double y) : base(x, y, DrainMind.View.DrainMindView.MainCanvas, DrainMindGame.Instance, "Exp.png")
+        public ExpItem(double x, double y,double amountXP) : base(x, y, DrainMind.View.DrainMindView.MainCanvas, DrainMindGame.Instance, "Exp.png")
         {
-            _speed = StatsPersoModel.Get().Speed * 2;
-            _XpBase = 10;
-            this.ChangeScale(0.3, 0.3);
- 
+            _speed = 15;
+            _XpBase = 1;
+            this.ChangeScale(0.2, 0.2);
+            _amountXp = amountXP;
         }
 
         public override string TypeName => "Exp";
@@ -58,12 +59,12 @@ namespace DrainMind.metier.Items
                 this.Dispose();
                 if (Collidable)
                 {
-                    if (StatsPersoModel.Get().XP + (_XpBase * StatsPersoModel.Get().Xpmult) >= StatsPersoModel.Get().XPMax)
+                    if (StatsPersoModel.Get().XP + (_amountXp * StatsPersoModel.Get().Xpmult) >= StatsPersoModel.Get().XPMax)
                     {                                    
                         PlaySound("LvlUp.mp3");
                     }
-                    StatsPersoModel.Get().XP = _XpBase;
-                    new TextItem(this.Left, this.Top, $"+{_XpBase * StatsPersoModel.Get().Xpmult}", Brushes.Yellow);
+                    StatsPersoModel.Get().XP = _amountXp;
+                    new TextItem(this.Left, this.Top, $"+{_amountXp * StatsPersoModel.Get().Xpmult}", Brushes.Yellow);
                 }
                 this.Collidable = false;
             }

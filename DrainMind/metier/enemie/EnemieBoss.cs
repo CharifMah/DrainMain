@@ -21,13 +21,15 @@ namespace DrainMind.metier.enemie
             this._speed = 5;
             this._XPpoint = 100;
             this._damage = 3;
-            this._life = 30;
-            this._maxlife = 30;
+            this._life = 10;
+            this._maxlife = 10;
             this._soundHit = "Hit5.mp3";
             this._traverseEnemie = true;
             this._minspeed = _speed;
             this._maxspeed = _speed * 4;
             this._typeenemie = TypeEnemie.boss;
+
+            
         }
     }
 }

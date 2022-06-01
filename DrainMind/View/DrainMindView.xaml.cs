@@ -72,9 +72,6 @@ namespace DrainMind.View
             ShowsNavigationUI = false;       
             InitializeComponent();   
 
-            //Deletes Old instance          
-            EnemiesModel.Destroy();   
-            
             GroupBoxUpgradeSkill.Visibility = Visibility.Hidden;
             GroupBoxInfoPerso.Visibility = Visibility.Visible;
             _scrollviewer = scrollviewer;
