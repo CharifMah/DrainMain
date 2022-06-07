@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Controls;
-using DrainMind.Metier;
+using DrainMind.Metier.Game;
 using DrainMind.Metier.Items;
 using DrainMind.View;
-using DrainMind.ViewModel;
 using IUTGame;
 
 namespace DrainMind.metier.Items
@@ -23,7 +22,7 @@ namespace DrainMind.metier.Items
         /// </summary>
         /// <param name="canvas">canvas</param>
         /// <param name="game">drain mind</param>
-        public GenerateurItem() : base(0, 0, DrainMindView.MainCanvas, DrainMindGame.Instance, "")
+        public GenerateurItem() : base(0, 0, DrainMindView.MainCanvas, DrainMindGame.Get(), "")
         {
             timeToCreate = new TimeSpan(0, 0, 1);
         }
@@ -48,7 +47,7 @@ namespace DrainMind.metier.Items
                 Food food = new Food(x, y);
                 Game.AddItem(food);
 
-                int Sec = r.Next(5000 / (StatsPersoModel.Get().Niveau + 1), 10000 / (StatsPersoModel.Get().Niveau + 1));
+                int Sec = r.Next(5000 / (DrainMindGame.Get().Joueur.Stats.Niveau + 1), 10000 / (DrainMindGame.Get().Joueur.Stats.Niveau + 1));
 
                 timeToCreate = new TimeSpan(0, 0, 0, 0, Sec);
             }

@@ -1,7 +1,8 @@
 ﻿using DrainMind.metier.Grille;
 using DrainMind.Metier;
+using DrainMind.Metier.Game;
+using DrainMind.Metier.ScoreFolder;
 using DrainMind.Stockage;
-using DrainMind.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,7 +39,6 @@ namespace DrainMind.View
         {
        
             InitializeComponent();
-
         }
 
         /// <summary>
@@ -63,24 +63,6 @@ namespace DrainMind.View
         }
 
         /// <summary>
-        /// Cree et lance une nouvelle partie
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <Author>Charif</Author>
-        private void NewGameButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (DrainMindGame.Instance != null)
-            {
-                DrainMindGame.Instance.StopGame();
-            }
-                    
-            drainmindView = new DrainMindView(this);
-
-            mainwindow.Content = drainmindView;
-        }
-
-        /// <summary>
         /// Ouvre les options
         /// </summary>
         /// <param name="sender"></param>
@@ -100,7 +82,7 @@ namespace DrainMind.View
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             StockScore _StockScore = new StockScore(Directory.GetCurrentDirectory());
-            _StockScore.SauverScore(LesScoresModel.Get().Scores);
+            _StockScore.SauverScore(LesScores.Get().Scores);
 
             Environment.Exit(0);
         }

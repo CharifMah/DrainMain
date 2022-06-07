@@ -174,4 +174,8 @@
     <Resource Include="Sprites\TitreMenu.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
+  </ItemGroup>
+
 </Project>

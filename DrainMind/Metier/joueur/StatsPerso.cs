@@ -6,19 +6,18 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DrainMind.ViewModel
+namespace DrainMind.Metier.joueur
 {
     /// <summary>
     /// Classe des niveau du personnage la partie actuel
     /// </summary>
-    public class StatsPersoModel : observable.Observable
+    public class StatsPerso : observable.Observable
     {
         private double _speed;
         private double _xp;
         private double _xpMax;
         private int _niveau;
         private double _Xpmult;
-
         private Vie _vie;
 
         #region Property
@@ -104,30 +103,17 @@ namespace DrainMind.ViewModel
 
         #endregion
 
-        private static StatsPersoModel _instance;
-
-        public static StatsPersoModel Get()
-        {
-            if (_instance == null)
-                _instance = new StatsPersoModel();
-            return _instance;
-        }
-
         /// <summary>
         /// Cree le model qui permet de stocke les stats du personnage et dans le communique a IHM
         /// </summary>
-        private StatsPersoModel()
+        public StatsPerso(int speed, int life, int maxlife)
         {
-            _speed = 5;
+            _speed = speed;
+            _vie = new Vie(life, maxlife);
             _xp = 0.0;
             _niveau = 1;
             _Xpmult = 1.0;
             _xpMax = 100;
-            _vie = new Vie(30, 30);
-        }
-        public static void Reset()
-        {
-            _instance = null;
         }
     }
 }

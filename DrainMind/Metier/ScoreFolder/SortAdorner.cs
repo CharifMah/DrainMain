@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
 
-namespace DrainMind.metier.joueur.ScoreFolder
+namespace DrainMind.Metier.ScoreFolder
 {
     /// <summary>
     /// sorting score columns

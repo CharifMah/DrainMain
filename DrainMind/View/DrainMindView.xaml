@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:res="clr-namespace:DrainMind.Res" xmlns:joueur="clr-namespace:DrainMind.metier.joueur"
+      xmlns:res="clr-namespace:DrainMind.Res" 
       mc:Ignorable="d" 
       d:DesignHeight="1080.2" d:DesignWidth="1920.6"
       SizeChanged="Window_SizeChanged" KeyDown="FentrePrincipalDrainMain_KeyDown" >
@@ -11,7 +11,7 @@
     <Grid>
         <ScrollViewer x:Name="scrollviewer" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="CanvasViewer_PreviewMouseWheel">
 
-            <Canvas x:Name="canvas" Height="4221" Width="6715">
+            <Canvas x:Name="canvas" Height="4221" Width="6715" Focusable="True" IsHitTestVisible="True">
 
                 <Canvas.Background>
                     <ImageBrush ImageSource="/Sprites/fond.png"/>
@@ -72,7 +72,7 @@
             </TextBlock>
 
             <TextBlock x:Name="TextBlockEnemieLeft"
-                       Text="{Binding Path=NombreEnemie, StringFormat={}NombreEnemie: {0},Mode=OneWay}" 
+                       Text="{Binding Path=NombreEnemie, StringFormat={}NombreEnemie: {0}}" 
                        Grid.Column="3" 
                        Grid.Row="0" 
                        FontSize="25" 

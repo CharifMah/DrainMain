@@ -11,7 +11,7 @@ using DrainMind.View;
 using System.Linq;
 using DrainMind.Stockage;
 using DrainMind.metier.Grille;
-using DrainMind.ViewModel;
+using DrainMind.Metier.ScoreFolder;
 
 namespace DrainMind
 {
@@ -73,7 +73,7 @@ namespace DrainMind
         /// <Author>Charif</Author>
         private void FentrePrincipalDrainMain_Closed(object sender, System.EventArgs e)
         {
-            _StockScore.SauverScore(LesScoresModel.Get().Scores);
+            _StockScore.SauverScore(LesScores.Get().Scores);
             _StockOptionsFav.SauverSettings(Settings.Get());
             Environment.Exit(0);
         }

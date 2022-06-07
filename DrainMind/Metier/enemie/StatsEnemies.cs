@@ -1,19 +1,19 @@
-﻿using DrainMind.metier.Grille;
-using DrainMind.Metier.enemie;
-using DrainMind.Metier.joueur;
+﻿using DrainMind.Metier.Game;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DrainMind.ViewModel
+namespace DrainMind.Metier.enemie
 {
-    public class EnemiesModel : observable.Observable
+    public class StatsEnemies : observable.Observable
     {
-
-        private int _nombreenemie;
         private List<EnemieBase> _lesenemies;
+        private int _nombreenemie;
 
-        #region
+        public List<EnemieBase> LesEnemies
+        {
+            get { return _lesenemies; }
+        }
 
         public int NombreEnemie
         {
@@ -29,12 +29,13 @@ namespace DrainMind.ViewModel
             }
         }
 
-        public List<EnemieBase> Lesenemies
-        { get { return _lesenemies; } }
 
-        #endregion
 
-        private EnemiesModel()
+
+        /// <summary>
+        /// Cree le model qui permet de stocke les stats du personnage et dans le communique a IHM
+        /// </summary>
+        public StatsEnemies()
         {
             _nombreenemie = 0;
             _lesenemies = new List<EnemieBase>();
@@ -47,20 +48,21 @@ namespace DrainMind.ViewModel
         /// <Author>Charif</Author>
         public EnemieBase GetNearestEnemie()
         {
-            double distance = CalculDistance(Joueur.PosX, _lesenemies[0].Left, Joueur.PosY, _lesenemies[0].Top);
+            double distance = CalculDistance(DrainMindGame.Get().Joueur.PosX, _lesenemies[0].Left, DrainMindGame.Get().Joueur.PosY, _lesenemies[0].Top);
             EnemieBase enemieBase = _lesenemies[0];
 
             for (int i = 0; i < _lesenemies.Count; i++)
-            {    
-                if (distance >= CalculDistance(Joueur.PosX, _lesenemies[i].Left, Joueur.PosY, _lesenemies[i].Top))
+            {
+                if (distance >= CalculDistance(DrainMindGame.Get().Joueur.PosX, _lesenemies[i].Left, DrainMindGame.Get().Joueur.PosY, _lesenemies[i].Top))
                 {
-                    distance = CalculDistance(Joueur.PosX, _lesenemies[i].Left, Joueur.PosY, _lesenemies[i].Top);
+                    distance = CalculDistance(DrainMindGame.Get().Joueur.PosX, _lesenemies[i].Left, DrainMindGame.Get().Joueur.PosY, _lesenemies[i].Top);
                     enemieBase = _lesenemies[i];
                 }
             }
-           
+
             return enemieBase;
         }
+
         /// <summary>
         /// Calcule la distance entre deux point
         /// </summary>
@@ -70,23 +72,10 @@ namespace DrainMind.ViewModel
         /// <param name="y2">Position y2</param>
         /// <Author>Charif</Author>
         /// <returns></returns>
-        public double CalculDistance(double x1, double x2 , double y1, double y2 )
+        public double CalculDistance(double x1, double x2, double y1, double y2)
         {
-           return Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
+            return Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
         }
 
-        private static EnemiesModel _instance;
-
-        public static EnemiesModel Get()
-        {
-            if (_instance == null)
-                _instance = new EnemiesModel();
-            return _instance;
-        }
-
-        public static void Reset()
-        {
-            _instance = null;
-        }
     }
 }

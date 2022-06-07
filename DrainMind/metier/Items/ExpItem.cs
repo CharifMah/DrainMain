@@ -1,6 +1,6 @@
 ﻿using DrainMind.Metier;
+using DrainMind.Metier.Game;
 using DrainMind.Metier.joueur;
-using DrainMind.ViewModel;
 using IUTGame;
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace DrainMind.metier.Items
         /// </summary>
         /// <param name="x">Postion x</param>
         /// <param name="y">Positon y</param>
-        public ExpItem(double x, double y,double amountXP) : base(x, y, DrainMind.View.DrainMindView.MainCanvas, DrainMindGame.Instance, "Exp.png")
+        public ExpItem(double x, double y,double amountXP) : base(x, y, DrainMind.View.DrainMindView.MainCanvas, DrainMindGame.Get(), "Exp.png")
         {
             _speed = 15;
             _XpBase = 1;
@@ -59,12 +59,12 @@ namespace DrainMind.metier.Items
                 this.Dispose();
                 if (Collidable)
                 {
-                    if (StatsPersoModel.Get().XP + (_amountXp * StatsPersoModel.Get().Xpmult) >= StatsPersoModel.Get().XPMax)
+                    if (Settings.Get().GameIsRunning && DrainMindGame.Get().Joueur.Stats.XP + (_amountXp * DrainMindGame.Get().Joueur.Stats.Xpmult) >= DrainMindGame.Get().Joueur.Stats.XPMax)
                     {                                    
                         PlaySound("LvlUp.mp3");
                     }
-                    StatsPersoModel.Get().XP = _amountXp;
-                    new TextItem(this.Left, this.Top, $"+{_amountXp * StatsPersoModel.Get().Xpmult}", Brushes.Yellow);
+                    DrainMindGame.Get().Joueur.Stats.XP = _amountXp;
+                    new TextItem(this.Left, this.Top, $"+{_amountXp * DrainMindGame.Get().Joueur.Stats.Xpmult}", Brushes.Yellow);
                 }
                 this.Collidable = false;
             }
@@ -80,7 +80,11 @@ namespace DrainMind.metier.Items
         {
             double ePosX = this.Left + (this.Width / 2);
             double ePosY = this.Top + (this.Height / 2);
-            double _angle = Math.Atan2(Joueur.PosY - ePosY, Joueur.PosX - ePosX) * (180 / Math.PI);
+            double _angle = 0;
+            if (Settings.Get().GameIsRunning)
+            {
+                _angle = Math.Atan2(DrainMindGame.Get().Joueur.PosY - ePosY, DrainMindGame.Get().Joueur.PosX - ePosX) * (180 / Math.PI);
+            }
             MoveDA(_speed, _angle);
         }
     }

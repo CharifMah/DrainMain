@@ -1,9 +1,8 @@
-﻿using DrainMind.Metier;
-using DrainMind.Metier.enemie;
+﻿using DrainMind.Metier.enemie;
+using DrainMind.Metier.Game;
 using DrainMind.Metier.Items;
 using DrainMind.Metier.joueur;
 using DrainMind.View;
-using DrainMind.ViewModel;
 using IUTGame;
 using System;
 using System.Collections.Generic;
@@ -20,10 +19,10 @@ namespace DrainMind.metier.weapon
         private double _angle;
 
         private TimeSpan delayTargetNull;
-        public AmmoBase(string spriteName = "AmmoArme1.png") : base(Joueur.PosX, Joueur.PosY, DrainMindView.MainCanvas, DrainMindGame.Instance, spriteName)
+        public AmmoBase(string spriteName = "AmmoArme1.png") : base(DrainMindGame.Get().Joueur.PosX, DrainMindGame.Get().Joueur.PosY, DrainMindView.MainCanvas, DrainMindGame.Get(), spriteName)
         {
             _firespeed = 30;
-            _target = EnemiesModel.Get().GetNearestEnemie();
+            _target = DrainMindGame.Get().generateurEnemie.statsEnemies.GetNearestEnemie();
             _angle = Math.Atan2(_target.Top - this.Top, _target.Left - this.Left) * (180 / Math.PI);
 
             delayTargetNull = new TimeSpan(0);

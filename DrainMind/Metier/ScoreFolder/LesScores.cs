@@ -1,14 +1,13 @@
-﻿using DrainMind.metier.joueur.ScoreFolder;
-using DrainMind.Stockage;
+﻿using DrainMind.Stockage;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace DrainMind.ViewModel
+namespace DrainMind.Metier.ScoreFolder
 {
     [DataContract]
-    public class LesScoresModel
+    public class LesScores
     {
         private StockScore Stock = new StockScore(Environment.CurrentDirectory);
 
@@ -34,16 +33,16 @@ namespace DrainMind.ViewModel
                 _scores = new List<Score>();
         }
 
-        private static LesScoresModel instance;
+        private static LesScores instance;
 
-        public static LesScoresModel Get()
+        public static LesScores Get()
         {
             if (instance == null)
-                instance = new LesScoresModel();
+                instance = new LesScores();
             return instance;
         }
 
-        private LesScoresModel()
+        private LesScores()
         {
             LoadScores();
         }

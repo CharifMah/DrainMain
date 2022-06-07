@@ -1,4 +1,4 @@
-﻿using DrainMind.metier.joueur.ScoreFolder;
+﻿using DrainMind.Metier.ScoreFolder;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -52,7 +52,7 @@ namespace DrainMind.Stockage
         /// <exception cref="System.Windows.Markup.XamlParseException">arrive pas deserialiser un fichier corompu</exception>
         public List<Score> ChargerScore()
         {
-            List<Score> d2;
+            List<Score> d2 = null;
             if (File.Exists(Path.Combine(folder, "Score.xml")))
             {
                 using (FileStream stream = File.OpenRead(Path.Combine(folder, "Score.xml")))
@@ -62,9 +62,6 @@ namespace DrainMind.Stockage
                 }
 
             }
-            else
-                d2 = null;
-
             return d2;
         }
     }

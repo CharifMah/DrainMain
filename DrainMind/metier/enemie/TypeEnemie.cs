@@ -9,6 +9,6 @@ namespace DrainMind.metier.enemie
     /// </summary>
     public enum TypeEnemie
     {
-        fantome, fantomevert, boss, gloom, zebre
+        fantome, fantomevert, boss, gloom, zebre, bossRapide
     }
 }

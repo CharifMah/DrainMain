@@ -30,7 +30,7 @@ namespace DrainMind.View
     /// <Author>Charif</Author>
     public partial class Options : Page
     {
-        private Page _windowPrecedente;   
+        private Page _windowPrecedente;
         
         private MainWindow mainwindow = MainWindow.GetMainWindow;
 
@@ -47,7 +47,7 @@ namespace DrainMind.View
             InitItemComboBox();
             LoadSettings();
             DataContext = Settings.Get();
-            _windowPrecedente = windowPrecedente;
+            _windowPrecedente = windowPrecedente;         
         }
 
         /// <summary>

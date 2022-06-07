@@ -1,4 +1,5 @@
-﻿using DrainMind.Stockage;
+﻿using DrainMind.Metier.Game;
+using DrainMind.Stockage;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,7 +29,14 @@ namespace DrainMind.Metier
         [DataMember]
         private string _culturename;
 
-       
+        private bool _GameIsRunning;
+
+        public bool GameIsRunning
+        {
+            get { return _GameIsRunning; }
+            set { _GameIsRunning = value; }
+        }
+
 
         /// <summary>
         /// Max of the sound : 100
@@ -39,8 +47,9 @@ namespace DrainMind.Metier
             set 
             { 
                 _Son = value;
-                if (DrainMindGame.Instance != null)
-                DrainMindGame.Instance.BackgroundVolume = _Son / 100;
+
+                if (_GameIsRunning)
+                DrainMindGame.Get().BackgroundVolume = _Son / 100;
           
                 if (_Son > 1)
                     _SonOnOff = true;
@@ -61,14 +70,18 @@ namespace DrainMind.Metier
             set 
             {
                 _SonOnOff = value;
-                if (!_SonOnOff && DrainMindGame.Instance != null)
+                if (_GameIsRunning)
                 {
-                    DrainMindGame.Instance.BackgroundVolume = 0;
+                    if (!_SonOnOff)
+                    {
+                        DrainMindGame.Get().BackgroundVolume = 0;
+                    }
+                    if (_SonOnOff)
+                    {
+                        DrainMindGame.Get().BackgroundVolume = _Son / 100;
+                    }
                 }
-                if (_SonOnOff && DrainMindGame.Instance != null)
-                {
-                    DrainMindGame.Instance.BackgroundVolume = _Son / 100;
-                }
+               
                 this.NotifyPropertyChanged("SonOnOff");
             }
         }
@@ -118,6 +131,7 @@ namespace DrainMind.Metier
         private Settings()
         {
             LoadSettings();
+            _GameIsRunning = false;
         }
 
         /// <summary>

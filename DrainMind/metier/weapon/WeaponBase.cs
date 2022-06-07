@@ -1,8 +1,7 @@
-﻿using DrainMind.Metier;
-using DrainMind.Metier.enemie;
+﻿using DrainMind.Metier.enemie;
+using DrainMind.Metier.Game;
 using DrainMind.Metier.joueur;
 using DrainMind.View;
-using DrainMind.ViewModel;
 using IUTGame;
 using System;
 using System.Collections.Generic;
@@ -20,7 +19,7 @@ namespace DrainMind.metier.weapon
         //Minuteur
         private DispatcherTimer timer;
 
-        public WeaponBase(string spriteName = "") : base(Joueur.PosX, Joueur.PosY, DrainMindView.MainCanvas, DrainMindGame.Instance, spriteName)
+        public WeaponBase(string spriteName = "") : base(DrainMindGame.Get().Joueur.PosX, DrainMindGame.Get().Joueur.PosY, DrainMindView.MainCanvas, DrainMindGame.Get(), spriteName)
         {
             _firesdelay = 700;
             //Minuteur
@@ -45,10 +44,10 @@ namespace DrainMind.metier.weapon
         /// <exception cref="NotImplementedException"></exception>
         private void Fire(object sender, EventArgs e)
         {
-            if (EnemiesModel.Get().Lesenemies.Count > 0 && DrainMindGame.Instance != null)
+            if (DrainMindGame.Get().generateurEnemie.statsEnemies.LesEnemies.Count > 0)
             {
                 AmmoBase n = new AmmoBase();
-                DrainMindGame.Instance.AddItem(n);
+                DrainMindGame.Get().AddItem(n);
             }
         }
     }

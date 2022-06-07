@@ -4,13 +4,12 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using IUTGame;
 using System.IO;
-using DrainMind.Metier.joueur;
 using System.Windows;
 using DrainMind.View;
-using DrainMind.ViewModel;
 using DrainMind.metier.joueur;
 using System.Windows.Threading;
 using DrainMind.metier.weapon;
+using DrainMind.Metier.Game;
 
 namespace DrainMind.Metier.joueur
 {
@@ -19,17 +18,18 @@ namespace DrainMind.Metier.joueur
     /// </summary>
     public class Joueur : GameItem, IAnimable, IKeyboardInteract
     {
-        private static double _posX;
-        private static double _posY;
-        private static bool goLeft = false, goRight = false, goUp = false, goDown = false;
+        private double _posX;
+        private double _posY;
+        private StatsPerso _persoStats;
+        private bool goLeft = false, goRight = false, goUp = false, goDown = false;
         private int counter = 0;
-        private static string[] ArrayDroite = new string[4] { "Personnage/droite.png", "Personnage/droite1.png", "Personnage/droite.png", "Personnage/droite2.png" };
-        private static string[] ArrayGauche = new string[4] { "Personnage/gauche.png", "Personnage/gauche1.png", "Personnage/gauche.png", "Personnage/gauche2.png" };
+        private string[] ArrayDroite = new string[4] { "Personnage/droite.png", "Personnage/droite1.png", "Personnage/droite.png", "Personnage/droite2.png" };
+        private string[] ArrayGauche = new string[4] { "Personnage/gauche.png", "Personnage/gauche1.png", "Personnage/gauche.png", "Personnage/gauche2.png" };
 
         /// <summary>
         /// Position X du Joueur
         /// </summary>
-        public static double PosX
+        public double PosX
         {
             get { return _posX; }
             set { _posX = value; }
@@ -38,10 +38,18 @@ namespace DrainMind.Metier.joueur
         /// <summary>
         /// Position Y du Joueur
         /// </summary>
-        public static double PosY
+        public double PosY
         {
             get { return _posY; }
             set { _posY = value; }
+        }
+
+        /// <summary>
+        /// Class Stats du joueur
+        /// </summary>
+        public StatsPerso Stats
+        {
+            get { return _persoStats; }
         }
 
         // TypeName of the player is "Joueur"
@@ -55,16 +63,18 @@ namespace DrainMind.Metier.joueur
         /// <param name="c">canvas of the application</param>
         /// <param name="g">drainMind</param>
         /// <param name="ui">canvas</param>
-        public Joueur(double x, double y) : base(x,y,DrainMindView.MainCanvas,DrainMindGame.Instance, "Personnage/face.png")
+        public Joueur(double x, double y) : base(x,y,DrainMindView.MainCanvas,DrainMindGame.Get(), "Personnage/face.png")
         {
             ChangeScale(0.7,0.7);
-            x += this.Width / 2;
-            y += this.Height / 2;
+
+
             _posX = x;
             _posY = y;
 
-            WeaponBase w = new WeaponBase();
-            DrainMindGame.Instance.AddItem(w);
+            _persoStats = new StatsPerso(5,5,30);
+
+            //WeaponBase w = new WeaponBase();
+            //DrainMindGame.Get().AddItem(w);
         }
 
         #region Animation
@@ -77,21 +87,21 @@ namespace DrainMind.Metier.joueur
 
             if (goLeft)
             {
-                DeplacerJoueur(-StatsPersoModel.Get().Speed + 05 * dt.TotalSeconds, 0);
+                DeplacerJoueur(-DrainMindGame.Get().Joueur.Stats.Speed+ 05 * dt.TotalSeconds, 0);
             }
             if (goRight)
             {
-                DeplacerJoueur(StatsPersoModel.Get().Speed + 05 * dt.TotalSeconds, 0);
+                DeplacerJoueur(DrainMindGame.Get().Joueur.Stats.Speed + 05 * dt.TotalSeconds, 0);
 
             }
             if (goUp)
             {
-                DeplacerJoueur(0, -StatsPersoModel.Get().Speed + 05 * dt.TotalSeconds);
+                DeplacerJoueur(0, -DrainMindGame.Get().Joueur.Stats.Speed + 05 * dt.TotalSeconds);
 
             }
             if (goDown)
             {
-                DeplacerJoueur(0, StatsPersoModel.Get().Speed + 05 * dt.TotalSeconds);             
+                DeplacerJoueur(0, DrainMindGame.Get().Joueur.Stats.Speed + 05 * dt.TotalSeconds);             
             }
             AnimationJoueur();            
         }
@@ -168,44 +178,43 @@ namespace DrainMind.Metier.joueur
         /// <co-author>Charif</co-author>
         public void KeyDown(Key key)
         {
-            if (DrainMindGame.Instance.IsRunning)
+           
+            switch (key)
             {
-                switch (key)
-                {
-                    case Key.Z:
-                        goUp = true;
-                        break;
+                case Key.Z:
+                    goUp = true;
+                    break;
 
-                    case Key.Q:
-                        goLeft = true;
-                        break;
+                case Key.Q:
+                    goLeft = true;
+                    break;
 
-                    case Key.S:
-                        goDown = true;
-                        break;
+                case Key.S:
+                    goDown = true;
+                    break;
 
-                    case Key.D:
-                        goRight = true;
-                        break;
+                case Key.D:
+                    goRight = true;
+                    break;
 
 
-                    case Key.Up:
-                        goUp = true;
-                        break;
+                case Key.Up:
+                    goUp = true;
+                    break;
 
-                    case Key.Left:
-                        goLeft = true;
-                        break;
+                case Key.Left:
+                    goLeft = true;
+                    break;
 
-                    case Key.Down:
-                        goDown = true;
-                        break;
+                case Key.Down:
+                    goDown = true;
+                    break;
 
-                    case Key.Right:
-                        goRight = true;
-                        break;
-                }
+                case Key.Right:
+                    goRight = true;
+                    break;
             }
+            
         }
 
         /// <summary>
@@ -216,44 +225,43 @@ namespace DrainMind.Metier.joueur
         /// <co-author>Charif</co-author>
         public void KeyUp(Key key)
         {
-            if (DrainMindGame.Instance.IsRunning)
+     
+            switch (key)
             {
-                switch (key)
-                {
-                    case Key.Z:
-                        goUp = false;
-                        break;
+                case Key.Z:
+                    goUp = false;
+                    break;
 
-                    case Key.Q:
-                        goLeft = false;
-                        break;
+                case Key.Q:
+                    goLeft = false;
+                    break;
 
-                    case Key.S:
-                        goDown = false;
-                        break;
+                case Key.S:
+                    goDown = false;
+                    break;
 
-                    case Key.D:
-                        goRight = false;
-                        break;
+                case Key.D:
+                    goRight = false;
+                    break;
 
 
-                    case Key.Up:
-                        goUp = false;
-                        break;
+                case Key.Up:
+                    goUp = false;
+                    break;
 
-                    case Key.Left:
-                        goLeft = false;
-                        break;
+                case Key.Left:
+                    goLeft = false;
+                    break;
 
-                    case Key.Down:
-                        goDown = false;
-                        break;
+                case Key.Down:
+                    goDown = false;
+                    break;
 
-                    case Key.Right:
-                        goRight = false;
-                        break;
-                }
+                case Key.Right:
+                    goRight = false;
+                    break;
             }
+            
         }
 
         #endregion
@@ -280,7 +288,7 @@ namespace DrainMind.Metier.joueur
             Camera.MoveCamera(_posX, _posY);     
         }
 
-        public static void StopMove()
+        public void StopMove()
         {
             goDown = false;
             goLeft = false;

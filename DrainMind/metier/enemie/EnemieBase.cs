@@ -1,11 +1,11 @@
 ﻿using DrainMind.metier.enemie;
 using DrainMind.metier.Grille;
 using DrainMind.metier.Items;
-using DrainMind.metier.joueur.ScoreFolder;
+using DrainMind.Metier.Game;
 using DrainMind.Metier.Items;
 using DrainMind.Metier.joueur;
+using DrainMind.Metier.ScoreFolder;
 using DrainMind.View;
-using DrainMind.ViewModel;
 using IUTGame;
 using System;
 using System.Windows.Controls;
@@ -54,7 +54,7 @@ namespace DrainMind.Metier.enemie
         /// <param name="g">game</param>
         /// <param name="Spritename">name of the sprite</param>
         /// <Author>Charif</Author>
-        public EnemieBase(double x, double y,string spritename = "Enemie/fantome.png") : base(x, y, DrainMindView.MainCanvas, DrainMindGame.Instance, spritename)
+        public EnemieBase(double x, double y,string spritename = "Enemie/fantome.png") : base(x, y, DrainMindView.MainCanvas, DrainMindGame.Get(), spritename)
         {
             ChangeScale(0.7, 0.7);
             _life = 1;
@@ -71,6 +71,7 @@ namespace DrainMind.Metier.enemie
             _maxspeed = 20;
             _typeenemie = TypeEnemie.fantome;
             _soundHit = "Hit1.mp3";
+            DrainMindGame.Get().generateurEnemie.statsEnemies.NombreEnemie++;
         }
 
         //TypeNme of ennemies is "Enemie"
@@ -87,15 +88,15 @@ namespace DrainMind.Metier.enemie
             {
                 if (this.Collidable)
                 {                 
-                    int val = StatsPersoModel.Get().Life._Vie - (_damage * _life);
+                    int val = DrainMindGame.Get().Joueur.Stats.Life._Vie - (_damage * _life);
 
                     if (val > 0)
                     {
-                        StatsPersoModel.Get().Life._Vie = val;
+                        DrainMindGame.Get().Joueur.Stats.Life._Vie = val;
                     }
                     else
                     {
-                        StatsPersoModel.Get().Life._Vie = 0;
+                        DrainMindGame.Get().Joueur.Stats.Life._Vie = 0;
                         Game.Loose();
                     }
                     Destroy();
@@ -113,8 +114,8 @@ namespace DrainMind.Metier.enemie
                     other.Collidable = false;
                     other.Dispose();
 
-                    if (DrainMindGame.Instance != null)
-                    DrainMindGame.Instance.RemoveItem(other);
+                    if (DrainMindGame.Get() != null)
+                    DrainMindGame.Get().RemoveItem(other);
 
                     if (this.Collidable)
                     {
@@ -131,10 +132,13 @@ namespace DrainMind.Metier.enemie
         /// </summary>
         public void Destroy()
         {
-            if (DrainMindGame.Instance != null)
+            if (DrainMindGame.Get() != null)
             {
                 ExpItem xp = new ExpItem(this.Left + (this.Width / 2), this.Top + (this.Height / 2),_XPpoint);
-                DrainMindGame.Instance.AddItem(xp);
+                DrainMindGame.Get().AddItem(xp);
+
+                this.Dispose();
+                this.Collidable = false;                        
             }
 
             PlaySound(_soundKill);
@@ -142,22 +146,18 @@ namespace DrainMind.Metier.enemie
             Score.Get().EnemieKilled += 1;
             Score.Get().Point += _XPpoint;
 
-            EnemiesModel.Get().NombreEnemie--;
-            EnemiesModel.Get().Lesenemies.Remove(this);
-
-
             if (_typeenemie == TypeEnemie.boss)
             {
                 Food food = new Food(this.Left, this.Top);
                 Game.AddItem(food);
             }
 
-            this.Dispose();
-            this.Collidable = false;
-
-            if (DrainMindGame.Instance != null)
-                DrainMindGame.Instance.RemoveItem(this);
-
+            if (Settings.Get().GameIsRunning)
+            {
+                DrainMindGame.Get().generateurEnemie.statsEnemies.LesEnemies.Remove(this);
+                DrainMindGame.Get().RemoveItem(this);
+                DrainMindGame.Get().generateurEnemie.statsEnemies.NombreEnemie--;
+            }
         }
 
         public void LooseLife(int dammage)
@@ -194,8 +194,10 @@ namespace DrainMind.Metier.enemie
         {
             _ePosX = this.Left + (this.Width / 2);
             _ePosY = this.Top + (this.Height / 2);
+            double _angle = 0;
 
-            double _angle = Math.Atan2(Joueur.PosY - _ePosY, Joueur.PosX - _ePosX) * (180 / Math.PI);
+            if (DrainMindGame.Get().Joueur != null)
+                _angle = Math.Atan2(DrainMindGame.Get().Joueur.PosY - _ePosY, DrainMindGame.Get().Joueur.PosX - _ePosX) * (180 / Math.PI);
 
             if (!_Iscollide || _traverseEnemie)
             {

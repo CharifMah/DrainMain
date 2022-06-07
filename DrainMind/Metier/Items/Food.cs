@@ -1,6 +1,6 @@
 ﻿using DrainMind.metier.Items;
+using DrainMind.Metier.Game;
 using DrainMind.View;
-using DrainMind.ViewModel;
 using IUTGame;
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace DrainMind.Metier.Items
         /// </summary>
         /// <param name="x">axis x</param>
         /// <param name="y">axis y</param>
-        public Food(double x, double y) : base(x, y, DrainMindView.MainCanvas, DrainMindGame.Instance, "FoodPeach.png")
+        public Food(double x, double y) : base(x, y, DrainMindView.MainCanvas, DrainMindGame.Get(), "FoodPeach.png")
         {
             ++foodnumber;
             this.ChangeScale(2,2);
@@ -48,7 +48,7 @@ namespace DrainMind.Metier.Items
 
                 if (this.Collidable)
                 {
-                    StatsPersoModel.Get().Life._Vie += 2;
+                    DrainMindGame.Get().Joueur.Stats.Life._Vie += 2;
                     PlaySound("SoundTake.mp3");
                     new TextItem(this.Left, this.Top, $"+❤❤", Brushes.Red);
                 }

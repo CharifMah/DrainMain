@@ -1,11 +1,11 @@
 ﻿using DrainMind.metier.Grille;
 using DrainMind.metier.joueur;
-using DrainMind.metier.joueur.ScoreFolder;
 using DrainMind.Metier;
 using DrainMind.Metier.enemie;
+using DrainMind.Metier.Game;
 using DrainMind.Metier.joueur;
+using DrainMind.Metier.ScoreFolder;
 using DrainMind.Stockage;
-using DrainMind.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,7 +30,6 @@ namespace DrainMind.View
     /// </summary>
     public partial class DrainMindView : Page
     {
-        private DrainMindGame drainMind;
         private MenuPrincipale _MenuPrincipale;
         private SortAdorner listViewSortAdorner = null;
         private GridViewColumnHeader listViewSortCol = null;
@@ -88,7 +87,9 @@ namespace DrainMind.View
             timer  = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
+
             MainWindow.GetMainWindow.Deactivated += GetMainWindow_Deactivated;
+
         }
 
        
@@ -105,10 +106,10 @@ namespace DrainMind.View
 
             Score.Destroy();
             Score.Get().Nom = NameInput.Text;
-            LesScoresModel.Get().Scores.Add(Score.Get());
+            LesScores.Get().Scores.Add(Score.Get());
 
             //DebutDuJeux
-            ResumeOrCreateGame();
+            CreateGame();
 
             InitDataContext();
             ListViewLoadScores();
@@ -118,20 +119,12 @@ namespace DrainMind.View
         /// Launch the Game
         /// </summary>
         /// <Author>Charif</Author>
-        public void ResumeOrCreateGame()
+        public void CreateGame()
         {
-            if (drainMind == null)
-            {
-                drainMind = new DrainMindGame();
-                drainMind.Run();
-                drainMind.BackgroundVolume = (Settings.Get().Son / 100);
-            }
-            if (!drainMind.IsRunning)
-            {
-                MainWindow.GetMainWindow.Content = this;
-                drainMind.Resume();
-            }
 
+            DrainMindGame.Get().Run();
+            DrainMindGame.Get().BackgroundVolume = (Settings.Get().Son / 100);
+            Settings.Get().GameIsRunning = true;
             MyGrid.Grid = MyGrid.drawGrid();
             timer.Start();
             GenerateurEnemie.GeneratorTimer.Start();
@@ -147,11 +140,11 @@ namespace DrainMind.View
         /// </summary>
         public void InitDataContext()
         {
-            XpProgressBar.DataContext = StatsPersoModel.Get();
-            TextBlockNiveau.DataContext = StatsPersoModel.Get();
-            TextBlockXpProgressBar.DataContext = StatsPersoModel.Get();
-            TextBlockEnemieLeft.DataContext = EnemiesModel.Get();
-            TextBlockSpeed.DataContext = StatsPersoModel.Get();
+            XpProgressBar.DataContext = DrainMindGame.Get().Joueur.Stats;
+            TextBlockNiveau.DataContext = DrainMindGame.Get().Joueur.Stats;
+            TextBlockXpProgressBar.DataContext = DrainMindGame.Get().Joueur.Stats;
+            TextBlockEnemieLeft.DataContext = DrainMindGame.Get().generateurEnemie.statsEnemies;
+            TextBlockSpeed.DataContext = DrainMindGame.Get().Joueur.Stats;
         }
 
         /// <summary>
@@ -159,7 +152,7 @@ namespace DrainMind.View
         /// </summary>
         public void ListViewLoadScores()
         {
-            foreach (Score score in LesScoresModel.Get().Scores)
+            foreach (Score score in LesScores.Get().Scores)
             {
                 ScoreListView.Items.Add(score);
             }
@@ -180,7 +173,7 @@ namespace DrainMind.View
         {
             if (GroupBoxUpgradeSkill.Visibility == Visibility.Hidden)
             {
-                drainMind.Resume();
+                DrainMindGame.Get().Resume();
                 GenerateurEnemie.GeneratorTimer.Start();
                 timer.Start();
             }
@@ -218,13 +211,13 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            drainMind.Pause();
+            DrainMindGame.Get().Pause();
             timer.Stop();
             GenerateurEnemie.GeneratorTimer.Stop();
 
             _MenuPrincipale.PlayButton.Content = DrainMind.Res.Strings.Reprendre;
             MainWindow.GetMainWindow.Content = _MenuPrincipale;
-            Stock.SauverScore(LesScoresModel.Get().Scores);
+            Stock.SauverScore(LesScores.Get().Scores);
         }
 
         #endregion
@@ -277,14 +270,13 @@ namespace DrainMind.View
         /// </summary>
         public static void ShowUpgradeGrpBox()
         {
-            if (DrainMindGame.Instance != null)
-            {
-                _upgradeSkillGrpBox.Visibility = Visibility.Visible;
-                timer.Stop();
-                GenerateurEnemie.GeneratorTimer.Stop();
-                DrainMindGame.Instance.Pause();
-                Joueur.StopMove();
-            }            
+
+            _upgradeSkillGrpBox.Visibility = Visibility.Visible;
+            timer.Stop();
+            GenerateurEnemie.GeneratorTimer.Stop();
+            DrainMindGame.Get().Pause();
+            DrainMindGame.Get().Joueur.StopMove();
+                        
         }
 
         /// <summary>
@@ -294,26 +286,26 @@ namespace DrainMind.View
         /// <param name="e"></param>
         private void ButtonAddSpeed_Click(object sender, RoutedEventArgs e)
         {
-            StatsPersoModel.Get().Speed += 1;
+            DrainMindGame.Get().Joueur.Stats.Speed += 1;
 
             CloseUpgradeGrpBox();
         }
 
         private void DoubleXp_Button_Click(object sender, RoutedEventArgs e)
         {
-            StatsPersoModel.Get().Xpmult *= 2;
+            DrainMindGame.Get().Joueur.Stats.Xpmult *= 2;
             CloseUpgradeGrpBox();
         }
 
         private void AddLife_Button_Click(object sender, RoutedEventArgs e)
         {
-            StatsPersoModel.Get().Life.AddLife(2);
+            DrainMindGame.Get().Joueur.Stats.Life.AddLife(2);
             CloseUpgradeGrpBox();
         }
 
         private void Bombe_Button_Click(object sender, RoutedEventArgs e)
         {
-            foreach (EnemieBase enemie in EnemiesModel.Get().Lesenemies.ToList())
+            foreach (EnemieBase enemie in DrainMindGame.Get().generateurEnemie.statsEnemies.LesEnemies.ToList())
             {
                 enemie.LooseLife(1);
             }
@@ -326,7 +318,7 @@ namespace DrainMind.View
         private void CloseUpgradeGrpBox()
         {
             GroupBoxUpgradeSkill.Visibility = Visibility.Hidden;
-            DrainMindGame.Instance.Resume();
+            DrainMindGame.Get().Resume();
             GenerateurEnemie.GeneratorTimer.Start();
             timer.Start();
         }
@@ -354,11 +346,11 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (drainMind != null)
+            if (DrainMindGame.Get().IsRunning)
             {
-                Camera.MoveCamera(Joueur.PosX, Joueur.PosY);
+                Camera.MoveCamera(DrainMindGame.Get().Joueur.PosX, DrainMindGame.Get().Joueur.PosY);
                 MyGrid.ResizeCanvas();
-            }
+            }                     
         }
 
         /// <summary>
@@ -376,11 +368,11 @@ namespace DrainMind.View
                 //Pause
                 if (GroupBoxPause.Visibility == Visibility.Hidden && !Pressed)
                 {
-                    drainMind.Pause();
+                    DrainMindGame.Get().Pause();
                     GenerateurEnemie.GeneratorTimer.Stop();
                     timer.Stop();
                     GroupBoxPause.Visibility = Visibility.Visible;
-                    Joueur.StopMove();
+                    DrainMindGame.Get().Joueur.StopMove();
                     Pressed = true;
                 }
                 //Resume
@@ -388,7 +380,7 @@ namespace DrainMind.View
                 {
                     if (GroupBoxUpgradeSkill.Visibility == Visibility.Hidden)
                     {
-                        drainMind.Resume();
+                        DrainMindGame.Get().Resume();
                         GenerateurEnemie.GeneratorTimer.Start();
                         timer.Start();
                     }
@@ -398,7 +390,7 @@ namespace DrainMind.View
                 }
             }
 
-            if (e.Key == Key.G && DrainMindGame.Instance != null)
+            if (e.Key == Key.G)
             {
                 bool Pressed = false;
 
@@ -434,13 +426,13 @@ namespace DrainMind.View
 
         private void GetMainWindow_Deactivated(object sender, EventArgs e)
         {
-            if (GroupBoxPause.Visibility == Visibility.Hidden && DrainMindGame.Instance != null)
+            if (GroupBoxPause.Visibility == Visibility.Hidden && Settings.Get().GameIsRunning)
             {
-                drainMind.Pause();
+                DrainMindGame.Get().Pause();
                 GenerateurEnemie.GeneratorTimer.Stop();
                 timer.Stop();
                 GroupBoxPause.Visibility = Visibility.Visible;
-                Joueur.StopMove();
+                DrainMindGame.Get().Joueur.StopMove();
             }
         }
 

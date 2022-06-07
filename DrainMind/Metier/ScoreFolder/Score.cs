@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace DrainMind.metier.joueur.ScoreFolder
+namespace DrainMind.Metier.ScoreFolder
 {
     /// <summary>
     /// Class score of the player

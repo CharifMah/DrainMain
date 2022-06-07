@@ -24,7 +24,6 @@
             <RowDefinition Height="5*" />
             <RowDefinition Height="5*" />
             <RowDefinition Height="5*" />
-            <RowDefinition Height="5*" />
            
         </Grid.RowDefinitions>
 
@@ -40,23 +39,11 @@
                 Content="{x:Static res:Strings.Jouer}"
                 />
 
-        <Button x:Name="NewGameButton"
-                Style="{StaticResource CustomButton}"          
-                HorizontalAlignment="Stretch"
-                Grid.Row="2" 
-                Grid.Column="1" 
-                FontSize="50" 
-                VerticalAlignment="Stretch"
-                Margin="20"
-                Content="{x:Static res:Strings.NewGame}"
-                Click="NewGameButton_Click"
-                />
-
         <Button x:Name="OptionButton" 
                 Style="{StaticResource CustomButton}" 
                 Content="{x:Static res:Strings.Options}"
                 HorizontalAlignment="Stretch" 
-                Grid.Row="3" 
+                Grid.Row="2" 
                 Grid.Column="1" 
                 FontSize="50" 
                 VerticalAlignment="Stretch" 
@@ -67,7 +54,7 @@
                 Style="{StaticResource CustomButton}"
                 Content="{x:Static res:Strings.Exit}"
                 HorizontalAlignment="Stretch" 
-                Grid.Row="4" 
+                Grid.Row="3" 
                 Grid.Column="1" 
                 FontSize="50" 
                 Click="ExitButton_Click"
