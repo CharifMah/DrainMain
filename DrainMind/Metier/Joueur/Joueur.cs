@@ -72,9 +72,6 @@ namespace DrainMind.Metier.joueur
             _posY = y;
 
             _persoStats = new StatsPerso(5,5,30);
-
-            //WeaponBase w = new WeaponBase();
-            //DrainMindGame.Get().AddItem(w);
         }
 
         #region Animation

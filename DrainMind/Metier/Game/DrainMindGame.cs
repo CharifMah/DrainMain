@@ -25,6 +25,7 @@ namespace DrainMind.Metier.Game
         private Joueur _joueur;
         private GenerateurEnemie _generateurEnemie;
         private GenerateurItem _generateurItem;
+        private WeaponBase _weapon;
 
 
         #region Property
@@ -64,7 +65,10 @@ namespace DrainMind.Metier.Game
             //Creation du joueur
             _joueur = new Joueur(500, 500);
             AddItem(_joueur);
-            
+
+            _weapon = new WeaponBase();
+            AddItem(_weapon);
+
             _generateurEnemie = new GenerateurEnemie();
             AddItem(_generateurEnemie);
 
@@ -125,7 +129,6 @@ namespace DrainMind.Metier.Game
             }
             Settings.Get().GameIsRunning = false;
             DrainMindView.MainCanvas.Children.Clear();
-
         }      
     }
 }
