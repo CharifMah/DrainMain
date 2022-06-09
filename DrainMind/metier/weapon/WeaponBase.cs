@@ -1,4 +1,5 @@
-﻿using DrainMind.Metier.enemie;
+﻿using DrainMind.metier.Grille;
+using DrainMind.Metier.enemie;
 using DrainMind.Metier.Game;
 using DrainMind.Metier.joueur;
 using DrainMind.View;
@@ -14,16 +15,17 @@ namespace DrainMind.metier.weapon
     public class WeaponBase : IUTGame.GameItem
     {
         protected double _firesdelay;
-        //Time
-        private DateTime _timer;
+
         //Minuteur
         private DispatcherTimer timer;
 
-        public WeaponBase(string spriteName = "") : base(DrainMindGame.Get().Joueur.PosX, DrainMindGame.Get().Joueur.PosY, DrainMindView.MainCanvas, DrainMindGame.Get(), spriteName)
+        public WeaponBase(string spriteName = "Type1Arme1.png") : base(DrainMindGame.Get().Joueur.PosX, DrainMindGame.Get().Joueur.PosY, DrainMindView.MainCanvas, DrainMindGame.Get(), spriteName)
         {
             _firesdelay = 700;
+
+            DrainMindView.UIcanvas.Children.Add(MyGrid.PutSpriteInCase(2, 16, SpriteStore.Get(spriteName).Image));
+           
             //Minuteur
-            _timer = new DateTime(0);
             timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(_firesdelay) };
             timer.Tick += Fire;
             timer.Start();

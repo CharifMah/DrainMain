@@ -291,11 +291,6 @@ namespace DrainMind.View
             CloseUpgradeGrpBox();
         }
 
-        private void DoubleXp_Button_Click(object sender, RoutedEventArgs e)
-        {
-            DrainMindGame.Get().Joueur.Stats.Xpmult *= 2;
-            CloseUpgradeGrpBox();
-        }
 
         private void AddLife_Button_Click(object sender, RoutedEventArgs e)
         {

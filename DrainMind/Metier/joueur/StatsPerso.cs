@@ -1,10 +1,14 @@
-﻿using DrainMind.metier.joueur;
+﻿using DrainMind.metier.Grille;
+using DrainMind.metier.joueur;
+using DrainMind.metier.weapon;
 using DrainMind.View;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace DrainMind.Metier.joueur
 {
@@ -115,5 +119,6 @@ namespace DrainMind.Metier.joueur
             _Xpmult = 1.0;
             _xpMax = 100;
         }
+
     }
 }

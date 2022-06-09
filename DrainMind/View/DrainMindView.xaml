@@ -167,20 +167,7 @@
                                Grid.Column="0"
                                />
                     
-                    <Button 
-                        Grid.Column="1" 
-                        Grid.Row="1"
-                        VerticalAlignment="Center" 
-                        HorizontalAlignment="Center"
-                        Style="{StaticResource CustomButton}"
-                        Width="200"
-                        Height="100"
-                        BorderBrush="Yellow"
-                        Click="DoubleXp_Button_Click"
-                        Content="2X XP"
-                        />
-
-
+                   
                     <Button 
                         Grid.Column="1" 
                         Grid.Row="2"

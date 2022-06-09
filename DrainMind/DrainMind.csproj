@@ -11,6 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ViewModel\**" />
+    <EmbeddedResource Remove="ViewModel\**" />
+    <None Remove="ViewModel\**" />
+    <Page Remove="ViewModel\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Sounds\Angello.mp3" />
     <None Remove="Sounds\Gouttes.mp3" />
     <None Remove="Sounds\hurt.mp3" />
@@ -55,6 +62,7 @@
     <None Remove="Sprites\HTournerD.png" />
     <None Remove="Sprites\HTournerG.png" />
     <None Remove="Sprites\joueur.png" />
+    <None Remove="Sprites\level.png" />
     <None Remove="Sprites\Logo.ico" />
     <None Remove="Sprites\moitiervie.png" />
     <None Remove="Sprites\nightmare.png" />
@@ -139,6 +147,7 @@
     <Content Include="Sounds\SoundTake2.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Sprites\level.png" />
     <Resource Include="Sprites\AmmoArme1.png" />
     <Resource Include="Sprites\Attaque1.png" />
     <Resource Include="Sprites\Background.png" />
@@ -172,10 +181,6 @@
     <Resource Include="Sprites\fondTest.png" />
     <Resource Include="Sprites\fondTest2.png" />
     <Resource Include="Sprites\TitreMenu.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
   </ItemGroup>
 
 </Project>

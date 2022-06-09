@@ -136,7 +136,7 @@ namespace DrainMind.Metier.enemie
             {
                 ExpItem xp = new ExpItem(this.Left + (this.Width / 2), this.Top + (this.Height / 2),_XPpoint);
                 DrainMindGame.Get().AddItem(xp);
-
+                DropBonus();
                 this.Dispose();
                 this.Collidable = false;                        
             }
@@ -250,6 +250,12 @@ namespace DrainMind.Metier.enemie
    
                 MoveDA(r.Next(_minspeed, _maxspeed), angle);
             }
+        }
+
+        public void DropBonus()
+        {
+            XpBonus xp = new XpBonus(this.Left + (this.Width) / 2, this.Top + (this.Height) / 2);
+            DrainMindGame.Get().AddItem(xp);
         }
     }
 }
