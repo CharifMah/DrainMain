@@ -17,9 +17,9 @@ namespace DrainMind.metier.joueur
     public class Vie
     {
         //List of the lives
-        private static Dictionary<FrameworkElement, Coordonnees> _listlife;
+        private static List<FrameworkElement> _listlife;
         //List of th empty lives
-        private static Dictionary<FrameworkElement, Coordonnees> _listemptylife;
+        private static List<FrameworkElement> _listemptylife;
         //Canvas of the lives
         private Canvas uiLife;
         //Life
@@ -27,14 +27,7 @@ namespace DrainMind.metier.joueur
         //ligne where the lives are
         private int ligne = 0;
 
-        public static Dictionary<FrameworkElement, Coordonnees> ListLife
-        {
-            get { return _listlife; }
-        }
-        public static Dictionary<FrameworkElement, Coordonnees> ListEmptyLife
-        {
-            get { return _listemptylife; }
-        }
+
 
         /// <summary>
         /// Set Ajoute ou envleve de la vie
@@ -69,8 +62,8 @@ namespace DrainMind.metier.joueur
         public Vie(int pointLife, int MaxPv)
         {
             uiLife = View.DrainMindView.UIcanvas;
-            _listlife = new Dictionary<FrameworkElement, Coordonnees>();
-            _listemptylife = new Dictionary<FrameworkElement, Coordonnees>();
+            _listlife = new List<FrameworkElement>();
+            _listemptylife = new List<FrameworkElement>();
             AddEmptyLife(MaxPv);
             AddLife(pointLife);
         }
@@ -86,8 +79,8 @@ namespace DrainMind.metier.joueur
             {
                 if (_listemptylife.Count - 1 != 0)
                 {
-                    uiLife.Children.Remove(_listemptylife.Keys.Last());
-                    _listemptylife.Remove(_listemptylife.Keys.Last());
+                    uiLife.Children.Remove(_listemptylife.Last());
+                    _listemptylife.Remove(_listemptylife.Last());
                 }
             }
         }
@@ -104,10 +97,11 @@ namespace DrainMind.metier.joueur
                 Sprite EmptyCoeur = new Sprite(SpriteStore.Get(Path.Combine("Vie", "1.png")).Image);
                 EmptyCoeur.Image.Width = 50;
                 EmptyCoeur.Image.Height = 50;
+
                 if (_listemptylife.Count <= MyGrid.NombreDeCollumn && ligne == 0)
                 {
-                    uiLife.Children.Add(MyGrid.PutSpriteInCase(_listemptylife.Count, ligne, EmptyCoeur.Image));
-                    _listemptylife.Add(EmptyCoeur.Image, new Coordonnees(_listemptylife.Count, ligne));
+                    uiLife.Children.Add(MyGrid.PutSpriteInCase(new Coordonnees(_listemptylife.Count, ligne), EmptyCoeur.Image));
+                    _listemptylife.Add(EmptyCoeur.Image);
                 }
             }
         }
@@ -123,8 +117,8 @@ namespace DrainMind.metier.joueur
             {
                 if (_listlife.Count - 1 != 0)
                 {
-                    uiLife.Children.Remove(_listlife.Keys.Last());
-                    _listlife.Remove(_listlife.Keys.Last());
+                    uiLife.Children.Remove(_listlife.Last());
+                    _listlife.Remove(_listlife.Last());
                 }
             }
         }
@@ -144,8 +138,9 @@ namespace DrainMind.metier.joueur
             {
                 Sprite Coeur = new Sprite(SpriteStore.Get(Path.Combine("Vie", "2.png")).Image);
 
-                uiLife.Children.Add(MyGrid.PutSpriteInCase(_listlife.Count, 0, Coeur.Image));
-                _listlife.Add(Coeur.Image, new Coordonnees(_listlife.Count, 0));
+                uiLife.Children.Add(MyGrid.PutSpriteInCase(new Coordonnees(_listlife.Count,0), Coeur.Image));
+
+                _listlife.Add(Coeur.Image);
             }
         }
     }

@@ -30,7 +30,6 @@ namespace DrainMind.View
     /// </summary>
     public partial class DrainMindView : Page
     {
-        private MenuPrincipale _MenuPrincipale;
         private SortAdorner listViewSortAdorner = null;
         private GridViewColumnHeader listViewSortCol = null;
 
@@ -66,7 +65,7 @@ namespace DrainMind.View
 
         #endregion
 
-        public DrainMindView(MenuPrincipale Menu)
+        public DrainMindView()
         {      
             ShowsNavigationUI = false;       
             InitializeComponent();   
@@ -77,7 +76,6 @@ namespace DrainMind.View
             _uicanvas = UI;
             _maincanvas = canvas;
             _upgradeSkillGrpBox = GroupBoxUpgradeSkill;
-            _MenuPrincipale = Menu;
 
             MyGrid.NombreDeLigne = 20;
             MyGrid.NombreDeCollumn = 40;
@@ -215,8 +213,7 @@ namespace DrainMind.View
             timer.Stop();
             GenerateurEnemie.GeneratorTimer.Stop();
 
-            _MenuPrincipale.PlayButton.Content = DrainMind.Res.Strings.Reprendre;
-            MainWindow.GetMainWindow.Content = _MenuPrincipale;
+            MainWindow.GetMainWindow.Content = new MenuPrincipale();
             Stock.SauverScore(LesScores.Get().Scores);
         }
 

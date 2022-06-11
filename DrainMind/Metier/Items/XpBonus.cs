@@ -35,13 +35,13 @@ namespace DrainMind.Metier.Items
             t.FontSize = 30;
             t.Foreground = couleur;
 
-            DrainMind.View.DrainMindView.UIcanvas.Children.Add(MyGrid.PutSpriteInCase(29, 16, t));
+            DrainMind.View.DrainMindView.UIcanvas.Children.Add(MyGrid.PutSpriteInCase(new Coordonnees(29, 16), t));
 
             DrainMindGame.Get().Joueur.Stats.Xpmult = 5;
             await Task.Delay(delaymilisecond);
             DrainMindGame.Get().Joueur.Stats.Xpmult = 1;
-
-            DrainMind.View.DrainMindView.UIcanvas.Children.Remove(MyGrid.PutSpriteInCase(29, 16, t));
+           
+            DrainMind.View.DrainMindView.UIcanvas.Children.Remove(MyGrid.PutSpriteInCase(new Coordonnees(29, 16), t));
         }
     }
 }

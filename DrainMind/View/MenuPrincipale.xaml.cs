@@ -52,12 +52,13 @@ namespace DrainMind.View
             if (drainmindView == null)
             {
                 //Lance une Nouvelle Partie
-                drainmindView = new DrainMindView(this);
+                drainmindView = new DrainMindView();
                 mainwindow.Content = drainmindView;
             }
             else
             {
                 //Reprends la Partie en cours
+                PlayButton.Content = DrainMind.Res.Strings.Reprendre;
                 mainwindow.Content = drainmindView;
             }
         }

@@ -20,6 +20,7 @@ namespace DrainMind.metier.Grille
         private static int nombreligne;
         private static int nombrecollumn;
         private static Canvas actualgrid;
+        private static Dictionary<FrameworkElement, Coordonnees> spriteUI = new Dictionary<FrameworkElement, Coordonnees>();
 
         #region Property
 
@@ -45,6 +46,11 @@ namespace DrainMind.metier.Grille
             {
                 actualgrid = value;
             }
+        }
+
+        public static Dictionary<FrameworkElement, Coordonnees > SpriteUI
+        {
+            get => spriteUI;
         }
 
         #endregion
@@ -107,19 +113,25 @@ namespace DrainMind.metier.Grille
         /// <param name="height">Height of the sprite</param>
         /// <param name="sprite">Sprite to draw</param>
         /// <author>Charif</author>
-        public static FrameworkElement PutSpriteInCase(int idCol, int idLigne, FrameworkElement sprite)
+        public static FrameworkElement PutSpriteInCase(Coordonnees coordonnees, FrameworkElement sprite)
         {
             hauteurligne = MainWindow.GetMainWindow.ActualHeight / nombreligne;
             largeurColonne = MainWindow.GetMainWindow.ActualWidth / nombrecollumn;
 
-            int x = (int)(idCol * largeurColonne);
-            int y = (int)(idLigne * hauteurligne);
+            int x = (int)(coordonnees.Colonne * largeurColonne);
+            int y = (int)(coordonnees.Ligne * hauteurligne);
             if (sprite != null)
             {
                 sprite.Width = (int)largeurColonne - 2;
                 sprite.Height = (int)hauteurligne - 1;
                 Canvas.SetLeft(sprite, x + 1);
-                Canvas.SetTop(sprite, y + 1);            
+                Canvas.SetTop(sprite, y + 1);
+
+                if (!spriteUI.ContainsKey(sprite))
+                {
+                    spriteUI.Add(sprite,coordonnees );
+                }
+                
             }
             return sprite;
         }
@@ -134,18 +146,12 @@ namespace DrainMind.metier.Grille
         {
             DrainMindView.UIcanvas.Children.Clear();
 
-            foreach (KeyValuePair<FrameworkElement,Coordonnees> life in Vie.ListLife)
+            foreach (KeyValuePair<FrameworkElement,Coordonnees> Uielement in spriteUI)
             {
-                PutSpriteInCase(life.Value.Colonne,life.Value.Ligne, life.Key);
-                DrainMindView.UIcanvas.Children.Add(life.Key);
+                PutSpriteInCase(Uielement.Value, Uielement.Key);
+                DrainMindView.UIcanvas.Children.Add(Uielement.Key);
             }
-
-            foreach (KeyValuePair<FrameworkElement, Coordonnees> life_empty in Vie.ListEmptyLife)
-            {
-                PutSpriteInCase(life_empty.Value.Colonne, life_empty.Value.Ligne, life_empty.Key);
-                DrainMindView.UIcanvas.Children.Add(life_empty.Key);
-            }
-
+            
             actualgrid = drawGrid();
         }
     }
