@@ -102,7 +102,6 @@ namespace DrainMind.Metier.Game
             //Affecte le contenu de la mainwindow actuel a un nouveau menu principal
             (Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow).Content = new MenuPrincipale();
             PlayBackgroundMusic("LooseSound.mp3");
-            StopGame();
         }
 
         /// <summary>
@@ -111,24 +110,6 @@ namespace DrainMind.Metier.Game
         protected override void RunWhenWin()
         {
             MessageBox.Show(Res.Strings.Gagne);
-        }
-
-        /// <summary>
-        /// Remove All GameItem
-        /// </summary>
-        public void StopGame()
-        {      
-            RemoveItem(_joueur);
-            RemoveItem(_generateurEnemie);
-            RemoveItem(_generateurItem);
-            foreach (GameItem item in ListItems())
-            {
-                RemoveItem(item);
-                item.Dispose();
-                
-            }
-            Settings.Get().GameIsRunning = false;
-            DrainMindView.MainCanvas.Children.Clear();
-        }      
+        }    
     }
 }

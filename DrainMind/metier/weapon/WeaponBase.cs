@@ -19,11 +19,11 @@ namespace DrainMind.metier.weapon
         //Minuteur
         private DispatcherTimer timer;
 
-        public WeaponBase(string spriteName = "Type1Arme1.png") : base(DrainMindGame.Get().Joueur.PosX, DrainMindGame.Get().Joueur.PosY, DrainMindView.MainCanvas, DrainMindGame.Get(), spriteName)
+        public WeaponBase(string spriteName = "") : base(DrainMindGame.Get().Joueur.PosX, DrainMindGame.Get().Joueur.PosY, DrainMindView.MainCanvas, DrainMindGame.Get(), spriteName)
         {
             _firesdelay = 700;
            
-            DrainMindView.UIcanvas.Children.Add(MyGrid.PutSpriteInCase(new Coordonnees(2,16), SpriteStore.Get(spriteName).Image));
+            DrainMindView.UIcanvas.Children.Add(MyGrid.PutSpriteInCase(new Coordonnees(2,16), SpriteStore.Get("Type1Arme1.png").Image));
            
             //Minuteur
             timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(_firesdelay) };

@@ -251,11 +251,18 @@ namespace DrainMind.Metier.enemie
                 MoveDA(r.Next(_minspeed, _maxspeed), angle);
             }
         }
-
+        /// <summary>
+        /// Drop un bonus xp
+        /// </summary>
         public void DropBonus()
         {
-            XpBonus xp = new XpBonus(this.Left + (this.Width) / 2, this.Top + (this.Height) / 2);
-            DrainMindGame.Get().AddItem(xp);
+            Random r = new Random();
+            int dropChance = r.Next(1, 100);
+            if (dropChance <= 2)
+            {
+                XpBonus xp = new XpBonus(this.Left + (this.Width) / 2, this.Top + (this.Height) / 2);
+                DrainMindGame.Get().AddItem(xp);
+            }  
         }
     }
 }

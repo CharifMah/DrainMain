@@ -90,8 +90,7 @@ namespace DrainMind.View
 
         }
 
-       
-
+      
         #region Saisi des information GroupBox (Debut du jeux)
         /// <summary>
         /// Button Terminer apres la saisi du psedo lance un partie
@@ -118,8 +117,7 @@ namespace DrainMind.View
         /// </summary>
         /// <Author>Charif</Author>
         public void CreateGame()
-        {
-
+        {           
             DrainMindGame.Get().Run();
             DrainMindGame.Get().BackgroundVolume = (Settings.Get().Son / 100);
             Settings.Get().GameIsRunning = true;
@@ -131,7 +129,6 @@ namespace DrainMind.View
         #endregion
 
         #region Init Methode
-
 
         /// <summary>
         /// initialise les dataContext
@@ -209,9 +206,6 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            DrainMindGame.Get().Pause();
-            timer.Stop();
-            GenerateurEnemie.GeneratorTimer.Stop();
 
             MainWindow.GetMainWindow.Content = new MenuPrincipale();
             Stock.SauverScore(LesScores.Get().Scores);
