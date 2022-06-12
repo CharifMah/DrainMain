@@ -1,4 +1,5 @@
-﻿using DrainMind.Metier.enemie;
+﻿using DrainMind.Metier;
+using DrainMind.Metier.enemie;
 using DrainMind.Metier.Game;
 using DrainMind.Metier.Items;
 using DrainMind.Metier.joueur;
@@ -32,16 +33,22 @@ namespace DrainMind.metier.weapon
 
         public void Animate(TimeSpan dt)
         {
-            delayTargetNull += (dt);
-            if (_target != null && _target.Collidable)
+            if (Settings.Get().GameIsRunning)
             {
-                MoveToEnemie();              
+                delayTargetNull += (dt);
+                if (_target != null && _target.Collidable)
+                {
+                    MoveToEnemie();
+                }
+                else
+                {
+                    MoveDA(_firespeed, Orientation);
+                }
             }
-            else 
+            else
             {
-                MoveDA(_firespeed, Orientation);
+                this.Dispose();
             }
-
         }
 
         public override void CollideEffect(GameItem other)
