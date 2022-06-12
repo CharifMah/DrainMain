@@ -43,8 +43,14 @@ namespace DrainMind.metier.Items
         {
             if (this.Collidable)
             {
-                MoveXpToPlayer();
-                
+                if (Settings.Get().GameIsRunning)
+                {
+                    MoveXpToPlayer();
+                }
+                else
+                {
+                    this.Dispose();
+                }
             }
         }
 
