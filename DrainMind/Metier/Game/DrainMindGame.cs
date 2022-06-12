@@ -84,12 +84,23 @@ namespace DrainMind.Metier.Game
             Random r = new Random();
             int selectMusic = r.Next(1, 3);
 
-            if (selectMusic <= 1)
-                PlayBackgroundMusic("Son_ambiance_Action.mp3");
-            if (selectMusic == 2)
-                PlayBackgroundMusic("Angello.mp3");
-            if (selectMusic >= 3)
-                PlayBackgroundMusic("Gouttes.mp3");
+            switch (selectMusic)
+            {
+                case 1:
+                    PlayBackgroundMusic("Son_ambiance_Action.mp3");
+                    break;
+
+                case 2:
+                    PlayBackgroundMusic("Angello.mp3");
+                    break;
+
+                case 3:
+                    PlayBackgroundMusic("Gouttes.mp3");
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         /// <summary>
