@@ -119,43 +119,51 @@ namespace DrainMind.Metier.enemie
         /// <Author>Charif</Author>
         private async void CreateEnemie(TypeEnemie typeEnemie,int number,int delaymilisecond)
         {
-            Random r = new Random();
-            EnemieBase n = null;
-            for (int i = 0; i < number; i++)
+            if (Settings.Get().GameIsRunning)
             {
-                double x = r.NextDouble() * DrainMindView.MainCanvas.Width;
-                double y = r.NextDouble() * DrainMindView.MainCanvas.Height;
-    
-                switch (typeEnemie)
+                Random r = new Random();
+                EnemieBase n = null;
+                for (int i = 0; i < number; i++)
                 {
-                    case TypeEnemie.fantomevert:
-                        n = new EnemieFvert(x, y);
+                    if (Settings.Get().GameIsRunning == false)
+                    {
                         break;
-                    case TypeEnemie.boss:
-                        n = new EnemieBoss(x, y);                     
-                        break;
-                    case TypeEnemie.gloom:
-                        n = new EnemieGloom(x, y);
-                        break;
-                    case TypeEnemie.zebre:
-                        n = new EnemieNightmare(x, y);
-                        break;
-                    case TypeEnemie.bossRapide:
-                        n = new EnemieBossRapide(x, y);
-                        break;
-                    default: n = new EnemieBase(x, y);
-                        break;                  
+                    }
+
+                    double x = r.NextDouble() * DrainMindView.MainCanvas.Width;
+                    double y = r.NextDouble() * DrainMindView.MainCanvas.Height;
+
+                    switch (typeEnemie)
+                    {
+                        case TypeEnemie.fantomevert:
+                            n = new EnemieFvert(x, y);
+                            break;
+                        case TypeEnemie.boss:
+                            n = new EnemieBoss(x, y);
+                            break;
+                        case TypeEnemie.gloom:
+                            n = new EnemieGloom(x, y);
+                            break;
+                        case TypeEnemie.zebre:
+                            n = new EnemieNightmare(x, y);
+                            break;
+                        case TypeEnemie.bossRapide:
+                            n = new EnemieBossRapide(x, y);
+                            break;
+                        default:
+                            n = new EnemieBase(x, y);
+                            break;
+                    }
+                    if (n != null)
+                    {
+                        DrainMindGame.Get().AddItem(n);
+                        _statsEnemies.LesEnemies.Add(n);
+                    }
+
+                    //Delay de delaymilisecond ms entre chaque spawn
+                    await Task.Delay(delaymilisecond);
                 }
-                if (n != null)
-                {
-                    DrainMindGame.Get().AddItem(n);
-                    _statsEnemies.LesEnemies.Add(n);
-                }
-            
-                //Delay de delaymilisecond ms entre chaque spawn
-                await Task.Delay(delaymilisecond);
-                                                  
-            }                     
+            }
         }
 
         /// <summary>
