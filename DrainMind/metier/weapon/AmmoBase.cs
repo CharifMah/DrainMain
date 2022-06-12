@@ -16,7 +16,6 @@ namespace DrainMind.metier.weapon
     {
         private static EnemieBase _target;
         private double _firespeed;
-        private double _damage;
         private double _angle;
 
         private TimeSpan delayTargetNull;
@@ -24,7 +23,7 @@ namespace DrainMind.metier.weapon
         {
             _firespeed = 30;
             _target = DrainMindGame.Get().generateurEnemie.statsEnemies.GetNearestEnemie();
-            _angle = Math.Atan2(_target.Top - this.Top, _target.Left - this.Left) * (180 / Math.PI);
+            _angle = Math.Atan2((_target.Top + _target.Height/2) - this.Top, (_target.Left + _target.Width/2) - this.Left) * (180 / Math.PI);
 
             delayTargetNull = new TimeSpan(0);
         }

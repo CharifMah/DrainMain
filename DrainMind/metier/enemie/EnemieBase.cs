@@ -59,8 +59,8 @@ namespace DrainMind.Metier.enemie
             ChangeScale(0.7, 0.7);
             _life = 1;
             _maxlife = 1;
-            _ePosX = x;
-            _ePosY = y;
+            _ePosX = x + (this.Width / 2);
+            _ePosY = y + (this.Height / 2);
             _Iscollide = false;   
             _soundKill = "hurt.mp3";
             _XPpoint = 10;

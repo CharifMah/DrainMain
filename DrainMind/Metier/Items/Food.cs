@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -15,7 +16,7 @@ namespace DrainMind.Metier.Items
     /// <summary>
     /// Food, allows to gain life back
     /// </summary>
-    public class Food : IUTGame.GameItem
+    public class Food : IUTGame.GameItem, IAnimable
     {
         //ennemies's number
         private static int foodnumber = 0;
@@ -55,6 +56,42 @@ namespace DrainMind.Metier.Items
                
                 this.Collidable = false;
             
+            }
+        }
+
+        /// <summary>
+        /// Animate the item
+        /// </summary>
+        /// <param name="dt">time span</param>
+        /// <author>Ryan</author>
+        public void Animate(TimeSpan dt)
+        {
+            if (Settings.Get().GameIsRunning)
+            {
+                PreventCollide();
+            }
+            else
+            {
+                this.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Prevent Collision between the item and the player
+        /// </summary>
+        /// <author>Ryan</author>
+        public void PreventCollide()
+        {
+            double PlayerPosX = DrainMindGame.Get().Joueur.PosX;
+            double PlayerPosY = DrainMindGame.Get().Joueur.PosY;
+            double ePosX = this.Left + (this.Width / 2);
+            double ePosY = this.Top + (this.Height / 2);
+
+            double result = Math.Sqrt(Math.Pow(PlayerPosX - ePosX, 2) + Math.Pow(PlayerPosY - ePosY, 2));
+
+            if (result < 50)
+            {
+                CollideEffect(DrainMindGame.Get().Joueur);
             }
         }
     }

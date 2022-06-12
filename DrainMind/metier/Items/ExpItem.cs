@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Timers;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -76,22 +77,31 @@ namespace DrainMind.metier.Items
             }
         }
 
-
-
         /// <summary>
         /// Xp movement towards the player
         /// </summary>
         /// <Author>Charif</Author>
         public void MoveXpToPlayer()
         {
+            double PlayerPosX = DrainMindGame.Get().Joueur.PosX;
+            double PlayerPosY = DrainMindGame.Get().Joueur.PosY;
             double ePosX = this.Left + (this.Width / 2);
             double ePosY = this.Top + (this.Height / 2);
             double _angle = 0;
+
+            double result = Math.Sqrt(Math.Pow(PlayerPosX - ePosX, 2) + Math.Pow(PlayerPosY - ePosY, 2));
+
             if (Settings.Get().GameIsRunning)
             {
                 _angle = Math.Atan2(DrainMindGame.Get().Joueur.PosY - ePosY, DrainMindGame.Get().Joueur.PosX - ePosX) * (180 / Math.PI);
             }
+
             MoveDA(_speed, _angle);
+
+            if (result < 20)
+            {
+                CollideEffect(DrainMindGame.Get().Joueur);
+            }
         }
     }
 }

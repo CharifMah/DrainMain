@@ -68,8 +68,8 @@ namespace DrainMind.Metier.joueur
             ChangeScale(0.7,0.7);
 
 
-            _posX = x;
-            _posY = y;
+            _posX = x + (this.Width / 2);
+            _posY = y + (this.Height / 2);
 
             _persoStats = new StatsPerso(5,5,30);
         }
