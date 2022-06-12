@@ -71,10 +71,24 @@ namespace DrainMind.Metier.enemie
         /// <param name="y1">Position y1</param>
         /// <param name="y2">Position y2</param>
         /// <Author>Charif</Author>
-        /// <returns></returns>
+        /// <returns>Distance décimale</returns>
         public double CalculDistance(double x1, double x2, double y1, double y2)
         {
             return Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
+        }
+
+        /// <summary>
+        /// Permet la destruction de tous les ennemies 
+        /// </summary>
+        /// <author>Ryan</author>
+        public void DestroyAllEnnemies()
+        {
+
+            foreach (var v in _lesenemies)
+            {
+                v.Destroy();
+                v.Dispose();
+            }
         }
 
     }
