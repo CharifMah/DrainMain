@@ -99,7 +99,6 @@ namespace DrainMind.Metier.enemie
                         DrainMindGame.Get().Joueur.Stats.Life._Vie = 0;
                         Game.Loose();
                     }
-                    Destroy();
                 }
             }
             if (other.TypeName == "Enemie")
