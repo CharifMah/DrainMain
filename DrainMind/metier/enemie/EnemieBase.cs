@@ -100,6 +100,7 @@ namespace DrainMind.Metier.enemie
                         Game.Loose();
                     }
                 }
+                Destroy();
             }
             if (other.TypeName == "Enemie")
             {
