@@ -179,34 +179,21 @@ namespace DrainMind.Metier.joueur
             switch (key)
             {
                 case Key.Z:
-                    goUp = true;
-                    break;
-
-                case Key.Q:
-                    goLeft = true;
-                    break;
-
-                case Key.S:
-                    goDown = true;
-                    break;
-
-                case Key.D:
-                    goRight = true;
-                    break;
-
-
                 case Key.Up:
                     goUp = true;
                     break;
 
+                case Key.Q:
                 case Key.Left:
                     goLeft = true;
                     break;
 
+                case Key.S:
                 case Key.Down:
                     goDown = true;
                     break;
 
+                case Key.D:
                 case Key.Right:
                     goRight = true;
                     break;
@@ -226,34 +213,21 @@ namespace DrainMind.Metier.joueur
             switch (key)
             {
                 case Key.Z:
-                    goUp = false;
-                    break;
-
-                case Key.Q:
-                    goLeft = false;
-                    break;
-
-                case Key.S:
-                    goDown = false;
-                    break;
-
-                case Key.D:
-                    goRight = false;
-                    break;
-
-
                 case Key.Up:
                     goUp = false;
                     break;
 
+                case Key.Q:
                 case Key.Left:
                     goLeft = false;
                     break;
 
+                case Key.S:
                 case Key.Down:
                     goDown = false;
                     break;
 
+                case Key.D:
                 case Key.Right:
                     goRight = false;
                     break;
