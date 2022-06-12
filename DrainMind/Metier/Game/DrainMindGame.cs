@@ -63,21 +63,52 @@ namespace DrainMind.Metier.Game
         protected override void InitItems()
         {
             //Creation du joueur
+            if (_joueur != null)
+            {
+                _joueur.Dispose();
+                RemoveItem(_joueur);
+            }
+
             _joueur = new Joueur(500, 500);
             AddItem(_joueur);
+
+            //Création armes
+            if (_weapon != null)
+            {
+                _weapon.Dispose();
+                RemoveItem(_weapon);
+            }
 
             _weapon = new WeaponBase();
             AddItem(_weapon);
 
+            //Création générateur ennemie
+            if (_generateurEnemie != null)
+            {
+                _generateurEnemie.Dispose();
+                RemoveItem(_generateurEnemie);
+            }
+
             _generateurEnemie = new GenerateurEnemie();
             AddItem(_generateurEnemie);
+
+            //Création générateur item
+            if (_generateurItem != null)
+            {
+                _generateurItem.Dispose();
+                RemoveItem(_generateurItem);
+            }
 
             _generateurItem = new GenerateurItem();
             AddItem(_generateurItem);
 
+            //Selection musique
             selectMusic();
         }
 
+        /// <summary>
+        /// Select a random background music
+        /// </summary>
         public void selectMusic()
         {
 
@@ -109,10 +140,13 @@ namespace DrainMind.Metier.Game
         /// <Author>Charif</Author>
         protected override void RunWhenLoose()
         {
+            Settings.Get().GameIsRunning = false;
             MessageBox.Show(Res.Strings.Perdu);
             //Affecte le contenu de la mainwindow actuel a un nouveau menu principal
             (Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow).Content = new MenuPrincipale();
             PlayBackgroundMusic("LooseSound.mp3");
+            _generateurEnemie.statsEnemies.DestroyAllEnnemies();
+            StopBackgroundMusic();
         }
 
         /// <summary>
