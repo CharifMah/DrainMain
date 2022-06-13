@@ -66,8 +66,7 @@ namespace DrainMind.View
         #endregion
 
         public DrainMindView()
-        {
-            this.Focus();
+        {      
             ShowsNavigationUI = false;       
             InitializeComponent();   
 
@@ -118,9 +117,9 @@ namespace DrainMind.View
         /// </summary>
         /// <Author>Charif</Author>
         public void CreateGame()
-        {
+        {           
             DrainMindGame.Get().Run();
-            DrainMindGame.Get().BackgroundVolume = Settings.Get().Son / 100;
+            DrainMindGame.Get().BackgroundVolume = (Settings.Get().Son / 100);
             Settings.Get().GameIsRunning = true;
             MyGrid.Grid = MyGrid.drawGrid();
             timer.Start();
@@ -207,6 +206,7 @@ namespace DrainMind.View
         /// <Author>Charif</Author>
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
+
             MainWindow.GetMainWindow.Content = new MenuPrincipale();
             Stock.SauverScore(LesScores.Get().Scores);
             DrainMindGame.Get().StopBackgroundMusic();

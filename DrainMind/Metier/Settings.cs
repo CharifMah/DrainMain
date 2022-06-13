@@ -150,7 +150,7 @@ namespace DrainMind.Metier
         /// Load settings file in the json file StreamReader
         /// </summary>
         /// <Author>Charif</Author>
-        public void LoadSettings()
+        private void LoadSettings()
         {
             Settings s = Stock.ChargerSettings();
             if (s != null)
@@ -164,6 +164,7 @@ namespace DrainMind.Metier
             {
                 this._culturename = Thread.CurrentThread.CurrentCulture.Name;
             }
+               
         }
     }
 }
