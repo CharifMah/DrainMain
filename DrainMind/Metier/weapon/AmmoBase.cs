@@ -1,13 +1,18 @@
 ﻿using DrainMind.Metier;
 using DrainMind.Metier.enemie;
 using DrainMind.Metier.Game;
+using DrainMind.Metier.Items;
+using DrainMind.Metier.joueur;
 using DrainMind.View;
 using IUTGame;
 using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows.Controls;
 
 namespace DrainMind.metier.weapon
 {
-    public class AmmoBase : IUTGame.GameItem, IAnimable
+    public class AmmoBase : IUTGame.GameItem,IAnimable
     {
         private static EnemieBase _target;
         private double _firespeed;
@@ -18,7 +23,7 @@ namespace DrainMind.metier.weapon
         {
             _firespeed = 30;
             _target = DrainMindGame.Get().generateurEnemie.statsEnemies.GetNearestEnemie();
-            _angle = Math.Atan2((_target.Top + _target.Height / 2) - this.Top, (_target.Left + _target.Width / 2) - this.Left) * (180 / Math.PI);
+            _angle = Math.Atan2((_target.Top + _target.Height/2) - this.Top, (_target.Left + _target.Width/2) - this.Left) * (180 / Math.PI);
 
             delayTargetNull = new TimeSpan(0);
         }
@@ -57,13 +62,13 @@ namespace DrainMind.metier.weapon
         /// Va en direction de lenemie le plus proche
         /// </summary>
         private void MoveToEnemie()
-        {
+        {        
             this.Orientation = _angle;
             MoveDA(_firespeed, _angle);
-
+            
         }
 
-
+  
 
     }
 }

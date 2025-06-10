@@ -1,11 +1,14 @@
 ﻿using DrainMind.metier.enemie;
+using DrainMind.metier.Grille;
 using DrainMind.metier.Items;
 using DrainMind.Metier.Game;
 using DrainMind.Metier.Items;
+using DrainMind.Metier.joueur;
 using DrainMind.Metier.ScoreFolder;
 using DrainMind.View;
 using IUTGame;
 using System;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace DrainMind.Metier.enemie
@@ -32,7 +35,7 @@ namespace DrainMind.Metier.enemie
         protected int _maxlife;
         protected TypeEnemie _typeenemie;
         protected string _soundHit;
-
+   
         public int maxlife
         {
             get { return _maxlife; }
@@ -51,14 +54,14 @@ namespace DrainMind.Metier.enemie
         /// <param name="g">game</param>
         /// <param name="Spritename">name of the sprite</param>
         /// <Author>Charif</Author>
-        public EnemieBase(double x, double y, string spritename = "Enemie/fantome.png") : base(x, y, DrainMindView.MainCanvas, DrainMindGame.Get(), spritename)
+        public EnemieBase(double x, double y,string spritename = "Enemie/fantome.png") : base(x, y, DrainMindView.MainCanvas, DrainMindGame.Get(), spritename)
         {
             ChangeScale(0.7, 0.7);
             _life = 1;
             _maxlife = 1;
             _ePosX = x + (this.Width / 2);
             _ePosY = y + (this.Height / 2);
-            _Iscollide = false;
+            _Iscollide = false;   
             _soundKill = "hurt.mp3";
             _XPpoint = 10;
             _damage = 1;
@@ -84,7 +87,7 @@ namespace DrainMind.Metier.enemie
             if (other.TypeName == "Joueur")
             {
                 if (this.Collidable)
-                {
+                {                 
                     int val = DrainMindGame.Get().Joueur.Stats.Life._Vie - (_damage * _life);
 
                     if (val > 0)
@@ -112,15 +115,15 @@ namespace DrainMind.Metier.enemie
                     other.Dispose();
 
                     if (DrainMindGame.Get() != null)
-                        DrainMindGame.Get().RemoveItem(other);
+                    DrainMindGame.Get().RemoveItem(other);
 
                     if (this.Collidable)
                     {
                         LooseLife(1);
                     }
 
-                    new TextItem(other.Left, other.Top, $"-{1}", Brushes.Red);
-                }
+                    new TextItem(other.Left,other.Top,$"-{1}",Brushes.Red);               
+                }              
             }
         }
 
@@ -131,11 +134,11 @@ namespace DrainMind.Metier.enemie
         {
             if (DrainMindGame.Get() != null)
             {
-                ExpItem xp = new ExpItem(this.Left + (this.Width / 2), this.Top + (this.Height / 2), _XPpoint);
+                ExpItem xp = new ExpItem(this.Left + (this.Width / 2), this.Top + (this.Height / 2),_XPpoint);
                 DrainMindGame.Get().AddItem(xp);
                 DropBonus();
                 this.Dispose();
-                this.Collidable = false;
+                this.Collidable = false;                        
             }
 
             PlaySound(_soundKill);
@@ -180,7 +183,7 @@ namespace DrainMind.Metier.enemie
             if (Collidable)
             {
                 MoveEnemie();
-            }
+            }           
         }
 
         /// <summary>
@@ -244,7 +247,7 @@ namespace DrainMind.Metier.enemie
                     default:
                         break;
                 }
-
+   
                 MoveDA(r.Next(_minspeed, _maxspeed), angle);
             }
         }
@@ -259,7 +262,7 @@ namespace DrainMind.Metier.enemie
             {
                 XpBonus xp = new XpBonus(this.Left + (this.Width) / 2, this.Top + (this.Height) / 2);
                 DrainMindGame.Get().AddItem(xp);
-            }
+            }  
         }
     }
 }

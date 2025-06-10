@@ -3,15 +3,24 @@ using DrainMind.metier.joueur;
 using DrainMind.Metier;
 using DrainMind.Metier.enemie;
 using DrainMind.Metier.Game;
+using DrainMind.Metier.joueur;
 using DrainMind.Metier.ScoreFolder;
 using DrainMind.Stockage;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace DrainMind.View
@@ -57,9 +66,9 @@ namespace DrainMind.View
         #endregion
 
         public DrainMindView()
-        {
-            ShowsNavigationUI = false;
-            InitializeComponent();
+        {      
+            ShowsNavigationUI = false;       
+            InitializeComponent();   
 
             GroupBoxUpgradeSkill.Visibility = Visibility.Hidden;
             GroupBoxInfoPerso.Visibility = Visibility.Visible;
@@ -73,7 +82,7 @@ namespace DrainMind.View
 
             //Minuteur
             _timer = new DateTime(0);
-            timer = new DispatcherTimer();
+            timer  = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
 
@@ -81,7 +90,7 @@ namespace DrainMind.View
 
         }
 
-
+      
         #region Saisi des information GroupBox (Debut du jeux)
         /// <summary>
         /// Button Terminer apres la saisi du psedo lance un partie
@@ -108,7 +117,7 @@ namespace DrainMind.View
         /// </summary>
         /// <Author>Charif</Author>
         public void CreateGame()
-        {
+        {           
             DrainMindGame.Get().Run();
             DrainMindGame.Get().BackgroundVolume = (Settings.Get().Son / 100);
             Settings.Get().GameIsRunning = true;
@@ -142,7 +151,7 @@ namespace DrainMind.View
             {
                 ScoreListView.Items.Add(score);
             }
-
+               
         }
 
         #endregion
@@ -163,7 +172,7 @@ namespace DrainMind.View
                 GenerateurEnemie.GeneratorTimer.Start();
                 timer.Start();
             }
-
+            
             GroupBoxPause.Visibility = Visibility.Hidden;
         }
 
@@ -242,7 +251,7 @@ namespace DrainMind.View
             AdornerLayer.GetAdornerLayer(listViewSortCol).Add(listViewSortAdorner);
             ScoreListView.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
         }
-
+    
 
         #endregion
 
@@ -259,7 +268,7 @@ namespace DrainMind.View
             GenerateurEnemie.GeneratorTimer.Stop();
             DrainMindGame.Get().Pause();
             DrainMindGame.Get().Joueur.StopMove();
-
+                        
         }
 
         /// <summary>
@@ -328,7 +337,7 @@ namespace DrainMind.View
             {
                 Camera.MoveCamera(DrainMindGame.Get().Joueur.PosX, DrainMindGame.Get().Joueur.PosY);
                 MyGrid.ResizeCanvas();
-            }
+            }                     
         }
 
         /// <summary>
