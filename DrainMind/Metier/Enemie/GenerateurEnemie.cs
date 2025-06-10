@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Threading;
-using DrainMind.metier.enemie;
-using DrainMind.metier.joueur;
-using DrainMind.Metier.enemie.enemie;
+﻿using DrainMind.metier.enemie;
 using DrainMind.Metier.Game;
-using DrainMind.Metier.joueur;
 using DrainMind.View;
 using IUTGame;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace DrainMind.Metier.enemie
 {
@@ -54,7 +44,7 @@ namespace DrainMind.Metier.enemie
         /// </summary>
         /// <param name="g">drainMind</param>
         /// <param name="c">canvas</param>
-        public GenerateurEnemie(): base(0,0,DrainMindView.MainCanvas,DrainMindGame.Get())
+        public GenerateurEnemie() : base(0, 0, DrainMindView.MainCanvas, DrainMindGame.Get())
         {
             _statsEnemies = new StatsEnemies();
             //Minuteur
@@ -76,39 +66,39 @@ namespace DrainMind.Metier.enemie
         internal void CreateEnemieWave(object sender, EventArgs e)
         {
 
-                _timer = _timer.AddMilliseconds(100);
+            _timer = _timer.AddMilliseconds(100);
 
-                if (100 == _timer.TimeOfDay.TotalMilliseconds)
-                {
-                    CreateEnemie(TypeEnemie.fantome, 15, 100);
-                    CreateEnemie(TypeEnemie.fantomevert, 20, 100);
-                }
+            if (100 == _timer.TimeOfDay.TotalMilliseconds)
+            {
+                CreateEnemie(TypeEnemie.fantome, 15, 100);
+                CreateEnemie(TypeEnemie.fantomevert, 20, 100);
+            }
 
-                if (10000 == _timer.TimeOfDay.TotalMilliseconds)
-                {
-                    CreateEnemie(TypeEnemie.fantome, 15, 100);
-                    CreateEnemie(TypeEnemie.fantomevert, 20, 100);                
-                }
+            if (10000 == _timer.TimeOfDay.TotalMilliseconds)
+            {
+                CreateEnemie(TypeEnemie.fantome, 15, 100);
+                CreateEnemie(TypeEnemie.fantomevert, 20, 100);
+            }
 
-                if (35000 == _timer.TimeOfDay.TotalMilliseconds)
-                {
-                    CreateEnemie(TypeEnemie.zebre, 10, 300);
-                    CreateEnemie(TypeEnemie.gloom, 70, 1000);
-                    
-                }
+            if (35000 == _timer.TimeOfDay.TotalMilliseconds)
+            {
+                CreateEnemie(TypeEnemie.zebre, 10, 300);
+                CreateEnemie(TypeEnemie.gloom, 70, 1000);
 
-                if (90000 == _timer.TimeOfDay.TotalMilliseconds)
-                {
-                    CreateEnemie(TypeEnemie.bossRapide, 5, 100);
-                    CreateEnemie(TypeEnemie.zebre, 50, 500);
-                    CreateEnemie(TypeEnemie.gloom, 100, 1000);
-                }
+            }
 
-                if (130000 == _timer.TimeOfDay.TotalMilliseconds)
-                {
-                    CreateEnemie(TypeEnemie.boss, 30, 1500);
-                }         
-           
+            if (90000 == _timer.TimeOfDay.TotalMilliseconds)
+            {
+                CreateEnemie(TypeEnemie.bossRapide, 5, 100);
+                CreateEnemie(TypeEnemie.zebre, 50, 500);
+                CreateEnemie(TypeEnemie.gloom, 100, 1000);
+            }
+
+            if (130000 == _timer.TimeOfDay.TotalMilliseconds)
+            {
+                CreateEnemie(TypeEnemie.boss, 30, 1500);
+            }
+
         }
 
         /// <summary>
@@ -118,7 +108,7 @@ namespace DrainMind.Metier.enemie
         /// <param name="number">number of enemy</param>
         /// <param name="delaymilisecond">time between creation</param>
         /// <Author>Charif</Author>
-        private async void CreateEnemie(TypeEnemie typeEnemie,int number,int delaymilisecond)
+        private async void CreateEnemie(TypeEnemie typeEnemie, int number, int delaymilisecond)
         {
             if (Settings.Get().GameIsRunning)
             {
@@ -172,7 +162,7 @@ namespace DrainMind.Metier.enemie
         /// </summary>
         /// <param name="other">the other object</param>
         /// <Author>Charif</Author>
-        public override void CollideEffect(GameItem other) 
+        public override void CollideEffect(GameItem other)
         {
             this.Collidable = false;
         }

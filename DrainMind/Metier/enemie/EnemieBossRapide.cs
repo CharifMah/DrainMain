@@ -1,8 +1,4 @@
 ﻿using DrainMind.metier.enemie;
-using DrainMind.Metier.enemie.enemie;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DrainMind.Metier.enemie
 {
