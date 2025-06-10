@@ -1,7 +1,6 @@
 ﻿using DrainMind.metier.enemie;
 using DrainMind.metier.Grille;
 using DrainMind.metier.Items;
-using DrainMind.Metier.enemie.enemie;
 using DrainMind.Metier.Game;
 using DrainMind.Metier.Items;
 using DrainMind.Metier.joueur;
@@ -12,7 +11,7 @@ using System;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace DrainMind.Metier.enemie
+namespace DrainMind.Metier
 {
     /// <summary>
     /// ennemies of the game

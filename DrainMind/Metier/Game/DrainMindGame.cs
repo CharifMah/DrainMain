@@ -1,18 +1,11 @@
-﻿using DrainMind.metier.Grille;
-using DrainMind.metier.Items;
-using DrainMind.metier.joueur;
+﻿using DrainMind.metier.Items;
 using DrainMind.metier.weapon;
 using DrainMind.Metier.enemie;
 using DrainMind.Metier.joueur;
 using DrainMind.View;
-using IUTGame;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace DrainMind.Metier.Game
 {
@@ -53,7 +46,7 @@ namespace DrainMind.Metier.Game
         /// <Author>Charif</Author>
         private DrainMindGame() : base(DrainMindView.MainCanvas, "Sprites", "Sounds")
         {
-         
+
         }
 
         /// <summary>
@@ -155,6 +148,6 @@ namespace DrainMind.Metier.Game
         protected override void RunWhenWin()
         {
             MessageBox.Show(Res.Strings.Gagne);
-        }    
+        }
     }
 }

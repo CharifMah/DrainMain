@@ -28,8 +28,7 @@ namespace DrainMind.metier.enemie
             this._minspeed = _speed;
             this._maxspeed = _speed * 4;
             this._typeenemie = TypeEnemie.boss;
-
-            
+                    
         }
     }
 }
